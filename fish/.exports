@@ -1,0 +1,7 @@
+export CFLAGS="-Wno-error=deprecated"
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+export HISTFILE=~/.config/fish/.fish_history
+
+bind \cb backward-word
+bind \cf forward-word
+
