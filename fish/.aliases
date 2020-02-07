@@ -9,13 +9,15 @@ alias md5='openssl md5'
 alias pe='printenv'
 alias sha1='openssl sha1'
 alias sha256='openssl sha256'
-alias gwd='cd /data/src'
-# alias rm='trash'
-alias _='sudo '
+alias gwd='cd ~/src'
+alias gwf='cd ~/src/qmk/qmk_firmware'
+alias rm='trash'
+# alias _='sudo '
 
 # git aliases
 alias g='git'
 alias gd='git diff HEAD'
 alias gst='git status'
 alias gbr='git branch'
+alias diff='git diff --no-index'
 

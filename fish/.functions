@@ -1,6 +1,13 @@
 function fish_prompt
-  echo (set_color 3399FF)(whoami)(set_color FF9933)@(set_color 00CC00)(tput smul)(echo $hostname)(tput rmul)(set_color FF9933) (date -u '+%Y-%m-%d %H:%M:%S') UTC (set_color 6B6FFF)(pretty_path)
+  echo (set_color 3399FF)(whoami)(set_color FF9933)@(set_color 00CC00)(tput smul)(echo $hostname)(tput rmul)(set_color FF9933) (date -u '+%Y-%m-%d %H:%M:%S') UTC (set_color 6B6FFF)(pretty_path)(set_color 03A9F4)(get_branch)
   echo "\$ "
+end
+
+function get_branch
+  set branch_name (git rev-parse --abbrev-ref HEAD 2> /dev/null)
+  if test "$branch_name" != ""
+    echo "[+]$branch_name"
+  end
 end
 
 function fish_greeting

@@ -1,7 +1,11 @@
 export CFLAGS="-Wno-error=deprecated"
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 export HISTFILE=~/.config/fish/.fish_history
+export GPG_TTY=(tty)
 
+set -gx EDITOR 'nvim'
+
+set --universal fish_user_paths $fish_user_paths ~/src/bin
 bind \cb backward-word
 bind \cf forward-word
 
