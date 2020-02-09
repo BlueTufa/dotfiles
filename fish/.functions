@@ -4,9 +4,14 @@ function fish_prompt
 end
 
 function get_branch
+  if test -z "(git status --untracked-file=no --porcelain 2> /dev/null)"
+    set indicator "-"
+  else
+    set indicator "+"
+  end
   set branch_name (git rev-parse --abbrev-ref HEAD 2> /dev/null)
   if test "$branch_name" != ""
-    echo "[+]$branch_name"
+    echo "[$indicator]$branch_name"
   else
     echo ""
   end
