@@ -7,6 +7,8 @@ function get_branch
   set branch_name (git rev-parse --abbrev-ref HEAD 2> /dev/null)
   if test "$branch_name" != ""
     echo "[+]$branch_name"
+  else
+    echo ""
   end
 end
 
@@ -33,6 +35,7 @@ function ied
 end
 
 function pretty_path
-  echo (pwd | sed "s|$HOME|~|g" | sed "s|^/data|%|g" )
+  echo (pwd | sed "s|$HOME|~|g")
+  # echo (pwd | sed "s|$HOME|~|g" | sed "s|^/data|%|g" )
 end
 
