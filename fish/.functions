@@ -1,4 +1,10 @@
 function fish_prompt
+  if test "$status" -ne "0"
+    set ARROW "CB0000"
+  else
+    set ARROW "58A82F"
+  end
+
   echo (set_color 3399FF)(whoami)(set_color FF9933)@(set_color 00CC00)(tput smul)(echo $hostname)(tput rmul)(set_color FF9933) (date -u '+%Y-%m-%d %H:%M:%S') UTC (set_color 6B6FFF)(pretty_path)(set_color 03A9F4)(get_branch)
   echo "\$ "
 end
