@@ -32,7 +32,7 @@ function cal
 end
 
 function o
-  dolphin (pwd) & 
+  dbus-launch dolphin (pwd) > /dev/null & 
 end
 
 function ied
@@ -40,7 +40,7 @@ function ied
 end
 
 function pretty_path
-  echo (pwd | sed "s|$HOME|~|g")
+  echo (pwd | sed "s|^$HOME|~|g")
   # echo (pwd | sed "s|$HOME|~|g" | sed "s|^/data|%|g" )
 end
 
