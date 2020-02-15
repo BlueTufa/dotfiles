@@ -80,12 +80,8 @@ source ~/.powerlevel10k/powerlevel10k.zsh-theme
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
  git
- bundler
  dotenv
  osx
- rake
- rbenv
- ruby
 )
 
 source $ZSH/oh-my-zsh.sh
