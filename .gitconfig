@@ -1,0 +1,84 @@
+[color]
+	ui = true
+	diff = auto
+	status = auto
+	branch = auto
+[core]
+	whitespace = fix,-indent-with-non-tab,trailing-space
+	editor = vim
+	excludefiles = /Users/dan.white/.gitignore_global
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[user]
+	name = Dan White
+	email = github@bluetufa.com
+	signingkey = 2CBFFBB431E45CE9D0804DCFAC2B67274EBAAAD0
+[alias]
+	br = branch
+	ci = commit -S
+	co = checkout
+  st = status
+  mg = merge 
+  pl = pull
+  ps = push
+  a = add
+  l = log --pretty=oneline -n 20 --graph --abbrev-commit
+  sh = stash
+[pager]
+  diff = diff-so-fancy | less --tabs=1,5 -RFX
+  show = diff-so-fancy | less --tabs=1,5 -RFX
+[push]
+	default = simple
+[filter "lfs"]
+	required = true
+	process = git-lfs filter-process
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[merge]
+  tool = intellij
+[mergetool "intellij"]
+  cmd = idea merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+  trustExitCode = true
+[diff]
+  tool = intellij
+[difftool "intellij"]
+  cmd = idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
+# [diff]
+#	 tool = bc3
+#  guitool = bc3
+# [difftool]
+#	 prompt = false
+#	 bc3 = trustExitCode
+# [merge]
+# 	tool = bc3
+# [mergetool]
+#	prompt = false
+#	bc3 = trustExitCode
+#
+# [merge]
+# 	tool = bcompare
+# [mergetool "bcompare"]
+# 	cmd = "bcompare" # --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+# 	prompt = false
+# 	bcompare = trustExitCode
+# [diff]
+# 	tool = bcompare
+# [difftool "bcompare"]
+# 	prompt = false
+# 	cmd = bcompare $LOCAL $REMOTE
+# 	bcompare = trustExitCode
+[url "https://"]
+	insteadOf = git://
+[color "diff-highlight"]
+	oldNormal = red bold
+	newNormal = green bold
+	oldHighlight = red bold 52
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[gpg]
+	program = gpg

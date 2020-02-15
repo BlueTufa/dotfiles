@@ -38,7 +38,13 @@ function cal
 end
 
 function o
-  dbus-launch dolphin (pwd) > /dev/null & 
+  if test "$argv" = ""
+    open $PWD
+  else
+    open $argv
+  end
+# or the crappy Linux version
+#  dbus-launch dolphin (pwd) > /dev/null & 
 end
 
 function ied

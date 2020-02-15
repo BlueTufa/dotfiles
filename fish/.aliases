@@ -2,6 +2,8 @@ alias ll='exa -aa -g --long --header --git'
 alias vi='nvim'
 alias h='history'
 alias clip='xclip -sel clip'
+# MacOS version of copy to clipboard from command line:
+# alias clip='pbcopy'
 alias cat='bat --theme=DarkNeon'
 alias grep='grep -i --color'
 alias lr 'tree -afi'

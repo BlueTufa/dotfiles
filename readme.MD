@@ -3,6 +3,9 @@
 ### Fish shell support
 A comprensive collection of Fish (Friendly Interactive Shell) dotfiles which will allow a quick and easy customization of Fish on an existing system.  This configuration will generally work cross-platform betwen MacOS and Linux, although you may encounter minor bugs on either.  You can link your dotfiles from this repo into the home directory by running the `link-dotfiles.sh` file at the root of this repository.
 
+To permanently change the default shell to Fish, run the following from bash:
+`chsh -s $(which fish) $(whoami)`
+
 ### Neovim support
 This directory includes a basic neovim configuration as well.  You will still need to configure vim-plug and run :PlugInstall to get a fully working installation.  To install vim-plug, run the following command:
   `curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
