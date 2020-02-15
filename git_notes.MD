@@ -16,3 +16,12 @@ git apply my.patch
 ## Scorch the earth and make it just like the remote again:
 `git reset --hard upstream/<branch name>`
 `git push origin <branch name> --force`
+
+## resolve merge conflicts by accept theirs:
+`git checkout --theirs -- <filename>`
+
+## Ways to squash commits
+`git reset --soft HEAD~3 &&`
+`git commit --edit -m'blah'
+`git push --force`
+* where 3 is the number of commits back in history to squash
