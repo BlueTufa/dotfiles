@@ -9,5 +9,5 @@ do
   ln -sf $(pwd)/$file ~/.config/${file}
 done
 
-mkdir -p ~/src
+mkdir -p ~/src/bin
 
