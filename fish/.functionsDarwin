@@ -1,0 +1,9 @@
+function o
+  if test "$argv" = ""
+    open $PWD
+  else
+    open $argv
+  end
+end
+
+

@@ -1,0 +1,3 @@
+# Linux version of copy to clipboard
+alias clip='xclip -sel clip'
+

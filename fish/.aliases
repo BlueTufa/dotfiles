@@ -1,9 +1,9 @@
+# GENERIC alias dotfile.  Put everything that is not OS specific in this dotfile.
+
 alias ll='exa -aa -g --long --header --git'
 alias vi='nvim'
 alias h='history'
-alias clip='xclip -sel clip'
-# MacOS version of copy to clipboard from command line:
-# alias clip='pbcopy'
+
 alias cat='bat --theme=DarkNeon'
 alias grep='grep -i --color'
 alias lr 'tree -afi'
@@ -13,8 +13,7 @@ alias sha1='openssl sha1'
 alias sha256='openssl sha256'
 alias gwd='cd ~/src'
 alias gwf='cd ~/src/qmk/qmk_firmware'
-alias rm='trash'
-# alias _='sudo '
+alias rm='trash -v'
 
 # git aliases
 alias g='git'

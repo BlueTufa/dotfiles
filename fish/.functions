@@ -25,8 +25,11 @@ end
 
 function fish_greeting
   echo ""
-  neofetch 
-#  screenfetch
+  if test (uname) = "Darwin"
+    screenfetch
+  else
+    neofetch 
+  end
 end
 
 function cal
@@ -37,22 +40,7 @@ function cal
   end
 end
 
-function o
-  if test "$argv" = ""
-    open $PWD
-  else
-    open $argv
-  end
-# or the crappy Linux version
-#  dbus-launch dolphin (pwd) > /dev/null & 
-end
-
-function ied
-  intellij-idea-community $argv &
-end
-
 function pretty_path
   echo (pwd | sed "s|^$HOME|~|g")
-  # echo (pwd | sed "s|$HOME|~|g" | sed "s|^/data|%|g" )
 end
 

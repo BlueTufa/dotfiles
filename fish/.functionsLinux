@@ -1,0 +1,9 @@
+function o
+# the crappy Linux version
+  dbus-launch dolphin (pwd) > /dev/null & 
+end
+
+function ied
+  intellij-idea-community $argv &
+end
+
