@@ -164,5 +164,12 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+function! StartUp()
+  if !argc() && !exists("s:std_in")
+    NERDTree
+  end
+endfunction
+
+autocmd VimEnter * call StartUp()
 
 
