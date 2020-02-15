@@ -10,8 +10,8 @@ install-vim-plug () {
 }
 
 install-oh-my-zsh () {
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
 
 for file in fish/.{functions,exports,aliases,*$(uname)}

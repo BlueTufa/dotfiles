@@ -1,3 +1,68 @@
 # Linux version of copy to clipboard
 alias clip='pbcopy'
 
+# shell aliases
+# keep them in alpha sort
+# alias dish='docker exec -it ubuntu_dev bash'
+
+alias awol='awslogs get -S'
+alias check_nightly='awslogs get -S -G --start="10h ago" /ecs/analytics-nightly --profile=dr'
+
+# aliases for gui mode apps
+# NOTE: may need to add -f after -g any time you want to block from the CLI
+alias actmon="open /Applications/Utilities/Activity\ Monitor.app"
+alias calc="open /Applications/Calculator.app"
+alias chrome="open /Applications/Google\ Chrome.app"
+alias console="open /Applications/Utilities/Console.app"
+alias firefox="open /Applications/firefox.app"
+alias gdu="open /Applications/Utilities/Disk\ Utility.app"
+alias hipchat="open /Applications/HipChat.app"
+alias ied="open -a /Applications/IntelliJ\ IDEA.app"
+alias lookout="open /Applications/Microsoft\ Outlook.app"
+
+alias opera="open /Applications/Opera.app"
+alias postman="open /Applications/Postman.app"
+alias prefs="open /Applications/System\ Preferences.app"
+alias pych="open /Applications/PyCharm.app"
+alias rmine="open /Applications/RubyMine.app"
+# same as CMD+SHIFT+. except it requires a launcher restart
+# alias noshowallfiles="defaults write com.apple.finder AppleShowAllFiles NO"
+# alias showallfiles="defaults write com.apple.finder AppleShowAllFiles YES"
+# does this work in latest MacoOS?
+# alias showrecovery="defaults write com.apple.DiskUtility DUDebugMenuEnabled 1"
+alias slack="open /Applications/Slack.app"
+alias sqlwb="open /Applications/DataGrip.app"
+alias standup="open https://livongo.zoom.us/j/145844488"
+alias wstorm="open /Applications/WebStorm.app"
+
+# dev aliass
+alias diff='git diff --no-index'
+alias g='git'
+alias gd='git diff HEAD'
+alias gst='git status'
+alias gwd='cd ~/src'
+alias gwm='cd ~/src/admin'
+alias gwn='cd ~/src/analytics'
+alias gwp='cd ~/src/platform-apis'
+alias gwpa='cd ~/src/api'
+alias gwpl='cd ~/src/platform-libraries'
+alias gwa='cd ~/src/app'
+alias gwc='cd ~/src/console'
+alias gwg='cd ~/src/gemini'
+alias gwr='cd ~/src/reporting'
+alias gww='cd ~/src/webapp'
+alias jnk='o http://jenkins.mystrength.me'
+alias bcz='mvn clean install -DskipITs'
+alias bcc='mvn -DskipTests -DskipITs compile package install'
+alias gwecs='cd ~/src/webapp/aws/ecs'
+alias gwcf='cd ~/src/webapp/aws/cloudformation'
+alias gwtf='cd ~/src/webapp/aws/terraform'
+alias gws3p='cd ~/src/s3/prod'
+alias gws3d='cd ~/src/s3/dts'
+alias gwsc='cd ~/src/analytics/automations/scorecards'
+
+# kept mostly for historical purposes
+# alias kismet='open -a /Applications/KisMac2.app'
+# alias wireshark='open -a /Applications/WireShark.app'
+# alias iossim="open -a /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app"
+

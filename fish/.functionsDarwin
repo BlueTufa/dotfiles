@@ -6,4 +6,79 @@ function o
   end
 end
 
+function ghb
+  set org "mystrength"
+  set folder (basename (pwd))
+  if test "$folder" = "reporting"
+    set org "livongo"
+  end
+  if test "$folder" = "platform-apis"
+    set org "livongo"
+  end
+  if test "$folder" = "analytics"
+    set folder "mystrength_analytics"
+  end
+  if test "$folder" = "console"
+    set folder "patient-console"
+  end
+  set url "https://github.com/$ORG/$FOLDER"
+  echo "launching url $url..."
+  open $URL
+end
+
+# function fish_prompt
+#   if test "$status" -ne "0"
+#     set ARROW "CB0000"
+#   else
+#     set ARROW 58a82f
+#   end
+# 
+#   echo (set_color 3399FF)(whoami)(set_color $ARROW)@(set_color FF9933)(date -u '+%a %d %H:%M:%S UTC') (set_color 6B6FFF)(pretty_path)(set_color 03A9F4)(get_branch) 
+#   set_color 03A9F4
+#   echo "\$ "  
+#   
+#   echo $history[1] | grep -Ev '(^hh$|^sd|^l.$)' >> ~/.local/share/fish/hh.history
+#   # also echo fish commands to the bash history
+#   # BASH keep this file in memory so it doesn't work quite like you might want it to,
+#   # also potential corruption issues (last one appears to win)
+#   # echo $history[1] | grep -Ev '(^hh$|^sd|^l.$)' >> ~/.bash_history
+# end
+
+function nightly-override
+  # echo '$argv[1]'
+  set json "{ \"containerOverrides\": [ {\"name\": \"analytics-nightly-mystrength-com\", \"environment\": [{\"name\": \"STARTUP_CMD\", \"value\": \"$argv[1]\"}]} ]}"
+  # echo $json
+  aws ecs run-task --cluster dr-ecs-cluster --task-definition=analytics-nightly --overrides=$json
+end
+
+function bass
+  set -l bash_args $argv
+  set -l bass_debug
+  if test "$bash_args[1]_" = '-d_'
+    set bass_debug true
+    set -e bash_args[1]
+  end
+
+  set -l script_file (mktemp)
+  python (dirname (status -f))/__bass.py $bash_args 3>$script_file
+  set -l bass_status $status
+  if test $bass_status -ne 0
+    return $bass_status
+  end
+
+  if test -n "$bass_debug"
+    cat $script_file
+  end
+  source $script_file
+  /bin/rm $script_file
+end
+
+function __bass_usage
+  echo "Usage: bass [-d] <bash-command>"
+end
+
+function nvm
+   bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
+end
+
 

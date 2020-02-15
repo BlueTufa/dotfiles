@@ -1,1 +1,40 @@
+set -x EDITOR 'vim'
+set -x KAFKA_CLIENT_BOOTSTRAP_SERVERS 'localhost:30002'
+set -g fish_user_paths "$HOME/src/bin" "/usr/local/Cellar/hadoop/2.7.7/share/hadoop/tools/lib/" "/usr/local/Cellar/hadoop/2.7.7/bin" "$HOME/src/webapp/aws/ecs" "/usr/local/sbin" "/usr/local/opt/postgresql@9.6/bin" "/usr/local/Cellar/sqoop-1.4.7/bin" "/usr/local/Cellar/sqoop-1.4.7/lib" "/usr/local/Cellar/hadoop/2.7.7/share/hadoop/yarn" "/Users/dan.white/src/kafka_2.12-2.4.0/bin"
+
+set -gx JAVA_HOME (/usr/libexec/java_home -v1.8)
+set -gx LIQUIBASE_HOME /usr/local/opt/liquibase/libexec  
+
+set -gx NVM_DIR "$HOME/.nvm"
+set -gx SBT_OPTS "-Xmx4096M -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M  -Duser.timezone=GMT"
+# these are notoriously difficult to get configured
+# NOTE this is a manual installation of HADOOP, as the versions included in brew
+# weren't lining up properly
+export APP_ENV="DEV"
+export HADOOP_CLASSPATH=/share/hadoop/tools/lib
+export HADOOP_PREFIX=/usr/local/hadoop
+export ACCUMULO_HOME=/usr/local/Cellar/accumulo
+export HADOOP_HOME=/usr/local/hadoop
+export HADOOP_COMMON_HOME=/usr/local/hadoop
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export HADOOP_MAPRED_HOME=$HADOOP_HDFS_HOME
+export HADOOP_YARN_HOME=/usr/local/hadoop
+export HCAT_HOME=/usr/local/opt/hive/libexec/hcatalog
+export HADOOP_CONF_DIR=/usr/local/hadoop/libexec/etc/hadoop
+export ZOOKEEPER_HOME=/usr/local/Cellar/zookeeper/3.4.12
+export HBASE_HOME=/usr/local/Cellar/hbase
+export SQOOP_HOME=/usr/local/Cellar/sqoop-1.4.7
+export ZOOKEEPER_HOME=/usr/local/Cellar/zookeeper
+export HIVE_HOME=/usr/local/Cellar/hive/2.1.0/
+export GPG_TTY=(tty)
+
+# these are currently fish specific, not really sure what will happen in zsh
+bind --user '[1;2D' 'backward-bigword'
+bind --user '[1;2C' 'forward-bigword'
+bind --user '[1;2B' 'downcase-word'
+bind --user '[1;2A' 'upcase-word'
+# bind --user \cw 'backward-kill-bigword'
+bind --user \cb 'backward-word'
+bind --user \cf 'forward-word'
+
 
