@@ -1,23 +1,27 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/dan.white/.oh-my-zsh"
+export ZSH="$(dirname ${(%):-%x})/.oh-my-zsh"
 export HISTFILE=~/.zsh_history
 
-# this is shared with bash, but bash is dead
-# source ~/.functions
-#Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-ZSH_THEME="powerlevel10k/powerlevel10k"
-POWERLEVEL9K_STATUS_OK_BACKGROUND='000' #alpha
-POWERLEVEL9K_STATUS_OK_FOREGROUND='040' #green
-POWERLEVEL9K_STATUS_ERROR_BACKGROUND='196' #red
-POWERLEVEL9K_STATUS_ERROR_FOREGROUND='226' #yellow
+source ~/.powerlevel10k/powerlevel10k.zsh-theme
+
+# ZSH_THEME="~/.powerlevel10k/powerlevel10k"
+# POWERLEVEL9K_STATUS_OK_BACKGROUND='000' #alpha
+# POWERLEVEL9K_STATUS_OK_FOREGROUND='040' #green
+# POWERLEVEL9K_STATUS_ERROR_BACKGROUND='196' #red
+# POWERLEVEL9K_STATUS_ERROR_FOREGROUND='226' #yellow
 # POWERLEVEL9K_MODE='nerdfont-complete'
+
+
 
 # . '~/Library/Fonts/10-powerline-symbols.conf'
 # '/usr/local/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf'
@@ -87,8 +91,8 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # POWERLINE stuff
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator command_execution_time background_jobs time)
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator command_execution_time background_jobs time)
 
 # User configuration
 
@@ -122,8 +126,11 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator command_execution_time
 # shared aliases
 source ~/.config/fish/.aliases
 
+
 # bindkey '^[[1;1C' emacs-forward-word
 # bindkey '^[[1;1D' emacs-backward-word
 bindkey '^[[1;5C' emacs-forward-word
 bindkey '^[[1;5D' emacs-backward-word
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
