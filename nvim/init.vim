@@ -34,11 +34,13 @@ let g_airline_theme = 'jellybeans'
 set statusline+=%{FugitiveStatusLine()}
 :tnoremap <Esc> <C-\><C-n>
 
-" hi Normal guibg=NONE ctermbg=NONE
 set statusline+=%{FugitiveStatusLine()}
 
-" hi! Normal ctermbg=NONE guibg=NONE
-" hi! NonText ctermbg=NONE guibg=NONE
+" Configure a transparent backgroun
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE
+highlight SignColumn ctermbg=NONE guibg=NONE
+highlight LineNr ctermbg=NONE guibg=NONE
 
 " Better display for messages
 set cmdheight=2
@@ -170,4 +172,4 @@ endfunction
 
 autocmd VimEnter * call StartUp()
 
-
+cabbrev tree NERDTreeToggle

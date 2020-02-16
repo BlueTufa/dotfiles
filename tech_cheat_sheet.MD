@@ -9,63 +9,29 @@
 * ctrl-g go to line
 * ctrl shift w select word
 
-## terminal
-* ctrl + w delete word backwards from command line
+## terminal (fish specific?)
+### Many of these seem to work great in zsh as well
 * ctrl + a beginning of line
-* ctrl + w = delete word
+* ctrl + w = delete word (backward-kill-word)
+* ctrl + d = delete character under cursor 
 * ctrl + e end of line
-* alt + arrow keys jump between words. (custom)
+* ctrl + arrow keys jump between words.  doesn't work on all operating systems
 * ctrl + k kill to end of line
 * ctrl + u kill to beginning of line
 * ctrl + _ undo use this more
 * more here: http://web.mit.edu/gnu/doc/html/features_7.html
 * ~. kill ssh session
 
-## BASH / zsh
+## BASH / zsh AKA heredoc
 Don't forget about << EOF stream redirection
 ```nc -v localhost 8888 << EOF
 blah
 EOF```
 
-You can do the same thing with fish using echo:
+## Fish shell heredoc equivalent
+You can do the same thing with fish using echo and \:
 ```echo "\
 here" | nc -v localhost 8888```
-
-## vim keys
-  u = undo
-  o/O insert new line below above and enter insert mode
-  ctrl + b page up
-  ctrl + f page down
-  gg = top of document
-  G = bottom of document
-  b = back word
-  w = next word
-  e = end of word
-  H = screen top
-  L = screen bottom
-  :vsplit filename
-  ctrl + ww to switch buffers
-  a = append insert mode
-  0 = beginning of line
-  $ = end of line
-  ^ = beginning of text
-  / = search
-  n = next find in search mode
-  N = search backwards in search mode
-  3dd = cut x lines where 3 = x
-  3yy = copy x lines where 3 = x
-  p = paste buffer
-  daw = delete a word
-  yiw = yank inner word
-  SHIFT + Arrow = move word
-  more here: http://vim.wikia.com/wiki/All_the_right_moves
-  ): Move to start of next sentence
-  (: Move to start of last sentence
-  }: Move to start of next paragraph (as delimited by a blank line)
-  {: Move to start of last paragraph (as delimited by a blank line)
-  :sp: split
-  :vs: vertical split
-  :%s/search/replace
 
 ## TAR commands
 create
