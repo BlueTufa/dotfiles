@@ -13,9 +13,9 @@
   email = github@bluetufa.com
   signingkey = 2CBFFBB431E45CE9D0804DCFAC2B67274EBAAAD0
 [alias]
-	br = branch
-	ci = commit -S
-	co = checkout
+  br = branch
+  ci = commit -S
+  co = checkout
   st = status
   mg = merge 
   pl = pull
@@ -34,18 +34,19 @@
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
 [url "https://"]
-	insteadOf = git://
+  insteadOf = git://
 [color "diff-highlight"]
-	oldNormal = red bold
-	newNormal = green bold
-	oldHighlight = red bold 52
-	newHighlight = green bold 22
+  oldNormal = red bold
+  newNormal = green bold
+  oldHighlight = red bold 52
+  newHighlight = green bold 22
 [color "diff"]
-	meta = yellow
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+  meta = yellow
+  frag = magenta bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
 [gpg]
-	program = gpg
+  program = gpg
+
