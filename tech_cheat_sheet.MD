@@ -12,13 +12,15 @@
 ## terminal (fish specific?)
 ### Many of these seem to work great in zsh as well
 * ctrl + a beginning of line
+* ctrl + e end of line
 * ctrl + w = delete word (backward-kill-word)
 * ctrl + d = delete character under cursor 
-* ctrl + e end of line
 * ctrl + arrow keys jump between words.  doesn't work on all operating systems
 * ctrl + k kill to end of line
 * ctrl + u kill to beginning of line
 * ctrl + _ undo use this more
+* ctrl + p backwards through history 
+* ctrl + n forwards through history
 * more here: http://web.mit.edu/gnu/doc/html/features_7.html
 * ~. kill ssh session
 
