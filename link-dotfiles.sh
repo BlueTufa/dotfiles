@@ -20,6 +20,8 @@ make-backup () {
 }
 
 mkdir -p ~/src/bin
+mkdir -p ~/.config/fish
+mkdir -p ~/.config/nvim
 
 [[ -d ~/.oh-my-zsh ]] || install-oh-my-zsh
 
@@ -28,10 +30,12 @@ mkdir -p ~/src/bin
 make-backup ~/.config/fish/config.fish 
 make-backup ~/.config/nvim/init.vim
 make-backup ~/.zshrc
+make-backup ~/.gitconfig
 
 ln -sf $(pwd)/fish/config.fish ~/.config/fish/config.fish
 ln -sf $(pwd)/nvim/init.vim ~/.config/nvim/init.vim
 ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
+ln -sf $(pwd)/.gitconfig ~/.gitconfig
 
 for file in fish/.{functions,exports,aliases,*$(uname)}
 do
