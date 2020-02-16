@@ -173,3 +173,4 @@ endfunction
 autocmd VimEnter * call StartUp()
 
 cabbrev tree NERDTreeToggle
+
