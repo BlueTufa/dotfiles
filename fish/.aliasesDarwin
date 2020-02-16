@@ -16,7 +16,6 @@ alias chrome="open /Applications/Google\ Chrome.app"
 alias console="open /Applications/Utilities/Console.app"
 alias firefox="open /Applications/firefox.app"
 alias gdu="open /Applications/Utilities/Disk\ Utility.app"
-alias hipchat="open /Applications/HipChat.app"
 alias ied="open -a /Applications/IntelliJ\ IDEA.app"
 alias lookout="open /Applications/Microsoft\ Outlook.app"
 
