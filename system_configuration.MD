@@ -1,5 +1,5 @@
-  # Find high resolution wallpapers here
-  https://wallpaperaccess.com/awesome-digital-art
+# Find high resolution wallpapers here
+https://wallpaperaccess.com/awesome-digital-art
 
 # Current Configuration
 * Arch Linux
@@ -13,6 +13,7 @@
 * Papirus icons - papirus-icon-theme
 * Aritim-Dark theme
 * Fish
+* ZSH
 * neovim
 * xclip for clipboard
 * Dolphin file manager
@@ -26,13 +27,19 @@
 * virt-manager
 * usbutils
 * pciutils
+* QMK firmware
+* Arduino CLI 
+* noto-fonts-emoji
+* VLC
+* nodejs 
+* npm 
+* trash-cli 
+* Deepin icon theme 
 
 # TODO:
-* make notes on how to do find and replace in vim
 * 1Password?
-* a different file sharing mechanism?
 * ongoing saga of trying to find and learn to use a Window Manager (i3-gaps, etc)
 
-REMINDER: mass find and replace command for git:
+REMINDER: mass find and replace command for vim:
 :%s/<Search>/<Replace>
 
