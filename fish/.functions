@@ -8,10 +8,10 @@ function fish_prompt
   end
 
   # trim everything to the right of the . in $hostname
-  set host_string = $hostname | cut -f1 -d"."
+  set HOST_STRING (echo $hostname | cut -f1 -d".")
 
   # interactive user name @ (with error indicator) host name part with underline, date/time in YYYY-mm-dd format UTC, path info, and branch info (when available)
-  echo (set_color 3399FF)(whoami)(set_color $ARROW)@(set_color 00CC00)(tput smul)($host_string)(tput rmul)(set_color FF9933) (date -u '+%Y-%m-%d %H:%M:%S') UTC (set_color 6B6FFF)(pretty_path)(set_color 03A9F4)(get_branch)
+  echo (set_color 3399FF)(whoami)(set_color $ARROW)@(set_color 00CC00)(tput smul)(echo $HOST_STRING)(tput rmul)(set_color FF9933) (date -u '+%Y-%m-%d %H:%M:%S') UTC (set_color 6B6FFF)(pretty_path)(set_color 03A9F4)(get_branch)
   echo "\$ "
 end
 
