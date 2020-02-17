@@ -3,6 +3,6 @@ export GPG_TTY=(tty)
 set -gx EDITOR 'nvim'
 
 set --universal fish_user_paths $fish_user_paths ~/src/bin
-bind \cb backward-word
-bind \cf forward-word
+bind --user \cb backward-word
+bind --user \cf forward-word
 

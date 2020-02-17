@@ -7,9 +7,10 @@ set -gx LIQUIBASE_HOME /usr/local/opt/liquibase/libexec
 
 set -gx NVM_DIR "$HOME/.nvm"
 set -gx SBT_OPTS "-Xmx4096M -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M  -Duser.timezone=GMT"
+
 # these are notoriously difficult to get configured
 # NOTE this is a manual installation of HADOOP, as the versions included in brew
-# weren't lining up properly
+# weren't lining up properly.  I found no way to install hadoop 2.x from brew
 export APP_ENV="DEV"
 export HADOOP_CLASSPATH=/share/hadoop/tools/lib
 export HADOOP_PREFIX=/usr/local/hadoop
@@ -29,12 +30,12 @@ export HIVE_HOME=/usr/local/Cellar/hive/2.1.0/
 export GPG_TTY=(tty)
 
 # these are currently fish specific, not really sure what will happen in zsh
-bind --user '[1;2D' 'backward-bigword'
-bind --user '[1;2C' 'forward-bigword'
-bind --user '[1;2B' 'downcase-word'
-bind --user '[1;2A' 'upcase-word'
-# bind --user \cw 'backward-kill-bigword'
-bind --user \cb 'backward-word'
-bind --user \cf 'forward-word'
+# bind --user '[1;2D' 'backward-bigword'
+# bind --user '[1;2C' 'forward-bigword'
+# bind --user '[1;2B' 'downcase-word'
+# bind --user '[1;2A' 'upcase-word'
+# # bind --user \cw 'backward-kill-bigword'
+# bind --user \cb 'backward-word'
+# bind --user \cf 'forward-word'
 
 
