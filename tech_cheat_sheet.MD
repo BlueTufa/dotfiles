@@ -24,6 +24,10 @@
 * more here: http://web.mit.edu/gnu/doc/html/features_7.html
 * ~. kill ssh session
 
+## echo output to console and a file:
+You can use tee to copy stdout and stderr to a file as well as the console:
+`sbt liv 2>&1 | tee build.log`
+
 ## BASH / zsh AKA heredoc
 Don't forget about << EOF stream redirection
 ```nc -v localhost 8888 << EOF
