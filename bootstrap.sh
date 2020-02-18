@@ -7,3 +7,13 @@
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew bundle
+
+xcode-select --install
+
+sudo sysadminctl -afpGuestAccess off
+sudo sysadminctl -smbGuestAccess off
+sudo sysadminctl -guestAccount off
+
+# defaults write NSGlobalDomain AppleHighlightColor "1.000000 0.874510 0.701961 Orange"
+# defaults write NSGlobalDomain AppleAccentColor 1
+# defaults write NSGlobalDomain AppleInterfaceStyle Dark
