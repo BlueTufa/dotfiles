@@ -12,6 +12,8 @@ To permanently change the default shell to Fish, run the following from bash:
 ### ZSH support 
 The ZSH support is rather bare-bones but it will automatically install oh-my-zsh and powerlevel10k.  From there, it will likely automatically run the powerlevel10k wizard, or you can run `p10k configure` at any time.  
 
+* NOTE: if you run ./link-dotfiles.sh then you will have to manually type `exit` to get out of the oh-my-zsh installation to proceed with the rest of the process.  This is a stupid bug.
+
 To permanently change the default shell to ZSH, run the following from bash:
 `chsh -s $(which zsh) $(whoami)`
 
