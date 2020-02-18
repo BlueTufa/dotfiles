@@ -1,20 +1,29 @@
 function fish_prompt
+  # gets the error status of the last command and 
+  # updates the @ symbol color with the indication
   if test "$status" -ne "0"
     set ARROW "CB0000"
   else
     set ARROW "58A82F"
   end
 
-  echo (set_color 3399FF)(whoami)(set_color $ARROW)@(set_color 00CC00)(tput smul)(echo $hostname | cut -f1 -d".")(tput rmul)(set_color FF9933) (date -u '+%Y-%m-%d %H:%M:%S') UTC (set_color 6B6FFF)(pretty_path)(set_color 03A9F4)(get_branch)
+  # trim everything to the right of the . in $hostname
+  set HOST_STRING (echo $hostname | cut -f1 -d".")
+
+  # interactive user name @ (with error indicator) host name part with underline, date/time in YYYY-mm-dd format UTC, path info, and branch info (when available)
+  echo (set_color 3399FF)(whoami)(set_color $ARROW)@(set_color 00CC00)(tput smul)(echo $HOST_STRING)(tput rmul)(set_color FF9933) (date -u '+%Y-%m-%d %H:%M:%S') UTC (set_color 6B6FFF)(pretty_path)(set_color 03A9F4)(get_branch)
   echo "\$ "
 end
 
 function get_branch
+  # minus symbol if there are no changes detected to tracked files
+  # /dev/null prevents nonsensical errors when you are on directories not tracked by git.
   if test (git status --untracked-files=no --porcelain 2> /dev/null | wc -l) -eq 0
     set indicator "-"
   else
     set indicator "+"
   end
+  
   set branch_name (git rev-parse --abbrev-ref HEAD 2> /dev/null)
   if test "$branch_name" != ""
     echo "[$indicator]$branch_name"
@@ -28,6 +37,7 @@ function fish_greeting
   if test (uname) = "Darwin"
     screenfetch
   else
+    # I like neofetch a little better on Linux
     neofetch 
   end
 end
@@ -41,6 +51,7 @@ function cal
 end
 
 function pretty_path
+  # by default, Fish shell does not print ~ for $HOME
   echo (pwd | sed "s|^$HOME|~|g")
 end
 

@@ -1,4 +1,4 @@
-# Linux version of copy to clipboard
+# Darwin version of clipboard from command line
 alias clip='pbcopy'
 
 # shell aliases
@@ -24,6 +24,7 @@ alias postman="open /Applications/Postman.app"
 alias prefs="open /Applications/System\ Preferences.app"
 alias pych="open /Applications/PyCharm.app"
 alias rmine="open /Applications/RubyMine.app"
+
 # same as CMD+SHIFT+. except it requires a launcher restart
 # alias noshowallfiles="defaults write com.apple.finder AppleShowAllFiles NO"
 # alias showallfiles="defaults write com.apple.finder AppleShowAllFiles YES"
@@ -45,14 +46,17 @@ alias gwn='cd ~/src/analytics'
 alias gwp='cd ~/src/platform-apis'
 alias gwpa='cd ~/src/api'
 alias gwpl='cd ~/src/platform-libraries'
+alias gwma='cd ~/src/memberportal-api-automation'
 alias gwa='cd ~/src/app'
 alias gwc='cd ~/src/console'
 alias gwg='cd ~/src/gemini'
 alias gwr='cd ~/src/reporting'
 alias gww='cd ~/src/webapp'
 alias jnk='o http://jenkins.mystrength.me'
-alias bcz='mvn clean install -DskipITs'
-alias bcc='mvn -DskipTests -DskipITs compile package install'
+alias bcz='sbt clean compile package test' 
+alias bcc='sbt compile package'
+alias jcz='mvn clean install -DskipITs'
+alias jcc='mvn -DskipTests -DskipITs compile package install'
 alias gwecs='cd ~/src/webapp/aws/ecs'
 alias gwcf='cd ~/src/webapp/aws/cloudformation'
 alias gwtf='cd ~/src/webapp/aws/terraform'
