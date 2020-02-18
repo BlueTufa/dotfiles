@@ -42,6 +42,33 @@ hi! NonText ctermbg=NONE guibg=NONE
 highlight SignColumn ctermbg=NONE guibg=NONE
 highlight LineNr ctermbg=NONE guibg=NONE
 
+function! SwitchToNextBuffer(incr)
+  let help_buffer = (&filetype == 'help')
+  let current = bufnr("%")
+  let last = bufnr("$")
+  let new = current + a:incr
+  while 1
+    if new != 0 && bufexists(new) && ((getbufvar(new, "&filetype") == 'help') == help_buffer)
+      execute ":buffer ".new
+      break
+    else
+      let new = new + a:incr
+      if new < 1
+        let new = last
+      elseif new > last
+        let new = 1
+      endif
+      if new == current
+        break
+      endif
+    endif
+  endwhile
+endfunction
+
+" remap Ctrl+n Ctrl+p <next, previous> to cycle through buffers
+:nnoremap <C-n> :call SwitchToNextBuffer(1)<CR>
+:nnoremap <C-p> :call SwitchToNextBuffer(-1)<CR>
+
 " Better display for messages
 set cmdheight=2
 
