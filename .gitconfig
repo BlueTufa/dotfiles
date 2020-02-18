@@ -23,6 +23,8 @@
   a = add
   l = log --pretty=oneline -n 20 --graph --abbrev-commit
   sh = stash
+  df = diff 
+  cl = clone
 [pager]
   diff = diff-so-fancy | less --tabs=1,5 -RFX
   show = diff-so-fancy | less --tabs=1,5 -RFX
@@ -49,6 +51,5 @@
   whitespace = red reverse
 [gpg]
   program = gpg
-
 [credential]
 	helper = store
