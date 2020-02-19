@@ -1,23 +1,14 @@
 function fish_prompt
+  set_theme_colors
+
   # gets the error status of the last command and 
   # updates the @ symbol color with the indication
   if test "$status" -ne "0"
-    set ARROW "CB0000"
+    set ARROW "$ERROR"
   else
-    set ARROW "58A82F"
+    set ARROW "$SUCCESS"
   end
 
-  set FG_COLOR    bd8141
-  set BG_COLOR    1e140a
-  set BRIGHT_RED  cb4b16
-  set CYAN        268bd2
-  set YELLOW      b58900
-  set ORANGE      FF9933
-  set USER_COLOR  C46210
-
-  # 3399FF
-  set GIT_COLOR b58900 
-  set PATH_COLOR 268bd2
 
   # trim everything to the right of the . in whostname
   if test -n "$SHOW_HOST" 
@@ -27,7 +18,7 @@ function fish_prompt
     # set HOST_STRING ""
   end 
   # interactive user name @ (with error indicator) host name part with underline, date/time in YYYY-mm-dd format UTC, path info, and branch info (when available)
-  echo (set_color $USER_COLOR)(whoami)(set_color $ARROW)@(set_color 00CC00)(tput smul)(echo $HOST_STRING)(tput rmul)(set_color $ORANGE)(date -u '+%Y-%m-%d %H:%M:%S') UTC (set_color $PATH_COLOR)(pretty_path)(set_color $GIT_COLOR)(get_branch)
+  echo (set_color $USER_COLOR)(whoami)(set_color $ARROW)@(set_color $HOST_COLOR)(tput smul)(echo $HOST_STRING)(tput rmul)(set_color $DATE_COLOR)(date -u '+%Y-%m-%d %H:%M:%S') UTC (set_color $PATH_COLOR)(pretty_path)(set_color $GIT_COLOR)(get_branch)
   echo "\$ "
 end
 
@@ -75,12 +66,20 @@ function set_theme_colors
   set ERROR "CB0000"
   set SUCCESS "58A82F"
 
+  set FG_COLOR    bd8141
+  set BG_COLOR    1e140a
+  set BRIGHT_RED  cb4b16
+  set CYAN        268bd2
+  set YELLOW      b58900
+  set ORANGE      FF9933
+  set USER_COLOR  C46210
+
   if test "$FISH_THEME" = "gruvbox"
-    set USER_COLOR "3399FF"
+    set USER_COLOR "C46210"
     set HOST_COLOR "00CC00"
-    set DATE_COLOR "FF9933"
-    set PATH_COLOR "6B6FFF"
-    set GIT_COLOR  "03A9F4"
+    set DATE_COLOR "$ORANGE"
+    set PATH_COLOR "268bd2"
+    set GIT_COLOR  "b58900"
   else
     set USER_COLOR "3399FF"
     set HOST_COLOR "00CC00"
