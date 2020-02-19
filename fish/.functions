@@ -55,3 +55,22 @@ function pretty_path
   echo (pwd | sed "s|^$HOME|~|g")
 end
 
+function set_theme_colors
+  set ERROR "CB0000"
+  set SUCCESS "58A82F"
+
+  if test "$FISH_THEME" = "gruvbox"
+    set USER_COLOR "3399FF"
+    set HOST_COLOR "00CC00"
+    set DATE_COLOR "FF9933"
+    set PATH_COLOR "6B6FFF"
+    set GIT_COLOR  "03A9F4"
+  else
+    set USER_COLOR "3399FF"
+    set HOST_COLOR "00CC00"
+    set DATE_COLOR "FF9933"
+    set PATH_COLOR "6B6FFF"
+    set GIT_COLOR  "03A9F4"
+  end
+end
+
