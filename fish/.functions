@@ -11,7 +11,7 @@ function fish_prompt
 
   # 3399FF
   set GIT_COLOR b58900 
-  set PATH_COLOR 005bbb
+  set PATH_COLOR 268bd2
 
   # trim everything to the right of the . in whostname
   if test -n "$SHOW_HOST" 
