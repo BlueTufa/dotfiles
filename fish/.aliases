@@ -5,7 +5,7 @@ alias vi='nvim'
 alias h='history'
 
 alias cat='bat --theme=DarkNeon'
-# alias grep='grep -i --color'
+alias grep='grep -i --color'
 alias ack='ag'
 alias lr 'tree -afipuh'
 alias lc='lolcat'
@@ -16,7 +16,6 @@ alias sha256='openssl sha256'
 alias gwd='cd ~/src'
 alias gwf='cd ~/src/qmk/qmk_firmware'
 alias rm='trash -v'
-# alias pup='pup -c'
 alias screenfetch='screenfetch 2>/dev/null'
 
 # git aliases

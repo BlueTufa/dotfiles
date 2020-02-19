@@ -39,11 +39,10 @@ end
 
 function fish_greeting
   set_theme_colors
-  echo ""
   if test (uname) = "Darwin"
     screenfetch
   else
-
+    echo ""
     # I like neofetch a little better on Linux
     neofetch 
   end

@@ -1,6 +1,6 @@
 set -x EDITOR 'vim'
 set -x KAFKA_CLIENT_BOOTSTRAP_SERVERS 'localhost:30002'
-set -g fish_user_paths "$HOME/src/bin" "/usr/local/Cellar/hadoop/2.7.7/share/hadoop/tools/lib/" "/usr/local/Cellar/hadoop/2.7.7/bin" "$HOME/src/webapp/aws/ecs" "/usr/local/sbin" "/usr/local/opt/postgresql@9.6/bin" "/usr/local/Cellar/sqoop-1.4.7/bin" "/usr/local/Cellar/sqoop-1.4.7/lib" "/usr/local/Cellar/hadoop/2.7.7/share/hadoop/yarn" "/Users/dan.white/src/kafka_2.12-2.4.0/bin"
+set -g fish_user_paths "$HOME/src/bin" "/usr/local/Cellar/hadoop/2.7.7/share/hadoop/tools/lib/" "/usr/local/Cellar/hadoop/2.7.7/bin" "$HOME/src/webapp/aws/ecs" "/usr/local/sbin" "/usr/local/opt/postgresql@9.6/bin" "/usr/local/Cellar/sqoop-1.4.7/bin" "/usr/local/Cellar/sqoop-1.4.7/lib" "/usr/local/Cellar/hadoop/2.7.7/share/hadoop/yarn"
 
 set -gx JAVA_HOME (/usr/libexec/java_home)
 set -gx LIQUIBASE_HOME /usr/local/opt/liquibase/libexec  
