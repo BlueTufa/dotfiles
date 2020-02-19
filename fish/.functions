@@ -7,11 +7,27 @@ function fish_prompt
     set ARROW "58A82F"
   end
 
-  # trim everything to the right of the . in $hostname
-  set HOST_STRING (echo $hostname | cut -f1 -d".")
+  set FG_COLOR    bd8141
+  set BG_COLOR    1e140a
+  set BRIGHT_RED  cb4b16
+  set CYAN        268bd2
+  set YELLOW      b58900
+  set ORANGE      FF9933
+  set USER_COLOR  C46210
 
+  # 3399FF
+  set GIT_COLOR b58900 
+  set PATH_COLOR 268bd2
+
+  # trim everything to the right of the . in whostname
+  if test -n "$SHOW_HOST" 
+    set HOST_STRING (echo $hostname | cut -f1 -d".")
+    set HOST_STRING "$HOST_STRING "
+  else 
+    # set HOST_STRING ""
+  end 
   # interactive user name @ (with error indicator) host name part with underline, date/time in YYYY-mm-dd format UTC, path info, and branch info (when available)
-  echo (set_color 3399FF)(whoami)(set_color $ARROW)@(set_color 00CC00)(tput smul)(echo $HOST_STRING)(tput rmul)(set_color FF9933) (date -u '+%Y-%m-%d %H:%M:%S') UTC (set_color 6B6FFF)(pretty_path)(set_color 03A9F4)(get_branch)
+  echo (set_color $USER_COLOR)(whoami)(set_color $ARROW)@(set_color 00CC00)(tput smul)(echo $HOST_STRING)(tput rmul)(set_color $ORANGE)(date -u '+%Y-%m-%d %H:%M:%S') UTC (set_color $PATH_COLOR)(pretty_path)(set_color $GIT_COLOR)(get_branch)
   echo "\$ "
 end
 
