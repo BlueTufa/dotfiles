@@ -1,5 +1,4 @@
 function fish_prompt
-  set_theme_colors
 
   # gets the error status of the last command and 
   # updates the @ symbol color with the indication
@@ -9,14 +8,13 @@ function fish_prompt
     set ARROW "$SUCCESS"
   end
 
-
   # trim everything to the right of the . in whostname
   if test -n "$SHOW_HOST" 
     set HOST_STRING (echo $hostname | cut -f1 -d".")
+    # add a space at the end
     set HOST_STRING "$HOST_STRING "
-  else 
-    # set HOST_STRING ""
   end 
+
   # interactive user name @ (with error indicator) host name part with underline, date/time in YYYY-mm-dd format UTC, path info, and branch info (when available)
   echo (set_color $USER_COLOR)(whoami)(set_color $ARROW)@(set_color $HOST_COLOR)(tput smul)(echo $HOST_STRING)(tput rmul)(set_color $DATE_COLOR)(date -u '+%Y-%m-%d %H:%M:%S') UTC (set_color $PATH_COLOR)(pretty_path)(set_color $GIT_COLOR)(get_branch)
   echo "\$ "
@@ -40,10 +38,12 @@ function get_branch
 end
 
 function fish_greeting
+  set_theme_colors
   echo ""
   if test (uname) = "Darwin"
     screenfetch
   else
+
     # I like neofetch a little better on Linux
     neofetch 
   end
@@ -63,8 +63,8 @@ function pretty_path
 end
 
 function set_theme_colors
-  set ERROR "CB0000"
-  set SUCCESS "58A82F"
+  set -gx ERROR CB0000
+  set -gx SUCCESS 58A82F
 
   set FG_COLOR    bd8141
   set BG_COLOR    1e140a
@@ -72,14 +72,13 @@ function set_theme_colors
   set CYAN        268bd2
   set YELLOW      b58900
   set ORANGE      FF9933
-  set USER_COLOR  C46210
 
   if test "$FISH_THEME" = "gruvbox"
-    set USER_COLOR "C46210"
-    set HOST_COLOR "00CC00"
-    set DATE_COLOR "$ORANGE"
-    set PATH_COLOR "268bd2"
-    set GIT_COLOR  "b58900"
+    set -gx USER_COLOR C46210
+    set -gx HOST_COLOR 00CC00
+    set -gx DATE_COLOR FF9933
+    set -gx PATH_COLOR 268bd2
+    set -gx GIT_COLOR  b58900
   else
     set USER_COLOR "3399FF"
     set HOST_COLOR "00CC00"

@@ -29,6 +29,8 @@ export ZOOKEEPER_HOME=/usr/local/Cellar/zookeeper
 export HIVE_HOME=/usr/local/Cellar/hive/2.1.0/
 export GPG_TTY=(tty)
 
+set -gx FISH_THEME "gruvbox"
+
 # these are currently fish specific, not really sure what will happen in zsh
 # bind --user '[1;2D' 'backward-bigword'
 # bind --user '[1;2C' 'forward-bigword'
