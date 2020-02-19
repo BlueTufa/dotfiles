@@ -4,8 +4,6 @@ alias clip='pbcopy'
 # shell aliases
 # keep them in alpha sort
 # alias dish='docker exec -it ubuntu_dev bash'
-
-alias awol='awslogs get -S'
 alias check_nightly='awslogs get -S -G --start="10h ago" /ecs/analytics-nightly --profile=dr'
 
 # aliases for gui mode apps
@@ -16,10 +14,9 @@ alias chrome="open /Applications/Google\ Chrome.app"
 alias console="open /Applications/Utilities/Console.app"
 alias firefox="open /Applications/firefox.app"
 alias gdu="open /Applications/Utilities/Disk\ Utility.app"
-alias ied="open -a /Applications/IntelliJ\ IDEA.app"
+alias ij="open -a /Applications/IntelliJ\ IDEA.app"
 alias lookout="open /Applications/Microsoft\ Outlook.app"
 
-alias opera="open /Applications/Opera.app"
 alias postman="open /Applications/Postman.app"
 alias prefs="open /Applications/System\ Preferences.app"
 alias pych="open /Applications/PyCharm.app"
@@ -32,7 +29,7 @@ alias rmine="open /Applications/RubyMine.app"
 # alias showrecovery="defaults write com.apple.DiskUtility DUDebugMenuEnabled 1"
 alias slack="open /Applications/Slack.app"
 alias sqlwb="open /Applications/DataGrip.app"
-alias standup="open https://livongo.zoom.us/j/145844488"
+# alias standup="open https://livongo.zoom.us/j/145844488"
 alias wstorm="open /Applications/WebStorm.app"
 
 # dev aliass
