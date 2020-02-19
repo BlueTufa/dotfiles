@@ -22,11 +22,14 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'nanotech/jellybeans.vim'
+Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
 set background=dark
-colorscheme jellybeans
+colorscheme gruvbox
 
 let g:airline_powerline_fonts = 1
 let g_airline_theme = 'jellybeans'
@@ -36,11 +39,13 @@ set statusline+=%{FugitiveStatusLine()}
 
 set statusline+=%{FugitiveStatusLine()}
 
-" Configure a transparent backgroun
-hi! Normal ctermbg=NONE guibg=NONE
-hi! NonText ctermbg=NONE guibg=NONE
-highlight SignColumn ctermbg=NONE guibg=NONE
-highlight LineNr ctermbg=NONE guibg=NONE
+" Configure a transparent background
+" looks great with jellybeans color scheme
+" colorscheme jellybeans
+" hi! Normal ctermbg=NONE guibg=NONE
+" hi! NonText ctermbg=NONE guibg=NONE
+" highlight SignColumn ctermbg=NONE guibg=NONE
+" highlight LineNr ctermbg=NONE guibg=NONE
 
 function! SwitchToNextBuffer(incr)
   let help_buffer = (&filetype == 'help')
