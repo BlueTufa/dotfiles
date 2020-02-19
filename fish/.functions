@@ -8,6 +8,7 @@ function fish_prompt
   end
 
   set FG_COLOR    bd8141
+  set BG_COLOR    1e140a
   set BRIGHT_RED  cb4b16
   set CYAN        268bd2
   set YELLOW      b58900
