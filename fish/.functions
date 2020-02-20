@@ -16,7 +16,7 @@ function fish_prompt
   end 
 
   # interactive user name @ (with error indicator) host name part with underline, date/time in YYYY-mm-dd format UTC, path info, and branch info (when available)
-  echo (set_color $USER_COLOR)(whoami)(set_color $ARROW)@(set_color $HOST_COLOR)(tput smul)(echo $HOST_STRING)(tput rmul)(set_color $DATE_COLOR)(date -u '+%Y-%m-%d %H:%M:%S') UTC (set_color $PATH_COLOR)(pretty_path)(set_color $GIT_COLOR)(get_branch)
+  echo (set_color $USER_COLOR)(whoami)(set_color $ARROW)@(set_color $HOST_COLOR)(echo $HOST_STRING)(set_color $DATE_COLOR)(date -u '+%Y-%m-%d %H:%M:%S') UTC (set_color $PATH_COLOR)(pretty_path)(set_color $GIT_COLOR)(get_branch)
   echo "\$ "
 end
 
