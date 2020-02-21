@@ -34,7 +34,8 @@ _ mount --make-rslave --rbind /sys sys
 You can see that the devices are properly mounted by simply running `cat /proc/cpuinfo` etc.  
 
 * add nameserver to resolv.conf
-`1.1.1.1`
+`vi /etc/resolv.conf`
+`nameserver 1.1.1.1`
 
 * You need to initialize the pacman keyring for the arch repos
 ```
@@ -52,6 +53,11 @@ ln -s /usr/bin/nvim /usr/bin/vim
 ```
 * Next, you will need to configure networking.  It is extremely important than you remember to install `dhcpcd` later or you will spend a bunch of time rebooting and reconfiguring to get networking to work later.  Or you can temporarily put in a static IP address if you have one.
 ```
+sudo ip link show
+```
+Extract the name of the network interface that you would like to use and add it to the config file below, for example, `en02`
+```
+sudo pacman -S dhcpcd
 vi File: /etc/systemd/network/eno2.network
  [Match]
  Name=eno2

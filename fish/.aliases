@@ -4,7 +4,7 @@ alias ll='exa -aa -g --long --header --git'
 alias vi='nvim'
 alias h='history'
 
-alias cat='bat --theme=DarkNeon'
+alias cat='bat --theme=1337'
 alias grep='grep -i --color'
 alias ack='ag'
 alias ak='ag'

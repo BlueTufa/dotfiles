@@ -1,4 +1,5 @@
 # System cheat sheet
+## NOTE: Atom is dead to me.  
 ## ATOM
 * copy path: ctrl-shift-c
 * redo cmd-y
@@ -8,9 +9,9 @@
 * ctrl-t transpose
 * ctrl-g go to line
 * ctrl shift w select word
-
+   
 ## terminal (fish specific?)
-### Many of these seem to work great in zsh as well
+Many of these seem to work great in zsh as well.  These are similar to emacs bindings, and will often work in the OS.
 * ctrl + a beginning of line
 * ctrl + e end of line
 * ctrl + w = delete word (backward-kill-word)
@@ -18,11 +19,16 @@
 * ctrl + arrow keys jump between words.  doesn't work on all operating systems
 * ctrl + k kill to end of line
 * ctrl + u kill to beginning of line
-* ctrl + _ undo use this more
+* ctrl + _ undo NOTE: use this more
 * ctrl + p backwards through history 
 * ctrl + n forwards through history
-* more here: http://web.mit.edu/gnu/doc/html/features_7.html
 * ~. kill ssh session
+* more here: http://web.mit.edu/gnu/doc/html/features_7.html
+
+## Custom shortcuts
+The shortcuts listed above will be enabled by default, but you can also customize your own with the bind command.  See the fish/.exports file for an example.  You use `bind --user` to establish your own.  Simply type `bind` to see the defaults or it can be used to debug problems with custom shortcuts.  It is recommended to use the custom overrides sparingly, and where practical try to override them with like commands so that you're not flailing on a foreign system.  For example, I replaced ctrl+b/f with a more agressive move command.  You can also experiment with replacing backward-kill-path-component with backward-kill-bigword if you feel that you spend a lot of time hitting ctrl-w.  I tried that but I like backward-kill-path-component more. 
+* ctrl + b backward word.  Note that this key is bound to backward character by default, but backward word seems more useful to me.
+* ctrl + f forward word.  This is bound to forward char by default.
 
 ## echo output to console and a file:
 You can use tee to copy stdout and stderr to a file as well as the console:

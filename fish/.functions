@@ -79,11 +79,11 @@ function set_theme_colors
     set -gx PATH_COLOR 268bd2
     set -gx GIT_COLOR  b58900
   else
-    set USER_COLOR "3399FF"
-    set HOST_COLOR "00CC00"
-    set DATE_COLOR "FF9933"
-    set PATH_COLOR "6B6FFF"
-    set GIT_COLOR  "03A9F4"
+    set -gx USER_COLOR 3399FF
+    set -gx HOST_COLOR 00CC00
+    set -gx DATE_COLOR FF9933
+    set -gx PATH_COLOR 6B6FFF
+    set -gx GIT_COLOR  03A9F4
   end
 end
 
