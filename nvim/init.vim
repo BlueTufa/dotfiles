@@ -16,12 +16,12 @@ set ignorecase
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
-Plug 'altercation/vim-colors-solarized'
-Plug 'nanotech/jellybeans.vim'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'nanotech/jellybeans.vim'
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
