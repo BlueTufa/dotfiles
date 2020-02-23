@@ -5,14 +5,17 @@ A comprensive collection of Fish (Friendly Interactive Shell) and ZSH dotfiles w
 ### Symlinking dotfiles
 You can symlink your dotfiles from this repo into the home directory by running the `link-dotfiles.sh` file at the root of this repository.  Linking your dotfiles will first attempt to make backups of any existing dotfiles before establishing the link, but it is recommended that some prep work be done - such as a full backup - to be confident that you won't lose any work.  
 
+#### Known issues with symlinking:
+* Currently if you symlink everything, your GitHub user name will be pointed at my account and gpg key.  It is recommended that if you want to use my .gitconfig file, to make a fork of this repo and update that account info to your own in your repo.  Otherwise, just comment out the part that symlinks .gitconfig.  
+* If you run the symlinking file and the part about zsh/oh-my-zsh is not commented out, then it leaves you in zsh momentarily and you have to type `exit` in order for the script to continue processing.  I consider this a bug for the time being.
+
+
 ### Fish support
 To permanently change the default shell to Fish, run the following from bash:
 `chsh -s $(which fish) $(whoami)`
 
 ### ZSH support 
-The ZSH support is rather bare-bones but it will automatically install oh-my-zsh and powerlevel10k.  From there, it will likely automatically run the powerlevel10k wizard, or you can run `p10k configure` at any time.  
-
-* NOTE: if you run ./link-dotfiles.sh then you will have to manually type `exit` to get out of the oh-my-zsh installation to proceed with the rest of the process.  This is a stupid bug.
+The ZSH support is rather bare-bones but it will automatically install oh-my-zsh and powerlevel10k.  From there, it will likely automatically run the powerlevel10k wizard the first time you are in zsh, or you can run `p10k configure` at any time.  
 
 To permanently change the default shell to ZSH, run the following from bash:
 `chsh -s $(which zsh) $(whoami)`
