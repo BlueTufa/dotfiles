@@ -16,7 +16,7 @@ set ignorecase
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'scrooloose/nerdtree'
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
@@ -34,8 +34,6 @@ colorscheme gruvbox
 
 let g:airline_powerline_fonts = 1
 " let g_airline_theme = 'jellybeans'
-
-" set statusline+=%{FugitiveStatusLine()}
 
 :tnoremap <Esc> <C-\><C-n>
 
@@ -177,6 +175,8 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+set statusline+=%{FugitiveStatusLine()}
 
 " Using CocList
 " Show all diagnostics
