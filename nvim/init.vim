@@ -22,6 +22,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'nanotech/jellybeans.vim'
+" Plug 'neg-serg/neg'
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -32,12 +33,11 @@ set background=dark
 colorscheme gruvbox
 
 let g:airline_powerline_fonts = 1
-let g_airline_theme = 'jellybeans'
+" let g_airline_theme = 'jellybeans'
 
-set statusline+=%{FugitiveStatusLine()}
+" set statusline+=%{FugitiveStatusLine()}
+
 :tnoremap <Esc> <C-\><C-n>
-
-set statusline+=%{FugitiveStatusLine()}
 
 " Configure a transparent background
 " looks great with jellybeans color scheme
