@@ -7,9 +7,8 @@ You can symlink your dotfiles from this repo into the home directory by running 
 
 #### Known issues with symlinking:
 * Currently if you symlink everything, your GitHub user name will be pointed at my account and gpg key.  It is recommended that if you want to use my .gitconfig file, to make a fork of this repo and update that account info to your own in your repo.  Otherwise, just comment out the part that symlinks .gitconfig. 
-* If you run the symlinking file and the part about zsh/oh-my-zsh is not commented out, then it leaves you in zsh momentarily and you have to type `exit` in order for the script to continue processing.  I consider this a bug for the time being.
-
-
+* If you run `link-dotfiles.sh` and the part about zsh/oh-my-zsh is not commented out, then it leaves you in zsh momentarily and you have to type `exit` in order for the script to continue processing.  I consider this a bug for the time being.  If you exit zsh in some other way other than an orderly exit, you'll likely need to run `link-dotfiles.sh` again.
+* If you are using the neovim configuration supplied in these dotfiles, then ignore the long list errors on your first entry into neovim after symlinking, and remember to run `:PlugInstall`
 ### Fish support
 To permanently change the default shell to Fish, run the following from bash:
 `chsh -s $(which fish) $(whoami)`
@@ -26,7 +25,7 @@ This directory includes a basic neovim configuration as well.  If you run `./lin
 Or, if you prefer not to run the symlinking and still want to use the init.vim, remember to install vim-plug manually:
   `curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
 
-Then once inside neovim, you will likely see errors until you run: `:PlugInstall`
+Remember that once inside neovim, you will likely see errors until you run: `:PlugInstall`
 
 The following are included in init.vim with customizations:
 * coc.nvim 
