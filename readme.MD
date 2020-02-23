@@ -19,6 +19,9 @@ The ZSH support is rather bare-bones but it will automatically install oh-my-zsh
 To permanently change the default shell to ZSH, run the following from bash:
 `chsh -s $(which zsh) $(whoami)`
 
+#### ZSH and fonts on Mac.  
+If you want to use p10k in zsh on Mac, you are going to need to make sure you use a powerline font.  If you're unsure what this means and the answer is still yes, then just make sure that you have Meslo font family selected in iTerm2 Under Preferences->Profiles-><Profile Name>->Text->Font.  At the time of this writing, my font name is `MesloLGS NF` and the glyphs are working great in both vim and zsh.  After making a change to an unknown font, I recommend re-running `p10k configure`.  
+
 ### Neovim support
 This directory includes a basic neovim configuration as well.  If you run `./link-dotfiles.sh` it will automatically symlink neovim's init.vim and install vim-plug for you.   
 
