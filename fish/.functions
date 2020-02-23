@@ -39,13 +39,7 @@ end
 
 function fish_greeting
   set_theme_colors
-  if test (uname) = "Darwin"
-    screenfetch
-  else
-    echo ""
-    # I like neofetch a little better on Linux
-    neofetch 
-  end
+  neofetch 
 end
 
 function cal
@@ -65,12 +59,12 @@ function set_theme_colors
   set -gx ERROR CB0000
   set -gx SUCCESS 58A82F
 
-  set FG_COLOR    bd8141
-  set BG_COLOR    1e140a
-  set BRIGHT_RED  cb4b16
-  set CYAN        268bd2
-  set YELLOW      b58900
-  set ORANGE      FF9933
+#   set FG_COLOR    bd8141
+#   set BG_COLOR    1e140a
+#   set BRIGHT_RED  cb4b16
+#   set CYAN        268bd2
+#   set YELLOW      b58900
+#   set ORANGE      FF9933
 
   if test "$FISH_THEME" = "gruvbox"
     set -gx USER_COLOR C46210
