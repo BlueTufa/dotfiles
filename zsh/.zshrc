@@ -29,6 +29,16 @@ setopt histignorespace
 
 source ~/.powerlevel10k/powerlevel10k.zsh-theme
 
+# are we on a macos system?
+if [[ -n $(uname | grep "Darwin") ]]; then
+  # are we on catalina?
+  if [[ -n $(sw_vers -productVersion | grep '^10.15' 2> /dev/null) ]]; then
+    export MAC_APP_PATH='/System/Applications'
+  else
+    export MAC_APP_PATH='/Applications'
+  fi
+fi
+
 # ZSH_THEME="~/.powerlevel10k/powerlevel10k"
 # POWERLEVEL9K_STATUS_OK_BACKGROUND='000' #alpha
 # POWERLEVEL9K_STATUS_OK_FOREGROUND='040' #green
