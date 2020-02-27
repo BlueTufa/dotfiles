@@ -148,9 +148,6 @@ source $ZSH/oh-my-zsh.sh
 source ~/.config/fish/.aliases
 source ~/.config/fish/.aliasesDarwin
 
-
-# bindkey '^[[1;1C' emacs-forward-word
-# bindkey '^[[1;1D' emacs-backward-word
 bindkey '^[[1;5C' emacs-forward-word
 bindkey '^[[1;5D' emacs-backward-word
 
