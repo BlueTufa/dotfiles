@@ -31,12 +31,12 @@ call plug#end()
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-let g:two_firewatch_italics=1
+" let g:two_firewatch_italics=1
 set background=dark
-colorscheme two-firewatch
+colorscheme gruvbox
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme='twofirewatch'
+" let g:airline_theme='twofirewatch'
 
 :tnoremap <Esc> <C-\><C-n>
 
