@@ -12,7 +12,32 @@ fi
 export ZSH="$(dirname ${(%):-%x})/.oh-my-zsh"
 export HISTFILE=~/.zsh_history
 
+setopt append_history # this is default, but set for share_history
+setopt share_history # import new commands from the history file also in other zsh-session
+setopt extended_history # save each command's beginning timestamp and the duration to the history file
+setopt histignorealldups # remove command lines from the history list when the first character on the line is a space
+
+setopt hist_expire_dups_first # when trimming history, lose oldest duplicates first
+setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_verify # don't execute, just expand history
+setopt hist_ignore_space # reduce whitespace in history
+setopt inc_append_history # add comamnds as they are typed, don't wait until shell exit
+
+# remove command lines from the history list when the first character on the
+# line is a space
+setopt histignorespace 
+
 source ~/.powerlevel10k/powerlevel10k.zsh-theme
+
+# are we on a macos system?
+if [[ -n $(uname | grep "Darwin") ]]; then
+  # are we on catalina?
+  if [[ -n $(sw_vers -productVersion | grep '^10.15' 2> /dev/null) ]]; then
+    export MAC_APP_PATH='/System/Applications'
+  else
+    export MAC_APP_PATH='/Applications'
+  fi
+fi
 
 # ZSH_THEME="~/.powerlevel10k/powerlevel10k"
 # POWERLEVEL9K_STATUS_OK_BACKGROUND='000' #alpha
@@ -121,10 +146,8 @@ source $ZSH/oh-my-zsh.sh
 #
 # shared aliases
 source ~/.config/fish/.aliases
+source ~/.config/fish/.aliasesDarwin
 
-
-# bindkey '^[[1;1C' emacs-forward-word
-# bindkey '^[[1;1D' emacs-backward-word
 bindkey '^[[1;5C' emacs-forward-word
 bindkey '^[[1;5D' emacs-backward-word
 

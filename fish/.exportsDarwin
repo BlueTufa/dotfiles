@@ -1,4 +1,4 @@
-set -x EDITOR 'vim'
+set -gx EDITOR 'vim'
 set -x KAFKA_CLIENT_BOOTSTRAP_SERVERS 'localhost:30002'
 set -g fish_user_paths "$HOME/src/bin" "/usr/local/Cellar/hadoop/2.7.7/share/hadoop/tools/lib/" "/usr/local/Cellar/hadoop/2.7.7/bin" "$HOME/src/webapp/aws/ecs" "/usr/local/sbin" "/usr/local/opt/postgresql@9.6/bin" "/usr/local/Cellar/sqoop-1.4.7/bin" "/usr/local/Cellar/sqoop-1.4.7/lib" "/usr/local/Cellar/hadoop/2.7.7/share/hadoop/yarn"
 
@@ -28,6 +28,13 @@ export SQOOP_HOME=/usr/local/Cellar/sqoop-1.4.7
 export ZOOKEEPER_HOME=/usr/local/Cellar/zookeeper
 export HIVE_HOME=/usr/local/Cellar/hive/2.1.0/
 export GPG_TTY=(tty)
+
+# if the current system is running macos catalina, use new path
+if test -n (sw_vers -productVersion | grep '^10.15') > /dev/null
+  set -gx MAC_APP_PATH '/System/Applications'
+else
+  set -gx MAC_APP_PATH '/Applications'
+end
 
 set -gx FISH_THEME "gruvbox"
 

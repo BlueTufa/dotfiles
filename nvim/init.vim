@@ -20,6 +20,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
+Plug 'sickill/vim-monokai'
+Plug 'rakr/vim-two-firewatch'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'nanotech/jellybeans.vim'
 " Plug 'neg-serg/neg'
@@ -29,11 +31,12 @@ call plug#end()
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
+" let g:two_firewatch_italics=1
 set background=dark
 colorscheme gruvbox
 
 let g:airline_powerline_fonts = 1
-" let g_airline_theme = 'jellybeans'
+" let g:airline_theme='twofirewatch'
 
 :tnoremap <Esc> <C-\><C-n>
 
