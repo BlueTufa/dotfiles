@@ -20,6 +20,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
+Plug 'sickill/vim-monokai'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'nanotech/jellybeans.vim'
 " Plug 'neg-serg/neg'
@@ -30,7 +31,7 @@ call plug#end()
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 set background=dark
-colorscheme gruvbox
+colorscheme monokai
 
 let g:airline_powerline_fonts = 1
 " let g_airline_theme = 'jellybeans'
