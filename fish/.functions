@@ -68,7 +68,7 @@ function set_theme_colors
 
   if test "$FISH_THEME" = "gruvbox"
     set -gx USER_COLOR C46210
-    set -gx HOST_COLOR 00CC00
+    set -gx HOST_COLOR bfc225
     set -gx DATE_COLOR FF9933
     set -gx PATH_COLOR 268bd2
     set -gx GIT_COLOR  b58900
