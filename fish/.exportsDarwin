@@ -30,7 +30,7 @@ export HIVE_HOME=/usr/local/Cellar/hive/2.1.0/
 export GPG_TTY=(tty)
 
 # if the current system is running macos catalina, use new path
-if test -n (sw_vers -productVersion | grep '^10.15') > /dev/null
+if test (sw_vers -productVersion | grep '^10.15')
   set -gx MAC_APP_PATH '/System/Applications'
 else
   set -gx MAC_APP_PATH '/Applications'
