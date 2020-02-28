@@ -20,6 +20,11 @@ alias gwf='cd ~/src/qmk/qmk_firmware'
 alias rm='trash -v'
 alias screenfetch='screenfetch 2>/dev/null'
 alias strip-colors='sed "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g"'
+alias .1='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
 
 # git aliases
 alias g='git'
