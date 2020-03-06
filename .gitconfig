@@ -6,8 +6,8 @@
 [core]
   whitespace = fix,-indent-with-non-tab,trailing-space
   editor = vim
-  excludefiles = ~/.gitignore_global
   pager = diff-so-fancy | less --tabs=4 -RFX
+	excludesfile = /Users/dan.white/.gitignore_global
 [user]
   name = Dan White
   email = github@bluetufa.com

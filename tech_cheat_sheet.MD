@@ -1,5 +1,4 @@
 # System cheat sheet
-## NOTE: Atom is dead to me.  
 ## ATOM
 * copy path: ctrl-shift-c
 * redo cmd-y
