@@ -24,6 +24,7 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'nanotech/jellybeans.vim'
 " Plug 'neg-serg/neg'
 Plug 'morhetz/gruvbox'
+Plug 'derekwyatt/vim-scala'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
