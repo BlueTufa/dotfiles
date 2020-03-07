@@ -8,18 +8,18 @@ alias check_nightly='awslogs get -S -G --start="10h ago" /ecs/analytics-nightly 
 
 # aliases for gui mode apps
 # NOTE: may need to add -f after -g any time you want to block from the CLI
-alias actmon="open /Applications/Utilities/Activity\ Monitor.app"
-alias calc="open /Applications/Calculator.app"
+alias actmon="open $MAC_APP_PATH/Utilities/Activity\ Monitor.app"
+alias calc="open $MAC_APP_PATH/Calculator.app"
+alias console="open $MAC_APP_PATH/Utilities/Console.app"
+alias gdu="open $MAC_APP_PATH/Utilities/Disk\ Utility.app"
+alias prefs="open $MAC_APP_PATH/System\ Preferences.app"
+
 alias chrome="open /Applications/Google\ Chrome.app"
-alias console="open /Applications/Utilities/Console.app"
 alias firefox="open /Applications/firefox.app"
-alias gdu="open /Applications/Utilities/Disk\ Utility.app"
 alias ij="open -a /Applications/IntelliJ\ IDEA.app"
 alias lookout="open /Applications/Microsoft\ Outlook.app"
 alias pup='pup -c'
-
 alias postman="open /Applications/Postman.app"
-alias prefs="open /Applications/System\ Preferences.app"
 alias pych="open /Applications/PyCharm.app"
 alias rmine="open /Applications/RubyMine.app"
 
@@ -49,6 +49,7 @@ alias gwc='cd ~/src/mys/console'
 alias gwr='cd ~/src/reporting'
 alias gww='cd ~/src/mys/webapp'
 alias jnk='o http://jenkins.mystrength.me'
+alias bcl='sbt clean reload compile test publishLocal 2>&1 | tee local.log'
 alias bcz='sbt clean compile package test' 
 alias bcc='sbt compile package'
 alias jcz='mvn clean install -DskipITs'

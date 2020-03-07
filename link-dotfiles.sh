@@ -34,6 +34,8 @@ mkdir -p ~/.config/nvim
 make-backup ~/.config/fish/config.fish 
 make-backup ~/.config/nvim/init.vim
 make-backup ~/.zshrc
+make-backup ~/.p10k.zsh
+
 # comment this out if you don't want to symlink gitconfig.  
 # HINT: if you don't comment this out it will attempt to log you in as me until you edit it
 make-backup ~/.gitconfig
@@ -41,6 +43,7 @@ make-backup ~/.gitconfig
 ln -sf $(pwd)/fish/config.fish ~/.config/fish/config.fish
 ln -sf $(pwd)/nvim/init.vim ~/.config/nvim/init.vim
 ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
+ln -sf $(pwd)/zsh/.p10k.zsh ~/.p10k.zsh
 ln -sf $(pwd)/.gitconfig ~/.gitconfig
 
 for file in fish/.{functions,exports,aliases,*$(uname)}
