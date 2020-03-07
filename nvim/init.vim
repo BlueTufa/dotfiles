@@ -1,5 +1,6 @@
 syntax on
 
+set hidden
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -24,15 +25,14 @@ Plug 'sickill/vim-monokai'
 Plug 'rakr/vim-two-firewatch'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'nanotech/jellybeans.vim'
-" Plug 'neg-serg/neg'
 Plug 'morhetz/gruvbox'
 Plug 'derekwyatt/vim-scala'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-" let g:two_firewatch_italics=1
 set background=dark
 colorscheme gruvbox
 
@@ -199,6 +199,15 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" Toggle panel with Tree Views
+nnoremap <silent> <space>t :<C-u>CocCommand metals.tvp<CR>
+" Toggle Tree View 'metalsBuild'
+nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
+" Toggle Tree View 'metalsCompile'
+nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
+" Reveal current current class (trait or object) in Tree View 'metalsBuild'
+nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsBuild<CR>
 
 function! StartUp()
   if !argc() && !exists("s:std_in")
