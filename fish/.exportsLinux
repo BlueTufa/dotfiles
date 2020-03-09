@@ -1,3 +1,5 @@
 export CFLAGS="-Wno-error=deprecated"
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 
+export MOZ_ENABLE_WAYLAND=1
+export MOZ_WAYLAND_ENABLED=1
