@@ -39,6 +39,7 @@ end
 
 function fish_greeting
   set_theme_colors
+  echo ""
   neofetch 
 end
 
