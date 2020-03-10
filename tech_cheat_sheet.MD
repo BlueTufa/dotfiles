@@ -99,6 +99,8 @@ lsof
 service -—status-all
 service service name restart
 systemctl restart servicename
+fc-list show fonts
+showconsolefont
 
 ## Hack commands
 airmon-ng start wlan0
