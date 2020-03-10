@@ -25,7 +25,7 @@ Plug 'sickill/vim-monokai'
 Plug 'rakr/vim-two-firewatch'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'nanotech/jellybeans.vim'
-Plug 'morhetz/gruvbox'
+Plug 'BlueTufa/gruvbox'
 Plug 'derekwyatt/vim-scala'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
