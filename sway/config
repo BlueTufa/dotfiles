@@ -75,8 +75,8 @@ smart_gaps on
 #       middle_emulation enabled
 #   }
 
-# jexec swayidle -w\
-#  timeout 300 'swaymsg "output * dpms off"'
+exec swayidle -w\
+  timeout 300 'swaymsg "output * dpms off"'
 
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
