@@ -49,6 +49,8 @@ ln -sf $(pwd)/.gitconfig ~/.gitconfig
 if [[ $(uname) -eq "Linux" ]]; then
   ln -sf $(pwd)/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
   ln -sf $(pwd)/sway/config ~/.config/sway/config
+  ln -sf $(pwd)/mpd/mpd.conf ~/.config/mpd/mpd.conf
+  ln -sf $(pwd)/.ncmpcpp/config ~/.ncmpcpp/config
 fi 
 
 for file in fish/.{functions,exports,aliases,*$(uname)}
