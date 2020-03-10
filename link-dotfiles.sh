@@ -46,6 +46,11 @@ ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
 ln -sf $(pwd)/zsh/.p10k.zsh ~/.p10k.zsh
 ln -sf $(pwd)/.gitconfig ~/.gitconfig
 
+if [[ $(uname) -eq "Linux" ]]; then
+  ln -sf $(pwd)/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+  ln -sf $(pwd)/sway/config ~/.config/sway/config
+fi 
+
 for file in fish/.{functions,exports,aliases,*$(uname)}
 do
   make-backup ~/.config/${file}
