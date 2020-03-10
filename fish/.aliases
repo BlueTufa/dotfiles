@@ -4,6 +4,7 @@ alias ll='exa -aa -g --long --header --git'
 alias vi='nvim'
 alias vim='nvim'
 alias h='history'
+alias wtr='curl http://wttr.in/Grand_Junction'
 
 alias cat='bat --theme=1337'
 alias grep='grep -i --color'
