@@ -1,3 +1,23 @@
+function print_info
+    prin
+    prin
+    info "\e[0m\e[38;5;25m \e[0m" distro
+    prin
+    info "\e[0m\e[31m \e[0m" shell
+    info "\e[0m\e[32m \e[0m" wm
+    info "\e[0m\e[33m😺\e[0m" term
+    info "\e[0m\e[34m \e[0m" term_font
+    info "\e[0m\e[35m \e[0m" theme
+    info "\e[0m\e[36m \e[0m" packages
+    prin
+    info "\e[0m\e[91m \e[0m" cpu
+    info "\e[0m\e[92m \e[0m" cpu_usage
+    info "\e[0m\e[93m \e[0m" memory
+    info "\e[0m\e[94m \e[0m" disk
+    info "\e[0m\e[95m \e[0m" public_ip
+    info "\e[0m\e[96m \e[0m" uptime
+end
+
 function fish_prompt
 
   # gets the error status of the last command and 
