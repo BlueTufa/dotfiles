@@ -1,10 +1,10 @@
 font:
   normal:
-    family: Hack
+    family: Code New Roman
     style:  Regular
     size:   13
 
-background_opacity: 0.85
+background_opacity: 0.80
 
 # Colors (Gruvbox dark)
 colors:
