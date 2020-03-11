@@ -25,7 +25,7 @@ font pango:Hack,13
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/82489455b50538b2789675bf546fe090006efd17.jpg fill
+output * bg ~/Pictures/pictures/Backgrounds/desolate_forest_by_reapr56-d7je2mc.jpg fill
 output DP-1 scale 1.4
 # output DP-1 scale 2
 # resolution 2560x1440 position 2560,0
@@ -76,7 +76,7 @@ smart_gaps on
 #   }
 
 exec swayidle -w\
-  timeout 300 'swaymsg "output * dpms off"' \
+  timeout 900 'swaymsg "output * dpms off"' \
   resume 'swaymsg "output * dpms on"'
 
 #

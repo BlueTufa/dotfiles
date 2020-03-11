@@ -4,7 +4,7 @@ font:
     style:  Regular
     size:   13
 
-background_opacity: 0.80
+background_opacity: 0.90
 
 # Colors (Gruvbox dark)
 colors:
@@ -38,6 +38,6 @@ colors:
     cyan:    '#8ec07c'
     white:   '#ebdbb2'
     
-key_bindings:
-  - { key: V,        mods: Alt,    action: Paste               }
-  - { key: C,        mods: Alt,    action: Copy                }
+    # key_bindings:
+    #  - { key: V,        mods: Command,    action: Paste               }
+    #  - { key: C,        mods: Alt,    action: Copy                }
