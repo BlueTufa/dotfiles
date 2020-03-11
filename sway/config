@@ -25,7 +25,7 @@ font pango:Hack,13
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/fdv5vdoos9i41.jpg fill
+output * bg ~/Pictures/82489455b50538b2789675bf546fe090006efd17.jpg fill
 output DP-1 scale 1.4
 # output DP-1 scale 2
 # resolution 2560x1440 position 2560,0
@@ -76,7 +76,8 @@ smart_gaps on
 #   }
 
 exec swayidle -w\
-  timeout 300 'swaymsg "output * dpms off"'
+  timeout 300 'swaymsg "output * dpms off"' \
+  resume 'swaymsg "output * dpms on"'
 
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -110,7 +111,7 @@ input "1452:613:Apple_Inc._Magic_Trackpad_2" {
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+r reload
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
@@ -225,7 +226,7 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym $mod+z mode "resize"
 
 #
 # Status Bar:
