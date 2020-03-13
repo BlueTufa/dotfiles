@@ -82,9 +82,9 @@ exec swayidle -w\
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
-input "76:613:Apple_Inc._Magic_Trackpad_2" {
+input "1452:613:Apple_Inc._Magic_Trackpad_2" {
   tap enabled
-  pointer_accel 1
+  pointer_accel 0.8
  # gesture swipe right     swaymsg seat seat0 cursor press BTN_EXTRA
  # gesture swipe left      swaymsg seat seat0 cursor press BTN_SIDE
 }
