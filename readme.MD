@@ -37,7 +37,8 @@ The following are included in init.vim with customizations:
 * coc.nvim 
 * Nerdtree
 * Airline
-* Terminal support
+* Whatever whim I am exploring.  Currently https://scalameta.org/metals/docs/editors/vim.html mixed with coc.nvim.  Their docs are great, if you have a use for it please check it out.  
+* Terminal support.
 
 ### Backup with rsync
 This repo includes a simple script that will backup to an encrypted external drive using rsync.  You may need to modify it depending on your hardware configuration and operating system.
