@@ -2,6 +2,9 @@
 ## Contents
 A comprensive collection of Fish (Friendly Interactive Shell) and ZSH dotfiles which will allow a quick and easy customization of Fish on an existing system.  This configuration will generally work cross-platform betwen MacOS and Linux, although you may encounter minor bugs on either.  
 
+## Note on bugs
+If you find a bug and it's obvious, please just open a PR.  If you find a bug and it's not obvious and you hope for me to fix it, please use the GitHub issues feature for this branch located here: https://github.com/BlueTufa/dotfiles/issues.  I have absolutely no SLA attached to any of this work, besides hell I didn't even bother to pick a license yet.  I am just trying to share and I highly doubt any of this is original work.  
+
 ### Symlinking dotfiles
 You can symlink your dotfiles from this repo into the home directory by running the `link-dotfiles.sh` file at the root of this repository.  Linking your dotfiles will first attempt to make backups of any existing dotfiles before establishing the link, but it is recommended that some prep work be done - such as a full backup - to be confident that you won't lose any work.  
 
