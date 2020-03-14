@@ -44,7 +44,7 @@ ln -sf $(pwd)/fish/config.fish ~/.config/fish/config.fish
 ln -sf $(pwd)/nvim/init.vim ~/.config/nvim/init.vim
 ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
 ln -sf $(pwd)/zsh/.p10k.zsh ~/.p10k.zsh
-ln -sf $(pwd)/.gitconfig ~/.gitconfig
+# ln -sf $(pwd)/.gitconfig ~/.gitconfig
 
 if [[ $(uname) -eq "Linux" ]]; then
   ln -sf $(pwd)/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
