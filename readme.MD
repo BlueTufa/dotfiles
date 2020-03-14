@@ -46,8 +46,15 @@ This repo includes a simple script that will backup to an encrypted external dri
 ### Example script for mounting an encrypted Luks volume
 Again, this may vary based on your hardware and operating system configuration.
 
-### Various technical README's
-Mostly Arch Linux notes.
+### For linux users, I've also recently added lots of random config files for the following:
+* .ncmpcpp music player
+* mpd music server
+* alacritty terminal
+* atom editor install plug-ins from command line
+* sway wm config
+
+### Technical readmes
+It only makes sense to consolidate notes on multi-platform issues in a global location such as github.  Hence there are several howto/readmes on a long history of notes.  Many are arch, vim, and some are on git/github itself.  
 
 ### Thoughts on sharing dotfiles
 Dotfiles are a highly personal thing and should vary based on an individual, their current job role and daily workflow.  I am mostly sharing these because I want to share, I've had a lot of requests over the years and was too cheap to buy a monthly GitHub license to keep it private.  I fully expect people to use them more as a starting point than as a reference.  But if you manage to pull off the latter then hats off to you and let's go have a beer because we are mind twins.   
