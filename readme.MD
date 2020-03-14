@@ -56,6 +56,9 @@ Again, this may vary based on your hardware and operating system configuration.
 ### Technical readmes
 It only makes sense to consolidate notes on multi-platform issues in a global location such as github.  Hence there are several howto/readmes on a long history of notes.  Many are arch, vim, and some are on git/github itself.  
 
+### Unlimited Bonus Points Edition
+What are the odds that you found these dotfiles, don't completely hate them, and also like programmable 60% keyboards that use the QMK firmware?  Well in that case welcome to the unlimited bonus points edition (TM).  Check here for more details: https://github.com/BlueTufa/qmk_firmware/.  Preonic, 1up 60 RGB, ad Clueboard 66 are all supported in that fork.  They also share a lot of custom keycodes.  
+
 ### Thoughts on sharing dotfiles
 Dotfiles are a highly personal thing and should vary based on an individual, their current job role and daily workflow.  I am mostly sharing these because I want to share, I've had a lot of requests over the years and was too cheap to buy a monthly GitHub license to keep it private.  I fully expect people to use them more as a starting point than as a reference.  But if you manage to pull off the latter then hats off to you and let's go have a beer because we are mind twins.   
 
