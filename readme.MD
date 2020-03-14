@@ -45,3 +45,6 @@ Again, this may vary based on your hardware and operating system configuration.
 ### Various technical README's
 Mostly Arch Linux notes.
 
+### Feedback and WTF's
+Just because I've been doing this for a long time doesn't necessarily mean I'm good at it.  I am very welcoming to feedback and I constantly learn from the community and from other peoples' approaches to these common problems.  If you see something that looks odd, or is harder than it should be please let me know, and feel free to open PR's against this branch.  It would be much appreciated.  Also if you discover anything that is of a privacy or security concern please report it immediately as it's not just my well-being but a concern of others who might fork or branch these files.  Please contact github@bluetufa.com.  Thank you.  
+
