@@ -21,12 +21,13 @@ set $browser firefox
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $menu exec wofi --show run
 
-font pango:Hack,13
+# seat seat0 xcursor_theme Adwaita 24
+font pango:Hack,15
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg ~/Pictures/pictures/Backgrounds/desolate_forest_by_reapr56-d7je2mc.jpg fill
-output DP-1 scale 1.4
+output DP-1 scale 1
 # output DP-1 scale 2
 # resolution 2560x1440 position 2560,0
 # scale 2
@@ -235,7 +236,7 @@ bindsym $mod+z mode "resize"
 bar {
     # status_command i3status
     position top
-    font Monaco 14px
+    font Monaco 18px
     mode dock
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
