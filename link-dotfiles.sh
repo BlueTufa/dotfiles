@@ -51,6 +51,7 @@ if [[ $(uname) -eq "Linux" ]]; then
   ln -sf $(pwd)/sway/config ~/.config/sway/config
   ln -sf $(pwd)/mpd/mpd.conf ~/.config/mpd/mpd.conf
   ln -sf $(pwd)/.ncmpcpp/config ~/.ncmpcpp/config
+  ln -sf $(pwd)/wofi/style.css ~/.config/wofi/style.css
 fi 
 
 for file in fish/.{functions,exports,aliases,*$(uname)}
