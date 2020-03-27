@@ -44,13 +44,14 @@ ln -sf $(pwd)/fish/config.fish ~/.config/fish/config.fish
 ln -sf $(pwd)/nvim/init.vim ~/.config/nvim/init.vim
 ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
 ln -sf $(pwd)/zsh/.p10k.zsh ~/.p10k.zsh
-ln -sf $(pwd)/.gitconfig ~/.gitconfig
+# ln -sf $(pwd)/.gitconfig ~/.gitconfig
 
 if [[ $(uname) -eq "Linux" ]]; then
   ln -sf $(pwd)/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
   ln -sf $(pwd)/sway/config ~/.config/sway/config
   ln -sf $(pwd)/mpd/mpd.conf ~/.config/mpd/mpd.conf
   ln -sf $(pwd)/.ncmpcpp/config ~/.ncmpcpp/config
+  ln -sf $(pwd)/wofi/style.css ~/.config/wofi/style.css
 fi 
 
 for file in fish/.{functions,exports,aliases,*$(uname)}

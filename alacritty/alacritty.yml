@@ -1,8 +1,8 @@
 font:
+  size: 14.0
   normal:
     family: Code New Roman
     style:  Regular
-    size:   13
 
 background_opacity: 0.90
 

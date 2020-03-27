@@ -8,10 +8,6 @@
   editor = vim
   pager = diff-so-fancy | less --tabs=4 -RFX
 	excludesfile = /Users/dan.white/.gitignore_global
-[user]
-  name = Dan White
-  email = github@bluetufa.com
-  signingkey = 2CBFFBB431E45CE9D0804DCFAC2B67274EBAAAD0
 [alias]
   br = branch
   ci = commit -S

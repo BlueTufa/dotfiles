@@ -2,6 +2,9 @@
 ## Contents
 A comprensive collection of Fish (Friendly Interactive Shell) and ZSH dotfiles which will allow a quick and easy customization of Fish on an existing system.  This configuration will generally work cross-platform betwen MacOS and Linux, although you may encounter minor bugs on either.  
 
+## Note on bugs
+If you find a bug and it's obvious, please just open a PR.  If you find a bug and it's not obvious and you hope for me to fix it, please use the GitHub issues feature for this branch located here: https://github.com/BlueTufa/dotfiles/issues.  I have absolutely no SLA attached to any of this work, besides hell I didn't even bother to pick a license yet.  I am just trying to share and I highly doubt any of this is original work.  
+
 ### Symlinking dotfiles
 You can symlink your dotfiles from this repo into the home directory by running the `link-dotfiles.sh` file at the root of this repository.  Linking your dotfiles will first attempt to make backups of any existing dotfiles before establishing the link, but it is recommended that some prep work be done - such as a full backup - to be confident that you won't lose any work.  
 
@@ -34,7 +37,8 @@ The following are included in init.vim with customizations:
 * coc.nvim 
 * Nerdtree
 * Airline
-* Terminal support
+* Whatever whim I am exploring.  Currently https://scalameta.org/metals/docs/editors/vim.html mixed with coc.nvim.  Their docs are great, if you have a use for it please check it out.  
+* Terminal support.
 
 ### Backup with rsync
 This repo includes a simple script that will backup to an encrypted external drive using rsync.  You may need to modify it depending on your hardware configuration and operating system.
@@ -42,6 +46,24 @@ This repo includes a simple script that will backup to an encrypted external dri
 ### Example script for mounting an encrypted Luks volume
 Again, this may vary based on your hardware and operating system configuration.
 
-### Various technical README's
-Mostly Arch Linux notes.
+### For linux users, I've also recently added lots of random config files for the following:
+* .ncmpcpp music player
+* mpd music server
+* alacritty terminal
+* atom editor install plug-ins from command line
+* sway wm config
+
+### Technical readmes
+It only makes sense to consolidate notes on multi-platform issues in a global location such as github.  Hence there are several howto/readmes on a long history of notes.  Many are arch, vim, and some are on git/github itself.  
+
+### Unlimited Bonus Points Edition
+What are the odds that you found these dotfiles, don't completely hate them, and also like programmable 60% keyboards that use the QMK firmware?  Well in that case welcome to the unlimited bonus points edition (TM).  Check here for more details: https://github.com/BlueTufa/qmk_firmware/.  Preonic, 1up 60 RGB, ad Clueboard 66 are all supported in that fork.  They also share a lot of custom keycodes.  
+
+### Thoughts on sharing dotfiles
+Dotfiles are a highly personal thing and should vary based on an individual, their current job role and daily workflow.  I am mostly sharing these because I want to share, I've had a lot of requests over the years and was too cheap to buy a monthly GitHub license to keep it private.  I fully expect people to use them more as a starting point than as a reference.  But if you manage to pull off the latter then hats off to you and let's go have a beer because we are mind twins.   
+
+### Feedback and WTF's
+Just because I've been doing this for a long time doesn't necessarily mean I'm good at it.  I am very welcoming to feedback and I constantly learn from the community and from other peoples' approaches to these common problems.  If you see something that looks odd, or is harder than it should be please let me know, and feel free to open PR's against this branch.  It would be much appreciated.  Also if you discover anything that is of a privacy or security concern please report it immediately as it's not just my well-being but a concern of others who might fork or branch these files.
+
+I went through and made an honest effort to scrub these files of personally-identifiable information.  Not just for my own privacy but for the convenience of others.  If you find any issues, please contact github@bluetufa.com.  Thank you.  
 
