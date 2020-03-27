@@ -41,6 +41,7 @@ make-backup ~/.p10k.zsh
 make-backup ~/.gitconfig
 
 ln -sf $(pwd)/fish/config.fish ~/.config/fish/config.fish
+ln -sf $(pwd)/kitty/kitty.conf ~/.config/kitty/kitty.conf
 ln -sf $(pwd)/nvim/init.vim ~/.config/nvim/init.vim
 ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
 ln -sf $(pwd)/zsh/.p10k.zsh ~/.p10k.zsh
