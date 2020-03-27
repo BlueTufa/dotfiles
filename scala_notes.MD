@@ -5,7 +5,9 @@
 * http://pad.haroopress.com/ Haroopad.  For editing markdown.
 * Typora `brew cask install typora` For editing markdown.
 * EasyRes for screen resolution switching during presentations.
+* draw.io for drawing stuff
 
 ## Scala specific
 * Don't mix AKKA versions
-
+* Research futures
+* use flatmap instead of for
