@@ -23,6 +23,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'sickill/vim-monokai'
 Plug 'rakr/vim-two-firewatch'
+Plug 'chrisbra/Colorizer'
+
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'nanotech/jellybeans.vim'
 Plug 'BlueTufa/gruvbox'
