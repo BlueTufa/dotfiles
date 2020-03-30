@@ -38,7 +38,7 @@ end
 
 function fish_greeting
   set_theme_colors
-  neofetch --kitty ~/Pictures/apple4.png --size 450px
+  neofetch --kitty ~/src/dotfiles/assets/apple.png --size 450px
 end
 
 function cal
