@@ -25,6 +25,7 @@ make-backup () {
 mkdir -p ~/src/bin
 mkdir -p ~/.config/fish
 mkdir -p ~/.config/nvim
+mkdir -p ~/.config/kitty
 
 # comment this out if you don't want to use oh-my-zsh or zsh support
 [[ -d ~/.oh-my-zsh ]] || install-oh-my-zsh
