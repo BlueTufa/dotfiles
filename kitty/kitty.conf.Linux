@@ -44,3 +44,6 @@ map cmd+shift+d next_layout
 sync_to_monitor yes
 
 enabled_layouts fat,tall,grid
+
+background_opacity 0.8
+
