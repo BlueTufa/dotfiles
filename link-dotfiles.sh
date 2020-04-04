@@ -41,7 +41,7 @@ make-backup ~/.p10k.zsh
 # make-backup ~/.gitconfig
 
 ln -sf $(pwd)/fish/config.fish ~/.config/fish/config.fish
-ln -sf $(pwd)/kitty/kitty.conf ~/.config/kitty/kitty.conf
+ln -sf $(pwd)/kitty/kitty.conf ~/.config/kitty/kitty.conf.Darwin
 ln -sf $(pwd)/nvim/init.vim ~/.config/nvim/init.vim
 ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
 ln -sf $(pwd)/zsh/.p10k.zsh ~/.p10k.zsh
@@ -52,6 +52,7 @@ if [[ $(uname) == "Linux" ]]; then
   ln -sf $(pwd)/mpd/mpd.conf ~/.config/mpd/mpd.conf
   ln -sf $(pwd)/.ncmpcpp/config ~/.ncmpcpp/config
   ln -sf $(pwd)/wofi/style.css ~/.config/wofi/style.css
+  ln -sf $(pwd)/kitty/kitty.conf.Linux ~/.config/kitty/kitty.conf
 fi 
 
 for file in fish/.{functions,exports,aliases,*$(uname)}
