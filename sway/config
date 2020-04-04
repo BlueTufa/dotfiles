@@ -19,7 +19,7 @@ set $browser firefox
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu exec wofi --show run --term=termite
+set $menu exec wofi --show run
 
 # seat seat0 xcursor_theme Adwaita 24
 font pango:Hack,15
