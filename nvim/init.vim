@@ -30,7 +30,7 @@ Plug 'chrisbra/Colorizer'
 Plug 'BlueTufa/gruvbox'
 Plug 'derekwyatt/vim-scala'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1

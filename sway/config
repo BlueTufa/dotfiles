@@ -12,7 +12,7 @@ set $up k
 set $right l
 
 # Your preferred terminal emulator
-set $term alacritty
+set $term kitty
 set $browser firefox
 
 # Your preferred application launcher
