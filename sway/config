@@ -12,7 +12,7 @@ set $up k
 set $right l
 
 # Your preferred terminal emulator
-set $term kitty
+set $term alacritty
 set $browser firefox
 
 # Your preferred application launcher
@@ -88,6 +88,10 @@ input "1452:613:Apple_Inc._Magic_Trackpad_2" {
   pointer_accel 0.8
  # gesture swipe right     swaymsg seat seat0 cursor press BTN_EXTRA
  # gesture swipe left      swaymsg seat seat0 cursor press BTN_SIDE
+}
+
+input "1133:16493:Logitech_M705" {
+  pointer_accel 0.8
 }
 
 ### Key bindings

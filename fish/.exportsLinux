@@ -1,5 +1,6 @@
 export CFLAGS="-Wno-error=deprecated"
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 export MOZ_ENABLE_WAYLAND=1 
-export FISH_THEME=gruvbox
+export TERM=xterm-256color
+# export FISH_THEME=gruvbox
 

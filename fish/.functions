@@ -71,7 +71,7 @@ function set_theme_colors
     set -gx DATE_COLOR FF9933
     set -gx PATH_COLOR 268bd2
     set -gx GIT_COLOR  b58900
-  else
+  else if test "$FISH_THEME" = "jellybeans"
     set -gx ERROR      CB0000
     set -gx SUCCESS    58A82F
     set -gx USER_COLOR 3399FF
@@ -79,6 +79,14 @@ function set_theme_colors
     set -gx DATE_COLOR FF9933
     set -gx PATH_COLOR 6B6FFF
     set -gx GIT_COLOR  03A9F4
+  else
+    set -gx ERROR      red
+    set -gx SUCCESS    green
+    set -gx USER_COLOR blue
+    set -gx HOST_COLOR green
+    set -gx DATE_COLOR yellow
+    set -gx PATH_COLOR blue
+    set -gx GIT_COLOR  cyan
   end
 end
 
