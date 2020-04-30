@@ -1,3 +1,4 @@
+# Opens in an OS window, either the current working directory, or the object(s) passed as arguments
 function o
   if test "$argv" = ""
     open $PWD
@@ -7,18 +8,18 @@ function o
 end
 
 function ghb
-  set org "mystrength"
+  set org "livongo"
   set folder (basename (pwd))
   if test "$folder" = "reporting"
-    set org "livongo"
   end
   if test "$folder" = "platform-apis"
-    set org "livongo"
   end
   if test "$folder" = "analytics"
+    set org "mystrength"
     set folder "mystrength_analytics"
   end
   if test "$folder" = "console"
+    set org "mystrength"
     set folder "patient-console"
   end
   set url "https://github.com/$ORG/$FOLDER"

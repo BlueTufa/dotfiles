@@ -1,5 +1,5 @@
 function o
-# the crappy Linux version
+  # the crappy Linux version of open in OS window
   dbus-launch dolphin (pwd) > /dev/null & 
 end
 
