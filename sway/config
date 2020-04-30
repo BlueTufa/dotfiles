@@ -15,12 +15,15 @@ set $right l
 set $term alacritty
 set $browser firefox
 
+for_window [app_id="Alacritty" title="launcher"] floating enable, show_marks no
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu exec wofi --show run
-
+# set $menu exec wofi --show run
+set $swaymenu alacritty -d 50 30 -t launcher -e "/data/home/badger/.config/sway/scripts/sway-launcher-desktop.sh" | xargs swaymsg exec --
+set $menu $swaymenu
 # seat seat0 xcursor_theme Adwaita 24
 font pango:Hack,15
 ### Output configuration
@@ -41,8 +44,8 @@ output DP-1 scale 1
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 # Appearance
-for_window [class="^.*"] border pixel 0
-default_border pixel 1
+for_window [class="^.*"] border pixel 2
+default_border pixel 2
 default_floating_border normal
 
 set $default_gaps_inner 15
@@ -234,6 +237,7 @@ mode "resize" {
 }
 bindsym $mod+z mode "resize"
 
+client.focused #d79921 #d79921 #FFFFFF
 #
 # Status Bar:
 #
