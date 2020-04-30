@@ -52,7 +52,7 @@ if [[ $(uname) == "Linux" ]]; then
   mkdir -p ~/.config/wofi
   ln -sf $(pwd)/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
   ln -sf $(pwd)/sway/config ~/.config/sway/config
-  ln -sf $(pwd)/sway/config/scripts/sway-launcher-desktop.sh ~/.config/sway/scripts/sway-launcher-desktop.sh
+  ln -sf $(pwd)/sway/scripts/sway-launcher-desktop.sh ~/.config/sway/scripts/sway-launcher-desktop.sh
   ln -sf $(pwd)/mpd/mpd.conf ~/.config/mpd/mpd.conf
   ln -sf $(pwd)/.ncmpcpp/config ~/.ncmpcpp/config
   ln -sf $(pwd)/wofi/style.css ~/.config/wofi/style.css

@@ -22,7 +22,7 @@ for_window [app_id="Alacritty" title="launcher"] floating enable, show_marks no
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 # set $menu exec wofi --show run
-set $swaymenu alacritty -d 50 30 -t launcher -e "/data/home/badger/.config/sway/scripts/sway-launcher-desktop.sh" | xargs swaymsg exec --
+set $swaymenu alacritty -d 50 30 -t launcher -e "$HOME/.config/sway/scripts/sway-launcher-desktop.sh" | xargs swaymsg exec --
 set $menu $swaymenu
 # seat seat0 xcursor_theme Adwaita 24
 font pango:Hack,15
