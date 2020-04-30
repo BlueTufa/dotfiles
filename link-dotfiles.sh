@@ -25,7 +25,6 @@ make-backup () {
 mkdir -p ~/src/bin
 mkdir -p ~/.config/fish
 mkdir -p ~/.config/nvim
-mkdir -p ~/.config/kitty
 
 # comment this out if you don't want to use oh-my-zsh or zsh support
 [[ -d ~/.oh-my-zsh ]] || install-oh-my-zsh
@@ -41,19 +40,27 @@ make-backup ~/.p10k.zsh
 # make-backup ~/.gitconfig
 
 ln -sf $(pwd)/fish/config.fish ~/.config/fish/config.fish
-ln -sf $(pwd)/kitty/kitty.conf ~/.config/kitty/kitty.conf.Darwin
 ln -sf $(pwd)/nvim/init.vim ~/.config/nvim/init.vim
 ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
 ln -sf $(pwd)/zsh/.p10k.zsh ~/.p10k.zsh
 
 if [[ $(uname) == "Linux" ]]; then
+  mkdir -p ~/.config/alacritty
+  mkdir -p ~/.config/sway
+  mkdir -p ~/.config/mpd
+  mkdir -p ~/.config/.ncmpcpp
+  mkdir -p ~/.config/wofi
   ln -sf $(pwd)/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
   ln -sf $(pwd)/sway/config ~/.config/sway/config
   ln -sf $(pwd)/mpd/mpd.conf ~/.config/mpd/mpd.conf
   ln -sf $(pwd)/.ncmpcpp/config ~/.ncmpcpp/config
   ln -sf $(pwd)/wofi/style.css ~/.config/wofi/style.css
-  ln -sf $(pwd)/kitty/kitty.conf.Linux ~/.config/kitty/kitty.conf
 fi 
+
+if [[ $(uname) == "Darwin" ]]; then
+  mkdir -p ~/.config/kitty
+  ln -sf $(pwd)/kitty/kitty.conf ~/.config/kitty/kitty.conf.Darwin
+fi
 
 for file in fish/.{functions,exports,aliases,*$(uname)}
 do
