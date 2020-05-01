@@ -22,6 +22,7 @@ make-backup () {
   fi
 }
 
+# os-independent config directories
 mkdir -p ~/src/bin
 mkdir -p ~/.config/fish
 mkdir -p ~/.config/nvim
@@ -49,12 +50,16 @@ if [[ $(uname) == "Linux" ]]; then
   mkdir -p ~/.config/sway/scripts
   mkdir -p ~/.config/mpd
   mkdir -p ~/.config/.ncmpcpp
+  mkdir -p ~/.config/waybar
   mkdir -p ~/.config/wofi
   ln -sf $(pwd)/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
   ln -sf $(pwd)/sway/config ~/.config/sway/config
   ln -sf $(pwd)/sway/scripts/sway-launcher-desktop.sh ~/.config/sway/scripts/sway-launcher-desktop.sh
   ln -sf $(pwd)/mpd/mpd.conf ~/.config/mpd/mpd.conf
   ln -sf $(pwd)/.ncmpcpp/config ~/.ncmpcpp/config
+  ln -sf $(pwd)/waybar/config ~/.config/waybar/config
+  ln -sf $(pwd)/waybar/executable_mediaplayer.sh ~/.config/waybar/executable_mediaplayer.sh
+  ln -sf $(pwd)/waybar/style.css ~/.config/waybar/style.css
   ln -sf $(pwd)/wofi/style.css ~/.config/wofi/style.css
 fi 
 
