@@ -34,7 +34,7 @@
         "format": "<span style=\"italic\">{}</span>"
     },
     "tray": {
-        "icon-size": 14,
+        "icon-size": 16,
         "spacing": 10
     },
     "clock": {
@@ -42,7 +42,7 @@
         // "format": "{:%A, %B %d at %I:%M %p}",
         // 24hr Robot Friendly
         // "format": "{:%Y-%m-%d - %H:%M}"
-        "format": "{:%a %b %d %H:%M:%S}"
+        "format": "{:%a %b %d %H:%M}"
     },
     "cpu": {
         "format": "{usage}% ",
@@ -76,14 +76,37 @@
         },
         "on-click": "pavucontrol"
     },
-    "custom/music": {
-        "format": " {}",
-        "max-length": 60,
-        "interval": 5, // Remove this if your script is endless and write in loop
-        "exec": "$HOME/.config/waybar/executable_mediaplayer.sh 2> /dev/null", // Script in resources folder
-	"tooltip": false,
-	"on-click": "playerctl play-pause",
-	"on-scroll-up": "playerctl previous",
-	"on-scroll-down": "playerctl next"
-    }
+    "mpd": {
+    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+	"format-disconnected": "Disconnected ",
+	"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+	"interval": 2,
+	"consume-icons": {
+		"on": " " // Icon shows only when "consume" is on
+	},
+	"random-icons": {
+		"off": "<span color=\"#f53c3c\"></span> ", // Icon grayed out when "random" is off
+		"on": " "
+	},
+	"repeat-icons": {
+		"on": " "
+	},
+	"single-icons": {
+		"on": "1 "
+	},
+	"state-icons": {
+		"paused": "",
+		"playing": ""
+	}
+}
+//    "custom/music": {
+//        "format": " {}",
+//        "max-length": 60,
+//         "interval": 5, // Remove this if your script is endless and write in loop
+//        "exec": "$HOME/.config/waybar/executable_mediaplayer.sh 2> /dev/null", // Script in resources folder
+//	"tooltip": false,
+//	"on-click": "playerctl play-pause",
+//	"on-scroll-up": "playerctl previous",
+//	"on-scroll-down": "playerctl next"
+//    }
 }
