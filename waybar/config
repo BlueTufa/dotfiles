@@ -4,7 +4,7 @@
     "height": 36,
     "modules-left": ["sway/workspaces", "mpd"],
     "modules-center": ["sway/window", "sway/mode"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "battery", "tray", "clock"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "cpu", "memory", "battery", "tray", "clock"],
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
@@ -99,6 +99,7 @@
       		"playing": ""
       	},
       	"tooltip-format": "MPD (connected)",
-      	"tooltip-format-disconnected": "MPD (disconnected)"
+      	"tooltip-format-disconnected": "MPD (disconnected)",
+        "on-click": "alacritty -t 'Floating Terminal' -e ncmpcpp"
     }
 }
