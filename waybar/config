@@ -2,7 +2,7 @@
     "layer": "top",
     "position": "top",
     "height": 36,
-    "modules-left": ["sway/workspaces", "custom/music"],
+    "modules-left": ["sway/workspaces", "mpd"],
     "modules-center": ["sway/window", "sway/mode"],
     "modules-right": ["idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "battery", "tray", "clock"],
     "sway/workspaces": {
@@ -77,7 +77,7 @@
         "on-click": "pavucontrol"
     },
     "mpd": {
-    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+	"format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
 	"format-disconnected": "Disconnected ",
 	"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
 	"interval": 2,
@@ -97,16 +97,8 @@
 	"state-icons": {
 		"paused": "",
 		"playing": ""
-	}
+	},
+	"tooltip-format": "MPD (connected)",
+	"tooltip-format-disconnected": "MPD (disconnected)"
 }
-//    "custom/music": {
-//        "format": " {}",
-//        "max-length": 60,
-//         "interval": 5, // Remove this if your script is endless and write in loop
-//        "exec": "$HOME/.config/waybar/executable_mediaplayer.sh 2> /dev/null", // Script in resources folder
-//	"tooltip": false,
-//	"on-click": "playerctl play-pause",
-//	"on-scroll-up": "playerctl previous",
-//	"on-scroll-down": "playerctl next"
-//    }
 }
