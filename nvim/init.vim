@@ -24,6 +24,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'sickill/vim-monokai'
 Plug 'rakr/vim-two-firewatch'
 Plug 'chrisbra/Colorizer'
+Plug 'elzr/vim-json'
 
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'nanotech/jellybeans.vim'
