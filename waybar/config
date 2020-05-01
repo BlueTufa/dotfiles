@@ -45,7 +45,7 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "on-click": "alacritty -t 'Floating Terminal' -e htop"
+        "on-click": "alacritty -t 'Floating Terminal' -e gotop"
     },
 
     "memory": {
