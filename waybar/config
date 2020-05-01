@@ -41,7 +41,8 @@
         // Human Friendly
         // "format": "{:%A, %B %d at %I:%M %p}",
         // 24hr Robot Friendly
-        "format": "{:%Y-%m-%d - %H:%M}"
+        // "format": "{:%Y-%m-%d - %H:%M}"
+        "format": "{:%a %b %d %H:%M:%S}"
     },
     "cpu": {
         "format": "{usage}% ",

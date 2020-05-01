@@ -16,6 +16,7 @@ set $term alacritty
 set $browser firefox
 
 for_window [app_id="Alacritty" title="launcher"] floating enable, show_marks no
+for_window [app_id="Alacritty" title="Floating Terminal"] floating enable, show_marks no
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
