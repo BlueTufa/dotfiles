@@ -30,10 +30,11 @@ font pango:Hack,15
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/randall-mackey-mural2.jpg fill
-# output * bg ~/Pictures/pictures/Backgrounds/desolate_forest_by_reapr56-d7je2mc.jpg fill
-output DP-1 scale 1
-output DP-2 scale 1
+output DP-1 bg ~/Pictures/randall-mackey-mural2.jpg fill
+# output DP-2 bg ~/Pictures/pictures/Backgrounds/desolate_forest_by_reapr56-d7je2mc.jpg fill 
+output DP-1 pos 0 0 scale 1 
+# output DP-2 pos 3840 0 scale 1 
+# output DP-2 pos 0 0 scale 1 
 # output DP-1 scale 2
 # resolution 2560x1440 position 2560,0
 # scale 2
