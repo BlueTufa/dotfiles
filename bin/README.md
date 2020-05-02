@@ -18,7 +18,7 @@ Flashes a 1up keyboard with locally compiled firmware.  See https://github.com/B
 Skeleton script for a very common task, which is to create a script that executes some command and iterates over the results in the shell.  
 
 ### bash mass update starter
-Skeleton script for finding all occurrences of a regex and replacing it with a different value, recursively.  Requires `the_silver_searcher` aka `ag` to be installed as a prerequisite.  Or you can change it to use `grep`.
+Skeleton script for finding all occurrences of a regex and replacing it with a different value, recursively.  Requires `the_silver_searcher` aka `ag` to be installed as a prerequisite.  Or you can change it to use `grep -rl`.
 
 ### AWS
 Various AWS and/or ELK helpers that change based on seasonality and my mood.
