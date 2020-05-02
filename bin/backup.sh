@@ -3,6 +3,11 @@
 DISK_UUID=3fa1a48e-fcc6-4ead-bb73-0157f86223f4
 MOUNT_PATH=/mnt/backup01
 
+if [[ $(uname) != "Linux" ]]; then
+  echo "This script is only supported on Linux."
+  exit 1
+fi
+
 # command must be run as sudo, the whole thing
 if [[ $(whoami) != "root" ]]; then
   echo "You must run this backup script as root for hardware access."
