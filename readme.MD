@@ -41,12 +41,6 @@ The following are included in init.vim with customizations:
 * Whatever whim I am exploring.  Currently https://scalameta.org/metals/docs/editors/vim.html mixed with coc.nvim.  Their docs are great, if you have a use for it please check it out.  
 * Terminal support.
 
-### Backup with rsync
-This repo includes a simple script that will backup to an encrypted external drive using rsync.  You may need to modify it depending on your hardware configuration and operating system.
-
-### Example script for mounting an encrypted Luks volume
-Again, this may vary based on your hardware and operating system configuration.
-
 ### For linux users, I've also recently added lots of random config files for the following:
 * .ncmpcpp music player
 * mpd music server
