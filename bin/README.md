@@ -6,7 +6,7 @@ The path ~/src/bin is automatically created and added to the path if you run the
 Remember to mark them executable and use a portable shebang such as `#! /usr/bin/env bash` and you don't need to use the file extension. For example, rename `backup.sh` to `backup` and then you can simply type `backup` from anywhere. 
 
 ### Backup with rsync
-Includes a simple script that will backup to an encrypted external drive using rsync.  You may need to modify it depending on your hardware configuration and operating system.
+Includes a simple script that will backup to an encrypted external drive using rsync.  You will need to modify it depending on your hardware configuration and operating system.
 
 ### Example script for mounting an encrypted Luks volume
 Again, this may vary based on your hardware and operating system configuration.
@@ -19,6 +19,12 @@ Skeleton script for a very common task, which is to create a script that execute
 
 ### bash mass update starter
 Skeleton script for finding all occurrences of a regex and replacing it with a different value, recursively.  Requires `the_silver_searcher` aka `ag` to be installed as a prerequisite.  Or you can change it to use `grep -rl`.
+
+### trap example / starter
+Starter script to make sure your script files clean up after themselves, especially when running data operations in the cloud.  
+
+### macos bootstrap
+Not intended to be run as a script, it's more of a reminder of tasks that are needed to get a clean MacOS install started and in a place to consume these scripts.  Note the `Brewfile` is up one directory.
 
 ### AWS
 Various AWS and/or ELK helpers that change based on seasonality and my mood.
