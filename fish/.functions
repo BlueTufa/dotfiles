@@ -38,7 +38,11 @@ end
 
 function fish_greeting
   set_theme_colors
-  neofetch --kitty ~/src/dotfiles/assets/apple.png --size 450px
+  if test (uname) = "Darwin"
+    neofetch --kitty ~/src/dotfiles/assets/apple.png --size 450px
+  else 
+    neofetch --kitty ~/src/dotfiles/assets/arch.png --size 450px
+  end
 end
 
 function cal
