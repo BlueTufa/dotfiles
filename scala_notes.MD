@@ -11,3 +11,11 @@
 * Don't mix AKKA versions
 * Research futures
 * use flatmap instead of for
+
+# Common build.sbt settings:
+For referencing test packages:
+"livongo" %% "core-libraries" % coreLibsVersion % "test" classifier "tests",
+
+
+logLevel := Level.Debug
+
