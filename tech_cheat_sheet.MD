@@ -135,3 +135,9 @@ https://www.samltool.com/validate_xml.php
 Use the following for JWT
 https://jwt.io/
 
+## Gnome
+Dealing with dconf settings, on a search for shortcut keys:
+```bash
+for schema in $(gsettings list-schemas); do gsettings list-recursively $schema; done | ag 'Super\>s'
+```
+
