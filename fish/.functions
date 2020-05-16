@@ -36,6 +36,17 @@ function get_branch
   end
 end
 
+function ghb
+  set URL (git remote get-url --push origin | sed 's/\.git$/\/tree\//g')(git rev-parse --abbrev-ref HEAD)
+  echo "launching url $url..."
+  if test (uname) = "Linux"
+    xdg-open $URL
+  else
+    # This will definitely work on Darwin, somewhere else maybe?  xdg-open doesn't seem like the best default
+    open $URL
+  end
+end
+
 function fish_greeting
   set_theme_colors
   if test (uname) = "Darwin"

@@ -7,12 +7,6 @@ function o
   end
 end
 
-function ghb
-  set URL (git remote get-url --push origin | sed 's/\.git$/\/tree\//g')(git rev-parse --abbrev-ref HEAD)
-  echo "launching url $url..."
-  open $URL
-end
-
 # function fish_prompt
 #   if test "$status" -ne "0"
 #     set ARROW "CB0000"
