@@ -1,0 +1,46 @@
+font_family Code New Roman
+# font_family MesloLGS NF
+bold_font auto
+italic_font auto
+bold_italic_font auto
+
+font_size 13.0
+
+scrollback_lines 200000
+
+active_border_color #a89984
+
+background  #282A36
+foreground  #F8F8F2
+
+color0 #21222C
+color8 #6272A4
+
+color1 #FF5555
+color9 #FF6E6E
+
+color2 #50FA7B
+color10 #69FF94
+
+color3 #F1FA8C
+color11 #FFFFA5
+
+color4 #BD93F9
+color12 #D6ACFF
+
+color5 #FF79C6
+color13 #FF92DF
+
+color6 #8BE9FD
+color14 #A4FFFF
+
+color7 #F8F8F2
+color15 #FFFFFF
+
+map cmd+d new_window
+map cmd+t new_tab
+map cmd+shift+d next_layout
+
+sync_to_monitor yes
+
+enabled_layouts fat,tall,grid

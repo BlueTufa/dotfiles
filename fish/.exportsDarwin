@@ -36,7 +36,8 @@ else
   set -gx MAC_APP_PATH '/Applications'
 end
 
-set -gx FISH_THEME "gruvbox"
+# set -gx FISH_THEME "gruvbox"
+set -gx FISH_THEME "jellybeans"
 
 # these are currently fish specific, not really sure what will happen in zsh
 # bind --user '[1;2D' 'backward-bigword'
