@@ -28,18 +28,13 @@ https://wallpaperaccess.com/awesome-digital-art
 * usbutils
 * pciutils
 * QMK firmware
-* Arduino CLI 
+* Arduino CLI
 * noto-fonts-emoji
 * VLC
-* nodejs 
-* npm 
-* trash-cli 
+* nodejs
+* npm
+* trash-cli
 * Deepin icon theme 
-
-# TODO:
-* 1Password?
-* ongoing saga of trying to find and learn to use a Window Manager (i3-gaps, etc)
 
 REMINDER: mass find and replace command for vim:
 :%s/<Search>/<Replace>
-
