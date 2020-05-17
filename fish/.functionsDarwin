@@ -7,26 +7,6 @@ function o
   end
 end
 
-function ghb
-  set org "livongo"
-  set folder (basename (pwd))
-  if test "$folder" = "reporting"
-  end
-  if test "$folder" = "platform-apis"
-  end
-  if test "$folder" = "analytics"
-    set org "mystrength"
-    set folder "mystrength_analytics"
-  end
-  if test "$folder" = "console"
-    set org "mystrength"
-    set folder "patient-console"
-  end
-  set url "https://github.com/$ORG/$FOLDER"
-  echo "launching url $url..."
-  open $URL
-end
-
 # function fish_prompt
 #   if test "$status" -ne "0"
 #     set ARROW "CB0000"
