@@ -60,9 +60,9 @@ end
 
 function cal
   if test "$argv" = ""
-    /usr/bin/cal | lolcat
+    /usr/bin/cal | lolcat 2> /dev/null
   else
-    /usr/bin/cal $argv | lolcat
+    /usr/bin/cal $argv | lolcat 2> /dev/null
   end
 end
 
