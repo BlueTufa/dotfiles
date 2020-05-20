@@ -7,30 +7,47 @@ function fish_prompt
     set ARROW "$SUCCESS"
   end
 
+  # interactive user name @ (with error indicator) host name part with underline, date/time in YYYY-mm-dd format UTC, path info, and branch info (when available)
+  print_date (set_color $PATH_COLOR)(pretty_path)(set_color $GIT_COLOR)(get_branch)
+  pretty_path 
+  get_branch
+  echo (set_color $ARROW)"❯ "(set_color normal)
+end
+
+function print_date
+  set time_icon \uF017
+  set_color $DATE_COLOR
+  echo -n $time_icon " "
+  echo -n (date -u '+%H:%M:%S')
+  echo -n " UTC"
+end
+
+function print_host
   # trim everything to the right of the . in whostname
   if test -n "$SHOW_HOST" 
     set HOST_STRING (echo $hostname | cut -f1 -d".")
     # add a space at the end
     set HOST_STRING "$HOST_STRING "
   end 
-
-  # interactive user name @ (with error indicator) host name part with underline, date/time in YYYY-mm-dd format UTC, path info, and branch info (when available)
-  echo (set_color $USER_COLOR)(whoami)(set_color $ARROW)@(set_color $HOST_COLOR)(echo $HOST_STRING)(set_color $DATE_COLOR)(date -u '+%Y-%m-%d %H:%M:%S') UTC (set_color $PATH_COLOR)(pretty_path)(set_color $GIT_COLOR)(get_branch)
-  echo "\$ "
 end
 
 function get_branch
+  set branch_indicator \uF126
+  set local_changes_indicator \uF01B
+  set remote_changes_indicator \uF01A
+  
+  set_color $GIT_COLOR
   # minus symbol if there are no changes detected to tracked files
   # /dev/null prevents nonsensical errors when you are on directories not tracked by git.
   if test (git status --untracked-files=no --porcelain 2> /dev/null | wc -l) -eq 0
     set indicator "-"
   else
-    set indicator "+"
+    set indicator "$local_changes_indicator"
   end
   
   set branch_name (git rev-parse --abbrev-ref HEAD 2> /dev/null)
   if test "$branch_name" != ""
-    echo "[$indicator]$branch_name"
+    echo "$branch_indicator $branch_name $indicator "
   else
     echo ""
   end
@@ -79,7 +96,10 @@ end
 
 function pretty_path
   # by default, Fish shell does not print ~ for $HOME
-  echo (pwd | sed "s|^$HOME|~|g")
+  set HOME_ICON \uF07C
+  set_color $PATH_COLOR
+  echo -n $HOME_ICON " " 
+  echo -n (pwd | sed "s|^$HOME|~|g")
 end
 
 function set_theme_colors
