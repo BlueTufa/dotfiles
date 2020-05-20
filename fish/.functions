@@ -2,16 +2,19 @@ function fish_prompt
   # gets the error status of the last command and 
   # updates the @ symbol color with the indication
   if test "$status" -ne "0"
-    set ARROW "$ERROR"
+    set -gx ARROW "$ERROR"
   else
-    set ARROW "$SUCCESS"
+    set -gx ARROW "$SUCCESS"
   end
 
-  # interactive user name @ (with error indicator) host name part with underline, date/time in YYYY-mm-dd format UTC, path info, and branch info (when available)
   print_date 
   pretty_path 
   get_branch
-  echo (set_color $ARROW)"❯ "(set_color normal)
+  print_prompt
+end
+
+function print_prompt
+  echo -e (set_color $ARROW)"\n❯ "(set_color normal)
 end
 
 function print_date
@@ -20,6 +23,14 @@ function print_date
   echo -n $time_icon " "
   echo -n (date -u '+%H:%M:%S')
   echo -n " UTC"
+end
+
+function pretty_path
+  # by default, Fish shell does not print ~ for $HOME
+  set HOME_ICON \uF07C
+  set_color $PATH_COLOR
+  echo -n $HOME_ICON " " 
+  echo -n (pwd | sed "s|^$HOME|~|g")
 end
 
 function print_host
@@ -47,9 +58,7 @@ function get_branch
   
   set branch_name (git rev-parse --abbrev-ref HEAD 2> /dev/null)
   if test "$branch_name" != ""
-    echo " $branch_indicator$indicator $branch_name"
-  else
-    echo ""
+    echo -n " $branch_indicator$indicator $branch_name"
   end
 end
 
@@ -92,14 +101,6 @@ function cal
   else
     /usr/bin/cal $argv | lolcat 2> /dev/null
   end
-end
-
-function pretty_path
-  # by default, Fish shell does not print ~ for $HOME
-  set HOME_ICON \uF07C
-  set_color $PATH_COLOR
-  echo -n $HOME_ICON " " 
-  echo -n (pwd | sed "s|^$HOME|~|g")
 end
 
 function set_theme_colors
