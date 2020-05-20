@@ -48,7 +48,7 @@ function ghb
 end
 
 function glc
-  git rev-parse HEAD 2&>1 /dev/null
+  git rev-parse HEAD > /dev/null 2>&1
   if test "$status" -ne "0"
     # not a git repo
     set URL (pwd)
