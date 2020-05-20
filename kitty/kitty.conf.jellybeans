@@ -1,0 +1,55 @@
+font_family Code New Roman
+# font_family MesloLGS NF
+bold_font auto
+italic_font auto
+bold_italic_font auto
+
+# background_opacity 0.97
+background_image ~/src/dotfiles/assets/dark_blue.png
+background_image_layout scaled
+
+font_size 13.0
+
+scrollback_lines 200000
+
+active_border_color #a89984
+
+cursor  #d7d7d7
+cursor_foreground  #121212
+foreground  #adadad
+foreground_bold  #efefef
+background  #121212
+highlight  #222222
+
+#black
+color0  #1c1c1c
+color8  #3b3b3b
+#red
+color1  #d55f5f
+color9  #e95964
+#green
+color2  #72a25a
+color10  #99ad6a
+#yellow
+color3  #d8ad4c
+color11  #fad07a
+#blue
+color4  #597bc5
+color12  #8197bf
+#magenta
+color5  #8787af
+color13  #d7afff
+#cyan
+color6  #4a8382
+color14  #8fbfdc
+#white
+color7  #adadad
+color15  #e8e8de
+
+map cmd+d new_window
+map cmd+t new_tab
+map cmd+shift+d next_layout
+
+sync_to_monitor yes
+
+enabled_layouts fat,tall,grid
