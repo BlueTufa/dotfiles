@@ -8,7 +8,7 @@ function fish_prompt
   end
 
   # interactive user name @ (with error indicator) host name part with underline, date/time in YYYY-mm-dd format UTC, path info, and branch info (when available)
-  print_date (set_color $PATH_COLOR)(pretty_path)(set_color $GIT_COLOR)(get_branch)
+  print_date 
   pretty_path 
   get_branch
   echo (set_color $ARROW)"❯ "(set_color normal)
@@ -40,14 +40,14 @@ function get_branch
   # minus symbol if there are no changes detected to tracked files
   # /dev/null prevents nonsensical errors when you are on directories not tracked by git.
   if test (git status --untracked-files=no --porcelain 2> /dev/null | wc -l) -eq 0
-    set indicator "-"
+    set indicator ""
   else
     set indicator "$local_changes_indicator"
   end
   
   set branch_name (git rev-parse --abbrev-ref HEAD 2> /dev/null)
   if test "$branch_name" != ""
-    echo "$branch_indicator $branch_name $indicator "
+    echo " $branch_indicator$indicator $branch_name"
   else
     echo ""
   end
