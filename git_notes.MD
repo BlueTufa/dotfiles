@@ -30,6 +30,26 @@ git apply my.patch
 `git reset --hard upstream/<branch name>`
 `git push origin <branch name> --force`
 
+## Rebasing master to make it look like a clean repo:
+Make sure you have merged the origin/upstream master and have a clean working directory.  
+If you are planning to rewrite a GitHub repo, it is also recommended you make a fresh clone of it into a different directory for verification and recovery purposes.  
+Then run:
+`git rebase --interactive --root`
+As you cycle through the list of commits, pick the ones you want to squash, typically all of them but the top.  
+You might need to resolve merge conflicts with `git add` and `git rebase --continue`.  
+If you are feeling brave and want to try to skip merge conflicts, go for it:
+```bash
+git rebase --interactive --root -X ours master
+```
+* Note that a rebase replays the list of commits over the current working branch, so the theirs and ours are flipped, so in the case of a rebase, ours means the master.  
+Iterate on this until you get the history looking the way you want.  
+Note that `git commit --amend` is handy here instead of re-running rebase.
+
+Once the local history looks the way that you want it to, It's time for the most dangerous step.  The consequences of this cannot be understated, and you should not be using this on a regular basis.  This is why you hopefully made a backup clone of your repo just in case.  This will take your local commit history and overwrite the github repository's history to match.  When others subsequently do a git pull they will also lose that version lineage.  
+```bash
+git push --force
+```
+
 ## resolve merge conflicts by accept theirs:
 `git checkout --theirs -- <filename>`
 
