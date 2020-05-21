@@ -1,5 +1,6 @@
-# Working with Forks and upstream repos
-# Keeping the name as something like upstream is probably a best practice
+# Notes on Advanced Git Workflows
+## Working with Forks and upstream repos
+Keeping the name as something like upstream is probably a best practice
 ```
 git remote -v
 git remote add upstream <path to upstream repo>
@@ -12,7 +13,7 @@ git fetch upstream <branch name>
 git merge upstream/<branch name>
 ```
 
-### Gets a list of file names that are different between the branches
+### Gets a list of file names only that are different between the branches
 `git diff upstream/master origin/master --name-only`
 
 ### Get just a single file out of an upstream repo:
@@ -26,15 +27,19 @@ git diff upstream/master origin/master > my.patch
 git apply my.patch
 ```
 
-## Scorch the earth and make it just like the remote again:
+## Scorch the earth in a forked repo and make it just like the remote again:
 `git reset --hard upstream/<branch name>`
 `git push origin <branch name> --force`
+* This is extremely dangerous and the potential for loss of work is high.  Plan ahead before running this command.
 
-## Rebasing master to make it look like a clean repo:
+## Rebasing a remote master to make it look like a clean repo:
 Make sure you have merged the origin/upstream master and have a clean working directory.  
 If you are planning to rewrite a GitHub repo, it is also recommended you make a fresh clone of it into a different directory for verification and recovery purposes.  
 Then run:
-`git rebase --interactive --root`
+```bash
+git rebase --interactive --root
+```
+Using the `--root` arg is a big time saver if you want to rebase all history.  Otherwise, you must pick and choose as needed.
 As you cycle through the list of commits, pick the ones you want to squash, typically all of them but the top.  
 You might need to resolve merge conflicts with `git add` and `git rebase --continue`.  
 If you are feeling brave and want to try to skip merge conflicts, go for it:
