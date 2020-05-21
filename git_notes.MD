@@ -1,28 +1,34 @@
 # Notes on Advanced Git Workflows
+
 ## Working with Forks and upstream repos
 Keeping the name as something like upstream is probably a best practice
-```
+```bash
 git remote -v
 git remote add upstream <path to upstream repo>
 ```
 
 ## Workflow for syncing an upstream fork
-```
+```bash
 git checkout <local branch name>
 git fetch upstream <branch name>
 git merge upstream/<branch name>
 ```
+* NOTE: Be mindful here if you are working with multiple local and upstream branches, ie `master` and `future`.  It's really easy to accidentally merge upstream `future` into local `master` for example.  
 
 ### Gets a list of file names only that are different between the branches
-`git diff upstream/master origin/master --name-only`
+```bash
+git diff upstream/master origin/master --name-only
+```
 
 ### Get just a single file out of an upstream repo:
-`git checkout upstream/future -- docs/breaking_changes.md`
+```bash
+git checkout upstream/future -- docs/breaking_changes.md
+```
 
 ## Working with Patches
 `git diff > my.patch`
 ## OR: 
-```
+```bash
 git diff upstream/master origin/master > my.patch
 git apply my.patch
 ```
