@@ -34,12 +34,9 @@ function pretty_path
 end
 
 function print_host
-  # trim everything to the right of the . in whostname
-  if test -n "$SHOW_HOST" 
-    set HOST_STRING (echo $hostname | cut -f1 -d".")
-    # add a space at the end
-    set HOST_STRING "$HOST_STRING "
-  end 
+  set HOST_STRING (echo $hostname | cut -f1 -d".")
+  # add a space at the end
+  echo -n "$HOST_STRING "
 end
 
 function get_branch
@@ -48,7 +45,6 @@ function get_branch
   set remote_changes_indicator \uF01A
   
   set_color $GIT_COLOR
-  # minus symbol if there are no changes detected to tracked files
   # /dev/null prevents nonsensical errors when you are on directories not tracked by git.
   if test (git status --untracked-files=no --porcelain 2> /dev/null | wc -l) -eq 0
     set indicator ""
