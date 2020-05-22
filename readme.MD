@@ -1,4 +1,4 @@
-# BlueTufa dotfiles Private Repository
+# BlueTufa dotfiles Repository
 ## Contents
 A comprensive collection of Fish (Friendly Interactive Shell) and ZSH dotfiles which will allow a quick and easy customization of Fish on an existing system.  This configuration will generally work cross-platform betwen MacOS and Linux, although you may encounter minor bugs on either.  
 
