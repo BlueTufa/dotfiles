@@ -24,5 +24,6 @@ jobs:
     - run: git checkout HEAD^
 
     # Runs a single command using the runners shell
-    - name: Run a one-line script
+    - name: Run link-dotfiles command
+    - uses: actions/checkout@v2
     - run: $GITHUB_WORKSPACE/link-dotfiles.sh
