@@ -20,22 +20,21 @@ end
 function print_date
   set TIME_ICON \uF017
   set DATE_STRING (date -u '+%H:%M:%S')
-  set_color $DATE_COLOR
-  echo -n "$TIME_ICON $DATE_STRING UTC"
+  
+  echo -n (set_color $DATE_COLOR)"$TIME_ICON $DATE_STRING UTC"
 end
 
 function pretty_path
   # by default, Fish shell does not print ~ for $HOME
   set CWD (pwd | sed "s|^$HOME|~|g")
   set HOME_ICON \uF07C
-  set_color $PATH_COLOR
-  echo -n "$HOME_ICON  $CWD " 
+  
+  echo -n (set_color $PATH_COLOR)"$HOME_ICON  $CWD " 
 end
 
 function print_host
   set HOST_STRING (echo $hostname | cut -f1 -d".")
-  # add a space at the end
-  echo -n "$HOST_STRING "
+  echo -n (set_color $HOST_COLOR)"$HOST_STRING "
 end
 
 function get_branch
@@ -51,8 +50,8 @@ function get_branch
     else
       set indicator "$local_changes_indicator"
     end
-    set_color $GIT_COLOR
-    echo -n "$branch_indicator$indicator $branch_name"
+    
+    echo -n (set_color $GIT_COLOR)"$branch_indicator$indicator $branch_name"
   end
 end
 
@@ -82,7 +81,7 @@ function fish_greeting
   set_theme_colors
   if test (uname) = "Darwin"
     neofetch --kitty ~/src/dotfiles/assets/apple.png --size 450px
-  else if test "$SSH_TTY" = ""
+  else if test (uname) = "Linux" and test "$SSH_TTY" = ""
     neofetch --kitty ~/src/dotfiles/assets/arch.png --size 450px
   else 
     neofetch 
@@ -90,11 +89,7 @@ function fish_greeting
 end
 
 function cal
-  if test "$argv" = ""
-    /usr/bin/cal | lolcat 2> /dev/null
-  else
-    /usr/bin/cal $argv | lolcat 2> /dev/null
-  end
+  /usr/bin/cal $argv | lolcat 2> /dev/null
 end
 
 function set_theme_colors
