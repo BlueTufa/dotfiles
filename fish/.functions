@@ -28,8 +28,10 @@ function pretty_path
   # by default, Fish shell does not print ~ for $HOME
   set CWD (pwd | sed "s|^$HOME|~|g")
   set HOME_ICON \uF07C
+  # Unicode thin-space char.  This one is worth bookmarking.
+  set THIN_SPACE \u2009
   
-  echo -n (set_color $PATH_COLOR)"$HOME_ICON  $CWD" 
+  echo -n (set_color $PATH_COLOR)"$THIN_SPACE$HOME_ICON $THIN_SPACE$CWD$THIN_SPACE" 
 end
 
 function print_host
@@ -41,6 +43,7 @@ function get_branch
   set branch_indicator \uF126
   set local_changes_indicator \uF01B
   set remote_changes_indicator \uF01A
+  set small_circle \u26AC
   
   set branch_name (git rev-parse --abbrev-ref HEAD 2> /dev/null)
   if test "$branch_name" != ""
@@ -51,7 +54,7 @@ function get_branch
       set indicator "$local_changes_indicator"
     end
     
-    echo -n (set_color $GIT_COLOR)" $branch_indicator$indicator $branch_name"
+    echo -n (set_color $GIT_COLOR)"$branch_indicator$indicator $branch_name"
   end
 end
 
