@@ -27,5 +27,5 @@ jobs:
        
      - name: Is config.fish linked?
        run: |
-        [[ -L ~/.config/fish/config.fish ]] && echo "yep"
+        [[ -L ~/.config/fish/config.fish2 ]]
        
