@@ -24,6 +24,8 @@ alias pych="open /Applications/PyCharm.app"
 alias rmine="open /Applications/RubyMine.app"
 alias typ="open /Applications/Typora.app"
 
+alias icat='kitty +kitten icat'
+
 # same as CMD+SHIFT+. except it is persistent and requires a launcher restart
 # alias noshowallfiles="defaults write com.apple.finder AppleShowAllFiles NO"
 # alias showallfiles="defaults write com.apple.finder AppleShowAllFiles YES"
