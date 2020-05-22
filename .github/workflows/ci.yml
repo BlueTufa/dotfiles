@@ -27,5 +27,12 @@ jobs:
        
      - name: Is config.fish linked?
        run: |
-        [[ -L ~/.config/fish/config.fish2 ]]
-       
+         [[ -L ~/.config/fish/config.fish ]]
+
+     - name: Is .aliases linked?
+       run: |
+         [[ -L ~/.config/fish/.aliases ]]
+
+     - name: Is .functions linked?
+       run: |
+         [[ -L ~/.config/fish/.functions ]]
