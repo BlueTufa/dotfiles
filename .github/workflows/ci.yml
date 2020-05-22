@@ -25,4 +25,4 @@ jobs:
 
     # Runs a single command using the runners shell
      - name: Run link-dotfiles command
-       run: link-dotfiles.sh
+       run: ./link-dotfiles.sh
