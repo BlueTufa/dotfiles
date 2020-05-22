@@ -20,11 +20,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-    - name: "Checkout"
-    - run: git checkout HEAD^
+     - name: "Checkout"
+       uses: actions/checkout@v2
+       run: git checkout HEAD^
 
     # Runs a single command using the runners shell
-    - uses: actions/checkout@v2
     - name: Run link-dotfiles command
-    - run: $GITHUB_WORKSPACE/link-dotfiles.sh
+      uses: actions/checkout@v2
+      run: $GITHUB_WORKSPACE/link-dotfiles.sh
