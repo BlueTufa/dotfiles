@@ -29,7 +29,7 @@ function pretty_path
   set CWD (pwd | sed "s|^$HOME|~|g")
   set HOME_ICON \uF07C
   set_color $PATH_COLOR
-  echo -n "$HOME_ICON $CWD" 
+  echo -n "$HOME_ICON  $CWD " 
 end
 
 function print_host
@@ -43,17 +43,16 @@ function get_branch
   set local_changes_indicator \uF01B
   set remote_changes_indicator \uF01A
   
-  set_color $GIT_COLOR
-  # /dev/null prevents nonsensical errors when you are on directories not tracked by git.
-  if test (git status --porcelain 2> /dev/null | wc -l) -eq 0
-    set indicator ""
-  else
-    set indicator "$local_changes_indicator"
-  end
-  
   set branch_name (git rev-parse --abbrev-ref HEAD 2> /dev/null)
   if test "$branch_name" != ""
-    echo -n " $branch_indicator$indicator $branch_name"
+    # /dev/null prevents nonsensical errors when you are on directories not tracked by git.
+    if test (git status --porcelain 2> /dev/null | wc -l) -eq 0
+      set indicator ""
+    else
+      set indicator "$local_changes_indicator"
+    end
+    set_color $GIT_COLOR
+    echo -n "$branch_indicator$indicator $branch_name"
   end
 end
 
@@ -99,14 +98,6 @@ function cal
 end
 
 function set_theme_colors
-
-#   set FG_COLOR    bd8141
-#   set BG_COLOR    1e140a
-#   set BRIGHT_RED  cb4b16
-#   set CYAN        268bd2
-#   set YELLOW      b58900
-#   set ORANGE      FF9933
-
   if test "$FISH_THEME" = "gruvbox"
     set -gx ERROR      CC241D
     set -gx SUCCESS    98971A
