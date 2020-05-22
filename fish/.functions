@@ -29,7 +29,7 @@ function pretty_path
   set CWD (pwd | sed "s|^$HOME|~|g")
   set HOME_ICON \uF07C
   
-  echo -n (set_color $PATH_COLOR)"$HOME_ICON  $CWD " 
+  echo -n (set_color $PATH_COLOR)"$HOME_ICON  $CWD" 
 end
 
 function print_host
@@ -51,7 +51,7 @@ function get_branch
       set indicator "$local_changes_indicator"
     end
     
-    echo -n (set_color $GIT_COLOR)"$branch_indicator$indicator $branch_name"
+    echo -n (set_color $GIT_COLOR)" $branch_indicator$indicator $branch_name"
   end
 end
 
