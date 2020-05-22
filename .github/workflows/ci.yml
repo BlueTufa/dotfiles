@@ -22,9 +22,7 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
      - name: "Checkout"
        uses: actions/checkout@v2
-       run: git checkout HEAD^
 
     # Runs a single command using the runners shell
-    - name: Run link-dotfiles command
-      uses: actions/checkout@v2
-      run: $GITHUB_WORKSPACE/link-dotfiles.sh
+     - name: Run link-dotfiles command
+       run: link-dotfiles.sh
