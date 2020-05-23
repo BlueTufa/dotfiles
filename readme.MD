@@ -58,6 +58,7 @@ It makes sense to consolidate notes on multi-platform issues in a global locatio
 - [GitHub](git_notes.MD)
 - [Cheat Sheet](tech_cheat_sheet.MD)
 - [QMK Firmware](qmk_notes.MD)
+- [Rust](rust_notes.MD)
 
 ### Unlimited Bonus Points Edition
 What are the odds that you found these dotfiles, and also like programmable keyboards that use the QMK firmware?  Well in that case welcome to the unlimited bonus points edition (TM).  Check here for more details: https://github.com/BlueTufa/qmk_firmware/.  Preonic, 1up 60 RGB, ad Clueboard 66 are all supported in that fork.  They also share a lot of custom keycodes.  
