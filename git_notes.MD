@@ -33,8 +33,12 @@ git checkout upstream/future -- docs/breaking_changes.md
 git diff upstream/master origin/master > my.patch
 git apply my.patch
 ```
+Often useful when there are conflicting changes you want to ignore:
+```bash
+git apply --reject --whitespace=fix my.patch
+```
 
-## Scorch the earth in a forked repo and make it just like the remote again:
+## Scorch the earth in a forked repo and reset it to match the remote again:
 `git reset --hard upstream/<branch name>`
 `git push origin <branch name> --force`
 * This is extremely dangerous and the potential for loss of work is high.  Plan ahead before running this command.
