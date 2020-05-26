@@ -13,7 +13,8 @@ git checkout <local branch name>
 git fetch upstream <branch name>
 git merge upstream/<branch name>
 ```
-* NOTE: Be mindful here if you are working with multiple local and upstream branches, ie `master` and `future`.  It's really easy to accidentally merge upstream `future` into local `master` for example.  
+>NOTE: 
+>Be mindful here if you are working with multiple local and upstream branches, ie `master` and `future`.  For example, it's really easy to accidentally merge upstream `future` into local `master`.  
 
 ### Gets a list of file names only that are different between the branches
 ```bash
@@ -46,19 +47,19 @@ git apply my.patch
 git rebase --interactive --root
 ```
 
->[!NOTE] 
+>NOTE: 
 >Using the `--root` arg is a big time saver if you want to rebase all history.  Otherwise, you must pass in args to pick and choose as needed.
 
 4.  As you cycle through the list of commits, pick the ones you want to squash, typically all of them but the top.  
 You might need to resolve merge conflicts with `git add` and `git rebase --continue`.  
 
->[!NOTE]
+>NOTE:
 > A rebase replays the list of commits over the current working branch, so the theirs and ours are flipped, so in the case of a rebase, ours means the master.  If you want to try to skip merge conflicts, you can try:
 ```bash
 git rebase --interactive --root -X ours master
 ```
 
->[!NOTE]
+>NOTE:
 > `git commit --amend` is handy here if you just want to rewrite the last commit message instead of re-running rebase.
 
 5.  Once the local history looks the way that you want it to (use `git logs` to check it), it's time for the most dangerous step.  You should hopefully have a backup copy that you made in step #2, and please don't get in the habit of using `--force`.  This will take your local commit history and overwrite the GitHub repository's history to match.  Then, once others subsequently do a git pull, their version lineage will be rewritten to match it.  
