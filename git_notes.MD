@@ -38,28 +38,34 @@ git apply my.patch
 `git push origin <branch name> --force`
 * This is extremely dangerous and the potential for loss of work is high.  Plan ahead before running this command.
 
-## Rebasing a remote master to make it look like a clean repo:
-Make sure you have merged the origin/upstream master and have a clean working directory.  
-If you are planning to rewrite a GitHub repo, it is also recommended you make a fresh clone of it into a different directory for verification and recovery purposes.  
-Then run:
+## Rebasing a remote master to make it look like a new repo:
+1.  Make sure you have merged the origin/upstream master and have a clean working directory.  
+2.  If you are planning to rewrite a GitHub repo, it is also recommended you make a fresh clone of it into a different directory for verification and recovery purposes.  
+3. Run:
 ```bash
 git rebase --interactive --root
 ```
-Using the `--root` arg is a big time saver if you want to rebase all history.  Otherwise, you must pick and choose as needed.
-As you cycle through the list of commits, pick the ones you want to squash, typically all of them but the top.  
+
+>[!NOTE] 
+>Using the `--root` arg is a big time saver if you want to rebase all history.  Otherwise, you must pass in args to pick and choose as needed.
+
+4.  As you cycle through the list of commits, pick the ones you want to squash, typically all of them but the top.  
 You might need to resolve merge conflicts with `git add` and `git rebase --continue`.  
-If you are feeling brave and want to try to skip merge conflicts, go for it:
+
+>[!NOTE]
+> A rebase replays the list of commits over the current working branch, so the theirs and ours are flipped, so in the case of a rebase, ours means the master.  If you want to try to skip merge conflicts, you can try:
 ```bash
 git rebase --interactive --root -X ours master
 ```
-* Note that a rebase replays the list of commits over the current working branch, so the theirs and ours are flipped, so in the case of a rebase, ours means the master.  
-Iterate on this until you get the history looking the way you want.  
-Note that `git commit --amend` is handy here instead of re-running rebase.
 
-Once the local history looks the way that you want it to, It's time for the most dangerous step.  The consequences of this cannot be understated, and you should not be using this on a regular basis.  This is why you hopefully made a backup clone of your repo just in case.  This will take your local commit history and overwrite the github repository's history to match.  When others subsequently do a git pull they will also lose that version lineage.  
+>[!NOTE]
+> `git commit --amend` is handy here if you just want to rewrite the last commit message instead of re-running rebase.
+
+5.  Once the local history looks the way that you want it to (use `git logs` to check it), it's time for the most dangerous step.  You should hopefully have a backup copy that you made in step #2, and please don't get in the habit of using `--force`.  This will take your local commit history and overwrite the GitHub repository's history to match.  Then, once others subsequently do a git pull, their version lineage will be rewritten to match it.  
 ```bash
 git push --force
 ```
+6.  Verification (optional).  Go to the backup of the repository you made in step #2, and remember not to get latest.  Then simply do a `git diff origin` to confirm that the rewritten history matches the previous contents of the repo.  
 
 ## resolve merge conflicts by accept theirs:
 `git checkout --theirs -- <filename>`
