@@ -75,11 +75,9 @@ git push --force
 ## resolve merge conflicts by accept theirs:
 `git checkout --theirs -- <filename>`
 
-## Ways to squash commits
-`git reset --soft HEAD~3 &&`
-`git commit --edit -m'blah'
-`git push --force`
-* where 3 is the number of commits back in history to squash
+## Other ways Ways to squash commits
+`git reset --soft HEAD~3 && git commit --edit -m'blah' && git push --force`
+> Where 3 is the number of commits back in history to squash.
 
 ## Using GPG to sign commits
 * Install GPG using `brew install gpg` or similar based on your OS.
@@ -87,4 +85,5 @@ git push --force
 * Add the following git configuration: `git config --global user.signingkey` where signingkey is the public key signature of the GPG key. 
 
 ## Other notes
+Configure git to store GitHub creds in local OS store
 `git config --global credential.helper store`
