@@ -84,7 +84,7 @@ function fish_greeting
   set_theme_colors
   if test (uname) = "Darwin"
     neofetch --kitty ~/src/dotfiles/assets/apple.png --size 450px
-  else if test (uname) = "Linux" and test "$SSH_TTY" = ""
+  else if test "$SSH_TTY" = ""
     neofetch --kitty ~/src/dotfiles/assets/arch.png --size 450px
   else 
     neofetch 
