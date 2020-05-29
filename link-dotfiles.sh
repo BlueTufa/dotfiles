@@ -26,6 +26,7 @@ make-backup () {
 mkdir -p ~/src/bin
 mkdir -p ~/.config/fish
 mkdir -p ~/.config/nvim
+mkdir -p ~/.config/kitty
 
 # comment this out if you don't want to use oh-my-zsh or zsh support
 [[ -d ~/.oh-my-zsh ]] || install-oh-my-zsh
@@ -63,10 +64,7 @@ if [[ $(uname) == "Linux" ]]; then
   ln -sf $(pwd)/wofi/style.css ~/.config/wofi/style.css
 fi 
 
-if [[ $(uname) == "Darwin" ]]; then
-  mkdir -p ~/.config/kitty
-  ln -sf $(pwd)/kitty/kitty.conf ~/.config/kitty/kitty.conf.Darwin
-fi
+[[ $(uname) == "Darwin" ]] && ln -sf $(pwd)/kitty/kitty.conf.Darwin ~/.config/kitty/kitty.conf
 
 for file in fish/.{functions,exports,aliases,*$(uname)}
 do
