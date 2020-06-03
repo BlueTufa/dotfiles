@@ -6,11 +6,11 @@ A comprensive collection of Fish (Friendly Interactive Shell) and ZSH dotfiles w
 If you find a bug and it's obvious, please just open a PR.  If you find a bug and it's not obvious or you hope for me to fix it, please use the GitHub issues feature for this branch located here: https://github.com/BlueTufa/dotfiles/issues.
 
 ### Symlinking dotfiles
-You can symlink your dotfiles from this repo into the home directory by running the [link-dotfiles.sh](link-dotfiles.sh) file at the root of this repository.  Linking your dotfiles will first attempt to make backups of any existing dotfiles before establishing the link, but it is recommended that some prep work be done - such as a full backup - to be confident that you won't lose any work.  
+You can symlink your dotfiles from this repo into the home directory by running the [installer.sh](installer.sh) file at the root of this repository.  Linking your dotfiles will first attempt to make backups of any existing dotfiles before establishing the link, but it is recommended that some prep work be done - such as a full backup - to be confident that you won't lose any work.  
 
 #### Known issues with symlinking:
 * It is recommended that if you want to use the .gitconfig sample file, to make a fork of this repo and update the GitHub account info to your own in your repo.  Then you can symlink your .gitconfig across environments without having to constantly update the account info.  But I've temporarily commented out the symlinking of .gitconfig due to the account info issue.    
-* If you run `link-dotfiles.sh` and the part about zsh/oh-my-zsh is not commented out, then it leaves you in zsh momentarily and you have to type `exit` in order for the script to continue processing.  I consider this a bug for the time being.  If you exit zsh in some other way other than an orderly exit, you'll likely need to run `link-dotfiles.sh` again.
+* If you run `installer.sh` and the part about zsh/oh-my-zsh is not commented out, then it leaves you in zsh momentarily and you have to type `exit` in order for the script to continue processing.  I consider this a bug for the time being.  If you exit zsh in some other way other than an orderly exit, you'll likely need to run `installer.sh` again.
 * If you are using the neovim configuration supplied in these dotfiles, then ignore the long list of errors on your first entry into neovim after symlinking, and remember to run `:PlugInstall`
 
 ### Fish support
@@ -30,7 +30,7 @@ brew cask install font-codenewroman-nerd-font
 ``` 
 
 ### Neovim support
-This directory includes a basic neovim configuration as well.  If you run `./link-dotfiles.sh` it will automatically symlink neovim's init.vim and install vim-plug for you.   
+This directory includes a basic neovim configuration as well.  If you run `./installer.sh` it will automatically symlink neovim's init.vim and install vim-plug for you.   
 
 Or, if you prefer not to run the symlinking and still want to use the init.vim, remember to install vim-plug manually:
   `curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`

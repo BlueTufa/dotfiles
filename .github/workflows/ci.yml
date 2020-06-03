@@ -22,8 +22,8 @@ jobs:
      - name: "Checkout"
        uses: actions/checkout@v2
 
-     - name: Run link-dotfiles command
-       run: ./link-dotfiles.sh
+     - name: Run the installer command
+       run: ./installer.sh
        
      - name: Is config.fish linked?
        run: |
