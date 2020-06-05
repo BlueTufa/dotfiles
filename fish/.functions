@@ -31,7 +31,7 @@ function pretty_path
   # Unicode thin-space char.  This one is worth bookmarking.
   set THIN_SPACE \u2009
   
-  echo -n (set_color $PATH_COLOR)"$THIN_SPACE$HOME_ICON $THIN_SPACE$CWD$THIN_SPACE" 
+  echo -n (set_color $PATH_COLOR)"$THIN_SPACE$HOME_ICON $THIN_SPACE$CWD/$THIN_SPACE" 
 end
 
 function print_host
