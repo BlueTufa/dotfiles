@@ -1,7 +1,7 @@
 # bin
 This directory is for scripts that you intend to treat as executables.  ~/src/bin is added to the path in my dotfiles, allowing for access from anywhere in the CLI. 
 
-The path ~/src/bin is automatically created and added to the path if you run the `link-dotfiles.sh` script, but none of these files are copied there by default.  You are on your own to choose which of these are useful, if any, and copy them to ~/src/bin manually.
+The path ~/src/bin is automatically created and added to the path if you run the `installer.sh` script, but none of these files are copied there by default.  You are on your own to choose which of these are useful, if any, and copy them to ~/src/bin manually.
 
 Remember to mark them executable and use a portable shebang such as `#! /usr/bin/env bash` and you don't need to use the file extension. For example, rename `backup.sh` to `backup` and then you can simply type `backup` from anywhere. 
 
