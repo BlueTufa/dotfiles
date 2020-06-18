@@ -80,6 +80,23 @@ function glc
   echo "$argv$URL"
 end
 
+function blame
+  git rev-parse HEAD > /dev/null 2>&1
+  if test "$status" -ne "0"
+    # not a git repo
+    set URL (pwd)
+  else
+    set URL (git remote get-url --push origin | sed 's/\.git$/\/blame\//g')(git rev-parse --abbrev-ref HEAD)
+  end
+  set URL "$URL/$argv[1]#L$argv[2]"
+
+  if test "$argv[3]" !=  ""
+    set URL "$URL-L$argv[3]"
+  end
+
+  open $URL
+end
+
 function fish_greeting
   set_theme_colors
   if test (uname) = "Darwin"

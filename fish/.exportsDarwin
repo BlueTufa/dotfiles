@@ -2,7 +2,8 @@ set -gx EDITOR 'vim'
 set -x KAFKA_CLIENT_BOOTSTRAP_SERVERS 'localhost:30002'
 set -g fish_user_paths "/usr/local/opt/ruby@2.6/bin" "$HOME/.cargo/bin" "$HOME/src/bin" "/usr/local/Cellar/hadoop/2.7.7/share/hadoop/tools/lib/" "/usr/local/Cellar/hadoop/2.7.7/bin" "$HOME/src/webapp/aws/ecs" "/usr/local/sbin" "/usr/local/opt/postgresql@9.6/bin" "/usr/local/Cellar/sqoop-1.4.7/bin" "/usr/local/Cellar/sqoop-1.4.7/lib" "/usr/local/Cellar/hadoop/2.7.7/share/hadoop/yarn" "/usr/local/flyway-5.2.4"
 
-set -gx JAVA_HOME (/usr/libexec/java_home)
+# set -gx JAVA_HOME (/usr/libexec/java_home)
+set -gx JAVA_HOME (/usr/libexec/java_home -v11.0)
 set -gx LIQUIBASE_HOME /usr/local/opt/liquibase/libexec  
 
 set -gx NVM_DIR "$HOME/.nvm"
@@ -28,7 +29,7 @@ export SQOOP_HOME=/usr/local/Cellar/sqoop-1.4.7
 export ZOOKEEPER_HOME=/usr/local/Cellar/zookeeper
 export HIVE_HOME=/usr/local/Cellar/hive/2.1.0/
 export GPG_TTY=(tty)
-export JAVA_OPTS=(cat ~/.config/fish/JAVA_OPTS)
+# export JAVA_OPTS=(cat ~/.config/fish/JAVA_OPTS)
 # if the current system is running macos catalina, use new path
 if test (sw_vers -productVersion | grep '^10.15')
   set -gx MAC_APP_PATH '/System/Applications'

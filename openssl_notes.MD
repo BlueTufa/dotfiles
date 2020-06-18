@@ -21,3 +21,10 @@ Add a trusted root cert on a Mac:
 sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain serviceca.crt
 ```
 
+Verify the cert and key match:
+```bash
+openssl x509 -modulus -noout -in 6ef64fc7ef8ebcbb.crt | openssl sha256
+```
+
+```bash
+
