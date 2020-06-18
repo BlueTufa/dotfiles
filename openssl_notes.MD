@@ -27,4 +27,5 @@ openssl x509 -modulus -noout -in 6ef64fc7ef8ebcbb.crt | openssl sha256
 ```
 
 ```bash
-
+openssl rsa -modulus -noout -in blah.me.key | openssl sha256
+```
