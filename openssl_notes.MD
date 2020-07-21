@@ -29,3 +29,9 @@ openssl x509 -modulus -noout -in 6ef64fc7ef8ebcbb.crt | openssl sha256
 ```bash
 openssl rsa -modulus -noout -in blah.me.key | openssl sha256
 ```
+
+Convert a .crt to a .pem
+```bash
+openssl x509 -inform DER -in self-signed.crt -out self-signed.pem
+```
+

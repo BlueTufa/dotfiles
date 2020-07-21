@@ -29,6 +29,7 @@ Plug 'elzr/vim-json'
 " Plug 'altercation/vim-colors-solarized'
 Plug 'nanotech/jellybeans.vim'
 Plug 'BlueTufa/gruvbox'
+Plug 'dag/vim-fish'
 Plug 'dracula/vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
