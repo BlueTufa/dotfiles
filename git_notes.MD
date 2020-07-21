@@ -1,4 +1,5 @@
 # Notes on Advanced Git Workflows
+The following is a list of notes on git/GitHub workflow tasks that I don't do often enough to remember implicitly.
 
 ## Working with Forks and upstream repos
 Keeping the name as something like upstream is probably a best practice
