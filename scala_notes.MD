@@ -19,3 +19,7 @@ For referencing test packages:
 
 logLevel := Level.Debug
 
+## Debezium Debugging
+```
+mysqlbinlog --base64-output=decode-rows --verbose --database=kafka /var/lib/mysql/bin.000004
+```
