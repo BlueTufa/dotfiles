@@ -18,7 +18,7 @@ To permanently change the default shell to Fish, run the following from bash:
 `chsh -s $(which fish) $(whoami)`
 
 ### ZSH support 
-The ZSH support is rather bare-bones but it will automatically install oh-my-zsh and powerlevel10k.  From there, it will likely automatically run the powerlevel10k wizard the first time you are in zsh, or you can run `p10k configure` at any time.  If p10k configure is never run then you will simply have my default zsh configuration.   
+The ZSH support is rather bare-bones but it will automatically try to symlink oh-my-zsh and powerlevel10k.  From there, you may wish to run the powerlevel10k via `p10k configure` at any time.  If p10k configure is never run then you will simply have my default zsh configuration.
 
 To permanently change the default shell to ZSH, run the following from bash:
 `chsh -s $(which zsh) $(whoami)`
