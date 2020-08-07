@@ -2,16 +2,19 @@ set -gx EDITOR 'vim'
 set -x KAFKA_CLIENT_BOOTSTRAP_SERVERS 'localhost:30002'
 set -g fish_user_paths "/usr/local/opt/ruby@2.6/bin" "$HOME/.cargo/bin" "$HOME/src/bin" "/usr/local/Cellar/hadoop/2.7.7/share/hadoop/tools/lib/" "/usr/local/Cellar/hadoop/2.7.7/bin" "$HOME/src/mys/webapp/aws/ecs" "/usr/local/sbin" "/usr/local/opt/postgresql@9.6/bin" "/usr/local/Cellar/sqoop-1.4.7/bin" "/usr/local/Cellar/sqoop-1.4.7/lib" "/usr/local/Cellar/hadoop/2.7.7/share/hadoop/yarn" "/usr/local/flyway-5.2.4"
 
+# I pretty much toggle these back and forth depending on which project I'm working on most
 # set -gx JAVA_HOME (/usr/libexec/java_home)
 set -gx JAVA_HOME (/usr/libexec/java_home -v11.0)
 set -gx LIQUIBASE_HOME /usr/local/opt/liquibase/libexec  
 
 set -gx NVM_DIR "$HOME/.nvm"
+
+# I've found that by setting these in an environment var, I spend lsee time troubleshooting sbt memory issues.
 set -gx SBT_OPTS "-Xmx4096M -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M  -Duser.timezone=GMT"
 
-# these are notoriously difficult to get configured
+# HADOOP environment variables are notoriously difficult to get configured
 # NOTE this is a manual installation of HADOOP, as the versions included in brew
-# weren't lining up properly.  I found no way to install hadoop 2.x from brew
+# weren't lining up properly.  I found no way to install hadoop 2.x from brew.  Please ask if you need this and are having problems.
 export APP_ENV="DEV"
 export HADOOP_CLASSPATH=/share/hadoop/tools/lib
 export HADOOP_PREFIX=/usr/local/hadoop
@@ -28,8 +31,10 @@ export HBASE_HOME=/usr/local/Cellar/hbase
 export SQOOP_HOME=/usr/local/Cellar/sqoop-1.4.7
 export ZOOKEEPER_HOME=/usr/local/Cellar/zookeeper
 export HIVE_HOME=/usr/local/Cellar/hive/2.1.0/
+
+# Needed for GitHub gpg support.
 export GPG_TTY=(tty)
-# export JAVA_OPTS=(cat ~/.config/fish/JAVA_OPTS)
+
 # if the current system is running macos catalina, use new path
 if test (sw_vers -productVersion | grep '^10.15')
   set -gx MAC_APP_PATH '/System/Applications'
@@ -38,15 +43,4 @@ else
 end
 
 set -gx FISH_THEME "gruvbox"
-# set -gx FISH_THEME "jellybeans"
-
-# these are currently fish specific, not really sure what will happen in zsh
-# bind --user '[1;2D' 'backward-bigword'
-# bind --user '[1;2C' 'forward-bigword'
-# bind --user '[1;2B' 'downcase-word'
-# bind --user '[1;2A' 'upcase-word'
-# # bind --user \cw 'backward-kill-bigword'
-# bind --user \cb 'backward-word'
-# bind --user \cf 'forward-word'
-
 
