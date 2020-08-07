@@ -32,7 +32,9 @@ brew cask install font-codenewroman-nerd-font
 #### Preferred font (iTerm2)
 ```bash
 brew cask install font-meslo-lg-nerd-font
-``` 
+```
+> Note that iTerm2 does not have direct, intuitive support for deploying configuration files.  If you go under iTerm2 -> Preferences -> Profiles and import the latest [Gruvbox theme](themes/Gruvbox.json), it will automatically configure a default color scheme as well as the font.  
+
 ### Cross-platform fonts and terminal support
 I am currently able to use the Code New Roman font across both platforms with the Kitty terminal with minimal changes to the config file.  I had to resize the font slightly for Linux, but that's it.  I also find the user experience and readability with Kitty on Linux to be slightly better with some background transparency.  So I set the `background_opacity: 0.9` on Linux only.  
   
