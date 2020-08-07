@@ -23,12 +23,19 @@ The ZSH support is rather bare-bones but it will automatically install oh-my-zsh
 To permanently change the default shell to ZSH, run the following from bash:
 `chsh -s $(which zsh) $(whoami)`
 
-#### ZSH and fonts on Mac.  
-If you want to use p10k in zsh on Mac, you are going to need to make sure you use a powerline font.  If you're unsure what this means and the answer is still yes, then just make sure that you have Meslo font family selected in iTerm2 Under Preferences->Profiles-><Profile Name>->Text->Font.  At the time of this writing, my font name is `MesloLGS NF` and the glyphs are working great in both vim and zsh.  After making a change to a new font, I recommend re-running `p10k configure`.  I am currently using the Code New Roman fonts on both Mac and Linux and am very content with them.
+### ZSH and fonts on Mac.  
+If you want to use p10k in zsh on Mac, you are going to need to make sure you use a powerline font.  If you're unsure what this means and the answer is still yes, then just make sure that you have Meslo font family selected in iTerm2 Under Preferences->Profiles-><Profile Name>->Text->Font.  The fonts listed below as examples both work great for me on both shells.  After making a change to a new terminal font and using zsh, I recommend re-running `p10k configure`.  
+#### Preferred font (kitty terminal)
 ```bash
 brew cask install font-codenewroman-nerd-font
 ``` 
-
+#### Preferred font (iTerm2)
+```bash
+brew cask install font-meslo-lg-nerd-font
+``` 
+### Cross-platform fonts and terminal support
+I am currently able to use the Code New Roman font across both platforms with the Kitty terminal with minimal changes to the config file.  I had to resize the font slightly for Linux, but that's it.  I also find the user experience and readability with Kitty on Linux to be slightly better with some background transparency.  So I set the `background_opacity: 0.9` on Linux only.  
+  
 ### Neovim support
 This directory includes a basic neovim configuration as well.  If you run `./installer.sh` it will automatically symlink neovim's init.vim and install vim-plug for you.   
 
