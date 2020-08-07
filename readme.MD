@@ -69,5 +69,7 @@ Dotfiles are a highly personal thing and should vary based on an individual, the
 ### Feedback and WTF's
 I am very welcoming to feedback and I constantly learn from the community and from other peoples' approaches to these common problems.  If you see something that looks odd, or is harder than it should be please let me know, and feel free to open PR's against this branch.  It would be much appreciated.  
 
-Also if you discover anything that is of a privacy or security concern please report it immediately as it's not just my well-being but a concern of others who might fork or branch these files.  Use the [Issue tracker](https://github.com/BlueTufa/dotfiles/issues) or contact mailto:github@bluetufa.com.  Thank you.  
+> One exception to being receptive to feedback...  Yes I did try using bare git repos for managing dotfiles and it wasn't for me.  No need to explain the benefits.  I wanted as much cross-platform synergy as possible, and I found that by symlinking os-specific dotfiles it was much more simple to manage and troubleshoot.  
+
+If you discover anything that is of a privacy or security concern please report it immediately as it's not just my well-being but a concern of others who might fork or branch these files.  Use the [Issue tracker](https://github.com/BlueTufa/dotfiles/issues) or contact mailto:github@bluetufa.com.  Thank you.  
 
