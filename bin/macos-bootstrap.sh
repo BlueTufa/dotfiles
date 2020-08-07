@@ -13,8 +13,8 @@ xcode-select --install
 sudo sysadminctl -afpGuestAccess off
 sudo sysadminctl -smbGuestAccess off
 sudo sysadminctl -guestAccount off
-sudo scutil --set HostName landslide
-sudo scutil --set ComputerName landslide
+sudo scutil --set HostName $(pwgen 32 1)
+sudo scutil --set ComputerName $(pwgen 32 1)
 # defaults write NSGlobalDomain AppleHighlightColor "1.000000 0.874510 0.701961 Orange"
 # defaults write NSGlobalDomain AppleAccentColor 1
 # defaults write NSGlobalDomain AppleInterfaceStyle Dark
