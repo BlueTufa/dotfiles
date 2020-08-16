@@ -10,7 +10,7 @@ set -gx LIQUIBASE_HOME /usr/local/opt/liquibase/libexec
 set -gx NVM_DIR "$HOME/.nvm"
 
 # I've found that by setting these in an environment var, I spend lsee time troubleshooting sbt memory issues.
-set -gx SBT_OPTS "-Xmx4096M -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=2G -Xss2M  -Duser.timezone=GMT"
+set -gx SBT_OPTS "-Xmx4096M -Xss2M  -Duser.timezone=GMT"
 
 # HADOOP environment variables are notoriously difficult to get configured
 # NOTE this is a manual installation of HADOOP, as the versions included in brew

@@ -35,3 +35,5 @@ alias gst='git status'
 alias gbr='git branch'
 alias diff='git diff --no-index'
 
+# scala specific
+alias sbtg8='sbt new playframework/play-scala-seed.g8'
