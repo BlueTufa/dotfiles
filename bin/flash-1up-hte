@@ -1,0 +1,8 @@
+#! /bin/bash
+
+pushd $(pwd)
+cd ~/src/qmk/qmk_firmware
+make clean 1upkeyboards/1up60hte:badger
+sudo dfu-programmer atmega32u4 erase
+sudo dfu-programmer atmega32u4 flash 1upkeyboards_1up60hte_badger.hex
+popd
