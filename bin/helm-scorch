@@ -1,0 +1,9 @@
+#! /bin/bash
+
+helm list --all | awk '{print $1}' | grep -v NAME | xargs helm delete
+kubectl get pods -o name | xargs kubectl delete
+kubectl get pvc -o name | xargs kubectl delete
+kubectl get jobs -o name | xargs kubectl delete
+
+rm -rfv /var/tmp/kafka-state/*
+
