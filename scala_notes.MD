@@ -16,7 +16,7 @@
 For referencing test packages:
 "livongo" %% "core-libraries" % coreLibsVersion % "test" classifier "tests",
 
-
+## sbt debugging
 logLevel := Level.Debug
 
 ## Debezium Debugging

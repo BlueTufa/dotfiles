@@ -39,6 +39,7 @@ alias wstorm="open /Applications/WebStorm.app"
 
 # dev aliass
 alias diff='git diff --no-index'
+alias dk='docker'
 alias g='git'
 alias gd='git diff HEAD'
 alias gst='git status'
@@ -58,6 +59,7 @@ alias gww='cd ~/src/mys/webapp'
 alias jnk='o http://jenkins.integration.livongo.com'
 alias kc='kubectl'
 alias bcl='sbt clean reload compile test publishLocal 2>&1 | tee local.log'
+alias bcd='sbt clean compile test docker:publishLocal 2>&1 | tee local.log'
 alias bcz='sbt clean compile package test 2>&1 | tee local.log' 
 alias bcc='sbt compile package'
 alias jcz='mvn clean install -DskipITs'

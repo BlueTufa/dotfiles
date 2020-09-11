@@ -18,17 +18,26 @@ To permanently change the default shell to Fish, run the following from bash:
 `chsh -s $(which fish) $(whoami)`
 
 ### ZSH support 
-The ZSH support is rather bare-bones but it will automatically install oh-my-zsh and powerlevel10k.  From there, it will likely automatically run the powerlevel10k wizard the first time you are in zsh, or you can run `p10k configure` at any time.  If p10k configure is never run then you will simply have my default zsh configuration.   
+The ZSH support is rather bare-bones but it will automatically try to symlink oh-my-zsh and powerlevel10k.  From there, you may wish to run the powerlevel10k via `p10k configure` at any time.  If p10k configure is never run then you will simply have my default zsh configuration.
 
 To permanently change the default shell to ZSH, run the following from bash:
 `chsh -s $(which zsh) $(whoami)`
 
-#### ZSH and fonts on Mac.  
-If you want to use p10k in zsh on Mac, you are going to need to make sure you use a powerline font.  If you're unsure what this means and the answer is still yes, then just make sure that you have Meslo font family selected in iTerm2 Under Preferences->Profiles-><Profile Name>->Text->Font.  At the time of this writing, my font name is `MesloLGS NF` and the glyphs are working great in both vim and zsh.  After making a change to a new font, I recommend re-running `p10k configure`.  I am currently using the Code New Roman fonts on both Mac and Linux and am very content with them.
+### ZSH and fonts on Mac.  
+If you want to use p10k in zsh on Mac, you are going to need to make sure you use a powerline font.  If you're unsure what this means and the answer is still yes, then just make sure that you have Meslo font family selected in iTerm2 Under Preferences->Profiles-><Profile Name>->Text->Font.  The fonts listed below as examples both work great for me on both shells.  After making a change to a new terminal font and using zsh, I recommend re-running `p10k configure`.  
+#### Preferred font (kitty terminal)
 ```bash
 brew cask install font-codenewroman-nerd-font
 ``` 
+#### Preferred font (iTerm2)
+```bash
+brew cask install font-meslo-lg-nerd-font
+```
+> Note that iTerm2 does not have direct, intuitive support for deploying configuration files.  If you go under iTerm2 -> Preferences -> Profiles and import the latest [Gruvbox theme](themes/Gruvbox.json), it will automatically configure a default color scheme as well as the font.  
 
+### Cross-platform fonts and terminal support
+I am currently able to use the Code New Roman font across both platforms with the Kitty terminal with minimal changes to the config file.  I had to resize the font slightly for Linux, but that's it.  I also find the user experience and readability with Kitty on Linux to be slightly better with some background transparency.  So I set the `background_opacity: 0.9` on Linux only.  
+  
 ### Neovim support
 This directory includes a basic neovim configuration as well.  If you run `./installer.sh` it will automatically symlink neovim's init.vim and install vim-plug for you.   
 
@@ -64,8 +73,14 @@ It makes sense to consolidate notes on multi-platform issues in a global locatio
 What are the odds that you found these dotfiles, and also like programmable keyboards that use the QMK firmware?  Well in that case welcome to the unlimited bonus points edition (TM).  Check here for more details: https://github.com/BlueTufa/qmk_firmware/.  Preonic, 1up 60 RGB, ad Clueboard 66 are all supported in that fork.  They also share a lot of custom keycodes.  
 
 ### Thoughts on sharing dotfiles
-Dotfiles are a highly personal thing and should vary based on an individual, their current job role and daily workflow.  I am mostly sharing these because I want to share, and I've had a lot of requests over the years for, "how did you get x,y,z to work."  I fully expect people to use them more for ideas than as a complete solution.  But if you manage to pull off the latter then let's go have a beer and talk about what you're working on.   The most likely workflow would be for you to fork this repo, make any tweaks to your fork as you see fit, then pull in my latest changes when you find them interesting.  
+Dotfiles are a highly personal thing and should vary based on an individual, their current job role and daily workflow.  I am mostly sharing these because I want to share, and I've had a lot of requests over the years for, "how did you get x,y,z to work."  I fully expect people to use them more for ideas than as a complete solution.  But if you manage to pull off the latter then let's go have a beer and talk about what you're working on.   
+
+The most common usage scenario for these dotfiles would be for you to fork this repo, make any tweaks to your fork as you see fit, then pull my latest changes into your fork on whatever schedule you find useful.  If you make an improvement or bug fix that you would like to share please open a PR.  
 
 ### Feedback and WTF's
-I am very welcoming to feedback and I constantly learn from the community and from other peoples' approaches to these common problems.  If you see something that looks odd, or is harder than it should be please let me know, and feel free to open PR's against this branch.  It would be much appreciated.  Also if you discover anything that is of a privacy or security concern please report it immediately as it's not just my well-being but a concern of others who might fork or branch these files.  Please contact github@bluetufa.com.  Thank you.  
+I am very welcoming to feedback and I constantly learn from the community and from other peoples' approaches to these common problems.  If you see something that looks odd, or is harder than it should be please let me know, and feel free to open PR's against this branch.  It would be much appreciated.  
+
+> One exception to being receptive to feedback...  Yes I did try using bare git repos for managing dotfiles and it wasn't for me.  I wanted as much cross-platform synergy as possible, and I found that by symlinking os-specific dotfiles it was much more simple to manage and troubleshoot.  
+
+If you discover anything that is of a privacy or security concern please report it immediately as it's not just my well-being but a concern of others who might fork or branch these files.  Use the [Issue tracker](https://github.com/BlueTufa/dotfiles/issues) or contact mailto:github@bluetufa.com.  Thank you.  
 
