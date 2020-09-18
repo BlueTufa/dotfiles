@@ -71,6 +71,8 @@ alias gws3p='cd ~/src/s3/prod'
 alias gws3d='cd ~/src/s3/dts'
 alias gwsc='cd ~/src/mys/analytics/automations/scorecards'
 
+alias hsc='helm-scorch'
+
 # kept mostly for historical purposes
 # alias kismet='open -a /Applications/KisMac2.app'
 # alias wireshark='open -a /Applications/WireShark.app'
