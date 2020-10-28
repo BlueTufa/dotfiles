@@ -17,7 +17,7 @@ https://wallpaperaccess.com/awesome-digital-art
 * xclip for clipboard
 * Ranger
 * mpv
-* screenfetch
+* neofetch
 * ttf-hack font
 * base-devel
 * VLC
