@@ -1,9 +1,9 @@
 # BlueTufa dotfiles Repository
 ## Contents
-A comprensive collection of Fish (Friendly Interactive Shell) and ZSH dotfiles which will allow a quick and easy customization of Fish or Zsh on an existing system.  This configuration will generally work cross-platform betwen MacOS and Linux, although you may encounter minor bugs on either.  
+A comprensive collection of Fish (Friendly Interactive Shell) and ZSH dotfiles which will allow a quick and easy customization of Fish or Zsh on a new install or an existing system.  This configuration will generally work cross-platform betwen MacOS and Linux, although you may encounter minor bugs on either.  
 
 ### Symlinking dotfiles
-You can symlink your dotfiles from this repo into the home directory by running the [installer.sh](installer.sh) file at the root of this repository.  Linking your dotfiles will first attempt to make backups of any existing dotfiles before establishing the link, but it is recommended that some prep work be done - such as a full backup - to be confident that you won't lose any work.  
+You can symlink your dotfiles from this repo into the home directory by running the [installer.sh](installer.sh) file at the root of this repository.  Linking your dotfiles will first attempt to make backups of any existing dotfiles before establishing the link, but it is recommended that some prep work be done - such as a full backup - to be confident that you won't lose any work.  But if it's a clean install then just go for it and tell me if there's a bug.
 
 #### Known issues with symlinking:
 * It is recommended that if you want to use the .gitconfig sample file, to make a fork of this repo and update the GitHub account info to your own in your repo.  Then you can symlink your .gitconfig across environments without having to constantly update the account info.  But I've temporarily commented out the symlinking of .gitconfig due to the account info issue.    
@@ -22,15 +22,15 @@ To permanently change the default shell to ZSH, run the following from bash:
 
 > NOTE: You also need to confirm that your preferred shell is in `/etc/shells`.
 
-### ZSH and fonts on Mac.  
-If you want to use p10k in zsh on Mac, you are going to need to make sure you use a powerline font.  If you're unsure what this means and the answer is still yes, then just make sure that you have Meslo font family selected in iTerm2 Under Preferences->Profiles-><Profile Name>->Text->Font.  The fonts listed below as examples both work great for me on both shells.  After making a change to a new terminal font and using zsh, I recommend re-running `p10k configure` just to make sure everything is lined up.  
+### ZSH and fonts on Mac.
+If you want to use p10k in zsh on Mac, you are going to need to make sure you use a powerline font.  If you're unsure what this means and the answer is still yes, then just make sure that you have Meslo font family selected in iTerm2 Under Preferences->Profiles-><Profile Name>->Text->Font.  The fonts listed below as examples both work great for me on both shells.  After making a change to a new terminal font and using zsh, I recommend re-running `p10k configure` just to make sure everything is lined up.
 
+> Note that iTerm2 does not have direct, intuitive support for deploying configuration files.  If you go under iTerm2 -> Preferences -> Profiles and import the latest [Gruvbox theme](themes/Gruvbox.json), it will automatically configure a default color scheme as well as the font.  I didn't attempt to automate it further than that.  
 #### Preferred font (iTerm2, MacOS only)
 ```bash
 # on Mac.  Note that you may need to run `brew tap homebrew/cask-fonts` first
 brew cask install font-meslo-lg-nerd-font
 ```
-> Note that iTerm2 does not have direct, intuitive support for deploying configuration files.  If you go under iTerm2 -> Preferences -> Profiles and import the latest [Gruvbox theme](themes/Gruvbox.json), it will automatically configure a default color scheme as well as the font.  I didn't attempt to automate it further than that.  
 
 ### Kitty 
 I have been using Kitty as my default terminal lately and other than some minor annoyances with ssh, it's a win.  Kitty is also configuration file based in a much more practical way than iTerm2.  If you choose to use that combination you'll get a default configuration by way of the symlink to `~/.config/kitty/kitty.conf`.    The great thing about the Kitty and Code New Roman font combination is that it works extremely well across multiple Linux distributions as well as MacOS, with great glyph support.  If you are on Linux then the install command will vary wildly based on the distribution, so that will have to be out of the scope of this README.
