@@ -25,12 +25,17 @@ To permanently change the default shell to ZSH, run the following from bash:
 
 ### ZSH and fonts on Mac.  
 If you want to use p10k in zsh on Mac, you are going to need to make sure you use a powerline font.  If you're unsure what this means and the answer is still yes, then just make sure that you have Meslo font family selected in iTerm2 Under Preferences->Profiles-><Profile Name>->Text->Font.  The fonts listed below as examples both work great for me on both shells.  After making a change to a new terminal font and using zsh, I recommend re-running `p10k configure`.  
+
+The great thing about the Kitty and Code New Roman combination is that it works extremely well and provides a very similar user experience across multiple Linux distributions as well as MacOS.  If you choose to use that combination you'll get a default configuration by way of the symlink to `~/.config/kitty/kitty.conf`.  If you are on Linux then the install command will vary wildly based on the distribution, so that will have to be out of the scope of this README.
+
 #### Preferred font (kitty terminal)
 ```bash
-brew cask install font-codenewroman-nerd-font
+# on Mac.  Note that you may need to run `brew tap homebrew/cask-fonts` first
+brew cask install kitty
 ``` 
-#### Preferred font (iTerm2)
+#### Preferred font (iTerm2, MacOS only)
 ```bash
+# on Mac.  Note that you may need to run `brew tap homebrew/cask-fonts` first
 brew cask install font-meslo-lg-nerd-font
 ```
 > Note that iTerm2 does not have direct, intuitive support for deploying configuration files.  If you go under iTerm2 -> Preferences -> Profiles and import the latest [Gruvbox theme](themes/Gruvbox.json), it will automatically configure a default color scheme as well as the font.  
@@ -70,12 +75,12 @@ It makes sense to consolidate notes on multi-platform issues in a global locatio
 - [Rust](rust_notes.MD)
 
 ### Unlimited Bonus Points Edition
-What are the odds that you found these dotfiles, and also like programmable keyboards that use the QMK firmware?  Well in that case welcome to the unlimited bonus points edition (TM).  Check here for more details: https://github.com/BlueTufa/qmk_firmware/.  Preonic, 1up 60 RGB, ad Clueboard 66 are all supported in that fork.  They also share a lot of custom keycodes.  
+What are the odds that you found these dotfiles, and also have a programmable keyboards that uses the QMK firmware?  Well in that case welcome to the unlimited bonus points edition (TM).  Check here for more details: https://github.com/qmk/qmk_firmware/tree/master/users/badger.  I have contributed multi-platform support and new layouts for Preonic, 1up 60 RGB, Clueboard 66 and more.  One of the key design goals of my layouts is to have each key sequence provide a similar feature parity between both Linux and MacOS via a static OS-specific `MOVE` layer.  
 
 ### Thoughts on sharing dotfiles
 Dotfiles are a highly personal thing and should vary based on an individual, their current job role and daily workflow.  I am mostly sharing these because I want to share, and I've had a lot of requests over the years for, "how did you get x,y,z to work."  I fully expect people to use them more for ideas than as a complete solution.  But if you manage to pull off the latter then let's go have a beer and talk about what you're working on.   
 
-The most common usage scenario for these dotfiles would be for you to fork this repo, make any tweaks to your fork as you see fit, then pull my latest changes into your fork on whatever schedule you find useful.  If you make an improvement or bug fix that you would like to share please open a PR.  
+The most common usage scenario for these dotfiles would be for you to fork this repo, make any tweaks to your fork as you see fit, then pull my latest changes into your fork on whatever schedule you find useful.  If you make an improvement or bug fix that you would like to share please open a PR against this repo.  
 
 ### Feedback and WTF's
 I am very welcoming to feedback and I constantly learn from the community and from other peoples' approaches to these common problems.  If you see something that looks odd, or is harder than it should be please let me know, and feel free to open PR's against this branch.  It would be much appreciated.  
