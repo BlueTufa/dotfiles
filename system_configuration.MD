@@ -5,23 +5,20 @@ https://wallpaperaccess.com/awesome-digital-art
 * Arch Linux
 * efibootmgr grub linux linux-firmware
 * terminus-font for console
-* KDE Plasma - plasma-meta package
+* Sway WM
 * dhcpcd
-* sddm
 * Firefox
-* Konsole for terminal
+* Kitty terminal
 * Papirus icons - papirus-icon-theme
 * Aritim-Dark theme
 * Fish
 * ZSH
 * neovim
 * xclip for clipboard
-* Dolphin file manager
-* flatpak
-* gwenview
-* screenfetch
-* firefox
-* ttf-hack
+* Ranger
+* mpv
+* neofetch
+* ttf-hack font
 * base-devel
 * VLC
 * virt-manager
@@ -35,6 +32,3 @@ https://wallpaperaccess.com/awesome-digital-art
 * npm
 * trash-cli
 * Deepin icon theme 
-
-REMINDER: mass find and replace command for vim:
-:%s/<Search>/<Replace>
