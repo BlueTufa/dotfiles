@@ -2,9 +2,6 @@
 ## Contents
 A comprensive collection of Fish (Friendly Interactive Shell) and ZSH dotfiles which will allow a quick and easy customization of Fish or Zsh on an existing system.  This configuration will generally work cross-platform betwen MacOS and Linux, although you may encounter minor bugs on either.  
 
-## Note on bugs
-If you find a bug and it's obvious, please just open a PR.  If you find a bug and it's not obvious or you hope for me to fix it, please use the GitHub issues feature for this branch located here: https://github.com/BlueTufa/dotfiles/issues.
-
 ### Symlinking dotfiles
 You can symlink your dotfiles from this repo into the home directory by running the [installer.sh](installer.sh) file at the root of this repository.  Linking your dotfiles will first attempt to make backups of any existing dotfiles before establishing the link, but it is recommended that some prep work be done - such as a full backup - to be confident that you won't lose any work.  
 
@@ -52,7 +49,7 @@ This directory includes a basic neovim configuration as well.  If you run `./ins
 Or, if you prefer not to run the symlinking and still want to use the init.vim, remember to install vim-plug manually:
   `curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
 
-Remember that once inside neovim, you will likely see errors until you run: `:PlugInstall`
+> Remember that after you open neovim for the first time, you will likely see errors until you run: `:PlugInstall`
 
 The following are included in init.vim with customizations:
 * coc.nvim 
@@ -85,8 +82,13 @@ Dotfiles are a highly personal thing and will vary based on an individual, their
 
 The most common usage scenario for these dotfiles would be for you to fork this repo, make any tweaks to your fork as you see fit, then pull my latest changes into your fork on whatever schedule you find useful.  If you make an improvement or bug fix that you would like to share please open a PR against this repo.  
 
+### Note on bugs
+If you find a bug and it's obvious, please just open a PR.  If you find a bug and it's not obvious or you hope for me to fix it, please use the GitHub issues feature for this branch located here: https://github.com/BlueTufa/dotfiles/issues.
+
 ### Feedback and WTF's
 I am very welcoming to feedback and I constantly learn from the community and from other peoples' approaches to these common problems.  If you see something that looks odd, or is harder than it should be please let me know, and feel free to open PR's against this branch.  It would be much appreciated.  
 
-If you discover anything that is of a privacy or security concern please report it immediately as it's not just my well-being but a concern of others who might fork or branch these files.  Use the [Issue tracker](https://github.com/BlueTufa/dotfiles/issues) or contact mailto:github@bluetufa.com.  Thank you.  
+### Security
+If you discover anything that is of a privacy or security concern please report it immediately as it's not just my well-being but a concern of others who might fork or use these files.  Use the [Issue tracker](https://github.com/BlueTufa/dotfiles/issues) or contact mailto:github@bluetufa.com.  I also bothered to set up a security policy [here](https://github.com/BlueTufa/dotfiles/security).
 
+Thanks for looking!
