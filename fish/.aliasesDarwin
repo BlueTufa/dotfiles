@@ -22,7 +22,7 @@ alias pup='pup -c'
 alias postman="open /Applications/Postman.app"
 alias pych="open /Applications/PyCharm.app"
 alias rmine="open /Applications/RubyMine.app"
-alias sed='gsed' # use GNU sed instead of Apple sed.
+# alias sed='gsed' # use GNU sed instead of Apple sed.
 alias typ="open /Applications/Typora.app"
 
 alias icat='kitty +kitten icat'

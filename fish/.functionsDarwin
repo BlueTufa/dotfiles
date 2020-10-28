@@ -62,4 +62,7 @@ function nvm
    bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
 end
 
-
+function ssh
+  set -gx TERM xterm-256color
+  /usr/bin/ssh $argv
+end
