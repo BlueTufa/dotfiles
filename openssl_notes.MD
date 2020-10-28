@@ -35,3 +35,7 @@ Convert a .crt to a .pem
 openssl x509 -inform DER -in self-signed.crt -out self-signed.pem
 ```
 
+Convert a PEM file to PKCS8
+```bash
+openssl pkcs8 -topk8 -nocrypt -in private.pem -inform pem -out private-pkcs8.key
+```
