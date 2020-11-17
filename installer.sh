@@ -50,7 +50,7 @@ if [[ $(uname) == "Linux" ]]; then
   mkdir -p ~/.config/alacritty
   mkdir -p ~/.config/sway/scripts
   mkdir -p ~/.config/mpd
-  mkdir -p ~/.config/.ncmpcpp
+  mkdir -p ~/.ncmpcpp
   mkdir -p ~/.config/waybar
   mkdir -p ~/.config/wofi
   ln -sf $(pwd)/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml

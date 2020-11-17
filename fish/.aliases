@@ -7,6 +7,7 @@ alias h='history'
 alias wtr='curl http://wttr.in/Grand_Junction'
 
 alias cat='bat --theme=zenburn'
+alias dk='docker'
 alias less='bat --theme=zenburn'
 alias grep='grep -i --color'
 alias ack='ag'
