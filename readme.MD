@@ -1,4 +1,8 @@
 # BlueTufa dotfiles Repository
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/BlueTufa/dotfiles/CI)
+![GitHub issues](https://img.shields.io/github/issues/BlueTufa/dotfiles)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/BlueTufa/dotfiles)
+
 ## Contents
 A comprensive collection of Fish (Friendly Interactive Shell) and ZSH dotfiles which will allow a quick and easy customization of Fish or Zsh on a new install or an existing system.  This configuration will generally work cross-platform betwen MacOS and Linux, although you may encounter minor bugs on either.  
 
