@@ -34,6 +34,7 @@ alias g='git'
 alias gd='git diff HEAD'
 alias gst='git status'
 alias gbr='git branch'
+alias gps='git push'
 alias diff='git diff --no-index'
 
 # scala specific
