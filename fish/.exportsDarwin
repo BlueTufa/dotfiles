@@ -1,6 +1,7 @@
 set -gx EDITOR 'vim'
 set -x KAFKA_CLIENT_BOOTSTRAP_SERVERS 'localhost:30002'
-set -gx JAVA_HOME (/usr/libexec/java_home -v14.0.2)
+set -gx JAVA_HOME (/usr/libexec/java_home -v11.0.9.1)
+# set -gx JAVA_HOME (/usr/libexec/java_home -v1.8)
 set -g fish_user_paths "$JAVA_HOME/bin" "/usr/local/opt/ruby@2.6/bin" "$HOME/.cargo/bin" "$HOME/src/bin" "/usr/local/Cellar/hadoop/2.7.7/share/hadoop/tools/lib/" "/usr/local/Cellar/hadoop/2.7.7/bin" "$HOME/src/mys/webapp/aws/ecs" "/usr/local/sbin" "/usr/local/opt/postgresql@9.6/bin" "/usr/local/Cellar/sqoop-1.4.7/bin" "/usr/local/Cellar/sqoop-1.4.7/lib" "/usr/local/Cellar/hadoop/2.7.7/share/hadoop/yarn" "/usr/local/flyway-5.2.4" "/usr/local/opt/python/libexec/bin"
 
 # I pretty much toggle these back and forth depending on which project I'm working on most
