@@ -7,7 +7,17 @@ function o
   end
 end
 
-# function fish_prompt
+function enroll-token
+  pushd ~/src/liv/tools/scripts/jwtMinter
+  python3 mintJwt.py --claims-json-file system_for_enrollment_service.json --pem-cert-file cert.pem --pem-key-file private.pem
+  popd
+end
+
+function config-token
+  pushd ~/src/liv/tools/scripts/jwtMinter
+  python3 mintJwt.py --claims-json-file system_for_client_config.json --pem-cert-file cert.pem --pem-key-file private.pem
+  popd
+end
 #   if test "$status" -ne "0"
 #     set ARROW "CB0000"
 #   else

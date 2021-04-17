@@ -226,3 +226,4 @@ autocmd VimEnter * call StartUp()
 
 cabbrev tree NERDTreeToggle
 
+au BufNewFile,BufRead Jenkinsfile setf groovy
