@@ -13,11 +13,10 @@ alias console="open $MAC_APP_PATH/Utilities/Console.app"
 alias gdu="open $MAC_APP_PATH/Utilities/Disk\ Utility.app"
 alias prefs="open $MAC_APP_PATH/System\ Preferences.app"
 
-alias chrome="open /Applications/Google\ Chrome.app"
 alias firefox="open /Applications/firefox.app"
 alias ij="open -a /Applications/IntelliJ\ IDEA.app"
 alias pup='pup -c'
-alias pych="open /Applications/PyCharm.app"
+# alias pych="open /Applications/PyCharm.app"
 alias rmine="open /Applications/RubyMine.app"
 # alias sed='gsed' # use GNU sed instead of Apple sed.
 alias typ="open /Applications/Typora.app"
@@ -32,7 +31,7 @@ alias icat='kitty +kitten icat'
 alias slack="open /Applications/Slack.app"
 alias sqlwb="open /Applications/DataGrip.app"
 # alias standup="open https://livongo.zoom.us/j/145844488"
-alias wstorm="open /Applications/WebStorm.app"
+# alias wstorm="open /Applications/WebStorm.app"
 
 # dev aliass
 alias diff='git diff --no-index'
@@ -40,8 +39,8 @@ alias dk='docker'
 alias g='git'
 alias gd='git diff HEAD'
 alias gst='git status'
-alias jcz='mvn clean install -DskipITs'
-alias jcc='mvn -DskipTests -DskipITs compile package install'
+# alias jcz='mvn clean install -DskipITs'
+# alias jcc='mvn -DskipTests -DskipITs compile package install'
 
 # kept mostly for historical purposes
 # alias kismet='open -a /Applications/KisMac2.app'
