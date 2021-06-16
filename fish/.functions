@@ -60,7 +60,7 @@ end
 
 # these next 3 are very useful but currently only work from the root of the git repo
 function ghb
-  set URL (git remote get-url --push origin | sed 's/\.git$/\/tree\//g')(git rev-parse --abbrev-ref HEAD)
+  set URL (git remote get-url --push origin | sed 's/\.git$//g')/tree/(git rev-parse --abbrev-ref HEAD)
   echo "launching url $url..."
   if test (uname) = "Linux"
     xdg-open $URL
