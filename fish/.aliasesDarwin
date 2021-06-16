@@ -39,7 +39,7 @@ alias dk='docker'
 alias g='git'
 alias gd='git diff HEAD'
 alias gst='git status'
-alias gwi='~/src/interview_project'
+alias gwi='cd ~/src/interview_project'
 # alias jcz='mvn clean install -DskipITs'
 # alias jcc='mvn -DskipTests -DskipITs compile package install'
 
