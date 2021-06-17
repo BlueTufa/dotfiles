@@ -12,7 +12,7 @@ dprintf("%s string", var);
 ```
 
 Main keymaps:
-* [Base keymap for all](https://github.com/BlueTufa/qmk_firmware/blob/master/users/badger/keycodes.h)
+* [Base keymap for all](https://github.com/BlueTufa/qmk_firmware/blob/master/users/badger/badger.h)
 * [1up keyboard](https://github.com/BlueTufa/qmk_firmware/tree/master/keyboards/1upkeyboards/1up60rgb/keymaps/badger)
 * [Clueboard /66](https://github.com/BlueTufa/qmk_firmware/tree/master/keyboards/clueboard/66/keymaps/badger)
 * [Preonic](https://github.com/BlueTufa/qmk_firmware/tree/master/keyboards/preonic/keymaps/badger)
