@@ -1,3 +1,3 @@
 #! /bin/bash
 apt update
-apt install sudo avahi-daemon avahi-discover libnss-mdns
+apt install -y sudo avahi-daemon avahi-discover libnss-mdns
