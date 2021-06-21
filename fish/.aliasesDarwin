@@ -18,6 +18,7 @@ alias ij="open -a /Applications/IntelliJ\ IDEA.app"
 alias pup='pup -c'
 # alias pych="open /Applications/PyCharm.app"
 alias rmine="open /Applications/RubyMine.app"
+alias r="rails"
 # alias sed='gsed' # use GNU sed instead of Apple sed.
 alias typ="open /Applications/Typora.app"
 

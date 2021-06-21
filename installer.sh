@@ -46,6 +46,11 @@ ln -sf $(pwd)/nvim/init.vim ~/.config/nvim/init.vim
 ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
 ln -sf $(pwd)/zsh/.p10k.zsh ~/.p10k.zsh
 
+if [[ $(uname -v | grep 'Debian') ]]; then
+  echo 'Attempting to install baseline dependencies for cli support on Debian'
+  sudo ./debian/client-dependencies.sh
+fi
+
 if [[ $(uname) == "Linux" ]]; then
   mkdir -p ~/.config/alacritty
   mkdir -p ~/.config/sway/scripts
