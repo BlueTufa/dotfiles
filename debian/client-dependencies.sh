@@ -1,6 +1,6 @@
 #! /bin/bash
 apt update
-apt install -y exa fish lolcat neovim neofetch tree silversearcher-ag trash-cli curl wget yarn
+apt install -y exa fish lolcat neovim neofetch tree silversearcher-ag trash-cli curl wget nodejs npm yarn
 
 mkdir -p ~/.local/share/fonts/
 wget 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip'

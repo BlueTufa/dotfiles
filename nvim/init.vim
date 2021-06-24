@@ -26,17 +26,15 @@ Plug 'rakr/vim-two-firewatch'
 Plug 'chrisbra/Colorizer'
 Plug 'elzr/vim-json'
 
-" Plug 'altercation/vim-colors-solarized'
 Plug 'nanotech/jellybeans.vim'
 Plug 'BlueTufa/gruvbox'
 Plug 'dag/vim-fish'
 Plug 'dracula/vim'
-Plug 'derekwyatt/vim-scala'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scalameta/coc-metals', {'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let g:coc_disable_startup_warning = 1
 
 set background=dark
 colorscheme gruvbox
