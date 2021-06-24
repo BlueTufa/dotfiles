@@ -1,6 +1,6 @@
 #! /bin/bash
 apt update
-apt install -y exa fish git lolcat neovim neofetch tree silversearcher-ag trash-cli avahi-daemon avahi-discover libnss-mdns curl wget yarn
+apt install -y exa fish lolcat neovim neofetch tree silversearcher-ag trash-cli curl wget yarn
 
 mkdir -p ~/.local/share/fonts/
 wget 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip'
@@ -15,4 +15,4 @@ wget https://github.com/sharkdp/bat/releases/download/v0.18.1/bat_0.18.1_amd64.d
 dpkg -i bat_0.18.1_amd64.deb
 
 # TODO: set locale
-
+# TODO: set timezone
