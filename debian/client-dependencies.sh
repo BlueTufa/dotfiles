@@ -16,3 +16,6 @@ dpkg -i bat_0.18.1_amd64.deb
 
 # TODO: set locale
 # TODO: set timezone
+# node.js upgrade needed
+curl -sL https://deb.nodesource.com/setup_14.x | bash -
+npm install -g diff-so-fancy
