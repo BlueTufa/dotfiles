@@ -15,7 +15,8 @@ else
   set -gx MAC_APP_PATH '/Applications'
 end
 
-set -gx FISH_THEME "gruvbox"
+# set -gx FISH_THEME "jellybeans"
+# set -gx FISH_THEME "gruvbox"
 # needed for rbenv support
 status --is-interactive; and source (rbenv init -|psub)
 
