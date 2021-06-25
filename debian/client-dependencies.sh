@@ -1,6 +1,6 @@
 #! /bin/bash
 apt update
-apt install -y exa fish lolcat neovim neofetch tree silversearcher-ag trash-cli curl wget nodejs npm yarn
+apt install -y exa fish lolcat neovim neofetch tree silversearcher-ag trash-cli curl wget 
 
 mkdir -p ~/.local/share/fonts/
 wget 'https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip'
@@ -18,4 +18,8 @@ dpkg -i bat_0.18.1_amd64.deb
 # TODO: set timezone
 # node.js upgrade needed
 curl -sL https://deb.nodesource.com/setup_14.x | bash -
+apt update
+apt install -y nodejs
 npm install -g diff-so-fancy
+
+rm *.zip * .deb
