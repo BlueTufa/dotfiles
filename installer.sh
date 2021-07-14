@@ -70,7 +70,7 @@ if [[ $(uname) == "Linux" ]]; then
 fi 
 
 if [[ $(uname) == "Darwin" ]]; then
-  # this next line is totally subjective and will victim to my mood at any time
+  # this next line is totally subjective and will fall victim to my mood at any time
   ln -sf $(pwd)/kitty/kitty.conf.Dracula ~/.config/kitty/kitty.conf
   curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
   fisher install edc/bass
