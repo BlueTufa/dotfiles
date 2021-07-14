@@ -21,3 +21,5 @@ end
 status --is-interactive; and source (rbenv init -|psub)
 
 set -gx DOCKER_HOST "ssh://saltmine"
+
+export NVM_DIR="$HOME/.nvm"
