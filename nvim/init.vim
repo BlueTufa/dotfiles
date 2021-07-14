@@ -38,8 +38,8 @@ let g:coc_disable_startup_warning = 1
 
 set background=dark
 " colorscheme gruvbox
-colorscheme dracula
-" colorscheme jellybeans
+" colorscheme dracula
+colorscheme jellybeans
 
 let g:airline_powerline_fonts = 1
 " let g:airline_theme='twofirewatch'
