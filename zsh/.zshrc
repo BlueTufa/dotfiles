@@ -149,6 +149,10 @@ if [[ -n $(uname | grep "Darwin") ]]; then
   fi
 fi
 
+bindkey -e
+# You may also need to disable the bell and visual bell in iTerm2
+# bindkey '[C' forward-word
+# bindkey '[D' backward-word
 bindkey '^[[1;5C' emacs-forward-word
 bindkey '^[[1;5D' emacs-backward-word
 
