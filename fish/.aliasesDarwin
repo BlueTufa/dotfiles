@@ -32,7 +32,7 @@ alias icat='kitty +kitten icat'
 alias slack="open /Applications/Slack.app"
 alias sqlwb="open /Applications/DataGrip.app"
 # alias standup="open https://livongo.zoom.us/j/145844488"
-# alias wstorm="open /Applications/WebStorm.app"
+alias wstorm="open /Applications/WebStorm.app"
 
 # dev aliass
 alias diff='git diff --no-index'
@@ -40,7 +40,8 @@ alias dk='docker'
 alias g='git'
 alias gd='git diff HEAD'
 alias gst='git status'
-alias gwi='cd ~/src/interview_project'
+alias gwp='cd ~/src/hv-visionlab-api'
+alias gwa='cd ~/src/hv-visionlab-portal'
 # alias jcz='mvn clean install -DskipITs'
 # alias jcc='mvn -DskipTests -DskipITs compile package install'
 

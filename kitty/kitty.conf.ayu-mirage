@@ -1,0 +1,58 @@
+font_family Code New Roman
+# font_family MesloLGS NF
+bold_font auto
+italic_font auto
+bold_italic_font auto
+disable_ligatures never
+
+font_size 13.0
+
+scrollback_lines 200000
+background_opacity 1.0
+active_border_color #a89984
+
+# background  #1F2430
+background  #191E2A
+# background  #232020
+foreground  #FFE6B3
+# foreground  #FFCC66
+
+# dark
+color0 #191E2A
+color8 #232834
+
+# red
+color1 #FF3333
+color9 #F28779
+
+# green
+color2 #C2D94C
+color10 #BAE67E
+
+# yellow
+color3 #FFA759
+color11 #FFD580
+
+# blue
+color4 #399EE6
+color12 #73D0FF
+
+# purple
+color5 #A37ACC
+color13 #D4BBFF
+
+# aqua
+color6 #4CBF99
+color14 #95E6CB
+
+# light
+color7 #E6BA7E
+color15 #FFE6B3
+
+map cmd+d new_window
+map cmd+t new_tab
+map cmd+shift+d next_layout
+
+sync_to_monitor no
+
+enabled_layouts fat,tall,grid

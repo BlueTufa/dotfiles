@@ -6,9 +6,10 @@ alias vim='nvim'
 alias h='history'
 alias wtr='curl http://wttr.in/Grand_Junction'
 
-alias cat='bat --theme=Dracula'
+alias cat='bat --theme=ansi'
+# alias cd=z
 alias dk='docker'
-alias less='bat --theme=Dracula'
+alias less='bat --theme=ansi'
 alias grep='grep -i --color'
 alias ack='ag'
 alias ak='ag'
