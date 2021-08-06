@@ -13,12 +13,12 @@ alias console="open $MAC_APP_PATH/Utilities/Console.app"
 alias gdu="open $MAC_APP_PATH/Utilities/Disk\ Utility.app"
 alias prefs="open $MAC_APP_PATH/System\ Preferences.app"
 
-alias firefox="open /Applications/firefox.app"
-alias ij="open -a /Applications/IntelliJ\ IDEA.app"
+# alias firefox="open /Applications/firefox.app"
+# alias ij="open -a /Applications/IntelliJ\ IDEA.app"
 alias pup='pup -c'
 # alias pych="open /Applications/PyCharm.app"
-alias rmine="open /Applications/RubyMine.app"
-alias r="rails"
+# alias rmine="open /Applications/RubyMine.app"
+# alias r="rails"
 # alias sed='gsed' # use GNU sed instead of Apple sed.
 alias typ="open /Applications/Typora.app"
 
@@ -31,7 +31,6 @@ alias icat='kitty +kitten icat'
 # alias showrecovery="defaults write com.apple.DiskUtility DUDebugMenuEnabled 1"
 alias slack="open /Applications/Slack.app"
 alias sqlwb="open /Applications/DataGrip.app"
-# alias standup="open https://livongo.zoom.us/j/145844488"
 alias wstorm="open /Applications/WebStorm.app"
 
 # dev aliass
@@ -42,6 +41,7 @@ alias gd='git diff HEAD'
 alias gst='git status'
 alias gwp='cd ~/src/hv-visionlab-api'
 alias gwa='cd ~/src/hv-visionlab-portal'
+alias awsls='aws --endpoint=http://localhost:4566'
 # alias jcz='mvn clean install -DskipITs'
 # alias jcc='mvn -DskipTests -DskipITs compile package install'
 

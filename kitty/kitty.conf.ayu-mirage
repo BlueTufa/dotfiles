@@ -1,5 +1,5 @@
-font_family Code New Roman
-# font_family MesloLGS NF
+# font_family CodeNewRoman Nerd Font Mono
+font_family MesloLGS Nerd Font
 bold_font auto
 italic_font auto
 bold_italic_font auto
