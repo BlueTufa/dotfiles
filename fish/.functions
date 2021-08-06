@@ -77,8 +77,8 @@ function ghb
 end
 
 function gpl
-  git remote prune origin
-  git pull
+  git fetch --all --prune --tags
+  git merge origin
 end
 
 function glc
@@ -112,6 +112,10 @@ end
 function fish_greeting
   set_theme_colors
   if test (uname) = "Darwin" 
+    and test "$TERM_PROGRAM" = "iTerm.app"
+    and test "$SSH_TTY" = ""
+      neofetch 
+  else if test (uname) = "Darwin" 
     and test "$TERM" = "xterm-kitty"
     and test "$SSH_TTY" = ""
       neofetch --kitty ~/src/dotfiles/assets/apple.png --size 450px
@@ -119,7 +123,9 @@ function fish_greeting
     and test "$TERM" = "xterm-kitty"
     and test "$SSH_TTY" = ""
       neofetch --kitty ~/src/dotfiles/assets/arch.png --size 450px
-  else 
+  else if test "$TERM_PROGRAM" = "vscode"
+    # no-op
+  else
     neofetch 
   end
 end

@@ -52,6 +52,8 @@ if [[ $(uname -v | grep 'Debian') ]]; then
   sudo ./debian/client-dependencies.sh
 fi
 
+touch ~/.hushlogin
+
 if [[ $(uname) == "Linux" ]]; then
   mkdir -p ~/.config/alacritty
   mkdir -p ~/.config/sway/scripts

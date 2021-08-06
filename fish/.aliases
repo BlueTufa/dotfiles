@@ -10,7 +10,7 @@ alias cat='bat --theme=ansi'
 # alias cd=z
 alias dk='docker'
 alias less='bat --theme=ansi'
-alias grep='grep -i --color'
+alias grep='ripgrep -i --color auto'
 alias ack='ag'
 alias ak='ag'
 alias lr='fd -aH -t f'
