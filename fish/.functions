@@ -77,8 +77,7 @@ function ghb
 end
 
 function gpl
-  git fetch --all --prune --tags
-  git merge origin
+  git pull --all --prune --tags
 end
 
 function glc

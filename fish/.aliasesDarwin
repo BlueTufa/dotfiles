@@ -42,6 +42,8 @@ alias gst='git status'
 alias gwp='cd ~/src/hv-visionlab-api'
 alias gwa='cd ~/src/hv-visionlab-portal'
 alias awsls='aws --endpoint=http://localhost:4566'
+alias gwt='cd ~/src/cleerly-infra-terraform'
+alias tf='terraform'
 # alias jcz='mvn clean install -DskipITs'
 # alias jcc='mvn -DskipTests -DskipITs compile package install'
 
@@ -51,3 +53,6 @@ alias awsls='aws --endpoint=http://localhost:4566'
 # alias iossim="open -a /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app"
 
 alias iso-date='date -u +"%Y-%m-%dT%H:%M:%SZ"'
+
+# npm and build stuff
+alias rlf='npm run lint:fix'
