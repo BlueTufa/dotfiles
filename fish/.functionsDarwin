@@ -47,7 +47,13 @@ function nvm
    bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
 end
 
-function ssh
-  set -gx TERM xterm-256color
-  /usr/bin/ssh $argv
+function gen-machine-name
+  pwgen -s1 11 100000 | tr [a-z] [A-Z] | grep '^[^aeiou0-9]{1,1}[aeiou]{1,1}[^aeiou0-9]{1,2}[aeiou]{1}[^aeiou0-9]{1,1}[aeiou]{1,1}[^aeiou0-9]{1,2}[aeiou]{1}' | tail -n 1
 end
+
+# this was a hack I was using with Kitty due to its default $TERM var
+# I am currently not using Kitty
+# function ssh
+#   set -gx TERM xterm-256color
+#   /usr/bin/ssh $argv
+# end
