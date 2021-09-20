@@ -51,6 +51,17 @@ function gen-machine-name
   pwgen -s1 11 100000 | tr [a-z] [A-Z] | grep '^[^aeiou0-9]{1,1}[aeiou]{1,1}[^aeiou0-9]{1,2}[aeiou]{1}[^aeiou0-9]{1,1}[aeiou]{1,1}[^aeiou0-9]{1,2}[aeiou]{1}' | tail -n 1
 end
 
+function cd --description "Change current working directory"
+  builtin cd $argv
+  emit cwd
+end
+
+function __check_cwd --on-event cwd
+  if test -e "$PWD/.nvmrc"
+    nvm use
+  end
+end
+
 # this was a hack I was using with Kitty due to its default $TERM var
 # I am currently not using Kitty
 # function ssh
