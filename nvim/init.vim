@@ -27,10 +27,15 @@ Plug 'chrisbra/Colorizer'
 Plug 'elzr/vim-json'
 Plug 'ayu-theme/ayu-vim'
 Plug 'nanotech/jellybeans.vim'
-" Plug 'BlueTufa/gruvbox'
 Plug 'dag/vim-fish'
-" Plug 'dracula/vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ryanoasis/vim-devicons'
+
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'styled-components/vim-styled-components'
+
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
