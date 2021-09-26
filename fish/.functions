@@ -130,7 +130,29 @@ function fish_greeting
 end
 
 function cal
-  /usr/bin/cal $argv | lolcat 2> /dev/null
+  if test $argv = "qtr"
+    set current_month_num (date -u +"%m")
+    # a simple math trick to figure out how many months are completed in the current quarter
+    set months_back (echo "(($current_month_num - 1) % 3)" | bc)
+    # minus 2 here, instead of minus 3 because the utility always displays current month
+    set months_fwd (echo "(2 - $months_back)" | bc)
+    if test "$months_back" -gt 0
+      set back_months "-B$months_back"
+    end
+    if test "$months_fwd" -gt 0
+      set fwd_months "-A$months_fwd"
+    end
+    /usr/bin/cal $back_months $fwd_months | lolcat 2> /dev/null
+  else if test $argv = "eoy"
+    set current_month_num (date -u +"%m")
+    set eoy_diff (echo "12 - $current_month_num" | bc)
+    /usr/bin/cal -A$eoy_diff | lolcat 2> /dev/null
+  else if test $argv = "cy"
+    set current_year (date -u +"%Y")
+    /usr/bin/cal $current_year | lolcat 2> /dev/null
+  else
+    /usr/bin/cal $argv | lolcat 2> /dev/null
+  end
 end
 
 function set_theme_colors
