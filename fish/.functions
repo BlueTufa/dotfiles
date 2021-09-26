@@ -86,7 +86,8 @@ function glc
     # not a git repo
     set URL (pwd)
   else
-    set URL (git remote get-url --push origin | sed 's/\.git$/\/commit\//g')(git rev-parse HEAD)
+    set URL (git remote get-url --push origin | sed 's/\.git$//g')
+    set URL "$URL/commit/"(git rev-parse HEAD)
   end
   echo "$argv$URL"
 end
@@ -97,7 +98,8 @@ function blame
     # not a git repo
     set URL (pwd)
   else
-    set URL (git remote get-url --push origin | sed 's/\.git$/\/blame\//g')(git rev-parse --abbrev-ref HEAD)
+    set URL (git remote get-url --push origin | sed 's/\.git$//g')
+    set URL "$URL"/blame/(git rev-parse --abbrev-ref HEAD)
   end
   set URL "$URL/$argv[1]#L$argv[2]"
 
