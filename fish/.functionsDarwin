@@ -85,6 +85,9 @@ function precheck-npm
 end
 
 function go-py
+  if test "$VIRTUAL_ENV" != ""
+    deactivate
+  end
   if test -d "$PWD/venv"
     source venv/bin/activate.fish
   end
