@@ -40,7 +40,11 @@ alias g='git'
 alias gd='git diff HEAD'
 alias gst='git status'
 alias gwp='cd ~/src/hv-visionlab-api'
+alias gwpp='cd ~/src/hv-physician-portal-api'
+alias gwdm='cd ~/src/hv-delivery-manager-api'
 alias gwa='cd ~/src/hv-visionlab-portal'
+alias gwap='cd ~/src/hv-physician-portal'
+
 alias awsls='aws --endpoint=http://localhost:4566'
 alias gwt='cd ~/src/cleerly-infra-terraform'
 alias tf='terraform'
@@ -55,4 +59,4 @@ alias tf='terraform'
 alias iso-date='date -u +"%Y-%m-%dT%H:%M:%SZ"'
 
 # npm and build stuff
-alias rlf='npm run lint:fix'
+# alias rlf='npm run lint:fix'

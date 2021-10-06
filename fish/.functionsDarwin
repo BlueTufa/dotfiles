@@ -57,14 +57,48 @@ function cd --description "Change current working directory"
 end
 
 function __check_cwd --on-event cwd
+  go-nvm
+  go-py
+end
+
+function gwts2
+  go-tf staging2
+end
+
+function gwtprod
+  go-tf prod
+end
+
+function gwts3
+  go-tf staging3
+end
+
+function go-tf
+  cd ~/src/cleerly-infra-terraform/live/$argv
+  tfenv use
+  tf workspace select $argv
+end
+
+function precheck-npm
+  prettier --write **/*.ts
+  npm run lint:fix
+end
+
+function go-py
+  if test "$VIRTUAL_ENV" != ""
+    deactivate
+  end
+  if test -d "$PWD/venv"
+    source venv/bin/activate.fish
+  end
+
+  if test -d "$PWD/.venv"
+    source .venv/bin/activate.fish
+  end
+end
+
+function go-nvm
   if test -e "$PWD/.nvmrc"
     nvm use
   end
 end
-
-# this was a hack I was using with Kitty due to its default $TERM var
-# I am currently not using Kitty
-# function ssh
-#   set -gx TERM xterm-256color
-#   /usr/bin/ssh $argv
-# end
