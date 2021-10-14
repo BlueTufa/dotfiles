@@ -37,7 +37,6 @@ alias wstorm="open /Applications/WebStorm.app"
 alias diff='git diff --no-index'
 alias dk='docker'
 alias g='git'
-alias gd='git diff HEAD'
 alias gst='git status'
 alias gwp='cd ~/src/hv-visionlab-api'
 alias gwpp='cd ~/src/hv-physician-portal-api'

@@ -45,7 +45,7 @@ function print_user
   echo -n (set_color $USER_COLOR)"$USER@"
 end
 
-function get_branch
+function get_branch --description="Get the current git branch information, if present"
   set branch_indicator \uF126
   set local_changes_indicator \uF01B
   set remote_changes_indicator \uF01A
@@ -65,7 +65,7 @@ function get_branch
 end
 
 # these next 3 are very useful but currently only work from the root of the git repo
-function ghb
+function ghb --description="Calculate and attempt to open a GitHub URL for the current branch"
   set URL (git remote get-url --push origin | sed 's/\.git$//g')/tree/(git rev-parse --abbrev-ref HEAD)
   echo "launching url $url..."
   if test (uname) = "Linux"
@@ -76,11 +76,11 @@ function ghb
   end
 end
 
-function gpl
+function gpl --description="Calculate and attempt to open a GitHub URL for the current branch"
   git pull --all --prune --tags
 end
 
-function glc
+function glc --description="Calculate the most recent commit as a hyperlink and print it with an inclusive message"
   git rev-parse HEAD > /dev/null 2>&1
   if test "$status" -ne "0"
     # not a git repo
@@ -92,7 +92,7 @@ function glc
   echo "$argv$URL"
 end
 
-function blame
+function blame --description="Calculate a blame URL for one line or a range of lines"
   git rev-parse HEAD > /dev/null 2>&1
   if test "$status" -ne "0"
     # not a git repo
@@ -131,8 +131,10 @@ function fish_greeting
   end
 end
 
-function cal
-  if test $argv = "qtr"
+function cal --description="Expands the built-in calendar CLI to include current quarter, current year and end-of-year (qtr,cy,eoy) macro support.  Also very urgent and necessary lolcat integration."
+  if test "$argv" = ""
+    /usr/bin/cal | lolcat 2> /dev/null
+  else if test "$argv" = "qtr"
     set current_month_num (date -u +"%m")
     # a simple math trick to figure out how many months are completed in the current quarter
     set months_back (echo "(($current_month_num - 1) % 3)" | bc)
@@ -145,11 +147,11 @@ function cal
       set fwd_months "-A$months_fwd"
     end
     /usr/bin/cal $back_months $fwd_months | lolcat 2> /dev/null
-  else if test $argv = "eoy"
+  else if test "$argv" = "eoy"
     set current_month_num (date -u +"%m")
     set eoy_diff (echo "12 - $current_month_num" | bc)
     /usr/bin/cal -A$eoy_diff | lolcat 2> /dev/null
-  else if test $argv = "cy"
+  else if test "$argv" = "cy"
     set current_year (date -u +"%Y")
     /usr/bin/cal $current_year | lolcat 2> /dev/null
   else
