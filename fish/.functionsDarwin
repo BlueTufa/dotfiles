@@ -1,5 +1,5 @@
 # Opens in an OS window, either the current working directory, or the object(s) passed as arguments
-function o
+function o --description='Open a given command as OS-native, or open the current working directory in an os-native browser'
   if test "$argv" = ""
     open $PWD
   else
@@ -7,17 +7,6 @@ function o
   end
 end
 
-function enroll-token
-  pushd ~/src/liv/tools/scripts/jwtMinter
-  python3 mintJwt.py --claims-json-file system_for_enrollment_service.json --pem-cert-file cert.pem --pem-key-file private.pem
-  popd
-end
-
-function config-token
-  pushd ~/src/liv/tools/scripts/jwtMinter
-  python3 mintJwt.py --claims-json-file system_for_client_config.json --pem-cert-file cert.pem --pem-key-file private.pem
-  popd
-end
 #   if test "$status" -ne "0"
 #     set ARROW "CB0000"
 #   else
@@ -35,28 +24,21 @@ end
 #   # echo $history[1] | grep -Ev '(^hh$|^sd|^l.$)' >> ~/.bash_history
 # end
 
-function nightly-override
-  # echo '$argv[1]'
-  set json "{ \"containerOverrides\": [ {\"name\": \"analytics-nightly-mystrength-com\", \"environment\": [{\"name\": \"STARTUP_CMD\", \"value\": \"$argv[1]\"}]} ]}"
-  # echo $json
-  aws ecs run-task --cluster dr-ecs-cluster --task-definition=analytics-nightly --overrides=$json
-end
-
 # fish-friendly wrapper around bass/nvm
 function nvm
    bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
 end
 
-function gen-machine-name
+function gen-machine-name --description="Generate a semi-ramdon machine name that meets a specific naming pattern"
   pwgen -s1 11 100000 | tr [a-z] [A-Z] | grep '^[^aeiou0-9]{1,1}[aeiou]{1,1}[^aeiou0-9]{1,2}[aeiou]{1}[^aeiou0-9]{1,1}[aeiou]{1,1}[^aeiou0-9]{1,2}[aeiou]{1}' | tail -n 1
 end
 
-function cd --description "Change current working directory"
+function cd --description="Change current working directory"
   builtin cd $argv
   emit cwd
 end
 
-function __check_cwd --on-event cwd
+function __check_cwd --on-event cwd --description="Inject directory specific behaviors on change working directory"
   go-nvm
   go-py
 end
@@ -73,31 +55,35 @@ function gwts3
   go-tf staging3
 end
 
-function go-tf
+function go-tf --description="Jump to and activate a Terraform workspace"
   cd ~/src/cleerly-infra-terraform/live/$argv
   tfenv use
   tf workspace select $argv
 end
 
-function precheck-npm
-  prettier --write **/*.ts
-  npm run lint:fix
+function precheck-npm --description="Run pre-commit linting and formatting for node/TypeScript"
+  if test -d ".git" 
+    prettier --write **/*.ts
+    npm run lint:fix
+  else
+    echo (set_color red)"ERROR: do not run precheck outside of a git repository"(set_color normal)
+  end
 end
 
-function go-py
+function go-py --description="Deactivate/activate virtual environment on enter and exit" 
   if test "$VIRTUAL_ENV" != ""
     deactivate
   end
-  if test -d "$PWD/venv"
+  if test -d "venv"
     source venv/bin/activate.fish
   end
 
-  if test -d "$PWD/.venv"
+  if test -d ".venv"
     source .venv/bin/activate.fish
   end
 end
 
-function go-nvm
+function go-nvm --description="Run Node version manager use on enter / exit"
   if test -e "$PWD/.nvmrc"
     nvm use
   end
