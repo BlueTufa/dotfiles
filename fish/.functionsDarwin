@@ -94,7 +94,7 @@ function sonar-scan --description="Run a Sonar scan from the root of a GitHub re
           --rm \
           -e SONAR_HOST_URL="$SONAR_HOST" \
           -e SONAR_LOGIN="$SONAR_TOKEN" \
-          -e SONAR_SCANNER_OPTS="-Dverbose=true" \
+          -e SONAR_SCANNER_OPTS="-Dsonar.verbose=true" \
           -v "$PWD:/usr/src" \
           sonarsource/sonar-scanner-cli
 end
