@@ -88,3 +88,14 @@ function go-nvm --description="Run Node version manager use on enter / exit"
     nvm use
   end
 end
+
+function sonar-scan --description="Run a Sonar scan from the root of a GitHub repository"
+  docker run \
+          --rm \
+          -e SONAR_HOST_URL="$SONAR_HOST" \
+          -e SONAR_LOGIN="$SONAR_TOKEN" \
+          -e SONAR_SCANNER_OPTS="-Dverbose=true" \
+          -v "$PWD:/usr/src" \
+          sonarsource/sonar-scanner-cli
+end
+

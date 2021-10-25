@@ -1,14 +1,14 @@
-set -gx JAVA_HOME (/usr/libexec/java_home -v11.0.9.1)
-set -g fish_user_paths "$JAVA_HOME/bin" "/usr/local/sbin" 
-
 # I pretty much toggle these back and forth depending on which project I'm working on most
+# set -gx JAVA_HOME (/usr/libexec/java_home -v11.0.9.1)
+# set -g fish_user_paths "$JAVA_HOME/bin" "/usr/local/sbin" 
+
 # set -gx JAVA_HOME (/usr/libexec/java_home)
 # set -gx JAVA_HOME (/usr/libexec/java_home -v11.0.8)
 # set -gx LIQUIBASE_HOME /usr/local/opt/liquibase/libexec  
 
 set -gx NVM_DIR "$HOME/.nvm"
 
-# if the current system is running macos catalina, use new path
+# if the current system is running macos catalina or higher, use new path
 if test (sw_vers -productVersion | grep -E '^(11|10.15)')
   set -gx MAC_APP_PATH '/System/Applications'
 else
@@ -19,4 +19,3 @@ end
 # set -gx FISH_THEME "gruvbox"
 
 export VSCODE_SETTINGS="/Users/dan.white/Library/Application Support/Code/User/settings.json"
-export NVM_DIR="$HOME/.nvm"
