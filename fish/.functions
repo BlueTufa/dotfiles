@@ -64,6 +64,10 @@ function get_branch --description="Get the current git branch information, if pr
   end
 end
 
+function gpl --description="Auto prune and merge latest for the current branch"
+  git pull --all --prune --tags
+end
+
 # these next 3 are very useful but currently only work from the root of the git repo
 function ghb --description="Calculate and attempt to open a GitHub URL for the current branch"
   set URL (git remote get-url --push origin | sed 's/\.git$//g')/tree/(git rev-parse --abbrev-ref HEAD)
@@ -76,11 +80,7 @@ function ghb --description="Calculate and attempt to open a GitHub URL for the c
   end
 end
 
-function gpl --description="Calculate and attempt to open a GitHub URL for the current branch"
-  git pull --all --prune --tags
-end
-
-function glc --description="Calculate the most recent commit as a hyperlink and print it with an inclusive message"
+function glc --description="Calculate the most recent commit as a hyperlink and print it with an optional preamble"
   git rev-parse HEAD > /dev/null 2>&1
   if test "$status" -ne "0"
     # not a git repo
