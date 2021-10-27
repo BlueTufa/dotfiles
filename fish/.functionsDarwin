@@ -43,22 +43,42 @@ function __check_cwd --on-event cwd --description="Inject directory specific beh
   go-py
 end
 
+function gwtdev
+  go-tf dev2
+end
+
 function gwts2
+  echo (set_color green)"NOTE: Don't forget to base your current branch off of staging2"(set_color normal)
   go-tf staging2
 end
 
 function gwtprod
+  echo (set_color green)"NOTE: Don't forget to base your current branch off of prod"(set_color normal)
   go-tf prod
 end
 
 function gwts3
+  echo (set_color green)"NOTE: Don't forget to base your current branch off of staging3"(set_color normal)
   go-tf staging3
 end
 
+function gwtmgmt
+  go-tf mgmt account
+end
+
+function gwtbastion
+  go-tf bastion account
+end
+
 function go-tf --description="Jump to and activate a Terraform workspace"
-  cd ~/src/cleerly-infra-terraform/live/$argv
+  if test "$argv[2]" = ""
+    set dir "live"
+  else
+    set dir "$argv[2]"
+  end
+  cd ~/src/cleerly-infra-terraform/$dir/$argv[1]
   tfenv use
-  tf workspace select $argv
+  tf workspace select $argv[1]
 end
 
 function precheck-npm --description="Run pre-commit linting and formatting for node/TypeScript"
@@ -99,3 +119,13 @@ function sonar-scan --description="Run a Sonar scan from the root of a GitHub re
           sonarsource/sonar-scanner-cli
 end
 
+function tf-lint --description="Lint changed Terraform files using tf fmt"
+  if test -d ".git"
+    for file in (git diff --name-only)
+      echo "About to run linting on file: $file"
+      terraform fmt $file
+    end
+  else 
+    echo (set_color red)"ERROR: only run this terraform fmt from the root of a git repository"(set_color normal)
+  end
+end
