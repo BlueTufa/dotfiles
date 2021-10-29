@@ -138,6 +138,11 @@ function reformat-json --description="Reformats all of your jason"
 end
 
 function gen-key --description="Generates a random 256-bit seed value and prints it as hex"
-  node -e "console.log(Buffer.from(crypto.randomBytes(32)).toString('hex'))"
+  if test "$argv" = ""
+    set numbytes 32
+  else 
+    set numbytes "$argv"
+  end
+  node -e "console.log(Buffer.from(crypto.randomBytes($numbytes)).toString('hex'))"
 end
 
