@@ -126,6 +126,23 @@ function tf-lint --description="Lint changed Terraform files using tf fmt"
       terraform fmt $file
     end
   else 
-    echo (set_color red)"ERROR: only run this terraform fmt from the root of a git repository"(set_color normal)
+    echo (set_color red)"ERROR: only run this terraform fmt helper from the root of a git repository"(set_color normal)
   end
 end
+
+function reformat-json --description="Reformats all of your jason"
+  for file in (fd '\.json$')
+    echo "About to reformat json: $file"
+    jq . $file > $file
+  end
+end
+
+function gen-key --description="Generates a random 256-bit seed value and prints it as hex"
+  if test "$argv" = ""
+    set numbytes 32
+  else 
+    set numbytes "$argv"
+  end
+  node -e "console.log(Buffer.from(crypto.randomBytes($numbytes)).toString('hex'))"
+end
+
