@@ -7,13 +7,17 @@
   whitespace = fix,-indent-with-non-tab,trailing-space
   editor = vim
   pager = diff-so-fancy | less --tabs=4 -RFX
-  excludesfile = /Users/dan.white/.gitignore_global
+  excludesfile = # TODO full path to .gitignore_global
+[user]
+  name = # TODO
+  email = # TODO
+  signingkey = # TODO
 [alias]
   br = branch
   ci = commit -S
   co = checkout
   st = status
-  mg = merge 
+  mg = merge -S
   pl = pull
   ps = push
   a = add
@@ -22,6 +26,8 @@
   df = diff 
   cl = clone
   scorch = clean -dfX
+  squash = rebase --interactive -S
+  patch = apply --reject --whitespace=fix
 [pager]
   diff = diff-so-fancy | less --tabs=1,5 -RFX
   show = diff-so-fancy | less --tabs=1,5 -RFX
@@ -50,3 +56,5 @@
   program = gpg
 [credential]
   helper = store
+[pull]
+  rebase = false
