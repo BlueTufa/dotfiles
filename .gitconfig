@@ -8,12 +8,16 @@
   editor = vim
   pager = diff-so-fancy | less --tabs=4 -RFX
   excludesfile = /Users/dan.white/.gitignore_global
+[user]
+  name = Dan White
+  email = dan.white@cleerlyhealth.com
+  signingkey = C16E1637F93FC83FF2A90BE893D49B6D3DEF7ECC
 [alias]
   br = branch
   ci = commit -S
   co = checkout
   st = status
-  mg = merge 
+  mg = merge --gpg-sign=C16E1637F93FC83FF2A90BE893D49B6D3DEF7ECC
   pl = pull
   ps = push
   a = add
@@ -22,6 +26,8 @@
   df = diff 
   cl = clone
   scorch = clean -dfX
+  squash = rebase --interactive --gpg-sign=C16E1637F93FC83FF2A90BE893D49B6D3DEF7ECC
+  patch = apply --reject --whitespace=fix
 [pager]
   diff = diff-so-fancy | less --tabs=1,5 -RFX
   show = diff-so-fancy | less --tabs=1,5 -RFX
@@ -50,3 +56,5 @@
   program = gpg
 [credential]
   helper = store
+[pull]
+	rebase = false
