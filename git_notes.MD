@@ -88,3 +88,21 @@ git push --force
 ## Other notes
 Configure git to store GitHub creds in local OS store
 `git config --global credential.helper store`
+
+### GPG helpers
+These are GPG commands that I rarely if ever need to run and therefore often forget.
+In order to import a GPG key from one machine to the other, simply run:
+```bash
+gpg --import <path.to.private>.key
+```
+In order to change the passphrase of a private key:
+```bash
+gpg --edit-key <key-id>
+passwd
+# ...
+save
+```
+In order to list the currently installed keys:
+```bash
+gpg --list-keys
+```
