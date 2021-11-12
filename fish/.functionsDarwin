@@ -47,6 +47,12 @@ function gwtdev
   go-tf dev2
 end
 
+function gwts1
+  echo (set_color green)"NOTE: Don't forget to base your current branch off of staging"(set_color normal)
+  go-tf staging
+end
+
+
 function gwts2
   echo (set_color green)"NOTE: Don't forget to base your current branch off of staging2"(set_color normal)
   go-tf staging2
@@ -133,7 +139,10 @@ end
 function reformat-json --description="Reformats all of your jason"
   for file in (fd '\.json$')
     echo "About to reformat json: $file"
-    jq . $file > $file
+    jq . $file
+    if test "$status" -eq 0
+      jq . $file | tee $file
+    end
   end
 end
 
