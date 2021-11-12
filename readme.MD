@@ -17,6 +17,7 @@ You can symlink your dotfiles from this repo into the home directory by running 
 ### Fish support
 To permanently change the default shell to Fish, run the following from bash:
 `chsh -s $(which fish) $(whoami)`
+> https://github.com/fish-shell/fish-shell/issues/2124
 
 ### ZSH support 
 The ZSH support is rather bare-bones but it will automatically try to symlink oh-my-zsh and powerlevel10k.  From there, you may wish to run the powerlevel10k via `p10k configure` at any time.  If p10k configure is never run then you will simply have my default zsh configuration.

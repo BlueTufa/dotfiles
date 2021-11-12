@@ -5,11 +5,14 @@
 # set -gx JAVA_HOME (/usr/libexec/java_home)
 # set -gx JAVA_HOME (/usr/libexec/java_home -v11.0.8)
 # set -gx LIQUIBASE_HOME /usr/local/opt/liquibase/libexec  
+if test (uname -m) = "arm64"
+  eval (/opt/homebrew/bin/brew shellenv)
+end
 
 set -gx NVM_DIR "$HOME/.nvm"
 
 # if the current system is running macos catalina or higher, use new path
-if test (sw_vers -productVersion | grep -E '^(11|10.15)')
+if test (sw_vers -productVersion | grep -E '^(12|11|10.15)')
   set -gx MAC_APP_PATH '/System/Applications'
 else
   set -gx MAC_APP_PATH '/Applications'
