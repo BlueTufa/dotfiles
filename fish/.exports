@@ -6,3 +6,5 @@ set --universal fish_user_paths $fish_user_paths "$HOME/src/bin" "$HOME/.cargo/b
 bind --user \cb backward-word
 bind --user \cf forward-word
 
+set -gx AWS_PAGER 'bat --style=plain -l json'
+
