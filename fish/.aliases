@@ -19,6 +19,7 @@ alias pe='printenv'
 alias sha1='openssl sha1'
 alias sha256='openssl sha256'
 alias gwd='cd ~/src'
+alias gdd='cd ~/data'
 alias gwdd='cd ~/src/dotfiles'
 alias gwf='cd ~/src/qmk/qmk_firmware'
 alias rm='trash -v'
@@ -32,9 +33,10 @@ alias n='npm'
 
 # git aliases
 alias g='git'
+alias ga='git add .'
+alias gcl='git clone'
 alias gd="git diff HEAD -- ':!package-lock.json'"
 alias gst='git status'
 alias gbr='git branch'
 alias gps='git push'
-alias diff='git diff --no-index'
 
