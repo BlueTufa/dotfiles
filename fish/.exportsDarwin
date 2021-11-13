@@ -2,7 +2,8 @@
 # set -gx JAVA_HOME (/usr/libexec/java_home -v11.0.9.1)
 # set -g fish_user_paths "$JAVA_HOME/bin" "/usr/local/sbin" 
 
-# set -gx JAVA_HOME (/usr/libexec/java_home)
+# /usr/libexec/java_home -V to list versions
+set -gx JAVA_HOME (/usr/libexec/java_home)
 # set -gx JAVA_HOME (/usr/libexec/java_home -v11.0.8)
 # set -gx LIQUIBASE_HOME /usr/local/opt/liquibase/libexec  
 if test (uname -m) = "arm64"
