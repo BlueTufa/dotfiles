@@ -7,23 +7,6 @@ function o --description='Open a given command as OS-native, or open the current
   end
 end
 
-#   if test "$status" -ne "0"
-#     set ARROW "CB0000"
-#   else
-#     set ARROW 58a82f
-#   end
-# 
-#   echo (set_color 3399FF)(whoami)(set_color $ARROW)@(set_color FF9933)(date -u '+%a %d %H:%M:%S UTC') (set_color 6B6FFF)(pretty_path)(set_color 03A9F4)(get_branch) 
-#   set_color 03A9F4
-#   echo "\$ "  
-#   
-#   echo $history[1] | grep -Ev '(^hh$|^sd|^l.$)' >> ~/.local/share/fish/hh.history
-#   # also echo fish commands to the bash history
-#   # BASH keep this file in memory so it doesn't work quite like you might want it to,
-#   # also potential corruption issues (last one appears to win)
-#   # echo $history[1] | grep -Ev '(^hh$|^sd|^l.$)' >> ~/.bash_history
-# end
-
 # fish-friendly wrapper around bass/nvm
 function nvm
    bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
@@ -43,8 +26,25 @@ function __check_cwd --on-event cwd --description="Inject directory specific beh
   go-py
 end
 
+function gwtds
+  echo (set_color green)"NOTE: Don't forget to base your current branch off of ml"(set_color normal)
+  go-tf ds
+end
+
 function gwtdev
   go-tf dev2
+end
+
+function gwtdev-usw2
+  go-tf dev2-usw2
+end
+
+function gwtqa
+  go-tf qa
+end
+
+function gwtqa-usw2
+  go-tf qa-usw2
 end
 
 function gwts1
@@ -52,10 +52,14 @@ function gwts1
   go-tf staging
 end
 
-
 function gwts2
   echo (set_color green)"NOTE: Don't forget to base your current branch off of staging2"(set_color normal)
   go-tf staging2
+end
+
+function gwts2-usw2
+  echo (set_color green)"NOTE: Don't forget to base your current branch off of staging2"(set_color normal)
+  go-tf staging2-usw2
 end
 
 function gwtprod
@@ -63,9 +67,23 @@ function gwtprod
   go-tf prod
 end
 
+function gwtprod-usw2
+  echo (set_color green)"NOTE: Don't forget to base your current branch off of prod"(set_color normal)
+  go-tf prod-usw2
+end
+
 function gwts3
   echo (set_color green)"NOTE: Don't forget to base your current branch off of staging3"(set_color normal)
   go-tf staging3
+end
+
+function gwts3-usw2
+  echo (set_color green)"NOTE: Don't forget to base your current branch off of staging3"(set_color normal)
+  go-tf staging3-usw2
+end
+
+function gwtdata
+  go-tf data account
 end
 
 function gwtmgmt
@@ -155,3 +173,98 @@ function gen-key --description="Generates a random 256-bit seed value and prints
   node -e "console.log(Buffer.from(crypto.randomBytes($numbytes)).toString('hex'))"
 end
 
+function ssh-mgmt
+  set host "$argv[1]"
+  ssh -o "StrictHostKeyChecking no" -J cleerly-mgmt-bastion -i ~/.ssh/certificates/cleerly-mgmt-key.pem ec2-user@$host $argv[2..-1]
+end
+
+function ssh-ds
+  set host "$argv[1]"
+  ssh -o "StrictHostKeyChecking no" -J cleerly-ds-bastion -i ~/.ssh/certificates/cleerly-ds-key.pem ec2-user@$host $argv[2..-1]
+end
+
+function ssh-dev
+  set host "$argv[1]"
+  ssh -o "StrictHostKeyChecking no" -J cleerly-dev2-bastion -i ~/.ssh/certificates/cleerly-dev2-key.pem ec2-user@$host $argv[2..-1]
+end
+
+function ssh-devusw2
+  set host "$argv[1]"
+  ssh -o "StrictHostKeyChecking no" -J cleerly-dev2-usw2-bastion -i ~/.ssh/certificates/cleerly-dev2-usw2-key.pem ec2-user@$host $argv[2..-1]
+end
+
+function ssh-s1
+  set host "$argv[1]"
+  ssh -o "StrictHostKeyChecking no" -J cleerly-staging1-bastion -i ~/.ssh/certificates/cleerly-staging-key.pem ec2-user@$host $argv[2..-1]
+end
+
+function ssh-s2
+  set host "$argv[1]"
+  ssh -o "StrictHostKeyChecking no" -J cleerly-staging2-bastion -i ~/.ssh/certificates/cleerly-staging2-key.pem ec2-user@$host $argv[2..-1]
+end
+
+function ssh-s2usw2
+  set host "$argv[1]"
+  ssh -o "StrictHostKeyChecking no" -J cleerly-staging2-usw2-bastion -i ~/.ssh/certificates/cleerly-staging2-usw2-key.pem ec2-user@$host $argv[2..-1]
+end
+
+function ssh-s3
+  set host "$argv[1]"
+  ssh -o "StrictHostKeyChecking no" -J cleerly-staging3-bastion -i ~/.ssh/certificates/cleerly-staging3-key.pem ec2-user@$host $argv[2..-1]
+end
+
+function ssh-s3usw2
+  set host "$argv[1]"
+  ssh -o "StrictHostKeyChecking no" -J cleerly-staging3-usw2-bastion -i ~/.ssh/certificates/cleerly-staging3-usw2-key.pem ec2-user@$host $argv[2..-1]
+end
+
+function ssh-prd
+  set host "$argv[1]"
+  ssh -o "StrictHostKeyChecking no" -J cleerly-prod-bastion -i ~/.ssh/certificates/cleerly-prod-key.pem ec2-user@$host $argv[2..-1]
+end
+
+function ssh-prdusw2
+  set host "$argv[1]"
+  ssh -o "StrictHostKeyChecking no" -J cleerly-prod-usw2-bastion -i ~/.ssh/certificates/cleerly-prod-usw2-key.pem ec2-user@$host $argv[2..-1]
+end
+
+function prod-rerun-task
+  invoke-lambda prod arn:aws:lambda:us-east-1:710542845480:function:hv-data-migration-prod-tool001RerunTasks $argv
+end
+
+function invoke-lambda --description="Invokes a lambda in a specific AWS environment"
+  set environ "$argv[1]"
+  set arn "$argv[2]"
+  set payload (echo "$argv[3]" | base64)
+  aws lambda invoke --function=$arn --payload=$payload --profile=$environ lambda-invoke-(iso-date).out
+end
+
+function moz-logs
+  ecs-logs moz-batch-job $argv
+end
+
+function delivery-logs
+  ecs-logs hv-delivery-manager-api $argv
+end
+
+function labs-logs
+  ecs-logs hv-visionlab-api $argv
+end
+
+function coronary-logs
+  ecs-logs hv-physician-portal-api $argv
+end
+
+function ecs-logs --description="tails the Mozart logs in the specific environment"
+  set proj "$argv[1]"
+  set environ "$argv[2]"
+  if test "$environ" = ""
+    echo (set_color red)"ERROR: you must specify an environment"(set_color normal)
+  end
+
+  echo $argv[3..-1]
+  if test "$proj" = ""
+    echo (set_color red)"ERROR: you must specify a project"(set_color normal)
+  end
+  aws logs tail --profile=$environ /cleerly-$environ/ecs/$proj $argv[3..-1]
+end
