@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# this file is idempotent and can safely be run many times. 
+# However, note that the backup function may overwrite previous file backups.
+
 install-vim-plug () {
   curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -73,11 +76,9 @@ if [[ $(uname) == "Linux" ]]; then
 fi 
 
 if [[ $(uname) == "Darwin" ]]; then
-  # this next line is totally subjective and will fall victim to my mood at any time
-  ln -sf $(pwd)/kitty/kitty.conf.ayu-mirage ~/.config/kitty/kitty.conf
-  # TODO: fix this, it only runs properly in a fish shell
-  # curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-  # fisher install edc/bass
+  [[ -d ~/Library/KeyBindings/ ]] || mkdir -p ~/Library/KeyBindings/
+  cp ./macos/Library/KeyBindings/DefaultKeyBinding.dict ~/Library/KeyBindings/
+  fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher && fisher install edc/bass"
 fi
 
 for file in fish/.{functions,exports,aliases,*$(uname)}

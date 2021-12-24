@@ -1,5 +1,6 @@
 # GENERIC alias dotfile.  Put everything that is not OS specific in this dotfile.
 
+alias l='exa -aa -g --long --header --git'
 alias ll='exa -aa -g --long --header --git'
 alias vi='nvim'
 alias vim='nvim'
