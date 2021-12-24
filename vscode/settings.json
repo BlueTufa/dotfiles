@@ -1,0 +1,48 @@
+{
+    "workbench.colorTheme": "Gruvbox Material Dark",
+    "files.autoSave": "onFocusChange",
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "Fira Code",
+    "terminal.integrated.fontFamily": "MesloLGS Nerd Font",
+    "terminal.integrated.fontSize": 14,
+    "editor.fontSize": 13,
+    "workbench.colorCustomizations": {
+        "terminal.background":"#232020",
+        "terminal.foreground":"#FFE6B3",
+        "terminal.ansiBlack":"#191E2A",
+        "terminal.ansiBrightBlack":"#2F3F67",
+        "terminal.ansiRed":"#FF3333",
+        "terminal.ansiBrightRed":"#F28779",
+        "terminal.ansiGreen":"#C2D94C",
+        "terminal.ansiBrightGreen":"#BAE67E",
+        "terminal.ansiYellow":"#FFA759",
+        "terminal.ansiBrightYellow":"#FFD580",
+        "terminal.ansiBlue":"#399EE6",
+        "terminal.ansiBrightBlue":"#73D0FF",
+        "terminal.ansiMagenta":"#A37ACC",
+        "terminal.ansiBrightMagenta":"#D4BBFF",
+        "terminal.ansiCyan":"#4CBF99",
+        "terminal.ansiBrightCyan":"#95E6CB",
+        "terminal.ansiWhite":"#E6BA7E",
+        "terminal.ansiBrightWhite":"#FFE6B3"
+      },
+      "editor.minimap.enabled": false,
+      "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+      },
+      "editor.tabSize": 2,
+      "editor.detectIndentation": false,
+      "gitlens.currentLine.enabled": false,
+      "gitlens.hovers.currentLine.over": "line",
+      "gitlens.codeLens.enabled": false,
+      "editor.autoClosingBrackets": "never",
+      "editor.suggestSelection": "first",
+      "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+      "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+      }
+}
