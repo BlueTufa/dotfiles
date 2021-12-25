@@ -1,10 +1,11 @@
-function fish_prompt
-  # gets the error status of the last command and 
+function fish_prompt # gets the error status of the last command and 
   # updates the prompt symbol color with the indication
   if test "$status" -ne "0"
     set -gx ARROW "$ERROR"
+    set LAST_CMD_SUCCESS 0
   else
     set -gx ARROW "$SUCCESS"
+    set LAST_CMD_SUCCESS 1
   end
 
 #   print_user
@@ -13,6 +14,10 @@ function fish_prompt
   pretty_path 
   get_branch
   print_prompt
+  if test "$LAST_CMD_SUCCESS" -ne 0
+    # don't commit errant commands to history
+    copy_history
+  end
 end
 
 function print_prompt
@@ -43,6 +48,11 @@ end
 
 function print_user
   echo -n (set_color $USER_COLOR)"$USER@"
+end
+
+
+function copy_history
+  echo $history[1] | /usr/bin/grep -Ev '(^hh$|^sd|^l.$)' >> ~/.local/share/fish/hh.history
 end
 
 function get_branch --description="Get the current git branch information, if present"

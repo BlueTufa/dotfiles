@@ -22,4 +22,5 @@ end
 # set -gx FISH_THEME "jellybeans"
 # set -gx FISH_THEME "gruvbox"
 
-export VSCODE_SETTINGS="/Users/$USER/Library/Application Support/Code/User/settings.json"
+export VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User/settings.json"
+

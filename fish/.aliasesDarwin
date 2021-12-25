@@ -14,7 +14,7 @@ alias gdu="open $MAC_APP_PATH/Utilities/Disk\ Utility.app"
 alias prefs="open $MAC_APP_PATH/System\ Preferences.app"
 
 # alias firefox="open /Applications/firefox.app"
-# alias ij="open -a /Applications/IntelliJ\ IDEA.app"
+alias ij="open -a /Applications/IntelliJ\ IDEA.app"
 alias pup='pup -c'
 # alias pych="open /Applications/PyCharm.app"
 # alias rmine="open /Applications/RubyMine.app"
@@ -23,6 +23,7 @@ alias pup='pup -c'
 alias typ="open /Applications/Typora.app"
 
 alias icat='kitty +kitten icat'
+alias xbrew='arch -x86_64 /usr/local/bin/brew'
 
 # same as CMD+SHIFT+. except it is persistent and requires a launcher restart
 # alias noshowallfiles="defaults write com.apple.finder AppleShowAllFiles NO"
