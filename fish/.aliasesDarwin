@@ -23,6 +23,7 @@ alias pup='pup -c'
 alias typ="open /Applications/Typora.app"
 
 alias icat='kitty +kitten icat'
+alias xbrew='arch -x86_64 /usr/local/bin/brew'
 
 # same as CMD+SHIFT+. except it is persistent and requires a launcher restart
 # alias noshowallfiles="defaults write com.apple.finder AppleShowAllFiles NO"
