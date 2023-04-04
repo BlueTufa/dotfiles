@@ -30,6 +30,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'dag/vim-fish'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ryanoasis/vim-devicons'
+Plug 'folke/tokyonight.nvim'
 
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -46,8 +47,8 @@ set background=dark
 " let ayucolor="mirage"
 " colorscheme gruvbox
 " colorscheme dracula
-colorscheme jellybeans
-" colorscheme ayu
+" colorscheme jellybeans
+colorscheme tokyonight
 
 let g:airline_powerline_fonts = 1
 " let g:airline_theme='twofirewatch'
