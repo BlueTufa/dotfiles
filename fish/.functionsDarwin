@@ -40,11 +40,11 @@ function gwtdev-usw2
 end
 
 function gwtqa
-  go-tf qa
+  cd $HOME/src/cleerly-infra-terraform/live-tg/aws/qa/us-east-1/vpc01/qa/_env/
 end
 
 function gwtqa-usw2
-  go-tf qa-usw2
+  cd $HOME/src/cleerly-infra-terraform/live-tg/aws/qa/us-west-2/vpc01/qa-usw2/_env
 end
 
 function gwts1
@@ -59,7 +59,7 @@ end
 
 function gwts2-usw2
   echo (set_color green)"NOTE: Don't forget to base your current branch off of staging2"(set_color normal)
-  go-tf staging2-usw2
+  go-tf-w2 staging2
 end
 
 function gwtprod
@@ -69,7 +69,7 @@ end
 
 function gwtprod-usw2
   echo (set_color green)"NOTE: Don't forget to base your current branch off of prod"(set_color normal)
-  go-tf prod-usw2
+  go-tf-w2 prod
 end
 
 function gwts3
@@ -79,7 +79,7 @@ end
 
 function gwts3-usw2
   echo (set_color green)"NOTE: Don't forget to base your current branch off of staging3"(set_color normal)
-  go-tf staging3-usw2
+  go-tf-w2 staging3
 end
 
 function gwtdata
@@ -87,22 +87,28 @@ function gwtdata
 end
 
 function gwtmgmt
-  go-tf mgmt account
+  cd $HOME/src/cleerly-infra-terraform/live-tg/aws/mgmt/us-east-1/vpc02/mgmt/_env/
 end
 
 function gwtbastion
   go-tf bastion account
 end
 
+function gwtdemo
+  go-tf demo
+end
+
+function go-tf-w2 --description="Jump to west2"
+  cd ~/src/cleerly-infra-terraform/live-tg/aws/$argv[1]/us-west-2/vpc01/$argv[1]-usw2/_env
+end
+
 function go-tf --description="Jump to and activate a Terraform workspace"
   if test "$argv[2]" = ""
-    set dir "live"
+    set dir "live-tg"
   else
     set dir "$argv[2]"
   end
-  cd ~/src/cleerly-infra-terraform/$dir/$argv[1]
-  tfenv use
-  tf workspace select $argv[1]
+  cd ~/src/cleerly-infra-terraform/$dir/aws/$argv[1]/us-east-1/vpc01/$argv[1]/_env
 end
 
 function precheck-npm --description="Run pre-commit linting and formatting for node/TypeScript"
@@ -134,11 +140,12 @@ function go-nvm --description="Run Node version manager use on enter / exit"
 end
 
 function sonar-scan --description="Run a Sonar scan from the root of a GitHub repository"
+  rm -rf .scannerwork/
   docker run \
           --rm \
           -e SONAR_HOST_URL="$SONAR_HOST" \
           -e SONAR_LOGIN="$SONAR_TOKEN" \
-          -e SONAR_SCANNER_OPTS="-Dsonar.verbose=true" \
+          -e SONAR_SCANNER_OPTS="-Xms1024m -Xmx4096m -Dsonar.verbose=true" \
           -v "$PWD:/usr/src" \
           sonarsource/sonar-scanner-cli
 end
@@ -177,7 +184,7 @@ function invoke-lambda --description="Invokes a lambda in a specific AWS environ
   set environ "$argv[1]"
   set arn "$argv[2]"
   set payload (echo "$argv[3]" | base64)
-  aws lambda invoke --function=$arn --payload=$payload --profile=$environ lambda-invoke-(iso-date).out
+  aws lambda invoke --function=$arn --payload=$payload --profile=$environ lambda-invoke-(iso-date | sed 's/:/-/g').out
 end
 
 function moz-logs
@@ -209,3 +216,4 @@ function ecs-logs --description="tails the Mozart logs in the specific environme
   end
   aws logs tail --profile=$environ /cleerly-$environ/ecs/$proj $argv[3..-1]
 end
+
