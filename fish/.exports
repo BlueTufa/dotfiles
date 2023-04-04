@@ -2,7 +2,7 @@ export GPG_TTY=(tty)
 
 set -gx EDITOR 'nvim'
 
-set --universal fish_user_paths $fish_user_paths "$HOME/src/bin" "$HOME/.cargo/bin"
+set --universal fish_user_paths $fish_user_paths "$HOME/src/bin" "$HOME/.cargo/bin" "$HOME/src/assume-role"
 bind --user \cb backward-word
 bind --user \cf forward-word
 

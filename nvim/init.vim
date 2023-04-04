@@ -43,11 +43,11 @@ let g:coc_disable_startup_warning = 1
 
 set termguicolors
 set background=dark
-let ayucolor="mirage"
+" let ayucolor="mirage"
 " colorscheme gruvbox
 " colorscheme dracula
-" colorscheme jellybeans
-colorscheme ayu
+colorscheme jellybeans
+" colorscheme ayu
 
 let g:airline_powerline_fonts = 1
 " let g:airline_theme='twofirewatch'

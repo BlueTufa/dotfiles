@@ -48,6 +48,9 @@ alias gwap='cd ~/src/hv-physician-portal'
 alias awsls='aws --endpoint=http://localhost:4566'
 alias gwt='cd ~/src/cleerly-infra-terraform'
 alias tf='terraform'
+alias tg='terragrunt'
+alias ncov='npm run coverage'
+
 # alias jcz='mvn clean install -DskipITs'
 # alias jcc='mvn -DskipTests -DskipITs compile package install'
 
