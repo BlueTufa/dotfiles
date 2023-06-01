@@ -26,91 +26,6 @@ function __check_cwd --on-event cwd --description="Inject directory specific beh
   go-py
 end
 
-function gwtds
-  echo (set_color green)"NOTE: Don't forget to base your current branch off of ml"(set_color normal)
-  go-tf ds
-end
-
-function gwtdev
-  go-tf dev2
-end
-
-function gwtdev-usw2
-  go-tf dev2-usw2
-end
-
-function gwtqa
-  cd $HOME/src/cleerly-infra-terraform/live-tg/aws/qa/us-east-1/vpc01/qa/_env/
-end
-
-function gwtqa-usw2
-  cd $HOME/src/cleerly-infra-terraform/live-tg/aws/qa/us-west-2/vpc01/qa-usw2/_env
-end
-
-function gwts1
-  echo (set_color green)"NOTE: Don't forget to base your current branch off of staging"(set_color normal)
-  go-tf staging
-end
-
-function gwts2
-  echo (set_color green)"NOTE: Don't forget to base your current branch off of staging2"(set_color normal)
-  go-tf staging2
-end
-
-function gwts2-usw2
-  echo (set_color green)"NOTE: Don't forget to base your current branch off of staging2"(set_color normal)
-  go-tf-w2 staging2
-end
-
-function gwtprod
-  echo (set_color green)"NOTE: Don't forget to base your current branch off of prod"(set_color normal)
-  go-tf prod
-end
-
-function gwtprod-usw2
-  echo (set_color green)"NOTE: Don't forget to base your current branch off of prod"(set_color normal)
-  go-tf-w2 prod
-end
-
-function gwts3
-  echo (set_color green)"NOTE: Don't forget to base your current branch off of staging3"(set_color normal)
-  go-tf staging3
-end
-
-function gwts3-usw2
-  echo (set_color green)"NOTE: Don't forget to base your current branch off of staging3"(set_color normal)
-  go-tf-w2 staging3
-end
-
-function gwtdata
-  go-tf data account
-end
-
-function gwtmgmt
-  cd $HOME/src/cleerly-infra-terraform/live-tg/aws/mgmt/us-east-1/vpc02/mgmt/_env/
-end
-
-function gwtbastion
-  go-tf bastion account
-end
-
-function gwtdemo
-  go-tf demo
-end
-
-function go-tf-w2 --description="Jump to west2"
-  cd ~/src/cleerly-infra-terraform/live-tg/aws/$argv[1]/us-west-2/vpc01/$argv[1]-usw2/_env
-end
-
-function go-tf --description="Jump to and activate a Terraform workspace"
-  if test "$argv[2]" = ""
-    set dir "live-tg"
-  else
-    set dir "$argv[2]"
-  end
-  cd ~/src/cleerly-infra-terraform/$dir/aws/$argv[1]/us-east-1/vpc01/$argv[1]/_env
-end
-
 function precheck-npm --description="Run pre-commit linting and formatting for node/TypeScript"
   if test -d ".git" 
     prettier --write **/*.ts
@@ -130,6 +45,14 @@ function go-py --description="Deactivate/activate virtual environment on enter a
 
   if test -d ".venv"
     source .venv/bin/activate.fish
+  end
+
+  # Pipfile support
+  if test -f "Pipfile"
+    echo "Pipfile environment found, activating virtualenv"
+    if test -f ~/.local/share/virtualenvs/(basename $PWD)-*/bin/activate.fish
+      source ~/.local/share/virtualenvs/(basename $PWD)-*/bin/activate.fish
+    end
   end
 end
 
@@ -187,33 +110,12 @@ function invoke-lambda --description="Invokes a lambda in a specific AWS environ
   aws lambda invoke --function=$arn --payload=$payload --profile=$environ lambda-invoke-(iso-date | sed 's/:/-/g').out
 end
 
-function moz-logs
-  ecs-logs moz-batch-job $argv
-end
-
-function delivery-logs
-  ecs-logs hv-delivery-manager-api $argv
-end
-
-function labs-logs
-  ecs-logs hv-visionlab-api $argv
-end
-
-function coronary-logs
-  ecs-logs hv-physician-portal-api $argv
-end
-
-function ecs-logs --description="tails the Mozart logs in the specific environment"
+function cw-logs --description="tails AWS logs in a specific environment"
   set proj "$argv[1]"
-  set environ "$argv[2]"
-  if test "$environ" = ""
-    echo (set_color red)"ERROR: you must specify an environment"(set_color normal)
-  end
-
-  echo $argv[3..-1]
   if test "$proj" = ""
     echo (set_color red)"ERROR: you must specify a project"(set_color normal)
   end
-  aws logs tail --profile=$environ /cleerly-$environ/ecs/$proj $argv[3..-1]
+
+  aws logs tail $proj $argv[2..-1]
 end
 
