@@ -27,6 +27,7 @@ Plug 'chrisbra/Colorizer'
 Plug 'elzr/vim-json'
 Plug 'ayu-theme/ayu-vim'
 Plug 'nanotech/jellybeans.vim'
+Plug 'bluetufa/gruvbox'
 Plug 'dag/vim-fish'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ryanoasis/vim-devicons'
@@ -45,10 +46,10 @@ let g:coc_disable_startup_warning = 1
 set termguicolors
 set background=dark
 " let ayucolor="mirage"
-" colorscheme gruvbox
+colorscheme gruvbox
 " colorscheme dracula
 " colorscheme jellybeans
-colorscheme tokyonight
+"colorscheme tokyonight
 
 let g:airline_powerline_fonts = 1
 " let g:airline_theme='twofirewatch'
@@ -102,15 +103,18 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-function! s:check_back_space() abort
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
