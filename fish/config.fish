@@ -11,3 +11,6 @@ end
 # eval /opt/homebrew/Caskroom/miniforge/base/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
 
+
+# Created by `pipx` on 2023-05-18 21:50:01
+set PATH $PATH /Users/badger/.local/bin
