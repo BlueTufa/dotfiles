@@ -35,6 +35,28 @@ function precheck-npm --description="Run pre-commit linting and formatting for n
   end
 end
 
+function envsource
+  for line in (cat $argv | grep -v '^#')
+    set item (string split -m 1 '=' $line)
+    set -gx $item[1] $item[2]
+    echo "Exported key $item[1]"
+  end
+end
+
+function env-up
+  # no args, then start in daemon mode
+  # else, use whatever args are passed in
+  if test "$argv" = ""
+    docker-compose up -d
+  else
+    docker-compose up $argv
+  end
+end
+
+function env-down
+  docker-compose down $argv
+end
+
 function go-py --description="Deactivate/activate virtual environment on enter and exit" 
   if test "$VIRTUAL_ENV" != ""
     deactivate
@@ -49,10 +71,13 @@ function go-py --description="Deactivate/activate virtual environment on enter a
 
   # Pipfile support
   if test -f "Pipfile"
-    echo "Pipfile environment found, activating virtualenv"
-    if test -f ~/.local/share/virtualenvs/(basename $PWD)-*/bin/activate.fish
+    if test -e ~/.local/share/virtualenvs/(basename $PWD)-*/bin/activate.fish 2>/dev/null
+      echo "Pipenv environment found, activated."
       source ~/.local/share/virtualenvs/(basename $PWD)-*/bin/activate.fish
     end
+  end
+  if test -f ".env"
+    envsource .env
   end
 end
 
