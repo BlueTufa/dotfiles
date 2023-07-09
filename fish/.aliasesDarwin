@@ -49,9 +49,8 @@ alias gwe='cd ~/src/$COMPANY/web-internal'
 
 alias purge-remote-tags='git tag -l | xargs git push --delete origin' # dangerous
 alias awsls='aws --endpoint=http://localhost:4566'
-alias gwt='cd ~/src/alio/terraform'
+alias gwt='cd ~/src/$COMPANY/terraform'
 alias tf='terraform'
-alias tg='terragrunt'
 alias ncov='npm run coverage'
 
 # AWS
