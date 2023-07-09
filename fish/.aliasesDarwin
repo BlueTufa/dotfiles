@@ -41,11 +41,11 @@ alias g='git'
 alias gst='git status'
 alias k='kubectl'
 
-alias gwm='cd ~/src/alio/api-manufacturing'
-alias gwp='cd ~/src/alio/api-portal'
-alias gwa='cd ~/src/alio/webapp'
-alias gws='cd ~/src/alio/portal-data-simulator-v2'
-alias gwe='cd ~/src/alio/web-internal'
+alias gwm='cd ~/src/$COMPANY/api-manufacturing'
+alias gwp='cd ~/src/$COMPANY/api-portal'
+alias gwa='cd ~/src/$COMPANY/webapp'
+alias gws='cd ~/src/$COMPANY/portal-data-simulator-v2'
+alias gwe='cd ~/src/$COMPANY/web-internal'
 
 alias purge-remote-tags='git tag -l | xargs git push --delete origin' # dangerous
 alias awsls='aws --endpoint=http://localhost:4566'
@@ -55,8 +55,8 @@ alias tg='terragrunt'
 alias ncov='npm run coverage'
 
 # AWS
-alias ecr-login='aws ecr get-login-password | docker login --username AWS --password-stdin 717616914676.dkr.ecr.us-west-2.amazonaws.com'
-alias helm-ecr-login='aws ecr get-login-password | helm registry login --username AWS --password-stdin 717616914676.dkr.ecr.us-west-2.amazonaws.com'
+alias ecr-login='aws ecr get-login-password | docker login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
+alias helm-ecr-login='aws ecr get-login-password | helm registry login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
 
 # alias jcz='mvn clean install -DskipITs'
 # alias jcc='mvn -DskipTests -DskipITs compile package install'
