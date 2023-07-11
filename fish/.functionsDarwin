@@ -24,6 +24,7 @@ end
 function __check_cwd --on-event cwd --description="Inject directory specific behaviors on change working directory"
   go-nvm
   go-py
+  go-env
 end
 
 function precheck-npm --description="Run pre-commit linting and formatting for node/TypeScript"
@@ -35,11 +36,16 @@ function precheck-npm --description="Run pre-commit linting and formatting for n
   end
 end
 
-function envsource
-  for line in (cat $argv | grep -v '^#')
-    set item (string split -m 1 '=' $line)
-    set -gx $item[1] $item[2]
-    echo "Exported key $item[1]"
+function env-source
+  for line in (cat $argv)
+    if string match -rq "^\x*#." $line
+      # commment lines are ignored, but print them
+      echo $line
+    else
+       set item (string split -m 1 '=' $line)
+       set -gx $item[1] $item[2] 2>&1 /dev/null
+       echo "Exported key $item[1]"
+    end  
   end
 end
 
@@ -70,19 +76,24 @@ function go-py --description="Deactivate/activate virtual environment on enter a
   end
 
   # Pipfile support
-  if test -f "Pipfile"
-    if test -e ~/.local/share/virtualenvs/(basename $PWD)-*/bin/activate.fish 2>/dev/null
-      echo "Pipenv environment found, activated."
-      source ~/.local/share/virtualenvs/(basename $PWD)-*/bin/activate.fish
+  if test -f "Pipfile" && test -f (which pipenv)
+    if pipenv --venv 2>&1 /dev/null
+      source (pipenv --venv)/bin/activate.fish
+      echo "Pipenv environment found, activated.  Your Python version is" (python --version)
+    else
+      echo "Empty pipenv found.  Run pipenv install --dev to activate it."
     end
   end
-  if test -f ".env"
-    envsource .env
+end
+
+function go-env --description="Auto-load .env file contents on enter"
+  if test -f .env
+    env-source .env
   end
 end
 
 function go-nvm --description="Run Node version manager use on enter / exit"
-  if test -e "$PWD/.nvmrc"
+  if test -e "$PWD/.nvmrc" && test -f (which nvm)
     nvm use
   end
 end
