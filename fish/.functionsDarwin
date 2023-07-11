@@ -43,7 +43,7 @@ function env-source
       echo $line
     else
        set item (string split -m 1 '=' $line)
-       set -gx $item[1] $item[2] 2>&1 /dev/null
+       set -gx $item[1] $item[2] > /dev/null 2>&1
        echo "Exported key $item[1]"
     end  
   end
@@ -77,9 +77,9 @@ function go-py --description="Deactivate/activate virtual environment on enter a
 
   # Pipfile support
   if test -f "Pipfile" && test -f (which pipenv)
-    if pipenv --venv 2>&1 /dev/null
-      source (pipenv --venv)/bin/activate.fish
-      echo "Pipenv environment found, activated.  Your Python version is" (python --version)
+    if pipenv --venv -q > /dev/null 2&>1
+      source (pipenv --venv -q)/bin/activate.fish
+      echo "A pipenv environment was activated.  Running on" (python --version)
     else
       echo "Empty pipenv found.  Run pipenv install --dev to activate it."
     end
