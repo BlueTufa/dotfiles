@@ -5,7 +5,7 @@ I had an epiphany that if you are already running Arch, you can install Arch on 
 3.  Switching to the new drive via chroot.  The key difference between chroot and arch-chroot is that arch-chroot does step #2 for you.
 
 ---
-NOTE: in the examples below, `_` is aliased to `sudo`.
+>NOTE: in the examples below, `_` is aliased to `sudo`.
 ---
 
 I have been running with this configuration for several months now, and reguarly pull in rolling updates via `pacman -Syu` and have yet to encounter a single difference between this manual installation process and an install media-based installation.  It is after all, just an extension of the already minimalist Arch installation process.  I actually find this approach more confidence inspiring and more deterministic than booting from installation media.  In theory you might be able to use some other distro as a baseline, but you're likely to have problems installing pacman.  If you figure out a way let me know.  
