@@ -3,7 +3,6 @@ alias clip='pbcopy'
 
 # shell aliases
 # keep them in alpha sort
-# alias dish='docker exec -it ubuntu_dev bash'
 
 # aliases for gui mode apps
 # NOTE: may need to add -f after -g any time you want to block from the CLI
@@ -12,60 +11,58 @@ alias calc="open $MAC_APP_PATH/Calculator.app"
 alias console="open $MAC_APP_PATH/Utilities/Console.app"
 alias gdu="open $MAC_APP_PATH/Utilities/Disk\ Utility.app"
 alias prefs="open $MAC_APP_PATH/System\ Preferences.app"
-
-# alias firefox="open /Applications/firefox.app"
 alias ij="open -a /Applications/IntelliJ\ IDEA.app"
 alias pup='pup -c'
+alias slack="open /Applications/Slack.app"
+alias sqlwb="open /Applications/DataGrip.app"
+alias xbrew='arch -x86_64 /usr/local/bin/brew'
+alias wstorm="open /Applications/WebStorm.app"
+
+# dev aliass
+alias awsls='aws --endpoint=http://localhost:4566'
+alias diff='git diff --no-index'
+alias dk='docker'
+alias g='git'
+alias gst='git status'
+
+alias gwa='cd ~/src/$COMPANY/webapp'
+alias gwe='cd ~/src/$COMPANY/web-internal'
+alias gwm='cd ~/src/$COMPANY/api-manufacturing'
+alias gwp='cd ~/src/$COMPANY/api-portal'
+alias gws='cd ~/src/$COMPANY/portal-data-simulator-v2'
+alias gwt='cd ~/src/$COMPANY/terraform/aws/ops'
+
+alias iso-date='date -u +"%Y-%m-%dT%H:%M:%SZ"'
+alias k='kubectl'
+alias tf='terraform'
+alias ncov='npm run coverage'
+alias purge-remote-tags='git tag -l | xargs git push --delete origin' # dangerous
+
+# AWS
+alias ecr-login='aws ecr get-login-password | docker login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
+alias helm-ecr-login='aws ecr get-login-password | helm registry login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
+
+# kept mostly for historical purposes
+
 # alias pych="open /Applications/PyCharm.app"
 # alias rmine="open /Applications/RubyMine.app"
 # alias r="rails"
 # alias sed='gsed' # use GNU sed instead of Apple sed.
 # alias typ="open /Applications/Typora.app"
 
-# alias icat='kitty +kitten icat'
-alias xbrew='arch -x86_64 /usr/local/bin/brew'
-
 # same as CMD+SHIFT+. except it is persistent and requires a launcher restart
 # alias noshowallfiles="defaults write com.apple.finder AppleShowAllFiles NO"
 # alias showallfiles="defaults write com.apple.finder AppleShowAllFiles YES"
 # does this work in latest MacoOS?
 # alias showrecovery="defaults write com.apple.DiskUtility DUDebugMenuEnabled 1"
-alias slack="open /Applications/Slack.app"
-alias sqlwb="open /Applications/DataGrip.app"
-alias wstorm="open /Applications/WebStorm.app"
-
-# dev aliass
-alias diff='git diff --no-index'
-alias dk='docker'
-alias g='git'
-alias gst='git status'
-alias k='kubectl'
-
-alias gwm='cd ~/src/$COMPANY/api-manufacturing'
-alias gwp='cd ~/src/$COMPANY/api-portal'
-alias gwa='cd ~/src/$COMPANY/webapp'
-alias gws='cd ~/src/$COMPANY/portal-data-simulator-v2'
-alias gwe='cd ~/src/$COMPANY/web-internal'
-
-alias purge-remote-tags='git tag -l | xargs git push --delete origin' # dangerous
-alias awsls='aws --endpoint=http://localhost:4566'
-alias gwt='cd ~/src/$COMPANY/terraform'
-alias tf='terraform'
-alias ncov='npm run coverage'
-
-# AWS
-alias ecr-login='aws ecr get-login-password | docker login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
-alias helm-ecr-login='aws ecr get-login-password | helm registry login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
-
 # alias jcz='mvn clean install -DskipITs'
 # alias jcc='mvn -DskipTests -DskipITs compile package install'
-
-# kept mostly for historical purposes
 # alias kismet='open -a /Applications/KisMac2.app'
 # alias wireshark='open -a /Applications/WireShark.app'
 # alias iossim="open -a /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app"
 
-alias iso-date='date -u +"%Y-%m-%dT%H:%M:%SZ"'
+# alias icat='kitty +kitten icat'
+# alias dish='docker exec -it ubuntu_dev bash'
 
 # npm and build stuff
 # alias rlf='npm run lint:fix'
