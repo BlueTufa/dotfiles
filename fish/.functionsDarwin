@@ -77,7 +77,7 @@ function go-py --description="Deactivate/activate virtual environment on enter a
 
   # Pipfile support
   if test -f "Pipfile" && test -f (which pipenv)
-    if pipenv --venv -q > /dev/null 2&>1
+    if pipenv --venv -q > /dev/null 2>&1
       source (pipenv --venv -q)/bin/activate.fish
       echo "A pipenv environment was activated.  Running on" (python --version)
     else

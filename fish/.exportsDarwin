@@ -20,6 +20,9 @@ export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
 
 pyenv init - | source
 
+kubectl completion fish | source
+
+export VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User/settings.json"
 
 # Everything below here kept for historical reasons
 # remember to remove if asdf isn't installed
@@ -27,7 +30,6 @@ pyenv init - | source
 # set -gx FISH_THEME "jellybeans"
 # set -gx FISH_THEME "gruvbox"
 
-# export VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User/settings.json"
 
 # source /opt/homebrew/opt/asdf/libexec/asdf.fish
 
