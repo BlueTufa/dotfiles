@@ -19,6 +19,7 @@ export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
 
 pyenv init - | source
+starship init fish | source
 
 kubectl completion fish | source
 

@@ -1,24 +1,24 @@
-function fish_prompt # gets the error status of the last command and 
-  # updates the prompt symbol color with the indication
-  if test "$status" -ne "0"
-    set -gx ARROW "$ERROR"
-    set LAST_CMD_SUCCESS 0
-  else
-    set -gx ARROW "$SUCCESS"
-    set LAST_CMD_SUCCESS 1
-  end
+#function fish_prompt # gets the error status of the last command and 
+#  # updates the prompt symbol color with the indication
+#  if test "$status" -ne "0"
+#    set -gx ARROW "$ERROR"
+#    set LAST_CMD_SUCCESS 0
+#  else
+#    set -gx ARROW "$SUCCESS"
+#    set LAST_CMD_SUCCESS 1
+#  end
 
 #   print_user
 #   print_host
-  print_date 
-  pretty_path 
-  get_branch
-  print_prompt
-  if test "$LAST_CMD_SUCCESS" -ne 0
+#  print_date 
+#  pretty_path 
+#  get_branch
+#  print_prompt
+#  if test "$LAST_CMD_SUCCESS" -ne 0
     # don't commit errant commands to history
-    copy_history
-  end
-end
+    #    copy_history
+    #  end
+    #end
 
 function print_prompt
   echo -e (set_color $ARROW)"\n❯ "(set_color normal)

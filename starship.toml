@@ -1,0 +1,40 @@
+
+format = """
+$time\
+$directory\
+$kubernetes\
+$python\
+$helm\
+$terraform\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$line_break\
+$shell\
+$character"""
+
+[python]
+format = '[$symbol($virtualenv $version )]($style)'
+
+[terraform]
+format = '[$symbol($version )]($style)'
+
+[helm]
+format = '[$symbol($version )]($style)'
+
+[time]
+disabled = false
+time_format = '%T'
+format = '[$time UTC ]($style)'
+utc_time_offset = '0'
+
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style) '
+
+[kubernetes]
+format = '[⛵ ($cluster) ]($style)'
+disabled = false
+detect_folders = ['/Users/danwhite/src/alio/kube']
+
