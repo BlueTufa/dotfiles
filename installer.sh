@@ -79,6 +79,7 @@ if [[ $(uname) == "Darwin" ]]; then
   [[ -d ~/Library/KeyBindings/ ]] || mkdir -p ~/Library/KeyBindings/
   cp ./macos/Library/KeyBindings/DefaultKeyBinding.dict ~/Library/KeyBindings/
   fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher && fisher install edc/bass"
+  ln -sf $(pwd)/starship.toml ~/.config/starship.toml
 fi
 
 for file in fish/.{functions,exports,aliases,*$(uname)}
