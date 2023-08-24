@@ -24,6 +24,7 @@ alias diff='git diff --no-index'
 alias dk='docker'
 alias g='git'
 alias gst='git status'
+alias cd=z
 
 alias gwa='cd ~/src/$COMPANY/webapp'
 alias gwe='cd ~/src/$COMPANY/web-internal'
