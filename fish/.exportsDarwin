@@ -20,6 +20,7 @@ export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
 
 pyenv init - | source
 starship init fish | source
+zoxide init fish | source
 
 kubectl completion fish | source
 
