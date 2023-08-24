@@ -35,6 +35,4 @@ format = '[$symbol$branch(:$remote_branch)]($style) '
 
 [kubernetes]
 format = '[⛵ ($cluster) ]($style)'
-disabled = false
-detect_folders = ['/Users/danwhite/src/alio/kube']
 
