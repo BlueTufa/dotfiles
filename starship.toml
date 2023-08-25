@@ -3,6 +3,7 @@ format = """
 $time\
 $directory\
 $kubernetes\
+$nodejs\
 $python\
 $helm\
 $terraform\
@@ -36,3 +37,5 @@ format = '[$symbol$branch(:$remote_branch)]($style) '
 [kubernetes]
 format = '[⛵ ($cluster) ]($style)'
 
+[nodejs]
+format = '[$symbol($version)]($style) '

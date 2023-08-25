@@ -74,6 +74,7 @@ alias gws='cd ~/src/$COMPANY/portal-data-simulator-v2'
 alias gwe='cd ~/src/$COMPANY/web-internal'
 alias gwi='cd ~/src/$COMPANY/api-internal'
 alias gwk='cd ~/src/$COMPANY/kube'
+alias gwk-hp='cd ~/src/$COMPANY/kube/helm/portal'
 alias gwr='cd ~/src/$COMPANY/reads-processor'
 
 alias purge-remote-tags='git tag -l | xargs git push --delete origin' # dangerous
