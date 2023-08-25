@@ -25,6 +25,7 @@ function __check_cwd --on-event cwd --description="Inject directory specific beh
   go-nvm
   go-py
   go-env
+  go-codeartifact
 end
 
 function precheck-npm --description="Run pre-commit linting and formatting for node/TypeScript"
@@ -83,6 +84,13 @@ function go-py --description="Deactivate/activate virtual environment on enter a
     else
       echo "Empty pipenv found.  Run pipenv install --dev to activate it."
     end
+  end
+end
+
+function go-codeartifact --description="Auto-load code artifact environment variables"
+  if test -f codeartifact-login.sh; and test "$AWS_SESSION_TOKEN" != ""
+    source ./codeartifact-login.sh
+    echo "Set AWS CODE_ARTIFACT_AUTH_TOKEN"
   end
 end
 
