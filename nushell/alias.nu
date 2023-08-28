@@ -41,7 +41,7 @@ alias k = kubectl
 alias lc = lolcat
 def ll  [] { exa -aa -g --long --header --git }
 alias n = npm
-alias pe = printenv
+def pe [] { echo $env }
 # alias purge-remote-tags 'git tag -l | xargs git push --delete origin'
 # alias rg = 'rg -i --color=auto --colors=path:fg:yellow --colors=match:fg:green --hidden --no-ignore'
 def rm [...args: string] { trash -v $args }
