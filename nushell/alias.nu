@@ -4,7 +4,7 @@
 # alias .4 = 'cd ../../../..'
 # alias .5 = 'cd ../../../../..'
 # alias ag = 'ag -i --color --hidden --ignore={node_modules,build,package-lock.json}'
-alias cat = bat --theme=ansi
+def cat [...args: string] { bat --theme=ansi $args }
 alias clip = pbcopy
 alias dk = docker
 # alias ecr-login = 'aws ecr get-login-password | docker login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
