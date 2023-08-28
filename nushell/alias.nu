@@ -50,3 +50,15 @@ alias tf = terraform
 alias vi = nvim
 alias vim = nvim
 alias gwd = cd ~/src/
+
+def gpl [] { git pull --all --prune --tags }
+
+def ghb [] { 
+    ^open (
+        [
+            (^git remote get-url --push origin | ^sed 's/\.git$//g'), 
+            /tree/, 
+            (^git rev-parse --abbrev-ref HEAD)
+        ] | str join)
+
+}   
