@@ -50,5 +50,3 @@ alias tf = terraform
 alias vi = nvim
 alias vim = nvim
 alias gwd = cd ~/src/
-
-
