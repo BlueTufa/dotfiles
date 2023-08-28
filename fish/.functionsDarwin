@@ -90,7 +90,7 @@ end
 function go-codeartifact --description="Auto-load code artifact environment variables"
   if test -f codeartifact-login.sh; and test "$AWS_SESSION_TOKEN" != ""
     source ./codeartifact-login.sh
-    echo "Set AWS CODE_ARTIFACT_AUTH_TOKEN"
+    echo "AWS CODE_ARTIFACT_AUTH_TOKEN was set."
   end
 end
 
