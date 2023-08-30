@@ -27,12 +27,11 @@ kubectl completion fish | source
 export VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User/settings.json"
 
 # Everything below here kept for historical reasons
-# remember to remove if asdf isn't installed
 
 # set -gx FISH_THEME "jellybeans"
 # set -gx FISH_THEME "gruvbox"
 
-
+# remember to remove if asdf isn't installed
 # source /opt/homebrew/opt/asdf/libexec/asdf.fish
 
 # fish_add_path /usr/local/opt/python@3.7/bin
