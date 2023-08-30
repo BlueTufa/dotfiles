@@ -13,11 +13,11 @@ alias k = kubectl
 alias h = history
 alias gbr = git branch
 alias gcl = git clone
-# alias gd = git\\\ diff\\\ HEAD\\\ --\\\ \\\':!package-lock.json\\\'\\\ \\\':!Pipfile.lock\\\'
 alias gdd = cd ~/data
 alias gps = git push
 alias grep = ag
 alias gst = git status
+alias gd = git diff HEAD -- ':!package-lock.json' ':!Pipfile.lock'
 
 # alias gwa = 'cd ~/src/$COMPANY/webapp'
 alias gwdd = cd ~/src/dotfiles
