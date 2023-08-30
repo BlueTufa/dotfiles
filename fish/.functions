@@ -20,72 +20,70 @@
     #  end
     #end
 
-function print_prompt
-  echo -e (set_color $ARROW)"\n❯ "(set_color normal)
-end
+# function copy_history
+#   echo $history[1] | /usr/bin/grep -Ev '(^hh$|^sd|^l.$)' >> ~/.local/share/fish/hh.history
+# end
 
-function print_date
-  set TIME_ICON \uF017
-  set DATE_STRING (date -u '+%H:%M:%S')
+
+# function print_prompt
+#   echo -e (set_color $ARROW)"\n❯ "(set_color normal)
+# end
+
+# function print_date
+#   set TIME_ICON \uF017
+#   set DATE_STRING (date -u '+%H:%M:%S')
   
-  echo -n (set_color $DATE_COLOR)"$TIME_ICON $DATE_STRING UTC"
-end
+#   echo -n (set_color $DATE_COLOR)"$TIME_ICON $DATE_STRING UTC"
+# end
 
-function pretty_path
-  # by default, Fish shell does not print ~ for $HOME
-  set CWD (pwd | sed "s|^$HOME|~|g")
-  set HOME_ICON \uF07C
-  # Unicode thin-space char.  This one is worth bookmarking.
-  set THIN_SPACE \u2009
+# function pretty_path
+#   # by default, Fish shell does not print ~ for $HOME
+#   set CWD (pwd | sed "s|^$HOME|~|g")
+#   set HOME_ICON \uF07C
+#   # Unicode thin-space char.  This one is worth bookmarking.
+#   set THIN_SPACE \u2009
   
-  echo -n (set_color $PATH_COLOR)" $HOME_ICON $THIN_SPACE$CWD" 
-end
+#   echo -n (set_color $PATH_COLOR)" $HOME_ICON $THIN_SPACE$CWD" 
+# end
 
-function print_host
-  set HOST_STRING (echo $hostname | cut -f1 -d".")
-  echo -n (set_color $HOST_COLOR)"$HOST_STRING "
-end
+# function print_host
+#   set HOST_STRING (echo $hostname | cut -f1 -d".")
+#   echo -n (set_color $HOST_COLOR)"$HOST_STRING "
+# end
 
-function print_user
-  echo -n (set_color $USER_COLOR)"$USER@"
-end
+# function print_user
+#   echo -n (set_color $USER_COLOR)"$USER@"
+# end
 
-
-function copy_history
-  echo $history[1] | /usr/bin/grep -Ev '(^hh$|^sd|^l.$)' >> ~/.local/share/fish/hh.history
-end
-
-function get_branch --description="Get the current git branch information, if present"
-  set branch_indicator \uF126
-  set local_changes_indicator \uF01B
-  set remote_changes_indicator \uF01A
-  set small_circle \u26AC
+# function get_branch --description="Get the current git branch information, if present"
+#   set branch_indicator \uF126
+#   set local_changes_indicator \uF01B
+#   set remote_changes_indicator \uF01A
+#   set small_circle \u26AC
   
-  set branch_name (git rev-parse --abbrev-ref HEAD 2> /dev/null)
-  if test "$branch_name" != ""
-    # /dev/null prevents nonsensical errors when you are on directories not tracked by git.
-    if test (git status --porcelain 2> /dev/null | wc -l) -eq 0
-      set indicator ""
-    else
-      set indicator "$local_changes_indicator"
-    end
+#   set branch_name (git rev-parse --abbrev-ref HEAD 2> /dev/null)
+#   if test "$branch_name" != ""
+#     # /dev/null prevents nonsensical errors when you are on directories not tracked by git.
+#     if test (git status --porcelain 2> /dev/null | wc -l) -eq 0
+#       set indicator ""
+#     else
+#       set indicator "$local_changes_indicator"
+#     end
     
-    echo -n (set_color $GIT_COLOR)" $branch_indicator$indicator $branch_name"
-  end
-end
+#     echo -n "(set_color $GIT_COLOR) $branch_indicator$indicator $branch_name"
+#   end
+# end
 
 function gpl --description="Auto prune and merge latest for the current branch"
   git pull --all --prune --tags
 end
 
-# these next 3 are very useful but currently only work from the root of the git repo
 function ghb --description="Calculate and attempt to open a GitHub URL for the current branch"
   set URL (git remote get-url --push origin | sed 's/\.git$//g')/tree/(git rev-parse --abbrev-ref HEAD)
   echo "launching url $url..."
   if test (uname) = "Linux"
     xdg-open $URL
   else
-    # This will definitely work on Darwin, somewhere else maybe?  xdg-open doesn't seem like the best default
     open $URL
   end
 end

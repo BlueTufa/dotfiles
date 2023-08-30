@@ -1,5 +1,5 @@
 # Opens in an OS window, either the current working directory, or the object(s) passed as arguments
-function o --description='Open a given command as OS-native, or open the current working directory in an os-native browser'
+function o --description="Open a given command as OS-native, or open the current working directory in an os-native browser"
   if test "$argv" = ""
     open $PWD
   else

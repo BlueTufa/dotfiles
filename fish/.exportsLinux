@@ -4,5 +4,3 @@ export MOZ_ENABLE_WAYLAND=1
 export TERM=xterm-256color
 # export FISH_THEME=gruvbox
 
-set --universal fish_user_paths $fish_user_paths /usr/lib/idea/bin
-

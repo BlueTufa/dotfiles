@@ -1,6 +1,8 @@
 # Darwin version of clipboard from command line
 alias clip='pbcopy'
 
+alias cd=z
+
 # shell aliases
 # keep them in alpha sort
 
@@ -20,28 +22,36 @@ alias wstorm="open /Applications/WebStorm.app"
 
 # dev aliass
 alias awsls='aws --endpoint=http://localhost:4566'
-alias diff='git diff --no-index'
-alias dk='docker'
-alias g='git'
-alias gst='git status'
-alias cd=z
-
-alias gwa='cd ~/src/$COMPANY/webapp'
-alias gwe='cd ~/src/$COMPANY/web-internal'
-alias gwm='cd ~/src/$COMPANY/api-manufacturing'
-alias gwp='cd ~/src/$COMPANY/api-portal'
-alias gws='cd ~/src/$COMPANY/portal-data-simulator-v2'
-alias gwt='cd ~/src/$COMPANY/terraform/aws/ops'
-
-alias iso-date='date -u +"%Y-%m-%dT%H:%M:%SZ"'
-alias k='kubectl'
-alias tf='terraform'
-alias ncov='npm run coverage'
 alias purge-remote-tags='git tag -l | xargs git push --delete origin' # dangerous
 
 # AWS
 alias ecr-login='aws ecr get-login-password | docker login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
 alias helm-ecr-login='aws ecr get-login-password | helm registry login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
+
+# directory shortcut aliases
+alias gwd='cd ~/src/$COMPANY'
+alias gwa='cd ~/src/$COMPANY/webapp'
+alias gwe='cd ~/src/$COMPANY/web-internal'
+alias gwm='cd ~/src/$COMPANY/api-manufacturing'
+alias gwp='cd ~/src/$COMPANY/api-portal'
+alias gws='cd ~/src/$COMPANY/portal-data-simulator-v2'
+alias gwm='cd ~/src/$COMPANY/api-manufacturing'
+alias gwp='cd ~/src/$COMPANY/api-portal'
+alias gwa='cd ~/src/$COMPANY/webapp'
+alias gws='cd ~/src/$COMPANY/portal-data-simulator-v2'
+alias gwe='cd ~/src/$COMPANY/web-internal'
+alias gwi='cd ~/src/$COMPANY/api-internal'
+alias gwr='cd ~/src/$COMPANY/reads-processor'
+
+# ops shortcut aliases
+alias gwk='cd ~/src/$COMPANY/kube'
+alias gwk-hp='cd ~/src/$COMPANY/kube/helm/portal'
+alias gwt='cd ~/src/$COMPANY/terraform/aws/ops'
+alias gwt-gh='cd ~/src/$COMPANY/terraform/github/$COMPANY'
+alias gwt-dev='cd ~/src/$COMPANY/terraform/aws/dev/'
+alias gwt-ops='cd ~/src/$COMPANY/terraform/aws/ops/'
+
+alias iso-date='date -u +"%Y-%m-%dT%H:%M:%SZ"'
 
 # kept mostly for historical purposes
 
@@ -56,40 +66,8 @@ alias helm-ecr-login='aws ecr get-login-password | helm registry login --usernam
 # alias showallfiles="defaults write com.apple.finder AppleShowAllFiles YES"
 # does this work in latest MacoOS?
 # alias showrecovery="defaults write com.apple.DiskUtility DUDebugMenuEnabled 1"
-alias slack="open /Applications/Slack.app"
-alias sqlwb="open /Applications/DataGrip.app"
-alias wstorm="open /Applications/WebStorm.app"
 
-# dev aliass
-alias diff='git diff --no-index'
-alias dk='docker'
-alias g='git'
-alias gst='git status'
-alias k='kubectl'
-
-alias gwm='cd ~/src/$COMPANY/api-manufacturing'
-alias gwp='cd ~/src/$COMPANY/api-portal'
-alias gwa='cd ~/src/$COMPANY/webapp'
-alias gws='cd ~/src/$COMPANY/portal-data-simulator-v2'
-alias gwe='cd ~/src/$COMPANY/web-internal'
-alias gwi='cd ~/src/$COMPANY/api-internal'
-alias gwk='cd ~/src/$COMPANY/kube'
-alias gwk-hp='cd ~/src/$COMPANY/kube/helm/portal'
-alias gwr='cd ~/src/$COMPANY/reads-processor'
-
-alias purge-remote-tags='git tag -l | xargs git push --delete origin' # dangerous
-alias awsls='aws --endpoint=http://localhost:4566'
-alias gwt='cd ~/src/$COMPANY/terraform'
-alias gwt-gh='cd ~/src/$COMPANY/terraform/github/$COMPANY'
-alias gwt-dev='cd ~/src/$COMPANY/terraform/aws/dev/'
-alias gwt-ops='cd ~/src/$COMPANY/terraform/aws/ops/'
-alias tf='terraform'
-alias ncov='npm run coverage'
-
-# AWS
-alias ecr-login='aws ecr get-login-password | docker login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
-alias helm-ecr-login='aws ecr get-login-password | helm registry login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
-
+# java and networking
 # alias jcz='mvn clean install -DskipITs'
 # alias jcc='mvn -DskipTests -DskipITs compile package install'
 # alias kismet='open -a /Applications/KisMac2.app'
