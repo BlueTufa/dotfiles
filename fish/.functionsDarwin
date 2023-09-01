@@ -54,6 +54,7 @@ function env-up
   # no args, then start in daemon mode
   # else, use whatever args are passed in
   if test "$argv" = ""
+    docker-compose build
     docker-compose up -d
   else
     docker-compose up $argv
