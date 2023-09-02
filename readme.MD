@@ -82,6 +82,10 @@ If you find a bug and it's obvious, please just open a PR.  If you find a bug an
 I am very welcoming to feedback and I constantly learn from the community and from other peoples' approaches to these common problems.  If you see something that looks odd, or is harder than it should be please let me know, and feel free to open PR's against this branch.  It would be much appreciated.  
 
 ### Security
+A great deal of effort has been made to omit any personally identifiable information, as well as employer names, project names, user id's or even public keys.
+
+It is possible to store secrets by adding a new suffix to any of the file types you don't want checked in.  For example, `.aliasesLocal` or `.exportsLocal` under `~/.config/fish`.  These files will be imported by the `fish` pattern matching scheme.
+
 If you discover anything that is of a privacy or security concern please report it immediately as it's not just my well-being but a concern of others who might fork or use these files.  Use the [Issue tracker](https://github.com/BlueTufa/dotfiles/issues) or contact mailto:github@bluetufa.com.  I also bothered to set up a security policy [here](https://github.com/BlueTufa/dotfiles/security).
 
 Thanks for looking!
