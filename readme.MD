@@ -37,23 +37,11 @@ If you want to use p10k in zsh on Mac, you are going to need to make sure you us
 brew cask install font-meslo-lg-nerd-font
 ```
 
-### Kitty 
-I have been using Kitty as my default terminal lately and other than some minor annoyances with ssh, it's a win.  Kitty is also configuration file based in a much more practical way than iTerm2.  If you choose to use that combination you'll get a default configuration by way of the symlink to `~/.config/kitty/kitty.conf`.    The great thing about the Kitty and Code New Roman font combination is that it works extremely well across multiple Linux distributions as well as MacOS, with great glyph support.  
-
-> The commands below will establish Kitty and Code New Roman on Mac, which work in tandem with the symlinked `~/.config/kitty/kitty.conf`.  If you are running on Linux then you still get the symlink, but the package manager install commands will vary wildly based on the distribution, so that will have to be out of the scope of this README.  TLDR: do the equivalent of the command below for your Linux distro and everything might just work.  
-
-#### Preferred font (kitty terminal)
-```bash
-# Note that you may need to run `brew tap homebrew/cask-fonts` first
-brew cask install kitty
-brea cask install font-codenewroman-nerd-font
-```
-
 ### Cross-platform fonts and terminal support
 I am currently able to use the Code New Roman font across both platforms with the Kitty terminal with minimal changes to the config file.  I had to resize the font slightly for Linux, but that's it.  I also find the user experience and readability with Kitty on Linux to be slightly better with some background transparency.  So I set the `background_opacity: 0.9` on Linux only.  
   
 ### Neovim support
-This directory includes a basic neovim configuration as well.  If you run `./installer.sh` it will automatically symlink neovim's init.vim and install vim-plug for you.   
+This project includes a basic neovim configuration.  If you run `./installer.sh` it will automatically symlink neovim's init.vim and install vim-plug for you.   
 
 Or, if you prefer not to run the symlinking and still want to use the init.vim, remember to install vim-plug manually:
   `curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
@@ -64,7 +52,6 @@ The following are included in init.vim with customizations:
 * coc.nvim 
 * Nerdtree
 * Airline
-* https://scalameta.org/metals/docs/editors/vim.html integrated with coc.nvim.
 * Terminal support.
 
 ### For linux users, I've also recently added random config files for the following:
@@ -82,9 +69,6 @@ It makes sense to consolidate notes on multi-platform issues in a global locatio
 - [Cheat Sheet](tech_cheat_sheet.MD)
 - [QMK Firmware](qmk_notes.MD)
 - [Rust](rust_notes.MD)
-
-### Unlimited Bonus Points Edition
-What are the odds that you found these dotfiles, and also have a programmable keyboards that uses the QMK firmware?  Well in that case welcome to the unlimited bonus points edition (TM).  Check here for more details: https://github.com/qmk/qmk_firmware/tree/master/users/badger.  I have contributed multi-platform support and new layouts for Preonic, 1up 60 RGB, Clueboard 66 and more.  One of the key design goals of my layouts is to have each key sequence provide a similar feature parity between both Linux and MacOS via a static OS-specific `MOVE` layer.  
 
 ### Thoughts on sharing dotfiles
 Dotfiles are a highly personal thing and will vary based on an individual, their current job role and daily workflow.  I am mostly sharing these because I want to share, and I've had a lot of requests over the years for, "how did you get x,y,z to work."  I fully expect people to use them more for ideas than as a complete solution.  But if you manage to pull off the latter then let's go have a beer and talk about what you're working on.   
