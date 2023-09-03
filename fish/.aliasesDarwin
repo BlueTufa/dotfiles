@@ -42,6 +42,7 @@ alias gws='cd ~/src/$COMPANY/portal-data-simulator-v2'
 alias gwe='cd ~/src/$COMPANY/web-internal'
 alias gwi='cd ~/src/$COMPANY/api-internal'
 alias gwr='cd ~/src/$COMPANY/reads-processor'
+alias gwpp='cd ~/src/$COMPANY/packet-parser'
 
 # ops shortcut aliases
 alias gwk='cd ~/src/$COMPANY/kube'
