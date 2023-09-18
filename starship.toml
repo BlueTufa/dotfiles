@@ -32,7 +32,11 @@ time_format = '%T'
 format = '[$time UTC ]($style)'
 utc_time_offset = '0'
 
+[directory]
+style = '#3399FF bold'
+
 [git_branch]
+style = '#a37acc bold'
 format = '[$symbol$branch(:$remote_branch)]($style) '
 
 [kubernetes]
@@ -43,3 +47,4 @@ format = '[$symbol($version)]($style) '
 
 [rust]
 format = '[🦀 $version](red bold) '
+
