@@ -86,6 +86,10 @@ function go-py --description="Deactivate/activate virtual environment on enter a
       echo "Empty pipenv found.  Run pipenv install --dev to activate it."
     end
   end
+  if test -f pyproject.toml; and test -f poetry.lock
+    # this is a slight hack.  poetry env use doesn't seem to source fish shell
+    source (poetry env use python | sed 's/Using virtualenv\: //g')/bin/activate.fish
+  end
 end
 
 function go-codeartifact --description="Auto-load code artifact environment variables"
