@@ -87,7 +87,8 @@ function go-py --description="Deactivate/activate virtual environment on enter a
     end
   end
   if test -f pyproject.toml; and test -f poetry.lock
-    poetry env use python
+    # this is a slight hack.  poetry env use doesn't seem to source fish shell
+    source (poetry env use python | sed 's/Using virtualenv\: //g')/bin/activate.fish
   end
 end
 
