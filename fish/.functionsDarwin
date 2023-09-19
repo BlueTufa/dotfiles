@@ -86,6 +86,9 @@ function go-py --description="Deactivate/activate virtual environment on enter a
       echo "Empty pipenv found.  Run pipenv install --dev to activate it."
     end
   end
+  if test -f pyproject.toml; and test -f poetry.lock
+    poetry env use python
+  end
 end
 
 function go-codeartifact --description="Auto-load code artifact environment variables"
