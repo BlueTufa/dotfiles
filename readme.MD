@@ -4,10 +4,12 @@
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/BlueTufa/dotfiles)
 
 ## Contents
-A comprensive collection of Fish (Friendly Interactive Shell) and ZSH dotfiles which will allow a quick and easy customization of Fish or Zsh on a new install or an existing system.  This configuration will generally work cross-platform betwen MacOS and Linux, although you may encounter minor bugs on either.  
+A comprensive collection of [fish](https://fishshell.com/), [Nushell](https://www.nushell.sh/), and zsh dotfiles which will allow a quick and easy customization of fish or zsh on a new install or an existing system.  This configuration is intended to work cross-platform betwen MacOS and Linux, although Linux compatibility will vary widely.  
 
 ### Symlinking dotfiles
-You can symlink your dotfiles from this repo into the home directory by running the [installer.sh](installer.sh) file at the root of this repository.  Linking your dotfiles will first attempt to make backups of any existing dotfiles before establishing the link, but it is recommended that some prep work be done - such as a full backup - to be confident that you won't lose anything.
+This solution works on the concept of symlinking dotfiles from a git repository into their respective configuration locations on the target operating system.  This allows the files to be maintained in version control in a uniform way across multiple systems.
+
+You can symlink your dotfiles from this repo into the home directory by running the [installer.sh](installer.sh) file at the root of this repository.  Linking your dotfiles will first attempt to make backups of any existing dotfiles before establishing the link, but it is always recommended that some prep work be done - such as a full backup - to be confident that you won't lose anything.
 
 #### Known issues with symlinking:
 * It is recommended that if you want to use the .gitconfig sample file, to make a fork of this repo and update the GitHub account info to your own in your repo.  Then you can symlink your .gitconfig across environments without having to constantly update the account info.  
