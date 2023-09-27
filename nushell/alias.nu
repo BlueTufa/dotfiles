@@ -46,7 +46,7 @@ alias vi = nvim
 alias vim = nvim
 alias gwd = cd ~/src/
 
-def ll  [] { exa -aa -g --long --header --git }
+def ll  [] { eza -aa -g --long --header --git }
 
 def cat [...args: string] { bat --theme=ansi $args }
 
