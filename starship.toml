@@ -17,6 +17,8 @@ $line_break\
 $shell\
 $character"""
 
+command_timeout = 1000
+
 [python]
 format = '[$symbol($virtualenv $version )]($style)'
 
