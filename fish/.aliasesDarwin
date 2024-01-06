@@ -29,8 +29,9 @@ alias ecr-login='aws ecr get-login-password | docker login --username AWS --pass
 alias helm-ecr-login='aws ecr get-login-password | helm registry login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
 
 # directory shortcut aliases
-alias gwd='cd ~/src/rg'
-alias gwds='cd ~/src/rg/product-ds'
+alias gwd='cd ~/src/$COMPANY'
+alias gwds='cd ~/src/$COMPANY/product-ds'
+alias gwdu='cd ~/src/$COMPANY/ds-utils'
 
 # ops shortcut aliases
 alias gt='cd ~/src/$COMPANY/terraform'
