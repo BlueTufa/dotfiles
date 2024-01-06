@@ -20,7 +20,7 @@ alias sqlwb="open /Applications/DataGrip.app"
 alias xbrew='arch -x86_64 /usr/local/bin/brew'
 alias wstorm="open /Applications/WebStorm.app"
 
-# dev aliass
+# dev aliases
 alias awsls='aws --endpoint=http://localhost:4566'
 alias purge-remote-tags='git tag -l | xargs git push --delete origin' # dangerous
 
@@ -29,29 +29,18 @@ alias ecr-login='aws ecr get-login-password | docker login --username AWS --pass
 alias helm-ecr-login='aws ecr get-login-password | helm registry login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
 
 # directory shortcut aliases
-alias gwd='cd ~/src'
-alias gwc='cd ~/src/$COMPANY'
-alias gwa='cd ~/src/$COMPANY/webapp'
-alias gwe='cd ~/src/$COMPANY/web-internal'
-alias gwm='cd ~/src/$COMPANY/api-manufacturing'
-alias gwp='cd ~/src/$COMPANY/api-portal'
-alias gws='cd ~/src/$COMPANY/portal-data-simulator-v2'
-alias gwm='cd ~/src/$COMPANY/api-manufacturing'
-alias gwp='cd ~/src/$COMPANY/api-portal'
-alias gwa='cd ~/src/$COMPANY/webapp'
-alias gws='cd ~/src/$COMPANY/portal-data-simulator-v2'
-alias gwe='cd ~/src/$COMPANY/web-internal'
-alias gwi='cd ~/src/$COMPANY/api-internal'
-alias gwr='cd ~/src/$COMPANY/reads-processor'
-alias gwpp='cd ~/src/$COMPANY/packet-parser'
+alias gwd='cd ~/src/$COMPANY'
+alias gwds='cd ~/src/$COMPANY/product-ds'
+alias gwdu='cd ~/src/$COMPANY/ds-utils'
 
 # ops shortcut aliases
-alias gwk='cd ~/src/$COMPANY/kube'
-alias gwk-hp='cd ~/src/$COMPANY/kube/helm/portal'
-alias gwt='cd ~/src/$COMPANY/terraform/aws/ops'
-alias gwt-gh='cd ~/src/$COMPANY/terraform/github/$COMPANY'
-alias gwt-dev='cd ~/src/$COMPANY/terraform/aws/dev/'
-alias gwt-ops='cd ~/src/$COMPANY/terraform/aws/ops/'
+alias gt='cd ~/src/$COMPANY/terraform'
+alias gt-gh='cd ~/src/$COMPANY/terraform/github'
+alias gtd='cd ~/src/$COMPANY/terraform/aws/dev'
+alias gts='cd ~/src/$COMPANY/terraform/aws/staging'
+alias gtp='cd ~/src/$COMPANY/terraform/aws/prod'
+alias gto1='cd ~/src/$COMPANY/terraform/aws/ops/us-east-1'
+alias gto2='cd ~/src/$COMPANY/terraform/aws/ops/us-west-2'
 
 alias iso-date='date -u +"%Y-%m-%dT%H:%M:%SZ"'
 
