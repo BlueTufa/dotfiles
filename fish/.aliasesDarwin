@@ -3,9 +3,6 @@ alias clip='pbcopy'
 
 alias cd=z
 
-# shell aliases
-# keep them in alpha sort
-
 # aliases for gui mode apps
 # NOTE: may need to add -f after -g any time you want to block from the CLI
 alias actmon="open $MAC_APP_PATH/Utilities/Activity\ Monitor.app"
@@ -13,18 +10,16 @@ alias calc="open $MAC_APP_PATH/Calculator.app"
 alias console="open $MAC_APP_PATH/Utilities/Console.app"
 alias gdu="open $MAC_APP_PATH/Utilities/Disk\ Utility.app"
 alias prefs="open $MAC_APP_PATH/System\ Preferences.app"
-alias ij="open -a /Applications/IntelliJ\ IDEA.app"
 alias pup='pup -c'
 alias slack="open /Applications/Slack.app"
 alias sqlwb="open /Applications/DataGrip.app"
 alias xbrew='arch -x86_64 /usr/local/bin/brew'
-alias wstorm="open /Applications/WebStorm.app"
 
 # dev aliases
-alias awsls='aws --endpoint=http://localhost:4566'
 alias purge-remote-tags='git tag -l | xargs git push --delete origin' # dangerous
 
 # AWS
+alias awsls='aws --endpoint=http://localhost:4566'
 alias ecr-login='aws ecr get-login-password | docker login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
 alias helm-ecr-login='aws ecr get-login-password | helm registry login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
 
@@ -44,14 +39,7 @@ alias gto2='cd ~/src/$COMPANY/terraform/aws/ops/us-west-2'
 
 alias iso-date='date -u +"%Y-%m-%dT%H:%M:%SZ"'
 
-# kept mostly for historical purposes
-
-# alias pych="open /Applications/PyCharm.app"
-# alias rmine="open /Applications/RubyMine.app"
-# alias r="rails"
-# alias sed='gsed' # use GNU sed instead of Apple sed.
-# alias typ="open /Applications/Typora.app"
-
+# below here kept mostly for historical purposes
 # same as CMD+SHIFT+. except it is persistent and requires a launcher restart
 # alias noshowallfiles="defaults write com.apple.finder AppleShowAllFiles NO"
 # alias showallfiles="defaults write com.apple.finder AppleShowAllFiles YES"

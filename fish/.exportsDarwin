@@ -23,12 +23,11 @@ starship init fish | source
 zoxide init fish | source
 rustup completions fish | source
 
-kubectl completion fish | source
+# kubectl completion fish | source
 
 export VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User/settings.json"
 
 # Everything below here kept for historical reasons
-
 # set -gx FISH_THEME "jellybeans"
 # set -gx FISH_THEME "gruvbox"
 
