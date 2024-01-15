@@ -8,7 +8,7 @@ alias cd=z
 alias actmon="open $MAC_APP_PATH/Utilities/Activity\ Monitor.app"
 alias calc="open $MAC_APP_PATH/Calculator.app"
 alias console="open $MAC_APP_PATH/Utilities/Console.app"
-alias gdu="open $MAC_APP_PATH/Utilities/Disk\ Utility.app"
+# alias gdu="open $MAC_APP_PATH/Utilities/Disk\ Utility.app"
 alias prefs="open $MAC_APP_PATH/System\ Preferences.app"
 alias pup='pup -c'
 alias slack="open /Applications/Slack.app"
@@ -16,17 +16,22 @@ alias sqlwb="open /Applications/DataGrip.app"
 alias xbrew='arch -x86_64 /usr/local/bin/brew'
 
 # dev aliases
-alias purge-remote-tags='git tag -l | xargs git push --delete origin' # dangerous
+alias purge-remote-tags='git tag -l | xargs git push --delete origin' # dangerous, but helpful
 
 # AWS
 alias awsls='aws --endpoint=http://localhost:4566'
 alias ecr-login='aws ecr get-login-password | docker login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
-alias helm-ecr-login='aws ecr get-login-password | helm registry login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
 
 # directory shortcut aliases
-alias gwd='cd ~/src/$COMPANY'
-alias gwds='cd ~/src/$COMPANY/product-ds'
-alias gwdu='cd ~/src/$COMPANY/ds-utils'
+alias jd='cd ~/src/$COMPANY'
+alias jdb='cd ~/src/$COMPANY/backend-api'
+alias jdf='cd ~/src/$COMPANY/front-end'
+alias jdi='cd ~/src/$COMPANY/integrations-api'
+alias jdm='cd ~/src/$COMPANY/ds-utils'
+alias jdp='cd ~/src/$COMPANY/data-pipeline'
+alias jdr='cd ~/src/$COMPANY/real-time-api'
+alias jds='cd ~/src/$COMPANY/product-ds'
+alias jdu='cd ~/src/$COMPANY/data-utils'
 
 # ops shortcut aliases
 alias gt='cd ~/src/$COMPANY/terraform'
@@ -34,12 +39,15 @@ alias gt-gh='cd ~/src/$COMPANY/terraform/github'
 alias gtd='cd ~/src/$COMPANY/terraform/aws/dev'
 alias gts='cd ~/src/$COMPANY/terraform/aws/staging'
 alias gtp='cd ~/src/$COMPANY/terraform/aws/prod'
-alias gto1='cd ~/src/$COMPANY/terraform/aws/ops/us-east-1'
-alias gto2='cd ~/src/$COMPANY/terraform/aws/ops/us-west-2'
+alias gt-oe1='cd ~/src/$COMPANY/terraform/aws/ops/us-east-1'
+alias gt-oe2='cd ~/src/$COMPANY/terraform/aws/ops/us-east-2'
+alias gt-ow2='cd ~/src/$COMPANY/terraform/aws/ops/us-west-2'
 
 alias iso-date='date -u +"%Y-%m-%dT%H:%M:%SZ"'
 
 # below here kept mostly for historical purposes
+# alias helm-ecr-login='aws ecr get-login-password | helm registry login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
+
 # same as CMD+SHIFT+. except it is persistent and requires a launcher restart
 # alias noshowallfiles="defaults write com.apple.finder AppleShowAllFiles NO"
 # alias showallfiles="defaults write com.apple.finder AppleShowAllFiles YES"

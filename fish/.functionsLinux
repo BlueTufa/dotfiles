@@ -1,9 +1,9 @@
-function o
-  # the crappy Linux version of open in OS window
-  dbus-launch dolphin (pwd) > /dev/null & 
-end
+# kept for historical reasons
+# function o
+#  # the crappy Linux version of open in OS window
+#  dbus-launch dolphin (pwd) > /dev/null & 
+# end
 
-function ied
-  intellij-idea-community $argv &
-end
-
+# function ied
+#   intellij-idea-community $argv &
+# end

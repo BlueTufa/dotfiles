@@ -33,7 +33,6 @@ make-backup () {
 mkdir -p ~/src/bin
 mkdir -p ~/.config/fish
 mkdir -p ~/.config/nvim
-mkdir -p ~/.config/kitty
 
 # comment this out if you don't want to use oh-my-zsh or zsh support
 # [[ -d ~/.oh-my-zsh ]] || install-oh-my-zsh
@@ -50,30 +49,7 @@ ln -sf $(pwd)/fish/config.fish ~/.config/fish/config.fish
 ln -sf $(pwd)/nvim/init.vim ~/.config/nvim/init.vim
 ln -sf $(pwd)/zsh/.p10k.zsh ~/.p10k.zsh
 
-if [[ $(uname -v | grep 'Debian') ]]; then
-  echo 'Attempting to install baseline dependencies for cli support on Debian'
-  sudo ./debian/client-dependencies.sh
-fi
-
 touch ~/.hushlogin
-
-if [[ $(uname) == "Linux" ]]; then
-  mkdir -p ~/.config/alacritty
-  mkdir -p ~/.config/sway/scripts
-  mkdir -p ~/.config/mpd
-  mkdir -p ~/.ncmpcpp
-  mkdir -p ~/.config/waybar
-  mkdir -p ~/.config/wofi
-  ln -sf $(pwd)/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
-  ln -sf $(pwd)/sway/config ~/.config/sway/config
-  ln -sf $(pwd)/sway/scripts/sway-launcher-desktop.sh ~/.config/sway/scripts/sway-launcher-desktop.sh
-  ln -sf $(pwd)/mpd/mpd.conf ~/.config/mpd/mpd.conf
-  ln -sf $(pwd)/.ncmpcpp/config ~/.ncmpcpp/config
-  ln -sf $(pwd)/waybar/config ~/.config/waybar/config
-  ln -sf $(pwd)/waybar/executable_mediaplayer.sh ~/.config/waybar/executable_mediaplayer.sh
-  ln -sf $(pwd)/waybar/style.css ~/.config/waybar/style.css
-  ln -sf $(pwd)/wofi/style.css ~/.config/wofi/style.css
-fi 
 
 if [[ $(uname) == "Darwin" ]]; then
   [[ -d ~/Library/KeyBindings/ ]] || mkdir -p ~/Library/KeyBindings/
