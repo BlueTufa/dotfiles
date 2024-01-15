@@ -5,8 +5,8 @@
   branch = auto
 [core]
   whitespace = fix,-indent-with-non-tab,trailing-space
-  editor = vim
-  pager = diff-so-fancy | less --tabs=4 -RFX
+  editor = nvim
+  pager = delta
   excludesfile = # TODO full path to .gitignore_global
 [user]
   name = # TODO
@@ -22,17 +22,21 @@
   ps = push
   a = add
   l = log --pretty=oneline -n 20 --graph --abbrev-commit
+    ll = log --pretty=oneline -n 100 --graph --abbrev-commit
   sh = stash
   df = diff 
   cl = clone
-  scorch = clean -dfX
+  scorch = clean -dfX -e .idea
   squash = rebase --interactive -S
   patch = apply --reject --whitespace=fix
 [pager]
-  diff = diff-so-fancy | less --tabs=1,5 -RFX
-  show = diff-so-fancy | less --tabs=1,5 -RFX
+  diff = delta 
+  show = delta
 [push]
   default = simple
+  autoSetupRemote = true
+[pull]
+  rebase = false
 [filter "lfs"]
   required = true
   process = git-lfs filter-process
@@ -58,3 +62,31 @@
   helper = store
 [pull]
   rebase = false
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[delta]
+  line-numbers = true
+  dark = true
+  hyperlinks = true
+  hyperlinks-file-link-format = "vscode://file/{path}:{line}"
+  # features = unobtrusive-line-numbers decorations
+  features = decorations
+  whitespace-error-style = 22 reverse
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+   line-numbers-minus-style = "#fb4934"
+   line-numbers-zero-style = white
+   line-numbers-plus-style = "#86B300"
+  # hunk-header-decoration-style = none
+  # hunk-header-line-number-style = none
+  hunk-header-style = omit
+  minus-style = "#fbf1c7" "#cc241d"
+  plus-style = "#ebdbb2" "#749100"
+  zero-style = white
+
