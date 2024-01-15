@@ -15,6 +15,7 @@ alias kc='kubectl -n dev'
 alias less='bat --theme=ansi'
 alias grep='rg'
 alias ag='ag -i --color --hidden --ignore={node_modules,build,package-lock.json}'
+# search everything, case-insensitive
 alias rg='rg -i --color=auto --colors=path:fg:yellow --colors=match:fg:green --hidden --no-ignore'
 alias lr='fd -aH -t f'
 alias lc='lolcat'
