@@ -41,7 +41,7 @@ export VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User/settings.jso
 # set -g fish_user_paths "$JAVA_HOME/bin" "/usr/local/sbin" 
 
 # /usr/libexec/java_home -V to list versions
-# set -gx JAVA_HOME (/usr/libexec/java_home)
+set -gx JAVA_HOME (/usr/libexec/java_home)
 # set -gx JAVA_HOME '/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
 # set -gx JAVA_HOME (/usr/libexec/java_home -v11.0.11)
 # set -gx LIQUIBASE_HOME /usr/local/opt/liquibase/libexec  
