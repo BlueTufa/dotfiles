@@ -1,7 +1,7 @@
 # Darwin version of clipboard from command line
 alias clip='pbcopy'
 
-alias cd=z
+# alias cd=z
 
 # aliases for gui mode apps
 # NOTE: may need to add -f after -g any time you want to block from the CLI
@@ -22,26 +22,16 @@ alias purge-remote-tags='git tag -l | xargs git push --delete origin' # dangerou
 alias awsls='aws --endpoint=http://localhost:4566'
 alias ecr-login='aws ecr get-login-password | docker login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
 
-# directory shortcut aliases
-alias gwd='cd ~/src/$COMPANY'
-alias gwb='cd ~/src/$COMPANY/backend-api'
-alias gwf='cd ~/src/$COMPANY/front-end'
-alias gwi='cd ~/src/$COMPANY/integrations-api'
-alias gws='cd ~/src/$COMPANY/ds-utils'
-alias gww='cd ~/src/$COMPANY/data-pipeline'
-alias gwr='cd ~/src/$COMPANY/real-time-api'
-alias gwp='cd ~/src/$COMPANY/product-ds'
-alias gwu='cd ~/src/$COMPANY/data-utils'
-alias pop='cd (pwd)'
-
 # ops shortcut aliases
-alias gwt='cd ~/src/$COMPANY/terraform'
-alias gwt-gh='cd ~/src/$COMPANY/terraform/github'
-alias gwt-d='cd ~/src/$COMPANY/terraform/aws/dev'
-alias gwt-p='cd ~/src/$COMPANY/terraform/aws/prod'
-alias gwt-oe1='cd ~/src/$COMPANY/terraform/aws/ops/us-east-1'
-alias gwt-oe2='cd ~/src/$COMPANY/terraform/aws/ops/us-east-2'
-alias gwt-ow2='cd ~/src/$COMPANY/terraform/aws/ops/us-west-2'
+alias gwd='cd ~/src/$COMPANY2/'
+alias gt='cd ~/src/$COMPANY2/terraform'
+alias gt-gh='cd ~/src/$COMPANY2/terraform/github'
+alias gtd='cd ~/src/$COMPANY2/terraform/aws/dev'
+alias gts='cd ~/src/$COMPANY2/terraform/aws/staging'
+alias gtp='cd ~/src/$COMPANY2/terraform/aws/prod'
+alias gt-oe1='cd ~/src/$COMPANY2/terraform/aws/ops/us-east-1'
+alias gt-oe2='cd ~/src/$COMPANY2/terraform/aws/ops/us-east-2'
+alias gt-ow2='cd ~/src/$COMPANY2/terraform/aws/ops/us-west-2'
 
 alias iso-date='date -u +"%Y-%m-%dT%H:%M:%SZ"'
 

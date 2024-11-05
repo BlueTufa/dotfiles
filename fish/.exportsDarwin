@@ -13,7 +13,7 @@ end
 
 # PyEnv
 set -Ux PYENV_ROOT $HOME/.pyenv
-set -U fish_user_paths /opt/homebrew/opt/openssl@3/bin $PYENV_ROOT/bin $fish_user_paths
+set -U fish_user_paths /opt/homebrew/opt/openssl@3/bin $PYENV_ROOT/bin $fish_user_paths $HOME/.local/bin
 
 export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
@@ -21,11 +21,14 @@ export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
 pyenv init - | source
 starship init fish | source
 zoxide init fish | source
-rustup completions fish | source
+# rustup completions fish | source
 
 # kubectl completion fish | source
 
 export VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User/settings.json"
+
+export LDFLAGS="-L$(brew --prefix openssl)/lib"
+export CPPFLAGS="-I$(brew --prefix openssl)/include"
 
 # Everything below here kept for historical reasons
 # set -gx FISH_THEME "jellybeans"
@@ -41,7 +44,7 @@ export VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User/settings.jso
 # set -g fish_user_paths "$JAVA_HOME/bin" "/usr/local/sbin" 
 
 # /usr/libexec/java_home -V to list versions
-set -gx JAVA_HOME (/usr/libexec/java_home)
+# set -gx JAVA_HOME (/usr/libexec/java_home)
 # set -gx JAVA_HOME '/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
 # set -gx JAVA_HOME (/usr/libexec/java_home -v11.0.11)
 # set -gx LIQUIBASE_HOME /usr/local/opt/liquibase/libexec  

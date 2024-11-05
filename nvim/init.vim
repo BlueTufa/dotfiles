@@ -27,7 +27,6 @@ Plug 'chrisbra/Colorizer'
 Plug 'elzr/vim-json'
 Plug 'ayu-theme/ayu-vim'
 Plug 'nanotech/jellybeans.vim'
-Plug 'bluetufa/gruvbox'
 Plug 'dag/vim-fish'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ryanoasis/vim-devicons'
@@ -44,14 +43,14 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let g:coc_disable_startup_warning = 1
 
 set termguicolors
-set background=dark
-" let ayucolor="mirage"
-colorscheme gruvbox
+let ayucolor="mirage"
+" colorscheme gruvbox
 " colorscheme dracula
 " colorscheme jellybeans
-"colorscheme tokyonight
+" colorscheme tokyonight
+colorscheme ayu
 
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 " let g:airline_theme='twofirewatch'
 
 :tnoremap <Esc> <C-\><C-n>

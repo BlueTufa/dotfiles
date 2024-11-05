@@ -17,7 +17,7 @@ function gen-machine-name --description="Generate a semi-ramdon machine name tha
 end
 
 function cd --description="Change current working directory"
-  builtin cd $argv
+  z $argv
   emit cwd
 end
 
