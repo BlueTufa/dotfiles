@@ -92,4 +92,4 @@ cask "iina"
 cask "istat-menus"
 cask "jordanbaird-ice"
 cask "rectangle"
-cask "stats"
+
