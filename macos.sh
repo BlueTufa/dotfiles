@@ -51,8 +51,13 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 15
 ###############################################################################
 
 # Never go into computer sleep or low power mode when on AC power
+# powermode = 0 auto
+# powermode = 1 low
+# powermode = 2 high
+# pmset -a = all, -b = battery, -c = charger
 sudo pmset -c sleep 0
-sudo pmset -a lowpowermode 0
+sudo pmset -b powermode 1
+sudo pmset -c powermode 2
 
 # Hibernation mode
 # 0: Disable hibernation (speeds up entering sleep mode)
