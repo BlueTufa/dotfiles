@@ -1,8 +1,6 @@
 # Darwin version of clipboard from command line
 alias clip='pbcopy'
 
-# alias cd=z
-
 # aliases for gui mode apps
 # NOTE: may need to add -f after -g any time you want to block from the CLI
 alias actmon="open $MAC_APP_PATH/Utilities/Activity\ Monitor.app"
