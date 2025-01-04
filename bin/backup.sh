@@ -18,4 +18,4 @@ cryptsetup status backup01
 [[ $? -eq 0 ]] || cryptsetup open /dev/disk/by-uuid/${DISK_UUID} backup01
 grep -qs '/dev/mapper/backup01' /proc/mounts
 [[ $? -eq 0 ]] || mount /dev/mapper/backup01 ${MOUNT_PATH}
-nohup rsync -aAXv / --exclude={"/var/*","/srv/*","/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} ${MOUNT_PATH} </dev/null
+nohup rsync -aAXHv / --exclude={"/var/*","/srv/*","/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} ${MOUNT_PATH} </dev/null

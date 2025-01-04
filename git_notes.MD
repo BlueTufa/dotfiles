@@ -11,6 +11,7 @@ git remote add upstream <path to upstream repo>
 ## Workflow for syncing an upstream fork
 ```bash
 git checkout <local branch name>
+git pull
 git fetch upstream <branch name>
 git merge upstream/<branch name>
 ```
