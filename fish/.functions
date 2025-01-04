@@ -123,11 +123,11 @@ function fish_greeting
   if test (uname) = "Darwin" 
     and test "$TERM_PROGRAM" = "iTerm.app"
     and test "$SSH_TTY" = ""
-      neofetch --iterm2 ~/src/dotfiles/assets/apple.png --size 450px
+      fastfetch --iterm ~/src/dotfiles/assets/alt-apple.png --logo-width 40
+      # neofetch --iterm2 ~/src/dotfiles/assets/apple.png --size 450px
   else if test (uname) = "Darwin" 
-    and test "$TERM" = "xterm-kitty"
     and test "$SSH_TTY" = ""
-      neofetch --kitty ~/src/dotfiles/assets/apple.png --size 450px
+      fastfetch
   else if test (uname) = "Linux"
     and test "$TERM" = "xterm-kitty"
     and test "$SSH_TTY" = ""
