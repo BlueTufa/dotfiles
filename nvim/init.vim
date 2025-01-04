@@ -39,6 +39,8 @@ Plug 'styled-components/vim-styled-components'
 Plug 'leafgarland/typescript-vim'
 call plug#end()
 
+set clipboard+=unnamedplus
+
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let g:coc_disable_startup_warning = 1
 
