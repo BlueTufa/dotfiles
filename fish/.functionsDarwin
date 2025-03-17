@@ -55,7 +55,7 @@ function env-up
   # else, use whatever args are passed in
   if test "$argv" = ""
     docker-compose build
-    docker-compose up -d
+    docker-compose up
   else
     docker-compose up $argv
   end
