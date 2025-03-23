@@ -1,4 +1,4 @@
-for file in ~/.config/fish/.{functions*,exports*,aliases*}
+for file in ~/.config/fish/.{functions*,exports*,aliases*,abbr*}
   if test -r $file
     source "$file"
   end
@@ -9,3 +9,4 @@ for file in ~/.config/fish/completions/*.fish
     source "$file"
   end
 end
+

@@ -1,6 +1,5 @@
 
-format = """
-$time\
+format = """$time\
 $directory\
 $kubernetes\
 $nodejs\
@@ -14,7 +13,6 @@ $git_state\
 $git_metrics\
 $git_status\
 $line_break\
-$shell\
 $character"""
 
 command_timeout = 1000

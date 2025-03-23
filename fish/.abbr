@@ -1,0 +1,25 @@
+abbr --add db-migrate-prod "run-ecs-task prod task-definition/database-migrations-task --cluster rg-us-e1-prod-web-cluster --network-configuration=\''awsvpcConfiguration={subnets=[subnet-0189c234c09672b16],securityGroups=[sg-0c925e447aa200420]}\''"
+abbr --add db-migrate-dev "run-ecs-task dev task-definition/database-migrations-task --cluster rg-us-e1-dev-cluster --network-configuration=\''awsvpcConfiguration={subnets=[subnet-0f91b65d392895393],securityGroups=[sg-018d21aeabb7852de]}\''"
+abbr --add db-migrate-dev-v2 "run-ecs-task dev task-definition/database-migrations-v2-task --cluster rg-us-e1-dev-cluster --network-configuration=\''awsvpcConfiguration={subnets=[subnet-0f91b65d392895393],securityGroups=[sg-018d21aeabb7852de]}\''"
+
+# abbr --add db-migrate-dev-v2 "awsume dev; and set CURRENT_ACCOUNT (aws sts get-caller-identity --query "Account" --output text); and aws ecs run-task --task-definition arn:aws:ecs:$AWS_DEFAULT_REGION:$CURRENT_ACCOUNT:task-definition/database-migrations-v2-task --cluster rg-us-e1-dev-cluster --network-configuration='awsvpcConfiguration={subnets=[subnet-0f91b65d392895393],securityGroups=[sg-018d21aeabb7852de]}'"
+abbr --add ecr-login-dev "awsume dev; and set CURRENT_ACCOUNT (aws sts get-caller-identity --query "Account" --output text); and aws ecr get-login-password | docker login --username AWS --password-stdin $CURRENT_ACCOUNT.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com"
+
+abbr --add print-timestamp watch --no-title date -u +"%Y-%m-%dT%H:%M:%SZ"
+
+abbr --add tf-data "awsume data; and cd ~/src/$COMPANY/terraform/aws/data"
+abbr --add tf-dev "awsume dev; and z ~/src/$COMPANY/terraform/aws/dev"
+abbr --add tf-prod "awsume prod; and z ~/src/$COMPANY/terraform/aws/prod"
+abbr --add tf-ops1 "awsume; and z ~/src/$COMPANY/terraform/aws/ops/us-east-1"
+abbr --add tf-ops2 "awsume; and z ~/src/$COMPANY/terraform/aws/ops/us-east-2"
+
+abbr --add aws-ls 'aws --endpoint=http://localhost:4566'
+abbr --add iso-date 'date -u +"%Y-%m-%dT%H:%M:%SZ"'
+
+# dangerous, but helpful
+abbr --add purge-remote-tags 'git tag -l | xargs git push --delete origin' 
+
+# Kubernetes aliases, not in use right now
+# abbr --add kp 'kubectl -n prod'
+# abbr --add kc 'kubectl -n dev'
+# abbr --add helm-ecr-login='aws ecr get-login-password | helm registry login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'

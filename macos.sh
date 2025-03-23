@@ -46,6 +46,8 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
+defaults write -g ApplePressAndHoldEnabled -bool false
+
 ###############################################################################
 # Energy saving                                                               #
 ###############################################################################
