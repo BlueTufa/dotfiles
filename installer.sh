@@ -58,7 +58,7 @@ if [[ $(uname) == "Darwin" ]]; then
   ln -sf $(pwd)/starship.toml ~/.config/starship.toml
 fi
 
-for file in fish/.{functions,exports,aliases,*$(uname)}
+for file in fish/.{abbr,functions,exports,aliases,*$(uname)}
 do
   make-backup ~/.config/${file}
   echo "Linking ${file}..."

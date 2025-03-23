@@ -1,5 +1,4 @@
 # GENERIC alias dotfile.  Put everything that is not OS specific in this dotfile.
-
 alias l='eza -aa -g --long --header --git'
 alias ll='eza -aa -g --long --header --git'
 alias vi='nvim'
@@ -10,14 +9,14 @@ alias wtr='curl http://wttr.in/Grand_Junction'
 alias cat='bat --theme=ansi'
 alias dk='docker'
 alias k='kubectl'
-alias kp='kubectl -n prod'
-alias kc='kubectl -n dev'
+
 alias less='bat --theme=ansi'
-alias grep='rg'
+
 alias rg='rg -i --color=auto --colors=path:fg:yellow --colors=match:fg:green --hidden'
 alias rgi='rg -g !package-lock.json -g !poetry.lock -g !Cargo.lock'
+
 # search everything.  this alias is a holdover from the_silver_searcher, but it now uses ripgrep
-alias ag='rg --no-ignore'
+# alias ag='rg --no-ignore'
 alias lr='fd -aH -t f'
 alias lc='lolcat'
 alias md5='openssl md5'
@@ -29,18 +28,20 @@ alias gdd='cd ~/data'
 alias gwdd='cd ~/src/dotfiles'
 alias gwf='cd ~/src/qmk/qmk_firmware'
 alias rm='trash -v'
+
 alias .1='cd ..'
 alias .2='cd ../..'
 alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
+
 alias n='npm'
-alias hh='hstr'
+# alias hh='hstr'
 
 # git aliases
 alias g='git'
 alias ga='git add .'
-alias gcl='git clone'
+
 alias gd="git diff HEAD -- ':!package-lock.json' ':!Cargo.lock' ':!poetry.lock'"
 alias gst='git status'
 alias gbr='git branch'

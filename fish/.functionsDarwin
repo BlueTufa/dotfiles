@@ -168,3 +168,11 @@ function cw-logs --description="tails AWS logs in a specific environment"
   aws logs tail $proj $argv[2..-1]
 end
 
+function run-ecs-task --description="Runs an ECS task"
+  set environment "$argv[1]"
+  set task_definition "$argv[2..-1]"
+  awsume $environment
+  set current_account (aws sts get-caller-identity --query "Account" --output text)
+  eval "aws ecs run-task --task-definition arn:aws:ecs:$AWS_REGION:$current_account:$task_definition"
+end
+
