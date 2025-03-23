@@ -10,5 +10,3 @@ for file in ~/.config/fish/completions/*.fish
   end
 end
 
-# Added by Windsurf
-# fish_add_path /Users/badger/.codeium/windsurf/bin
