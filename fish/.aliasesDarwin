@@ -15,9 +15,8 @@ alias sqlwb="open /Applications/DataGrip.app"
 alias xbrew='arch -x86_64 /usr/local/bin/brew'
 
 # ops shortcut aliases
-alias gwd='cd ~/src/$COMPANY/'
-alias gwt='cd ~/src/$COMPANY/terraform'
-alias gt-gh='cd ~/src/$COMPANY/terraform/github'
+alias gwd='cd $WORK_SRC'
+alias gwt='cd $WORK_SRC/terraform'
 
 # AWS
 # replaced by .abbr

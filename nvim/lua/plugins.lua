@@ -1,7 +1,19 @@
 -- Set up nvim-cmp
 local cmp = require('cmp')
 
--- First section keeps the regular plugin configuration approach
+require("lualine").setup({
+      options = {
+        theme = "auto",
+        section_separators = "",
+        component_separators = "",
+      },
+    })
+
+require'nvim-treesitter.configs'.setup {
+  highlight = { enable = true },
+  indent = { enable = true }
+}
+
 -- Configure nvim-cmp and LSP settings
 cmp.setup({
   snippet = {
@@ -88,13 +100,25 @@ cmp.setup.cmdline(':', {
 -- Set up lspconfig
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- Setup language servers
--- Uncomment and replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
--- Python (using pyright)
--- require('lspconfig')['pyright'].setup {
---   capabilities = capabilities
--- }
+-- In your plugins.lua file
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+-- Configure Python LSP (pyright)
+require('lspconfig').pyright.setup({
+  capabilities = capabilities,
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "workspace",
+        useLibraryCodeForTypes = true,
+        typeCheckingMode = "basic"
+      }
+    }
+  }
+})
+
+-- TODO: set up typescript support
 -- TypeScript/JavaScript
 -- require('lspconfig')['tsserver'].setup {
 --   capabilities = capabilities
@@ -110,22 +134,3 @@ vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
 vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, opts)
 
--- Second section - lazy style plugin configuration
--- Only use this if you're using lazy.nvim as your plugin manager
--- Otherwise this can be removed
-return {
-  {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-    },
-    -- The config function is not needed here as we've already set up cmp above
-    -- It's included for completeness if you switch to lazy.nvim later
-    config = function()
-      -- Configuration is already done above
-    end
-  }
-}

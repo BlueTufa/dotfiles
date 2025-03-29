@@ -21,3 +21,4 @@ c.AliasManager.user_aliases = [
     ('vi', 'nvim'),
     ('cal', 'cal')
 ]
+

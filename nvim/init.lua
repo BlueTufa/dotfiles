@@ -1,3 +1,6 @@
+-- Set environment variables
+vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
+
 -- General settings
 vim.opt.syntax = "on"
 vim.opt.hidden = true
@@ -16,6 +19,7 @@ vim.opt.splitright = true
 vim.opt.ignorecase = true
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.termguicolors = true
+
 vim.opt.cmdheight = 2
 vim.opt.updatetime = 300
 vim.opt.shortmess:append("c")
@@ -37,46 +41,38 @@ vim.opt.smartcase = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
--- Set environment variables
-vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
-
 -- Plugin setup with vim-plug (this still uses vim-plug, but configured in Lua)
 local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
 Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
-Plug 'sickill/vim-monokai'
-Plug 'rakr/vim-two-firewatch'
 Plug 'chrisbra/Colorizer'
 Plug 'elzr/vim-json'
 Plug 'ayu-theme/ayu-vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'dag/vim-fish'
--- Plug 'neoclide/coc.nvim', {branch = 'release'} -- Commented out as in original
 Plug 'ryanoasis/vim-devicons'
-Plug 'folke/tokyonight.nvim'
+-- Plug 'MunifTanjim/nui.nvim'
+-- Plug 'nvim-lua/plenary.nvim'
+-- Plug 'rcarriga/nvim-notify'
+-- Plug 'folke/noice.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
-Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'L3MON4D3/LuaSnip' -- Duplicated in original
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-treesitter/nvim-treesitter'
 
 -- For vsnip users
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'styled-components/vim-styled-components'
+-- Plug 'pangloss/vim-javascript'
+-- Plug 'maxmellon/vim-jsx-pretty'
+-- Plug 'styled-components/vim-styled-components'
 
-Plug 'leafgarland/typescript-vim'
+-- Plug 'leafgarland/typescript-vim'
 
 vim.call('plug#end')
 
@@ -119,14 +115,22 @@ end
 vim.api.nvim_set_keymap('n', '<C-n>', ':lua SwitchToNextBuffer(1)<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-p>', ':lua SwitchToNextBuffer(-1)<CR>', {noremap = true, silent = true})
 
--- Helper function from COC (kept for reference)
-_G.check_backspace = function()
-  local col = vim.fn.col('.') - 1
-  return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
-end
+vim.api.nvim_create_autocmd("VimResized", {
+  pattern = "*",
+  callback = function()
+    vim.cmd("wincmd =")  -- equalize window sizes
+    vim.cmd("redraw!")   -- redraw UI
+  end
+})
 
--- Status line configuration
-vim.opt.statusline:append("%{FugitiveStatusLine()}")
+-- Helper function from COC (kept for reference)
+-- _G.check_backspace = function()
+--   local col = vim.fn.col('.') - 1
+--   return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+-- end
+
+-- -- Status line configuration
+-- vim.opt.statusline:append("%{FugitiveStatusLine()}")
 
 -- NERDTree startup function
 function StartUp()
