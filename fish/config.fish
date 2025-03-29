@@ -10,3 +10,5 @@ for file in ~/.config/fish/completions/*.fish
   end
 end
 
+# source $HOME/.config/op/plugins.sh
+
