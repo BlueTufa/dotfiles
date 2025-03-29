@@ -15,8 +15,6 @@ alias less='bat --theme=ansi'
 alias rg='rg -i --color=auto --colors=path:fg:yellow --colors=match:fg:green --hidden'
 alias rgi='rg -g !package-lock.json -g !poetry.lock -g !Cargo.lock'
 
-# search everything.  this alias is a holdover from the_silver_searcher, but it now uses ripgrep
-# alias ag='rg --no-ignore'
 alias lr='fd -aH -t f'
 alias lc='lolcat'
 alias md5='openssl md5'
@@ -24,7 +22,7 @@ alias pe='printenv'
 alias sha1='openssl sha1'
 alias sha256='openssl sha256'
 alias tf='terraform'
-alias gdd='cd ~/data'
+# alias gdd='cd ~/data'
 alias gwdd='cd ~/src/dotfiles'
 alias gwf='cd ~/src/qmk/qmk_firmware'
 alias rm='trash -v'
@@ -36,7 +34,6 @@ alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
 alias n='npm'
-# alias hh='hstr'
 
 # git aliases
 alias g='git'
@@ -47,3 +44,4 @@ alias gst='git status'
 alias gbr='git branch'
 alias gps='git push'
 alias diff='git diff --no-index'
+

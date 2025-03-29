@@ -8,6 +8,3 @@ bind --user \cf forward-word
 
 set -gx AWS_PAGER 'bat --style=plain -l json'
 
-# set -gx HSTR_CONFIG hicolor
-# set -gx HISTFILE ~/.local/share/fish/hh.history
-
