@@ -7,6 +7,7 @@ abbr --add ecr-login-dev "awsume dev; and set CURRENT_ACCOUNT (aws sts get-calle
 
 abbr --add print-timestamp watch --no-title date -u +"%Y-%m-%dT%H:%M:%SZ"
 
+abbr --add tf-github "awsume; and cd ~/src/$COMPANY/terraform/github/"
 abbr --add tf-data "awsume data; and cd ~/src/$COMPANY/terraform/aws/data"
 abbr --add tf-dev "awsume dev; and z ~/src/$COMPANY/terraform/aws/dev"
 abbr --add tf-prod "awsume prod; and z ~/src/$COMPANY/terraform/aws/prod"
@@ -19,6 +20,10 @@ abbr --add iso-date 'date -u +"%Y-%m-%dT%H:%M:%SZ"'
 # dangerous, but helpful
 abbr --add purge-remote-tags 'git tag -l | xargs git push --delete origin' 
 
+abbr --add gen-cert 'openssl req -x509 -newkey rsa:4096 -keyout server.key -out server.crt -sha256 -days 3650 -nodes -subj "/C=US/ST=California/L=SanFrancisco/O=RadiantGraph/CN=radiantgraph.com"'
+abbr --add gen-keypair 'openssl genrsa -out private_key.pem 2048; and openssl rsa -in private_key.pem -pubout -out public_key.pem'
+
+abbr --add gh-pr 'gh pr create --fill-first'
 # Kubernetes aliases, not in use right now
 # abbr --add kp 'kubectl -n prod'
 # abbr --add kc 'kubectl -n dev'

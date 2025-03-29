@@ -1,3 +1,5 @@
 .DS_Store
 *.deb
 Brewfile.lock.json
+ipython/00-startup.py
+

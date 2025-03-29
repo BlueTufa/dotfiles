@@ -38,13 +38,54 @@ function precheck-npm --description="Run pre-commit linting and formatting for n
 end
 
 function env-source
+  if test (count $argv) -eq 0
+    echo "Usage: env-source <file>"
+    return 1
+  end
+
+  for line in (cat $argv | string trim)
+    # Skip and show comments
+    if string match -rq '^\s*#' $line
+      echo $line
+      continue
+    end
+
+    # Skip empty lines
+    if test -z "$line"
+      continue
+    end
+
+    # Split key=value
+    set item (string split -m 1 '=' $line)
+    set key $item[1]
+    set val $item[2]
+
+    # Check if value is a command like $(...)
+    set matches (string match -r '^\$\((.+)\)$' $val)
+    if test -n "$matches"
+      # echo "env $matches[2] needs execution"
+      set -gx $key (eval $matches[2] | string trim)
+    else
+      set -gx $key $val
+    end
+
+    echo "Exported key $key"
+  end
+end
+
+function env-source-before-chatgpt
   for line in (cat $argv)
     if string match -rq "^\x*#." $line
       # commment lines are ignored, but print them
       echo $line
     else
        set item (string split -m 1 '=' $line)
-       set -gx $item[1] $item[2] > /dev/null 2>&1
+       set matches (string match -r '^\$\((.+)\)$' $item[2])
+       if matches
+         echo "env $match[0] needs execution"
+       else
+         set -gx $item[1] $item[2] > /dev/null 2>&1
+       end
        echo "Exported key $item[1]"
     end  
   end
@@ -133,7 +174,7 @@ function tf-lint --description="Lint changed Terraform files using tf fmt"
   end
 end
 
-function reformat-json --description="Reformats all of your jason"
+function reformat-json --description="Reformats your jason"
   for file in (fd '\.json$')
     echo "About to reformat json: $file"
     jq . $file
