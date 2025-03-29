@@ -45,8 +45,11 @@ make-backup ~/.config/nvim/init.vim
 # comment this out if you don't want to symlink gitconfig.  
 # make-backup ~/.gitconfig
 
+mkdir -p ~/.config/nvim/lua
+
 ln -sf $(pwd)/fish/config.fish ~/.config/fish/config.fish
-ln -sf $(pwd)/nvim/init.vim ~/.config/nvim/init.vim
+ln -sf $(pwd)/nvim/init.lua ~/.config/nvim/init.lua
+ln -sf $(pwd)/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
 ln -sf $(pwd)/zsh/.p10k.zsh ~/.p10k.zsh
 
 touch ~/.hushlogin
