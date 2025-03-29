@@ -79,12 +79,8 @@ end
 function env-up --description="Docker compose helper"
   # no args, then start as interactive
   # else, use whatever args are passed in
-  if test "$argv" = ""
-    docker-compose build
-    docker-compose up
-  else
-    docker-compose up $argv
-  end
+  docker-compose build
+  docker-compose up --remove-orphans $argv
 end
 
 function env-down
