@@ -118,6 +118,81 @@ require('lspconfig').pyright.setup({
   }
 })
 
+require("oil").setup({
+  -- Oil configuration options
+  columns = {
+    "icon",
+    -- "permissions",
+    -- "size",
+    -- "mtime",
+  },
+  -- Add view_options and other settings as needed
+  view_options = {
+    show_hidden = false,
+  },
+  -- Configure oil to use a vertical split and appear on the left
+  float = {
+    enable = false,
+  },
+  -- Add this to create a sidebar effect
+  default_file_explorer = true,
+  -- Set keymaps
+  keymaps = {
+    ["g?"] = "actions.show_help",
+    ["<CR>"] = "actions.select",
+    ["<C-v>"] = "actions.select_vsplit",
+    ["<C-s>"] = "actions.select_split",
+    ["<C-t>"] = "actions.select_tab",
+    ["<C-p>"] = "actions.preview",
+    ["<C-c>"] = "actions.close",
+    ["<C-r>"] = "actions.refresh",
+    ["-"] = "actions.parent",
+    ["_"] = "actions.open_cwd",
+    ["`"] = "actions.cd",
+    ["~"] = "actions.tcd",
+    ["gs"] = "actions.change_sort",
+    ["gx"] = "actions.open_external",
+    ["."] = "actions.toggle_hidden",
+  },
+})
+
+-- Define a function to open oil in a left sidebar
+function OpenOilSidebar()
+  -- Open a vertical split to the left
+  vim.cmd("vsplit")
+  -- Move to the left window
+  vim.cmd("wincmd h")
+  -- Resize to 30 columns (adjust as needed)
+  vim.cmd("vertical resize 30")
+  -- Open oil in this window
+  require("oil").open()
+  -- Set local options for this buffer to make it feel more like a sidebar
+  vim.opt_local.number = false
+  vim.opt_local.relativenumber = false
+  vim.opt_local.signcolumn = "no"
+  vim.opt_local.cursorline = true
+  -- Add more local options as desired
+end
+
+-- Create a command for easy access
+vim.api.nvim_create_user_command("OilSidebar", OpenOilSidebar, {})
+
+-- Optional: Map a key to open the oil sidebar
+vim.keymap.set("n", "<leader>e", OpenOilSidebar, { desc = "Open oil in sidebar" })
+
+-- Optional: Auto-open oil in sidebar on startup if no files specified
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.fn.argc() == 0 and vim.bo.filetype ~= "gitcommit" and vim.bo.filetype ~= "gitrebase" then
+      if not vim.opt.diff:get() then
+        OpenOilSidebar()
+      end
+    end
+  end,
+  desc = "Open oil sidebar when Neovim starts with no arguments",
+})
+
+
 -- TODO: set up typescript support
 -- TypeScript/JavaScript
 -- require('lspconfig')['tsserver'].setup {

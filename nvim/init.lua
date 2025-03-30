@@ -41,17 +41,19 @@ vim.opt.smartcase = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
+vim.g.mapleader = " "
+
 -- Plugin setup with vim-plug (this still uses vim-plug, but configured in Lua)
 local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
-Plug 'scrooloose/nerdtree'
+-- Plug 'scrooloose/nerdtree'
 Plug 'chrisbra/Colorizer'
 Plug 'elzr/vim-json'
 Plug 'ayu-theme/ayu-vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'dag/vim-fish'
-Plug 'ryanoasis/vim-devicons'
+-- Plug 'ryanoasis/vim-devicons'
 -- Plug 'MunifTanjim/nui.nvim'
 -- Plug 'nvim-lua/plenary.nvim'
 -- Plug 'rcarriga/nvim-notify'
@@ -63,17 +65,17 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'stevearc/oil.nvim'
 
 -- For vsnip users
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
-
+Plug 'nvim-tree/nvim-web-devicons'
 -- Plug 'pangloss/vim-javascript'
 -- Plug 'maxmellon/vim-jsx-pretty'
 -- Plug 'styled-components/vim-styled-components'
 
--- Plug 'leafgarland/typescript-vim'
-
+-- Plug 'fgarland/typescript-vim'
 vim.call('plug#end')
 
 -- Load external Lua modules
@@ -133,21 +135,21 @@ vim.api.nvim_create_autocmd("VimResized", {
 -- vim.opt.statusline:append("%{FugitiveStatusLine()}")
 
 -- NERDTree startup function
-function StartUp()
-  if vim.fn.argc() == 0 and not vim.g.std_in then
-    vim.cmd("NERDTree")
-  end
-end
+-- function StartUp()
+--   if vim.fn.argc() == 0 and not vim.g.std_in then
+--     vim.cmd("NERDTree")
+--   end
+-- end
 
 -- Autocommands using the Lua API
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
-    StartUp()
+    -- StartUp()
   end
 })
 
 -- Command abbreviations
-vim.cmd("cabbrev tree NERDTreeToggle")
+-- vim.cmd("cabbrev tree NERDTreeToggle")
 
 -- Filetype detection
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
@@ -159,3 +161,18 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
   pattern = "**/fish/*",
   command = "setf fish"
 })
+
+-- Auto-open oil.nvim when Neovim starts with no arguments
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   callback = function()
+--     -- Only run this logic if no arguments were passed and 
+--     -- not in a git commit/rebase buffer
+--     if vim.fn.argc() == 0 and vim.bo.filetype ~= "gitcommit" and vim.bo.filetype ~= "gitrebase" then
+--       -- Check if we're not in a diff mode
+--       if not vim.opt.diff:get() then
+--         require("oil").open()
+--       end
+--     end
+--   end,
+--   desc = "Open oil.nvim when Neovim starts with no arguments",
+-- })
