@@ -10,11 +10,9 @@ install-vim-plug () {
 
 install-oh-my-zsh () {
   make-backup ~/.zshrc
-  make-backup ~/.p10k.zsh
   echo "Remember to type exit after the oh-my-zsh install is complete"
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  echo "Remember to run p10k configure any time you want to reconfigure powerlevel10k."
+  sh -c "git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
 
   ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
 }
@@ -35,7 +33,7 @@ mkdir -p ~/.config/fish
 mkdir -p ~/.config/nvim
 
 # comment this out if you don't want to use oh-my-zsh or zsh support
-# [[ -d ~/.oh-my-zsh ]] || install-oh-my-zsh
+[[ -d ~/.oh-my-zsh ]] || install-oh-my-zsh
 
 [[ -f ~/.local/share/nvim/site/autoload/plug.vim ]] || install-vim-plug
 
@@ -50,7 +48,6 @@ mkdir -p ~/.config/nvim/lua
 ln -sf $(pwd)/fish/config.fish ~/.config/fish/config.fish
 ln -sf $(pwd)/nvim/init.lua ~/.config/nvim/init.lua
 ln -sf $(pwd)/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
-ln -sf $(pwd)/zsh/.p10k.zsh ~/.p10k.zsh
 
 touch ~/.hushlogin
 

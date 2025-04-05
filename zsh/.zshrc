@@ -1,13 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="$(dirname ${(%):-%x})/.oh-my-zsh"
 export HISTFILE=~/.zsh_history
@@ -26,26 +16,6 @@ setopt inc_append_history # add comamnds as they are typed, don't wait until she
 # remove command lines from the history list when the first character on the
 # line is a space
 setopt histignorespace 
-
-source ~/.powerlevel10k/powerlevel10k.zsh-theme
-
-# ZSH_THEME="~/.powerlevel10k/powerlevel10k"
-# POWERLEVEL9K_STATUS_OK_BACKGROUND='000' #alpha
-# POWERLEVEL9K_STATUS_OK_FOREGROUND='040' #green
-# POWERLEVEL9K_STATUS_ERROR_BACKGROUND='196' #red
-# POWERLEVEL9K_STATUS_ERROR_FOREGROUND='226' #yellow
-# POWERLEVEL9K_MODE='nerdfont-complete'
-
-
-
-# . '~/Library/Fonts/10-powerline-symbols.conf'
-# '/usr/local/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf'
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -85,9 +55,6 @@ source ~/.powerlevel10k/powerlevel10k.zsh-theme
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -95,67 +62,25 @@ source ~/.powerlevel10k/powerlevel10k.zsh-theme
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
  git
- dotenv
- osx
+ zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
 
-# POWERLINE stuff
-# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator command_execution_time background_jobs time)
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-# shared aliases
-source ~/.config/fish/.aliases
-
 # are we on a macos system?
 if [[ -n $(uname | grep "Darwin") ]]; then
-  source ~/.config/fish/.aliasesDarwin
-
-  # are we on catalina?
-  if [[ -n $(sw_vers -productVersion | grep '^10.15' 2> /dev/null) ]]; then
-    export MAC_APP_PATH='/System/Applications'
-  else
-    export MAC_APP_PATH='/Applications'
-  fi
+  export MAC_APP_PATH='/System/Applications'
 fi
 
 bindkey -e
-# You may also need to disable the bell and visual bell in iTerm2
-# bindkey '[C' forward-word
-# bindkey '[D' backward-word
-bindkey '^[[1;5C' emacs-forward-word
-bindkey '^[[1;5D' emacs-backward-word
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# You may also need to disable the bell and visual bell in iTerm2
+bindkey '[C' forward-word
+bindkey '[D' backward-word
+
+for file in ~/.config/fish/.aliases*; do
+  [ -f $file ] || [ -L $file ] && source $file
+done
+
+eval "$(starship init zsh)"
 
