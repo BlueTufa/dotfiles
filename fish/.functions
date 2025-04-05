@@ -1,5 +1,5 @@
 function gpl --description="Auto prune and merge latest for the current branch"
-  git pull --rebase --all --prune --tags
+  git pull --all --prune --tags
 end
 
 function ghb --description="Calculate and attempt to open a GitHub URL for the current branch"
@@ -42,23 +42,25 @@ function blame --description="Calculate a blame URL for one line or a range of l
   open $URL
 end
 
-function fish_greeting
-  # set_theme_colors
-  if test (uname) = "Darwin" 
-    and test "$TERM_PROGRAM" = "iTerm.app"
-    and test "$SSH_TTY" = ""
+function fish_greeting --description="Override default behavior with a custom fish_greeting function"
+  set -l is_darwin (test (uname) = "Darwin"; and echo true; or echo false)
+  set -l is_local (test "$SSH_TTY" = ""; and echo true; or echo false)
+  set -l is_vscode (test "$TERM_PROGRAM" = "vscode"; and echo true; or echo false)
+  set -l has_neofetch (command -v neofetch >/dev/null 2>&1; and echo true; or echo false)
+  set -l has_fastfetch (command -v fastfetch >/dev/null 2>&1; and echo true; or echo false) 
+
+  if $is_vscode # need to detect this for jetbrains as well
+    return
+  end
+  
+  if $is_darwin; and $has_fastfetch
+    if $is_local
+      # suppress logo for SSH sessions
       fastfetch --logo-type small
-      # neofetch --iterm2 ~/src/dotfiles/assets/apple.png --size 450px
-  else if test (uname) = "Darwin" 
-    and test "$SSH_TTY" = ""
+    else
       fastfetch
-  else if test (uname) = "Linux"
-    and test "$TERM" = "xterm-kitty"
-    and test "$SSH_TTY" = ""
-      neofetch --kitty ~/src/dotfiles/assets/arch.png --size 450px
-  else if test "$TERM_PROGRAM" = "vscode"
-    # no-op
-  else
+    end
+  else if $has_neofetch
     neofetch 
   end
 end
@@ -89,62 +91,6 @@ function cal --description "Enhanced calendar with qtr, cy, eoy support + lolcat
 
     case '*'
       /usr/bin/cal $argv | lolcat 2>/dev/null
-  end
-end
-
-# function cal --description="Expands the built-in calendar CLI to include current quarter, current year and end-of-year (qtr,cy,eoy) macro support.  Also very urgent and necessary lolcat integration."
-#   if test "$argv" = ""
-#     /usr/bin/cal | lolcat 2> /dev/null
-#   else if test "$argv" = "qtr"
-#     set current_month_num (date -u +"%m")
-#     # a simple math trick to figure out how many months are completed in the current quarter
-#     set months_back (echo "(($current_month_num - 1) % 3)" | bc)
-#     # minus 2 here, instead of minus 3 because the utility always displays current month
-#     set months_fwd (echo "(2 - $months_back)" | bc)
-#     if test "$months_back" -gt 0
-#       set back_months "-B$months_back"
-#     end
-#     if test "$months_fwd" -gt 0
-#       set fwd_months "-A$months_fwd"
-#     end
-#     /usr/bin/cal $back_months $fwd_months | lolcat 2> /dev/null
-#   else if test "$argv" = "eoy"
-#     set current_month_num (date -u +"%m")
-#     set eoy_diff (echo "12 - $current_month_num" | bc)
-#     /usr/bin/cal -A$eoy_diff | lolcat 2> /dev/null
-#   else if test "$argv" = "cy"
-#     set current_year (date -u +"%Y")
-#     /usr/bin/cal $current_year | lolcat 2> /dev/null
-#   else
-#     /usr/bin/cal $argv | lolcat 2> /dev/null
-#   end
-# end
-# 
-function set_theme_colors
-  if test "$FISH_THEME" = "gruvbox"
-    set -gx ERROR      CC241D
-    set -gx SUCCESS    98971A
-    set -gx USER_COLOR C46210
-    set -gx HOST_COLOR bfc225
-    set -gx DATE_COLOR FF9933
-    set -gx PATH_COLOR 268bd2
-    set -gx GIT_COLOR  b58900
-  else if test "$FISH_THEME" = "jellybeans"
-    set -gx ERROR      CB0000
-    set -gx SUCCESS    58A82F
-    set -gx USER_COLOR 3399FF
-    set -gx HOST_COLOR 00CC00
-    set -gx DATE_COLOR FF9933
-    set -gx PATH_COLOR 6B6FFF
-    set -gx GIT_COLOR  03A9F4
-  else
-    set -gx ERROR      red
-    set -gx SUCCESS    green
-    set -gx USER_COLOR blue
-    set -gx HOST_COLOR green
-    set -gx DATE_COLOR yellow
-    set -gx PATH_COLOR blue
-    set -gx GIT_COLOR  cyan
   end
 end
 
