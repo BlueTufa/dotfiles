@@ -55,6 +55,26 @@ setopt histignorespace
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
+# Auto-activate Poetry environments in .zshrc
+autoload -Uz add-zsh-hook
+
+function _auto_poetry_shell() {
+  if [[ -n $VIRTUAL_ENV ]]; then
+    [[ -n $VERBOSE ]] && echo "auto-deactivating $VIRTUAL_ENV"
+    deactivate
+  fi
+  if [[ -f "pyproject.toml" ]]; then
+    [[ -n $VERBOSE ]] && echo "pyproject.toml detected at $(pwd)"
+
+    if [[ ! -v POETRY_ACTIVE ]]; then
+      [[ -n $VERBOSE ]] && echo "auto-activating poetry env @ $(poetry env info --path)"
+      emulate bash -c ". $(poetry env info --path)/bin/activate" > /dev/null
+    fi
+  fi
+}
+
+add-zsh-hook chpwd _auto_poetry_shell
+
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -62,6 +82,7 @@ setopt histignorespace
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
  git
+ dotenv
  zsh-autosuggestions
 )
 
@@ -79,7 +100,7 @@ bindkey '[C' forward-word
 bindkey '[D' backward-word
 
 for file in ~/.config/fish/.aliases*; do
-  [ -f $file ] || [ -L $file ] && source $file
+  [[ -f $file ]] || [[ -L $file ]] && source $file
 done
 
 eval "$(starship init zsh)"
