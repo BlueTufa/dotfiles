@@ -46,16 +46,12 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
 Plug 'scrooloose/nerdtree'
-Plug 'chrisbra/Colorizer'
-Plug 'elzr/vim-json'
+-- Plug 'chrisbra/Colorizer'
+-- Plug 'elzr/vim-json'
 Plug 'ayu-theme/ayu-vim'
-Plug 'nanotech/jellybeans.vim'
+-- Plug 'nanotech/jellybeans.vim'
 Plug 'dag/vim-fish'
 Plug 'ryanoasis/vim-devicons'
--- Plug 'MunifTanjim/nui.nvim'
--- Plug 'nvim-lua/plenary.nvim'
--- Plug 'rcarriga/nvim-notify'
--- Plug 'folke/noice.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -64,15 +60,8 @@ Plug 'hrsh7th/cmp-path'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
 
--- For vsnip users
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
-
--- Plug 'pangloss/vim-javascript'
--- Plug 'maxmellon/vim-jsx-pretty'
--- Plug 'styled-components/vim-styled-components'
-
--- Plug 'leafgarland/typescript-vim'
 
 vim.call('plug#end')
 
@@ -123,15 +112,6 @@ vim.api.nvim_create_autocmd("VimResized", {
   end
 })
 
--- Helper function from COC (kept for reference)
--- _G.check_backspace = function()
---   local col = vim.fn.col('.') - 1
---   return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
--- end
-
--- -- Status line configuration
--- vim.opt.statusline:append("%{FugitiveStatusLine()}")
-
 -- NERDTree startup function
 function StartUp()
   if vim.fn.argc() == 0 and not vim.g.std_in then
@@ -148,12 +128,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 -- Command abbreviations
 vim.cmd("cabbrev tree NERDTreeToggle")
-
--- Filetype detection
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
-  pattern = "Jenkinsfile",
-  command = "setf groovy"
-})
 
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
   pattern = "**/fish/*",
