@@ -1,5 +1,5 @@
 # BlueTufa dotfiles Repository
-![GitHub Workflow Status](https://github.com/BlueTufa/dotfiles/actions/workflows/ci.yml/badge.svg)](https://github.com/BlueTufa/dotfiles/actions/workflows/ci.yml)
+![GitHub Workflow Status](https://github.com/BlueTufa/dotfiles/actions/workflows/ci.yml/badge.svg)(https://github.com/BlueTufa/dotfiles/actions/workflows/ci.yml)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/BlueTufa/dotfiles)
 
 ## Contents
