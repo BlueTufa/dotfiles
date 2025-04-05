@@ -3,43 +3,22 @@ function gpl --description="Auto prune and merge latest for the current branch"
 end
 
 function ghb --description="Calculate and attempt to open a GitHub URL for the current branch"
-  set URL (git remote get-url --push origin | sed 's/\.git$//g')/tree/(git rev-parse --abbrev-ref HEAD)
-  echo "launching url $url..."
-  if test (uname) = "Linux"
-    xdg-open $URL
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1
+    set --local remote_url (git remote get-url --push origin 2>/dev/null | sed 's/\.git$//g')/tree/(git rev-parse --abbrev-ref HEAD)
+    open $remote_url
   else
-    open $URL
+    echo "Not a git repo"
   end
 end
 
-function glc --description="Calculate the most recent commit as a hyperlink and print it with an optional preamble"
-  git rev-parse HEAD > /dev/null 2>&1
-  if test "$status" -ne "0"
-    # not a git repo
-    set URL (pwd)
+function glc --description="Print the most recent commit as a hyperlink with optional prefix text"
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1
+    set --local remote_url (git remote get-url --push origin 2>/dev/null | sed 's/\.git$//g')
+    set --local commit_hash (git rev-parse HEAD)
+    echo "$remote_url/commit/$commit_hash"
   else
-    set URL (git remote get-url --push origin | sed 's/\.git$//g')
-    set URL "$URL/commit/"(git rev-parse HEAD)
+    echo "Not a git repo"
   end
-  echo "$argv$URL"
-end
-
-function blame --description="Calculate a blame URL for one line or a range of lines"
-  git rev-parse HEAD > /dev/null 2>&1
-  if test "$status" -ne "0"
-    # not a git repo
-    set URL (pwd)
-  else
-    set URL (git remote get-url --push origin | sed 's/\.git$//g')
-    set URL "$URL"/blame/(git rev-parse --abbrev-ref HEAD)
-  end
-  set URL "$URL/$argv[1]#L$argv[2]"
-
-  if test "$argv[3]" !=  ""
-    set URL "$URL-L$argv[3]"
-  end
-
-  open $URL
 end
 
 function fish_greeting --description="Override default behavior with a custom fish_greeting function"

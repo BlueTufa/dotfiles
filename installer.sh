@@ -35,13 +35,11 @@ mkdir -p ~/.config/nvim
 # comment this out if you don't want to use oh-my-zsh or zsh support
 [[ -d ~/.oh-my-zsh ]] || install-oh-my-zsh
 
+# install vim-plug if not already present
 [[ -f ~/.local/share/nvim/site/autoload/plug.vim ]] || install-vim-plug
 
 make-backup ~/.config/fish/config.fish 
 make-backup ~/.config/nvim/init.vim
-
-# comment this out if you don't want to symlink gitconfig.  
-# make-backup ~/.gitconfig
 
 mkdir -p ~/.config/nvim/lua
 
@@ -54,9 +52,11 @@ touch ~/.hushlogin
 if [[ $(uname) == "Darwin" ]]; then
   [[ -d ~/Library/KeyBindings/ ]] || mkdir -p ~/Library/KeyBindings/
   cp ./macos/Library/KeyBindings/DefaultKeyBinding.dict ~/Library/KeyBindings/
-  fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher && fisher install edc/bass"
-  ln -sf $(pwd)/starship.toml ~/.config/starship.toml
 fi
+
+ln -sf $(pwd)/starship.toml ~/.config/starship.toml
+# if fish is present, go ahead and install fisher and plugins
+[[ $(which fish) ]] && fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher && fisher install jorgebucaran/nvm.fish && fisher install evanlucas/fish-kubectl-completions"
 
 for file in fish/.{abbr,functions,exports,aliases,*$(uname)}
 do
@@ -64,4 +64,5 @@ do
   echo "Linking ${file}..."
   ln -sf $(pwd)/${file} ~/.config/${file}
 done
+
 

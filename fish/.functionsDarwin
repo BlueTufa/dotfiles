@@ -7,11 +7,6 @@ function o --description="Open a given command as OS-native, or open the current
   end
 end
 
-# fish-friendly wrapper around bass/nvm
-function nvm
-   bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
-end
-
 function gen-machine-name --description="Generate a semi-ramdon machine name that meets a specific naming pattern"
   pwgen -s1 11 100000 | tr [a-z] [A-Z] | grep '^[^aeiou0-9]{1,1}[aeiou]{1,1}[^aeiou0-9]{1,2}[aeiou]{1}[^aeiou0-9]{1,1}[aeiou]{1,1}[^aeiou0-9]{1,2}[aeiou]{1}' | tail -n 1
 end
@@ -99,18 +94,8 @@ function go-py --description="Deactivate/activate virtual environment on enter a
     source .venv/bin/activate.fish
   end
 
-  # Pipfile support
-  if test -f "Pipfile" && test -f (which pipenv)
-    if pipenv --venv -q > /dev/null 2>&1
-      source (pipenv --venv -q)/bin/activate.fish
-      echo "A pipenv environment was activated.  Running on" (python --version)
-    else
-      echo "Empty pipenv found.  Run pipenv install --dev to activate it."
-    end
-  end
-  if test -f pyproject.toml; and test -f poetry.lock
-    # this is a slight hack.  poetry env use doesn't seem to source fish shell
-    source (poetry env use python | sed 's/Using virtualenv\: //g')/bin/activate.fish
+  if test -f pyproject.toml
+    source (poetry env info --path)/bin/activate.fish
   end
 end
 
