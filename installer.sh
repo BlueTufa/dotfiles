@@ -64,5 +64,3 @@ do
   echo "Linking ${file}..."
   ln -sf $(pwd)/${file} ~/.config/${file}
 done
-
-

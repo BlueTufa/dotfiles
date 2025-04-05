@@ -179,3 +179,10 @@ function run-ecs-task --description="Runs an ECS task"
   eval "aws ecs run-task --task-definition arn:aws:ecs:$AWS_REGION:$current_account:$task_definition"
 end
 
+function awsume
+  if aws sts get-caller-identity > /dev/null 2>&1
+    source (pyenv which awsume.fish) $argv
+  else
+    aws-sso-util login --profile $argv
+  end
+end
