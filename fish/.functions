@@ -63,34 +63,63 @@ function fish_greeting
   end
 end
 
-function cal --description="Expands the built-in calendar CLI to include current quarter, current year and end-of-year (qtr,cy,eoy) macro support.  Also very urgent and necessary lolcat integration."
-  if test "$argv" = ""
-    /usr/bin/cal | lolcat 2> /dev/null
-  else if test "$argv" = "qtr"
-    set current_month_num (date -u +"%m")
-    # a simple math trick to figure out how many months are completed in the current quarter
-    set months_back (echo "(($current_month_num - 1) % 3)" | bc)
-    # minus 2 here, instead of minus 3 because the utility always displays current month
-    set months_fwd (echo "(2 - $months_back)" | bc)
-    if test "$months_back" -gt 0
-      set back_months "-B$months_back"
-    end
-    if test "$months_fwd" -gt 0
-      set fwd_months "-A$months_fwd"
-    end
-    /usr/bin/cal $back_months $fwd_months | lolcat 2> /dev/null
-  else if test "$argv" = "eoy"
-    set current_month_num (date -u +"%m")
-    set eoy_diff (echo "12 - $current_month_num" | bc)
-    /usr/bin/cal -A$eoy_diff | lolcat 2> /dev/null
-  else if test "$argv" = "cy"
-    set current_year (date -u +"%Y")
-    /usr/bin/cal $current_year | lolcat 2> /dev/null
-  else
-    /usr/bin/cal $argv | lolcat 2> /dev/null
+function cal --description "Enhanced calendar with qtr, cy, eoy support + lolcat"
+  set arg $argv[1]
+
+  switch $arg
+    case ''
+      /usr/bin/cal | lolcat 2>/dev/null
+
+    case qtr
+      set m (date -u +%m)
+      set mb (math "($m - 1) % 3")
+      set mf (math "2 - $mb")
+      set opts
+      test $mb -gt 0; and set opts $opts -B$mb
+      test $mf -gt 0; and set opts $opts -A$mf
+      /usr/bin/cal $opts | lolcat 2>/dev/null
+
+    case eoy
+      set m (date -u +%m)
+      set rem (math "12 - $m")
+      /usr/bin/cal -A$rem | lolcat 2>/dev/null
+
+    case cy
+      /usr/bin/cal (date -u +%Y) | lolcat 2>/dev/null
+
+    case '*'
+      /usr/bin/cal $argv | lolcat 2>/dev/null
   end
 end
 
+# function cal --description="Expands the built-in calendar CLI to include current quarter, current year and end-of-year (qtr,cy,eoy) macro support.  Also very urgent and necessary lolcat integration."
+#   if test "$argv" = ""
+#     /usr/bin/cal | lolcat 2> /dev/null
+#   else if test "$argv" = "qtr"
+#     set current_month_num (date -u +"%m")
+#     # a simple math trick to figure out how many months are completed in the current quarter
+#     set months_back (echo "(($current_month_num - 1) % 3)" | bc)
+#     # minus 2 here, instead of minus 3 because the utility always displays current month
+#     set months_fwd (echo "(2 - $months_back)" | bc)
+#     if test "$months_back" -gt 0
+#       set back_months "-B$months_back"
+#     end
+#     if test "$months_fwd" -gt 0
+#       set fwd_months "-A$months_fwd"
+#     end
+#     /usr/bin/cal $back_months $fwd_months | lolcat 2> /dev/null
+#   else if test "$argv" = "eoy"
+#     set current_month_num (date -u +"%m")
+#     set eoy_diff (echo "12 - $current_month_num" | bc)
+#     /usr/bin/cal -A$eoy_diff | lolcat 2> /dev/null
+#   else if test "$argv" = "cy"
+#     set current_year (date -u +"%Y")
+#     /usr/bin/cal $current_year | lolcat 2> /dev/null
+#   else
+#     /usr/bin/cal $argv | lolcat 2> /dev/null
+#   end
+# end
+# 
 function set_theme_colors
   if test "$FISH_THEME" = "gruvbox"
     set -gx ERROR      CC241D
