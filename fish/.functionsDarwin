@@ -144,17 +144,6 @@ function sonar-scan --description="Run a Sonar scan from the root of a GitHub re
           sonarsource/sonar-scanner-cli
 end
 
-function tf-lint --description="Lint changed Terraform files using tf fmt"
-  if test -d ".git"
-    for file in (git diff --name-only)
-      echo "About to run linting on file: $file"
-      terraform fmt $file
-    end
-  else 
-    echo (set_color red)"ERROR: only run this terraform fmt helper from the root of a git repository"(set_color normal)
-  end
-end
-
 function reformat-json --description="Reformats your jason"
   for file in (fd '\.json$')
     echo "About to reformat json: $file"

@@ -9,7 +9,6 @@ alias console="open $MAC_APP_PATH/Utilities/Console.app"
 alias gdu="open $MAC_APP_PATH/Utilities/Disk\ Utility.app"
 alias prefs="open $MAC_APP_PATH/System\ Preferences.app"
 
-# alias pup='pup -c'
 alias slack="open /Applications/Slack.app"
 alias sqlwb="open /Applications/DataGrip.app"
 alias xbrew='arch -x86_64 /usr/local/bin/brew'
@@ -17,29 +16,4 @@ alias xbrew='arch -x86_64 /usr/local/bin/brew'
 # ops shortcut aliases
 alias gwd='cd $WORK_SRC'
 alias gwt='cd $WORK_SRC/terraform'
-
-# AWS
-# replaced by .abbr
-# alias ecr-login='aws ecr get-login-password | docker login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
-
-# below here kept mostly for historical purposes
-
-# same as CMD+SHIFT+. except it is persistent and requires a launcher restart
-# alias noshowallfiles="defaults write com.apple.finder AppleShowAllFiles NO"
-# alias showallfiles="defaults write com.apple.finder AppleShowAllFiles YES"
-# does this work in latest MacoOS?
-# alias showrecovery="defaults write com.apple.DiskUtility DUDebugMenuEnabled 1"
-
-# java and networking
-# alias jcz='mvn clean install -DskipITs'  
-# alias jcc='mvn -DskipTests -DskipITs compile package install'
-# alias kismet='open -a /Applications/KisMac2.app'
-# alias wireshark='open -a /Applications/WireShark.app'
-# alias iossim="open -a /Applications/Xcode.app/Contents/Applications/iPhone\ Simulator.app"
-
-# alias icat='kitty +kitten icat'
-# alias dish='docker exec -it ubuntu_dev bash'
-
-# npm and build stuff
-# alias rlf='npm run lint:fix'
 

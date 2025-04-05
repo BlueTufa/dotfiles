@@ -82,9 +82,14 @@ add-zsh-hook chpwd _auto_poetry_shell
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
+# dotenv is built in to oh-my-zsh and will automatically source any .env files when you enter a directory
+# ZSH_DOTENV_PROMPT=false  # Disable the confirmation prompt
+# ZSH_DOTENV_FILE=".env.local"  # Change the default filename from .env, if preferred
+# REMINDER: if you change the dotenv file name, you must include it in .gitignore
 plugins=(
  git
- dotenv  # dotenv will automatically source any .env files on directory enter
+ dotenv
  zsh-autosuggestions
 )
 
