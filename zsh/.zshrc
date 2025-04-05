@@ -98,6 +98,11 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 export DOCKER_BUILDKIT=1
 export COMPOSE_BAKE=True
 
+# set up AWS CLI autocompletions
+autoload -Uz bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+which aws_completer > /dev/null && complete -C "$(which aws_completer)" aws
+
 # uncomment this to configure the 1Password ssh agent
 # export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 # uncomment this to set a common source code working directory

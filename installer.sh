@@ -56,7 +56,7 @@ fi
 
 ln -sf $(pwd)/starship.toml ~/.config/starship.toml
 # if fish is present, go ahead and install fisher and plugins
-[[ $(which fish) ]] && fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher && fisher install jorgebucaran/nvm.fish"
+[[ $(which fish) ]] && fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher && fisher install jorgebucaran/nvm.fish && fisher install evanlucas/fish-kubectl-completions"
 
 for file in fish/.{abbr,functions,exports,aliases,*$(uname)}
 do
