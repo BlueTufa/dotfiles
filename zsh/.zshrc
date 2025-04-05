@@ -55,14 +55,16 @@ setopt histignorespace
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Auto-activate Poetry environments in .zshrc
 autoload -Uz add-zsh-hook
 
 function _auto_poetry_shell() {
+  # export VERBOSE=1 to debug / see details
+  # deactivate any existing one first
   if [[ -n $VIRTUAL_ENV ]]; then
     [[ -n $VERBOSE ]] && echo "auto-deactivating $VIRTUAL_ENV"
     deactivate
   fi
+  # only poetry is supported at this time
   if [[ -f "pyproject.toml" ]]; then
     [[ -n $VERBOSE ]] && echo "pyproject.toml detected at $(pwd)"
 
@@ -82,7 +84,7 @@ add-zsh-hook chpwd _auto_poetry_shell
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
  git
- dotenv
+ dotenv  # dotenv will automatically source any .env files on directory enter
  zsh-autosuggestions
 )
 
