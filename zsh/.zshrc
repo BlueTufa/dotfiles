@@ -93,6 +93,16 @@ plugins=(
  zsh-autosuggestions
 )
 
+# these will speed up docker-compose and docker build
+export COMPOSE_DOCKER_CLI_BUILD=1
+export DOCKER_BUILDKIT=1
+export COMPOSE_BAKE=True
+
+# uncomment this to configure the 1Password ssh agent
+# export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+# uncomment this to set a common source code working directory
+# export WORK_SRC=$HOME/src/rg/
+
 source $ZSH/oh-my-zsh.sh
 
 # are we on a macos system?
