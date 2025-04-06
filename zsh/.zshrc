@@ -136,11 +136,11 @@ export DOCKER_BUILDKIT=1
 export COMPOSE_BAKE=True
 
 # helpful aliases
+# NOTE: requires brew install watch gh
 alias print-timestamp='watch --no-title date -u +"%Y-%m-%dT%H:%M:%SZ"'
 alias aws-ls='aws --endpoint=http://localhost:4566'
 alias gh-pr='gh pr create --fill-first'
 alias iso-date='date -u +"%Y-%m-%dT%H:%M:%SZ"'
-
 
 # set up AWS CLI autocompletions
 autoload -Uz bashcompinit && bashcompinit
@@ -169,4 +169,7 @@ for file in ~/.config/fish/.aliases*; do
   [[ -f $file ]] || [[ -L $file ]] && source $file
 done
 
+# NOTE: requires brew install starship
+# see the sample starship.toml under the root of this repo.
+# starship.toml should exist at ~/.config/starship.toml
 eval "$(starship init zsh)"
