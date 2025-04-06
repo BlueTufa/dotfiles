@@ -55,8 +55,45 @@ setopt histignorespace
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
+# helper function which automatically prompts awsume for sso-login if not authenticated
+# Example: awsume dev
+function awsume() {
+  if aws sts get-caller-identity > /dev/null 2>&1; then
+    source "$(pyenv which awsume)" "$@"
+  else
+    aws-sso-util login --profile "$@"
+    source "$(pyenv which awsume)" "$@"
+  fi
+}
+
+# helper function which logs into ecr using the specified profile
+# Example: ecr-login dev
+function ecr-login() {
+  local environment="$1"
+  awsume "$environment"
+
+  local current_account
+  current_account=$(aws sts get-caller-identity --query "Account" --output text)
+
+  aws ecr get-login-password | docker login --username AWS --password-stdin "${current_account}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+}
+
+# helper function to make it easier to start docker-compose without forgetting to build
+# Example: env-up -d
+function env-up() {
+  # No args: start interactively, else use passed-in args
+  docker-compose build
+  docker-compose up --remove-orphans "$@"
+}
+
+# helper function to make it less typing to stop docker-compose
+function env-down() {
+  docker-compose down "$@"
+}
+
 autoload -Uz add-zsh-hook
 
+# helper function which switches to a poetry shell upon change working directory
 function _auto_poetry_shell() {
   # export VERBOSE=1 to debug / see details
   # deactivate any existing one first
@@ -98,6 +135,13 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 export DOCKER_BUILDKIT=1
 export COMPOSE_BAKE=True
 
+# helpful aliases
+alias print-timestamp='watch --no-title date -u +"%Y-%m-%dT%H:%M:%SZ"'
+alias aws-ls='aws --endpoint=http://localhost:4566'
+alias gh-pr='gh pr create --fill-first'
+alias iso-date='date -u +"%Y-%m-%dT%H:%M:%SZ"'
+
+
 # set up AWS CLI autocompletions
 autoload -Uz bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
@@ -126,4 +170,3 @@ for file in ~/.config/fish/.aliases*; do
 done
 
 eval "$(starship init zsh)"
-

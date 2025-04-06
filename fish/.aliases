@@ -37,10 +37,10 @@ alias n='npm'
 # git aliases
 alias g='git'
 alias ga='git add .'
+alias gpl="git pull --all --prune --tags --rebase --autostash -v"
 
 alias gd="git diff HEAD -- ':!package-lock.json' ':!Cargo.lock' ':!poetry.lock'"
 alias gst='git status'
 alias gbr='git branch'
 alias gps='git push'
 alias diff='git diff --no-index'
-
