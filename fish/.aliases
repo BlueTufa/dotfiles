@@ -12,7 +12,7 @@ alias k='kubectl'
 
 alias less='bat --theme=ansi'
 
-alias rg='rg -i --color=auto --colors=path:fg:yellow --colors=match:fg:green --hidden'
+alias rg='rg -i --color=auto --colors=path:fg:yellow --colors=match:fg:green --hidden -g "!Library/Caches/Homebrew/api/formula.jws.json"'
 alias rgi='rg -g !package-lock.json -g !poetry.lock -g !Cargo.lock'
 
 alias lr='fd -aH -t f'
