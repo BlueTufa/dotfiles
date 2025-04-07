@@ -32,7 +32,6 @@ install-oh-my-zsh () {
   echo "Remember to type exit after the oh-my-zsh install is complete"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
   sh -c "git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
-  sh -c "git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab"
 
   ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
 }
@@ -84,4 +83,3 @@ ln -sf $(pwd)/starship.toml ~/.config/starship.toml
 
 # comment this out if you don't want fish support
 install-fish
-
