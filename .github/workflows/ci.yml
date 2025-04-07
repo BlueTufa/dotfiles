@@ -25,14 +25,14 @@ jobs:
      - name: Run the installer command
        run: ./installer.sh
        
-     - name: Is config.fish linked?
+     - name: Is starship linked?
        run: |
-         [[ -L ~/.config/fish/config.fish ]]
+         [[ -L ~/.config/starship.toml ]]
 
-     - name: Is .aliases linked?
+     - name: Is .hushlogin present?
        run: |
-         [[ -L ~/.config/fish/.aliases ]]
+         [[ -f ~/.hushlogin ]]
 
-     - name: Is .functions linked?
+     - name: Is .zshrc linked?
        run: |
-         [[ -L ~/.config/fish/.functions ]]
+         [[ -L ~/.zshrc ]]
