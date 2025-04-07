@@ -13,8 +13,18 @@ install-oh-my-zsh () {
   echo "Remember to type exit after the oh-my-zsh install is complete"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   sh -c "git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+  sh -c "git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab"
 
   ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
+}
+
+install-fisher-plugins () {
+  fish -c "curl -sL https://git.io/fisher | source"
+  fish -c "fisher install jorgebucaran/fisher"
+  fish -c "fisher install jorgebucaran/nvm.fish"
+  fish -c "fisher install evanlucas/fish-kubectl-completions"
+  fish -c "fisher install patrickf1/fzf.fish"
+  fish -c "fisher install brgmnn/fish-docker-compose"
 }
 
 make-backup () {
@@ -55,8 +65,9 @@ if [[ $(uname) == "Darwin" ]]; then
 fi
 
 ln -sf $(pwd)/starship.toml ~/.config/starship.toml
+
 # if fish is present, go ahead and install fisher and plugins
-[[ $(which fish) ]] && fish -c "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher && fisher install jorgebucaran/nvm.fish && fisher install evanlucas/fish-kubectl-completions"
+[[ $(which fish) ]] && install-fisher-plugins
 
 for file in fish/.{abbr,functions,exports,aliases,*$(uname)}
 do
