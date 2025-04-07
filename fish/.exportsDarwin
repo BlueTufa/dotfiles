@@ -13,8 +13,10 @@ end
 
 # PyEnv
 set -Ux PYENV_ROOT $HOME/.pyenv
-set -U fish_user_paths /opt/homebrew/opt/openssl@3/bin $PYENV_ROOT/bin $fish_user_paths $HOME/.local/bin
+set -U fish_user_paths /opt/homebrew/opt/openssl@3/bin $PYENV_ROOT/bin $fish_user_paths
 
+# these were needed by an old version of python,
+# and possibly postgresql.  retire as soon as possible
 export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
 
