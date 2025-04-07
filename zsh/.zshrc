@@ -156,5 +156,3 @@ bindkey '[D' backward-word
 # starship.toml should exist at ~/.config/starship.toml
 eval "$(starship init zsh)"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
