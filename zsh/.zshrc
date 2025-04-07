@@ -125,8 +125,9 @@ add-zsh-hook chpwd _auto_poetry_shell
 # ZSH_DOTENV_FILE=".env.local"  # Change the default filename from .env, if preferred
 # REMINDER: if you change the dotenv file name, you must include it in .gitignore
 plugins=(
- git
  dotenv
+ fzf-tab
+ git
  zsh-autosuggestions
 )
 
@@ -134,6 +135,15 @@ plugins=(
 export COMPOSE_DOCKER_CLI_BUILD=1
 export DOCKER_BUILDKIT=1
 export COMPOSE_BAKE=True
+
+# Preview file content when completing with CTRL-T
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}'"
+
+# Preview directory content when completing with ALT-C
+export FZF_ALT_C_OPTS="--preview 'ls -la --color=always {}'"
+
+# Enhanced history search with CTRL-R
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 
 # helpful aliases
 # NOTE: requires brew install watch gh

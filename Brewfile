@@ -15,6 +15,7 @@ brew "libssh2"
 brew "bat"
 brew "glib"
 brew "cmake"
+brew "colima", restart_service: :changed
 brew "curl"
 brew "defaultbrowser"
 brew "diff-so-fancy"
