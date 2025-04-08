@@ -132,10 +132,8 @@ function fish_greeting
     and test "$TERM" = "xterm-kitty"
     and test "$SSH_TTY" = ""
       neofetch --kitty ~/src/dotfiles/assets/arch.png --size 450px
-  else if test "$TERM_PROGRAM" = "vscode"
-    # no-op
   else
-    neofetch 
+    # no-op
   end
 end
 

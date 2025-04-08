@@ -57,7 +57,7 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 15
 # pmset -a = all, -b = battery, -c = charger
 sudo pmset -c sleep 0
 sudo pmset -b powermode 1
-sudo pmset -c powermode 2
+# sudo pmset -c powermode 2
 
 # Hibernation mode
 # 0: Disable hibernation (speeds up entering sleep mode)
