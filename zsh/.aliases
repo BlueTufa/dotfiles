@@ -1,0 +1,52 @@
+alias h='history'
+alias vi='nvim'
+alias vim='nvim'
+alias wtr='curl http://wttr.in/Grand_Junction'
+
+alias rg='rg -i --color=auto --colors=path:fg:yellow --colors=match:fg:green --hidden -g "!Library/Caches/Homebrew/api/formula.jws.json"'
+alias rgi='rg -g !package-lock.json -g !poetry.lock -g !Cargo.lock'
+
+alias pe='printenv'
+alias cat='bat --theme=ansi'
+alias less='bat --theme=ansi'
+alias rm='trash -v'
+
+alias l='eza -aa -g --long --header --git'
+alias ll='eza -aa -g --long --header --git'
+alias lr='fd -aH -t f'
+
+alias md5='openssl md5'
+alias sha1='openssl sha1'
+alias sha256='openssl sha256'
+
+alias gwdd='cd ~/src/dotfiles'
+alias gwf='cd ~/src/qmk/qmk_firmware'
+
+alias .1='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+
+alias dk='docker'
+alias k='kubectl'
+alias tf='terraform'
+
+alias gwd='cd $WORK_SRC'
+alias gwt='cd $WORK_SRC/terraform'
+
+# git aliases
+alias g='git'
+alias ga='git add .'
+alias gpl="git pull --all --prune --tags --rebase --autostash -v"
+
+alias gd="git diff HEAD -- ':!package-lock.json' ':!Cargo.lock' ':!poetry.lock'"
+alias gst='git status'
+alias gbr='git branch'
+alias gps='git push'
+alias diff='git diff --no-index'
+
+alias print-timestamp='watch --no-title date -u +"%Y-%m-%dT%H:%M:%SZ"'
+alias aws-ls='aws --endpoint=http://localhost:4566'
+alias gh-pr='gh pr create --fill-first'
+alias iso-date='date -u +"%Y-%m-%dT%H:%M:%SZ"'

@@ -1,0 +1,47 @@
+# helper function which logs into ecr using the specified profile
+# Example: ecr-login dev
+function ecr-login() {
+  local environment="$1"
+  awsume "$environment"
+
+  local current_account
+  current_account=$(aws sts get-caller-identity --query "Account" --output text)
+
+  aws ecr get-login-password | docker login --username AWS --password-stdin "${current_account}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+}
+
+# helper function to make it easier to start docker-compose without forgetting to build
+# Example: env-up -d
+function env-up() {
+  # No args: start interactively, else use passed-in args
+  docker-compose build
+  docker-compose up --remove-orphans "$@"
+}
+
+# helper function to make it less typing to stop docker-compose
+function env-down() {
+  docker-compose down "$@"
+}
+
+autoload -Uz add-zsh-hook
+
+# helper function which switches to a poetry shell upon change working directory
+function _auto_poetry_shell() {
+  # export VERBOSE=1 to debug / see details
+  # deactivate any existing one first
+  if [[ -n $VIRTUAL_ENV ]]; then
+    [[ -n $VERBOSE ]] && echo "auto-deactivating $VIRTUAL_ENV"
+    deactivate
+  fi
+  # only poetry is supported at this time
+  if [[ -f "pyproject.toml" ]]; then
+    [[ -n $VERBOSE ]] && echo "pyproject.toml detected at $(pwd)"
+
+    if [[ ! -v POETRY_ACTIVE ]]; then
+      [[ -n $VERBOSE ]] && echo "auto-activating poetry env @ $(poetry env info --path)"
+      emulate bash -c ". $(poetry env info --path)/bin/activate" > /dev/null
+    fi
+  fi
+}
+
+add-zsh-hook chpwd _auto_poetry_shell

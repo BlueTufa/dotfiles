@@ -52,91 +52,24 @@ setopt inc_append_history     # add commands as they are typed, don't wait until
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# helper function which logs into ecr using the specified profile
-# Example: ecr-login dev
-function ecr-login() {
-  local environment="$1"
-  awsume "$environment"
-
-  local current_account
-  current_account=$(aws sts get-caller-identity --query "Account" --output text)
-
-  aws ecr get-login-password | docker login --username AWS --password-stdin "${current_account}.dkr.ecr.${AWS_REGION}.amazonaws.com"
-}
-
-# helper function to make it easier to start docker-compose without forgetting to build
-# Example: env-up -d
-function env-up() {
-  # No args: start interactively, else use passed-in args
-  docker-compose build
-  docker-compose up --remove-orphans "$@"
-}
-
-# helper function to make it less typing to stop docker-compose
-function env-down() {
-  docker-compose down "$@"
-}
-
-autoload -Uz add-zsh-hook
-
-# helper function which switches to a poetry shell upon change working directory
-function _auto_poetry_shell() {
-  # export VERBOSE=1 to debug / see details
-  # deactivate any existing one first
-  if [[ -n $VIRTUAL_ENV ]]; then
-    [[ -n $VERBOSE ]] && echo "auto-deactivating $VIRTUAL_ENV"
-    deactivate
-  fi
-  # only poetry is supported at this time
-  if [[ -f "pyproject.toml" ]]; then
-    [[ -n $VERBOSE ]] && echo "pyproject.toml detected at $(pwd)"
-
-    if [[ ! -v POETRY_ACTIVE ]]; then
-      [[ -n $VERBOSE ]] && echo "auto-activating poetry env @ $(poetry env info --path)"
-      emulate bash -c ". $(poetry env info --path)/bin/activate" > /dev/null
-    fi
-  fi
-}
-
-add-zsh-hook chpwd _auto_poetry_shell
-
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-
 # dotenv is built in to oh-my-zsh and will automatically source any .env files when you enter a directory
 # ZSH_DOTENV_PROMPT=false  # Disable the confirmation prompt
 # ZSH_DOTENV_FILE=".env.local"  # Change the default filename from .env, if preferred
 # REMINDER: if you change the dotenv file name, you must include it in .gitignore
 plugins=(
+ aws
  dotenv
- git
+ fzf
+ gh
+ pyenv
+ starship
  zsh-autosuggestions
 )
 
-# pyenv setup. 
-export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PATH:$PYENV_ROOT/bin
-eval "$(pyenv init - zsh)"
-
-# these will speed up docker-compose and docker build
-export COMPOSE_DOCKER_CLI_BUILD=1
-export DOCKER_BUILDKIT=1
-export COMPOSE_BAKE=True
-
-# helpful aliases
-# NOTE: requires brew install watch gh
-alias print-timestamp='watch --no-title date -u +"%Y-%m-%dT%H:%M:%SZ"'
-alias aws-ls='aws --endpoint=http://localhost:4566'
-alias gh-pr='gh pr create --fill-first'
-alias iso-date='date -u +"%Y-%m-%dT%H:%M:%SZ"'
-
-# set up AWS CLI autocompletions
-autoload -Uz bashcompinit && bashcompinit
-autoload -Uz compinit && compinit
-which aws_completer > /dev/null && complete -C "$(which aws_completer)" aws
+# # set up AWS CLI autocompletions
+# autoload -Uz bashcompinit && bashcompinit
+# autoload -Uz compinit && compinit
+# which aws_completer > /dev/null && complete -C "$(which aws_completer)" aws
 
 # uncomment this to configure the 1Password ssh agent
 # export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
@@ -147,12 +80,11 @@ source $ZSH/oh-my-zsh.sh
 
 bindkey -e
 
-# You may also need to disable the bell and visual bell in iTerm2
+# You may also need to disable the bell in iTerm2
 bindkey '[C' forward-word
 bindkey '[D' backward-word
 
-# NOTE: requires brew install starship
-# see the sample starship.toml under the root of this repo.
-# starship.toml should exist at ~/.config/starship.toml
-eval "$(starship init zsh)"
-
+for file in ~/.zsh/.{exports,aliases,functions}
+do
+  [[ -f $file ]] && source $file
+done
