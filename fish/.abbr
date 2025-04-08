@@ -1,6 +1,7 @@
 abbr --add db-migrate-prod "run-ecs-task prod task-definition/database-migrations-task --cluster rg-us-e1-prod-web-cluster --network-configuration=\''awsvpcConfiguration={subnets=[subnet-0189c234c09672b16],securityGroups=[sg-0c925e447aa200420]}\''"
 abbr --add db-migrate-dev "run-ecs-task dev task-definition/database-migrations-task --cluster rg-us-e1-dev-cluster --network-configuration=\''awsvpcConfiguration={subnets=[subnet-0f91b65d392895393],securityGroups=[sg-018d21aeabb7852de]}\''"
-abbr --add db-migrate-dev-v2 "run-ecs-task dev task-definition/database-migrations-v2-task --cluster rg-us-e1-dev-cluster --network-configuration=\''awsvpcConfiguration={subnets=[subnet-0f91b65d392895393],securityGroups=[sg-018d21aeabb7852de]}\''"
+abbr --add update-service-dev "aws ecs update-service --force-new-deployment --cluster rg-us-e1-dev-cluster --service"
+abbr --add update-service-prod "aws ecs update-service --force-new-deployment --cluster rg-us-e1-prod-cluster --service"
 
 abbr --add print-timestamp watch --no-title date -u +"%Y-%m-%dT%H:%M:%SZ"
 

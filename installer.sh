@@ -69,6 +69,12 @@ install-fish () {
   fish -c "fisher install brgmnn/fish-docker-compose"
 }
 
+config-fastfetch() {
+  mkdir -p ~/.config/fastfetch/
+  make-backup ~/.config/fastfetch/config.jsonc
+  ln -sf $(pwd)/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc
+}
+
 mkdir -p ~/src/bin
 touch ~/.hushlogin
 
@@ -90,3 +96,6 @@ ln -sf $(pwd)/starship.toml ~/.config/starship.toml
 
 # comment this out if you don't want fish support
 install-fish
+
+config-fastfetch
+
