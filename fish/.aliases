@@ -1,29 +1,28 @@
-alias l='eza -aa -g --long --header --git'
-alias ll='eza -aa -g --long --header --git'
+set -l is_darwin (test (uname) = "Darwin"; and echo true; or echo false)
+
+alias h='history'
 alias vi='nvim'
 alias vim='nvim'
-alias h='history'
 alias wtr='curl http://wttr.in/Grand_Junction'
-
-alias cat='bat --theme=ansi'
-alias dk='docker'
-alias k='kubectl'
-
-alias less='bat --theme=ansi'
 
 alias rg='rg -i --color=auto --colors=path:fg:yellow --colors=match:fg:green --hidden -g "!Library/Caches/Homebrew/api/formula.jws.json"'
 alias rgi='rg -g !package-lock.json -g !poetry.lock -g !Cargo.lock'
 
-alias lr='fd -aH -t f'
-alias lc='lolcat'
-alias md5='openssl md5'
 alias pe='printenv'
+alias cat='bat --theme=ansi'
+alias less='bat --theme=ansi'
+alias rm='trash -v'
+
+alias l='eza -aa -g --long --header --git'
+alias ll='eza -aa -g --long --header --git'
+alias lr='fd -aH -t f'
+
+alias md5='openssl md5'
 alias sha1='openssl sha1'
 alias sha256='openssl sha256'
-alias tf='terraform'
+
 alias gwdd='cd ~/src/dotfiles'
 alias gwf='cd ~/src/qmk/qmk_firmware'
-alias rm='trash -v'
 
 alias .1='cd ..'
 alias .2='cd ../..'
@@ -31,7 +30,9 @@ alias .3='cd ../../..'
 alias .4='cd ../../../..'
 alias .5='cd ../../../../..'
 
-alias n='npm'
+alias dk='docker'
+alias k='kubectl'
+alias tf='terraform'
 
 alias gwd='cd $WORK_SRC'
 alias gwt='cd $WORK_SRC/terraform'
@@ -47,10 +48,12 @@ alias gbr='git branch'
 alias gps='git push'
 alias diff='git diff --no-index'
 
-if test (uname) = "Darwin"
+if $is_darwin
   # Darwin version of clipboard from command line
   alias clip='pbcopy'
   
+  set -gx MAC_APP_PATH '/System/Applications'
+
   # aliases for gui mode apps
   # NOTE: may need to add -f after -g any time you want to block from the CLI
   alias actmon="open $MAC_APP_PATH/Utilities/Activity\ Monitor.app"
