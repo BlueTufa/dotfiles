@@ -18,11 +18,11 @@
   co = checkout
   st = status
   mg = merge -S
-  pl = pull
+  pl = pull --all --prune --tags --rebase --autostash -v
   ps = push
   a = add
   l = log --pretty=oneline -n 20 --graph --abbrev-commit
-    ll = log --pretty=oneline -n 100 --graph --abbrev-commit
+  ll = log --pretty=oneline -n 100 --graph --abbrev-commit
   sh = stash
   df = diff 
   cl = clone
@@ -62,12 +62,6 @@
   helper = store
 [pull]
   rebase = false
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [delta]
   line-numbers = true
   dark = true

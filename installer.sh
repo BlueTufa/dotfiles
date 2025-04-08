@@ -28,11 +28,18 @@ install-nvim () {
 }
 
 install-oh-my-zsh () {
-  make-backup ~/.zshrc
-  echo "Remember to type exit after the oh-my-zsh install is complete"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
   sh -c "git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
 
+  mkdir -p ~/.zsh
+  for file in zsh/.{functions,exports,aliases}
+  do
+    make-backup ~/.${file}
+    echo "Linking ${file}..."
+    ln -sf $(pwd)/${file} ~/.${file}
+  done
+
+  make-backup ~/.zshrc
   ln -sf $(pwd)/zsh/.zshrc ~/.zshrc
 }
 
@@ -47,7 +54,7 @@ install-fish () {
   make-backup ~/.config/fish/config.fish 
   ln -sf $(pwd)/fish/config.fish ~/.config/fish/config.fish
 
-  for file in fish/.{abbr,functions,exports,aliases,*$(uname)}
+  for file in fish/.{abbr,functions,exports,aliases}
   do
     make-backup ~/.config/${file}
     echo "Linking ${file}..."
@@ -60,6 +67,12 @@ install-fish () {
   fish -c "fisher install evanlucas/fish-kubectl-completions"
   fish -c "fisher install patrickf1/fzf.fish"
   fish -c "fisher install brgmnn/fish-docker-compose"
+}
+
+config-fastfetch() {
+  mkdir -p ~/.config/fastfetch/
+  make-backup ~/.config/fastfetch/config.jsonc
+  ln -sf $(pwd)/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc
 }
 
 mkdir -p ~/src/bin
@@ -83,3 +96,6 @@ ln -sf $(pwd)/starship.toml ~/.config/starship.toml
 
 # comment this out if you don't want fish support
 install-fish
+
+config-fastfetch
+

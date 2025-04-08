@@ -1,5 +1,3 @@
-set -l is_darwin (test (uname) = "Darwin"; and echo true; or echo false)
-
 alias h='history'
 alias vi='nvim'
 alias vim='nvim'
@@ -48,22 +46,7 @@ alias gbr='git branch'
 alias gps='git push'
 alias diff='git diff --no-index'
 
-if $is_darwin
-  # Darwin version of clipboard from command line
-  alias clip='pbcopy'
-  
-  set -gx MAC_APP_PATH '/System/Applications'
-
-  # aliases for gui mode apps
-  # NOTE: may need to add -f after -g any time you want to block from the CLI
-  alias actmon="open $MAC_APP_PATH/Utilities/Activity\ Monitor.app"
-  alias calc="open $MAC_APP_PATH/Calculator.app"
-  alias console="open $MAC_APP_PATH/Utilities/Console.app"
-  alias gdu="open $MAC_APP_PATH/Utilities/Disk\ Utility.app"
-  alias prefs="open $MAC_APP_PATH/System\ Preferences.app"
-  
-  alias slack="open /Applications/Slack.app"
-  alias sqlwb="open /Applications/DataGrip.app"
-  alias xbrew='arch -x86_64 /usr/local/bin/brew'
-end
-
+alias print-timestamp='watch --no-title date -u +"%Y-%m-%dT%H:%M:%SZ"'
+alias aws-ls='aws --endpoint=http://localhost:4566'
+alias gh-pr='gh pr create --fill-first'
+alias iso-date='date -u +"%Y-%m-%dT%H:%M:%SZ"'

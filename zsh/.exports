@@ -1,0 +1,9 @@
+export GPG_TTY=$(tty)
+export EDITOR='nvim'
+export AWS_PAGER='bat --style=plain -l json'
+export NVM_DIR="$HOME/.nvm"
+
+# these will speed up docker-compose and docker build
+export COMPOSE_DOCKER_CLI_BUILD=1
+export DOCKER_BUILDKIT=1
+export COMPOSE_BAKE=True
