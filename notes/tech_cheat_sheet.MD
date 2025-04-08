@@ -1,143 +1,231 @@
-# System cheat sheet
-## ATOM
-* copy path: ctrl-shift-c
-* redo cmd-y
-* toggle comments cmd-/
-* move line up or down ctrl-cmd up-down
-* cmd-shift-d duplicate lines!
-* ctrl-t transpose
-* ctrl-g go to line
-* ctrl shift w select word
-   
-## terminal (fish specific?)
-Many of these seem to work great in zsh as well.  These are similar to emacs bindings, and will often work in the OS.
-* ctrl + a beginning of line
-* ctrl + e end of line
-* ctrl + w = delete word (backward-kill-word)
-* ctrl + d = delete character under cursor 
-* ctrl + arrow keys jump between words.  doesn't work on all operating systems
-* ctrl + k kill to end of line
-* ctrl + u kill to beginning of line
-* ctrl + _ undo NOTE: use this more
-* ctrl + p backwards through history 
-* ctrl + n forwards through history
-* ~. kill ssh session
-* more here: http://web.mit.edu/gnu/doc/html/features_7.html
+# Complete System Administrator's Cheat Sheet
 
-## Custom shortcuts
-The shortcuts listed above will be enabled by default, but you can also customize your own with the bind command.  See the fish/.exports file for an example.  You use `bind --user` to establish your own.  Simply type `bind` to see the defaults or it can be used to debug problems with custom shortcuts.  It is recommended to use the custom overrides sparingly, and where practical try to override them with like commands so that you're not flailing on a foreign system.  For example, I replaced ctrl+b/f with a more agressive move command.  You can also experiment with replacing backward-kill-path-component with backward-kill-bigword if you feel that you spend a lot of time hitting ctrl-w.  I tried that but I like backward-kill-path-component more. 
-* ctrl + b backward word.  Note that this key is bound to backward character by default, but backward word seems more useful to me.
-* ctrl + f forward word.  This is bound to forward char by default.
+## Text Editors
 
-## echo output to console and a file:
-You can use tee to copy stdout and stderr to a file as well as the console:
-`sbt liv 2>&1 | tee build.log`
+## Command Line Essentials
 
-## BASH / zsh AKA heredoc
-Don't forget about << EOF stream redirection
-```nc -v localhost 8888 << EOF
+### Terminal Navigation (Fish, Zsh, Bash)
+| Action | Shortcut |
+|--------|----------|
+| Beginning of line | `Ctrl+A` |
+| End of line | `Ctrl+E` |
+| Delete word backward | `Ctrl+W` |
+| Delete character under cursor | `Ctrl+D` |
+| Jump between words | `Ctrl+←/→` |
+| Kill to end of line | `Ctrl+K` |
+| Kill to beginning of line | `Ctrl+U` |
+| Undo | `Ctrl+_` |
+| Previous command in history | `Ctrl+P` |
+| Next command in history | `Ctrl+N` |
+| Kill SSH session | `~.` |
+
+### Custom Shell Shortcuts
+You can customize your own shortcuts with the `bind` command:
+
+```bash
+# View current bindings
+bind
+
+# Set custom user bindings
+bind --user
+
+# Example custom bindings from fish/.exports file
+# Replace default backward character with backward word
+bind \cb backward-word
+
+# Replace default forward character with forward word
+bind \cf forward-word
+```
+
+Use custom overrides sparingly to maintain consistency across systems.
+
+### I/O Redirection
+
+#### Echo Output to Console and File
+```bash
+# Send both stdout and stderr to file and console
+sbt liv 2>&1 | tee build.log
+```
+
+#### Heredoc in Bash/Zsh
+```bash
+nc -v localhost 8888 << EOF
 blah
-EOF```
+EOF
+```
 
-## Fish shell heredoc equivalent
-You can do the same thing with fish using echo and \:
-```echo "\
-here" | nc -v localhost 8888```
+#### Heredoc Equivalent in Fish
+```bash
+echo "\
+here" | nc -v localhost 8888
+```
 
-## TAR commands
-create
-tar -czvf filename.tar.gz . (for hidden files)
-extract
-tar -xzvf test123.tar.gz
-list
-tar -tzvf test123.tar.gz
+### Tar Operations
+```bash
+# Create archive (include hidden files)
+tar -czvf filename.tar.gz .
 
-## OSX
-show hidden files on open: cmd+shift+.
+# Extract archive
+tar -xzvf archive.tar.gz
+
+# List contents
+tar -tzvf archive.tar.gz
+```
+
+## macOS
+
+### Finder & System Shortcuts
+| Action | Shortcut |
+|--------|----------|
+| Show/hide hidden files | `Cmd+Shift+.` |
+| Force Quit menu | `Cmd+Option+Esc` |
+| Full screen screenshot | `Cmd+Shift+3` |
+| Selective screenshot | `Cmd+Shift+4` |
+| Page Down | `Fn+↓` |
+| Page Up | `Fn+↑` |
+| Pipe to clipboard | `command | pbcopy` |
+
+### Text Navigation (System-wide)
+| Action | Shortcut |
+|--------|----------|
+| Beginning of line | `Ctrl+A` |
+| End of line | `Ctrl+E` |
+| Up one line | `Ctrl+P` |
+| Down one line | `Ctrl+N` |
+| Next word | `Alt+→` |
+| Previous word | `Alt+←` |
+| Select rest of line | `Shift+↓` |
+| Select to beginning of line | `Shift+↑` |
+| Select to beginning of document | `Shift+Fn+↑` |
+| Select to end of document | `Shift+Fn+↓` |
+
+### System Administration
+```bash
+# Boot arguments
 sudo nvram boot-args
-  -v Verbose
-  -s Single User
-  -x Safe Mode
-apachectl - Apache admin
-launchctl - Admin interface to launchd
-before you modify any config file, make a backup of it called .factory_defaults
-then run sudo chmod 444 on it
-enable locate service
-Command + Option + ESC = Force Quit menu
-full screen print Command + Shift + 3
-selective screen print Command + Shift + 4
-Page Down Fn + Down Arrow
-Page Up Fn + Up Arrow
-Beginning of Line Ctrl + A
-End of Line Ctrl + E
-Up one Line Ctrl + P
-Down one Line Ctrl + N
-Next word Alt + Right Arrow
-Previous word Alt + Left Arrow
-Select rest of line Shift + Down Arrow
-Select to beginning of line Shift + Up Arrow
-Select to beginning of document Shift + Fn + Up Arrow
-Select to end of document Shift + Fn + Down Arrow
-pbcopy pipe to clipboard - aliased to clip
+  # -v Verbose
+  # -s Single User
+  # -x Safe Mode
 
-Key system directories for MacOS:
-Kernel Extensions: /System/Library/Extensions
-Check for unwanted / malicious extensions
-`kextstat | grep -v com.apple`
-Launch agents and daeomons:
+# Apache admin
+apachectl
+
+# Launch services admin
+launchctl
+
+# Enable locate service
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
+
+# Copy to clipboard (aliased to clip)
+pbcopy
+```
+
+### Key System Directories
+```
+# Kernel Extensions
+/System/Library/Extensions
+
+# Check for unwanted/malicious extensions
+kextstat | grep -v com.apple
+
+# Launch Agents and Daemons
 /System/Library/LaunchAgents
 /System/Library/LaunchDaemons
 ~/Library/LaunchAgents
+```
 
-## linux / unix / BSD sysadmin commands
-uptime
-uname -a
-w
-whoami
-hostname -I
-lsof
-service -—status-all
-service service name restart
-systemctl restart servicename
-fc-list show fonts
-showconsolefont
+## Linux/Unix/BSD Administration
 
-## Hack commands
-airmon-ng start wlan0
-Deauth
-aireplay-ng -0 10 -a BSSID -c CLIENTMACID mon0
-tcpdump
-nmap -A -v ipaddress
-
-## SSH shortcut keys    
-    ~.: Disconnect.
-    ~^Z: Background ssh.
-    ~#: List forwarded connections.
-    ~&: Background ssh at logout when waiting for forwarded connection / X11 sessions to terminate.
-    ~?: Display a list of escape characters.
-    ~B: Send a BREAK to the remote system (only useful for SSH protocol version 2 and if the peer supports it).
-    ~C: Open command line. Currently this allows the addition of port forwardings using the -L, -R and -D options (see above). It also allows the cancellation of existing remote port-forwardings using -KR[bind_address:]port. !command allows the user to execute a local command if the PermitLocalCommand option is enabled in ssh_config(5). Basic help is available, using the -h option.
-    ~R: Request rekeying of the connection (only useful for SSH protocol version 2 and if the peer supports it).
-
-## JAVA
-Jersey debug:
-  // add the default Jackson exception mappers
-  jersey.register(JsonParseExceptionMapper.class);
-  jersey.register(JsonMappingExceptionMapper.class);
-
-## SED Examples
-sed 's/^: 15[0-9]\{8\}:0;//g'
-remove numeric pattern starting with : 15 plus next 8 digits
-
-## SAML / JWT / Auth
-Use the following site to validate SAML tokens
-https://www.samltool.com/validate_xml.php
-Use the following for JWT
-https://jwt.io/
-
-## Gnome
-Dealing with dconf settings, on a search for shortcut keys:
+### System Information
 ```bash
+# System uptime
+uptime
+
+# Kernel version and system info
+uname -a
+
+# Current users and load
+w
+
+# Current user
+whoami
+
+# IP addresses
+hostname -I
+
+# Open files
+lsof
+
+# Service management
+service --status-all
+service service_name restart
+systemctl restart service_name
+
+# Font management
+fc-list
+showconsolefont
+```
+
+## Network & Security
+
+### SSH Shortcut Keys
+| Escape Sequence | Action |
+|-----------------|--------|
+| `~.` | Disconnect |
+| `~^Z` | Background SSH |
+| `~#` | List forwarded connections |
+| `~&` | Background SSH at logout when waiting for connections |
+| `~?` | Display escape character list |
+| `~B` | Send BREAK to remote system |
+| `~C` | Open command line |
+| `~R` | Request connection rekeying |
+
+### Network Analysis
+```bash
+# Wireless monitoring
+airmon-ng start wlan0
+
+# Deauthentication attack
+aireplay-ng -0 10 -a BSSID -c CLIENTMACID mon0
+
+# Packet capture
+tcpdump
+
+# Network scanning
+nmap -A -v ipaddress
+```
+
+## Development
+
+### Java
+```java
+// Jersey debug: add default Jackson exception mappers
+jersey.register(JsonParseExceptionMapper.class);
+jersey.register(JsonMappingExceptionMapper.class);
+```
+
+### SED Examples
+```bash
+# Remove numeric pattern starting with : 15 plus next 8 digits
+sed 's/^: 15[0-9]\{8\}:0;//g'
+```
+
+### Authentication Tools
+- SAML token validation: https://www.samltool.com/validate_xml.php
+- JWT validation and debugging: https://jwt.io/
+
+## Desktop Environments
+
+### GNOME Configuration
+```bash
+# Search for shortcut keys in dconf settings
 for schema in $(gsettings list-schemas); do gsettings list-recursively $schema; done | ag 'Super\>s'
 ```
 
+## System Configuration Practices
+
+### Best Practices
+- Before modifying any config file, create a backup with `.factory_defaults` suffix
+- Make backups read-only: `sudo chmod 444 filename.factory_defaults`
+- Use version control for configuration files when possible
+- Document system changes in a central location

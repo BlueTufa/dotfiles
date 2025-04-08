@@ -33,4 +33,3 @@ abbr --add new-api 'cd $WORK_SRC/cohorts-api'
 # abbr --add kp 'kubectl -n prod'
 # abbr --add kc 'kubectl -n dev'
 # abbr --add helm-ecr-login='aws ecr get-login-password | helm registry login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$REGION.amazonaws.com'
-
