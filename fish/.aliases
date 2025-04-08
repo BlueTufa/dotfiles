@@ -1,4 +1,3 @@
-# GENERIC alias dotfile.  Put everything that is not OS specific in this dotfile.
 alias l='eza -aa -g --long --header --git'
 alias ll='eza -aa -g --long --header --git'
 alias vi='nvim'
@@ -34,6 +33,9 @@ alias .5='cd ../../../../..'
 
 alias n='npm'
 
+alias gwd='cd $WORK_SRC'
+alias gwt='cd $WORK_SRC/terraform'
+
 # git aliases
 alias g='git'
 alias ga='git add .'
@@ -44,3 +46,21 @@ alias gst='git status'
 alias gbr='git branch'
 alias gps='git push'
 alias diff='git diff --no-index'
+
+if test (uname) = "Darwin"
+  # Darwin version of clipboard from command line
+  alias clip='pbcopy'
+  
+  # aliases for gui mode apps
+  # NOTE: may need to add -f after -g any time you want to block from the CLI
+  alias actmon="open $MAC_APP_PATH/Utilities/Activity\ Monitor.app"
+  alias calc="open $MAC_APP_PATH/Calculator.app"
+  alias console="open $MAC_APP_PATH/Utilities/Console.app"
+  alias gdu="open $MAC_APP_PATH/Utilities/Disk\ Utility.app"
+  alias prefs="open $MAC_APP_PATH/System\ Preferences.app"
+  
+  alias slack="open /Applications/Slack.app"
+  alias sqlwb="open /Applications/DataGrip.app"
+  alias xbrew='arch -x86_64 /usr/local/bin/brew'
+end
+
