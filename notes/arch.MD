@@ -1,17 +1,24 @@
-# Installing a new arch instance from an existing instance without the installation media
-I had an epiphany that if you are already running Arch, you can install Arch on a new drive using your current installation as a baseline instead of using bootable media.  This basically works through a combination of 3 concepts: 
-1.  pacman will allow you to specify a target install location via the -r argument.  Doing so will allow you install pacman on a clean drive.
-2.  Using the mount command to mount `proc` and `sys`, etc.
-3.  Switching to the new drive via chroot.  The key difference between chroot and arch-chroot is that arch-chroot does step #2 for you.
+# Installing Arch Linux Without Installation Media
 
----
->NOTE: in the examples below, `_` is aliased to `sudo`.
----
+## Introduction
 
-I have been running with this configuration for several months now, and reguarly pull in rolling updates via `pacman -Syu` and have yet to encounter a single difference between this manual installation process and an install media-based installation.  It is after all, just an extension of the already minimalist Arch installation process.  I actually find this approach more confidence inspiring and more deterministic than booting from installation media.  In theory you might be able to use some other distro as a baseline, but you're likely to have problems installing pacman.  If you figure out a way let me know.  
+This guide explains how to install Arch Linux on a new drive using your existing Arch installation as the base environment, eliminating the need for bootable installation media. The process leverages three key concepts:
 
-### init a new bare install (no arch install media)
-In this scenario, you have already formatted and mounted /mnt/newdrive as a blank ext4 disk.  These steps are performed for you by the pacman-bootstrap script that is present on the installation media.
+1. Using `pacman`'s `-r` flag to specify a target installation location
+2. Mounting necessary system directories (`proc`, `sys`, etc.)
+3. Using `chroot` to switch to the new environment
+
+> **Note:** In the examples below, `_` is used as an alias for `sudo`.
+
+## Prerequisites
+
+- A running Arch Linux system
+- A new, formatted drive mounted at `/mnt/newdrive`
+
+## Step 1: Initialize the New Installation
+
+First, create the necessary directory structure on your new drive:
+
 ```bash
 cd /mnt/newdrive
 _ mkdir -m 0555 -p {proc,dev}
@@ -20,90 +27,178 @@ _ mkdir -m 0755 -p var/log
 _ mkdir -m 0755 -p var/{cache/pacman/pkg,lib/pacman} run
 ```
 
-### mount the existing system devices as a prerequisite to chroot:
-Here, you are installing pacman, and optional but highly recommended, some sort of text editor to allow you to edit config files from the new root.
+## Step 2: Install Basic Packages and Prepare for chroot
+
+Install the package manager and a text editor on the new drive:
+
 ```bash
 _ pacman -r /mnt/newdrive -Sy pacman
 _ pacman -r /mnt/newdrive -Sy neovim
+```
+
+Mount the necessary system directories to prepare for chroot:
+
+```bash
 _ mount -o bind /dev /mnt/newdrive/dev/
 _ mount -t proc /proc /mnt/newdrive/proc/
 _ mount -t sysfs /sys /mnt/newdrive/sys/
-# important for EFI and GRUB!
-_ mount --make-rslave --rbind /sys sys
+
+# Important for EFI and GRUB
+_ mount --make-rslave --rbind /sys /mnt/newdrive/sys
 ```
 
-### NEXT
+## Step 3: Enter the New Environment
+
+Switch to the new installation:
+
 ```bash
-chroot /mnt/newdrive
+_ chroot /mnt/newdrive
 ```
 
-You can see that the devices are properly mounted by simply running `cat /proc/cpuinfo` etc.  
+Verify system mounts are working by checking system information:
 
-* add nameserver to resolv.conf
-`vi /etc/resolv.conf`
-`nameserver 1.1.1.1`
+```bash
+cat /proc/cpuinfo
+```
 
-* You need to initialize the pacman keyring for the arch repos
+## Step 4: Configure Networking and Package Management
+
+Set up DNS configuration:
+
+```bash
+echo "nameserver 1.1.1.1" > /etc/resolv.conf
+```
+
+Initialize the pacman keyring:
+
 ```bash
 pacman-key --init
 pacman-key --populate archlinux
 ```
 
-### this step is super important
-* for EFI, mount /boot to EFI system partition.  Don't forget to add this to your fstab or you'll have upgrade problems.
-* edit the mirror list for pacman
-* install the kernel and efi packages 
+## Step 5: Install Essential Packages
+
+Install the Linux kernel and EFI support:
+
 ```bash
 pacman -Sy linux linux-firmware efibootmgr
+
+# Set up symlinks for the editor
 ln -s /usr/bin/nvim /usr/bin/vi
 ln -s /usr/bin/nvim /usr/bin/vim
 ```
-* Next, you will need to configure networking.  It is extremely important than you remember to install `dhcpcd` later or you will spend a bunch of time rebooting and reconfiguring to get networking to work later.  Or you can temporarily put in a static IP address if you have one.
+
+## Step 6: Configure Networking
+
+Install and configure DHCP to ensure internet access on first boot:
+
 ```bash
-sudo ip link show
+pacman -S dhcpcd
 ```
-Extract the name of the network interface that you would like to use and add it to the config file below, for example, `en02`
+
+Identify your network interface:
+
 ```bash
-sudo pacman -S dhcpcd
-vi File: /etc/systemd/network/eno2.network
- [Match]
- Name=eno2
- 
- [Network]
- DHCP=true
+ip link show
 ```
-# Grub installation.  
-This is probably the most difficult and error-prone step of any Arch Linux install.  This and dhcpcd configuration also require the most reboots / media boots to get corrected and tested.  
-Remember when editing /etc/fstab that if you don't include the /boot directory in your mount points, future kernel updates will fail.
+
+Configure the network interface (replace `eno2` with your interface name):
+
 ```bash
+# Create network configuration file
+cat > /etc/systemd/network/eno2.network << EOF
+[Match]
+Name=eno2
+
+[Network]
+DHCP=true
+EOF
+```
+
+## Step 7: Set Up Boot Manager (GRUB)
+
+Install GRUB for an EFI system:
+
+```bash
+pacman -S grub
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch-kde
-edit /etc/fstab
 ```
-Other tasks.  These are well documented in the Arch Linux wiki
-* edit and run locale-gen
-* console font
-* time zone
-* /etc/localtime to /usr/share/zoneinfo/America/Denver
-* `ln -s /usr/share/zoneinfo/America/Denver /etc/localtime`
-* `vi /etc/vconsole.conf`
-* FONT=/usr/share/kbd/consolefonts/ter-228b.psf.gz # TODO: that font is way too big even @ 4K
-* useradd -G users -d /home/badger/ -s /usr/bin/fish badger
-* passwd badger
 
-* change root password
-* add badger to sudoers
+Don't forget to edit `/etc/fstab` to include your mount points, especially `/boot`!
 
-installed packages thus far:
+Generate the GRUB configuration (critical before rebooting):
+
 ```bash
-  pacman -Sy base
-  pacman -Sy linux linux-firmware efibootmgr
-  pacman -S grub
-  pacman -S terminus-font
-  pacman -S sudo
-  pacman -S fish
-  pacman -S which
-  pacman -S dhcpcd 
+grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-# very important!
-Don't forget to run grub_mkconfig before reboot!
+## Step 8: System Configuration
+
+Set up localization:
+
+```bash
+# Edit /etc/locale.gen and uncomment your locale
+# Then generate the locale
+locale-gen
+
+# Set time zone
+ln -s /usr/share/zoneinfo/America/Denver /etc/localtime
+
+# Configure console font
+echo "FONT=/usr/share/kbd/consolefonts/ter-228b.psf.gz" > /etc/vconsole.conf
+```
+
+## Step 9: User Management
+
+Create a user account:
+
+```bash
+pacman -S fish
+useradd -G users -d /home/badger/ -s /usr/bin/fish badger
+passwd badger
+```
+
+Set root password:
+
+```bash
+passwd
+```
+
+Configure sudo access:
+
+```bash
+pacman -S sudo
+# Add your user to sudoers
+echo "badger ALL=(ALL) ALL" > /etc/sudoers.d/badger
+```
+
+## Step 10: Final Package Installation
+
+Install additional essential packages:
+
+```bash
+pacman -Sy base
+pacman -S terminus-font which
+```
+
+## Summary of Installed Packages
+
+```
+base
+linux
+linux-firmware
+efibootmgr
+grub
+terminus-font
+sudo
+fish
+which
+dhcpcd
+neovim
+```
+
+## Important Reminders
+
+- Run `grub-mkconfig -o /boot/grub/grub.cfg` before rebooting
+- Ensure `/boot` is properly mounted and in your `/etc/fstab`
+- Properly configure DHCP to have network access on first boot

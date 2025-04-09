@@ -128,9 +128,9 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
 # Set the icon size of Dock items to x pixels
-defaults write com.apple.dock tilesize -int 72
-defaults write com.apple.dock largesize -int 96
-
+defaults write com.apple.dock tilesize -int 44
+defaults write com.apple.dock largesize -int 68
+defaults write com.apple.dock orientation -string "right"
 # Wipe all (default) app icons from the Dock
 # This is only really useful when setting up a new Mac, or if you don’t use
 # the Dock to launch apps.

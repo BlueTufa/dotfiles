@@ -67,3 +67,7 @@ if $is_darwin
   alias xbrew='arch -x86_64 /usr/local/bin/brew'
 end
 
+if test -f /etc/os-release
+  alias cat='batcat --theme=ansi'
+end
+
