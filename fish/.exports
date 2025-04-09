@@ -27,8 +27,6 @@ bind --user \cb backward-word
 bind --user \cf forward-word
 bind --user \cu upcase-word
 
-fzf_configure_bindings --directory=\ct
-
 function fzf_smart_preview
     if test -d "$argv"
       eza -l --color=always --no-permissions --no-filesize --no-user --git -m --time-style "+%Y-%m-%d %H:%M" "$argv"
@@ -37,15 +35,36 @@ function fzf_smart_preview
     end
 end
 
-set -gx FZF_CTRL_T_OPTS "--preview 'fzf_smart_preview {}'"
-set -gx FZF_ALT_C_OPTS "--preview 'eza --all --color=always'"
+if type -q fzf_configure_bindings 
+  fzf_configure_bindings --directory=\ct
 
-pyenv init - | source
-starship init fish | source
-zoxide init fish | source
-docker completion fish | source
-gh completion -s fish | source
-poetry completions fish | source
+  set -gx FZF_CTRL_T_OPTS "--preview 'fzf_smart_preview {}'"
+  set -gx FZF_ALT_C_OPTS "--preview 'eza --all --color=always'"
+end
+
+if type -q pyenv
+  pyenv init - | source
+end
+
+if type -q starship 
+  starship init fish | source
+end
+
+if type -q zoxide
+  zoxide init fish | source
+end
+  
+if type -q docker
+  docker completion fish | source
+end
+
+if type -q gh
+  gh completion -s fish | source
+end
+
+if type -q poetry
+  poetry completions fish | source
+end
 
 # keeping these for the next time I need rust or K8s
 # helm completion fish | source
