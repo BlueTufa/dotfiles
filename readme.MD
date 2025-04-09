@@ -27,9 +27,7 @@ To permanently change the default shell to ZSH, run the following from bash:
 brew install font-meslo-lg-nerd-font
 #or simply, from this directory:
 brew bundle
-```cccccbvgujdutiikluhjkignkefukdeddfufbbegblgk
-cccccbvgujdutvgjkchhgckjfjjlbgcgfgducnrigfhh
-
+```
 
 ### Neovim support
 This project includes a basic neovim configuration.  If you run `./installer.sh` it will automatically symlink lua and install vim-plug for you.   
