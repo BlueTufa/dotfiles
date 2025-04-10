@@ -61,12 +61,16 @@ install-fish () {
     ln -sf $(pwd)/${file} ~/.config/${file}
   done
 
-  fish -c "curl -sL https://git.io/fisher | source"
-  fish -c "fisher install jorgebucaran/fisher"
-  fish -c "fisher install jorgebucaran/nvm.fish"
-  fish -c "fisher install evanlucas/fish-kubectl-completions"
-  fish -c "fisher install patrickf1/fzf.fish"
-  fish -c "fisher install brgmnn/fish-docker-compose"
+  fish -c "curl -sL https://git.io/fisher | source" \
+    " && fisher install jorgebucaran/fisher && fisher install jorgebucaran/nvm.fish" \
+    " && fisher install evanlucas/fish-kubectl-completions && fisher install patrickf1/fzf.fish" \
+    " && fisher install brgmnn/fish-docker-compose"
+}
+
+config-starship() {
+# starship is the default prompt on zsh and fish
+  make-backup ~/.config/starship.toml
+  ln -sf $(pwd)/starship.toml ~/.config/starship.toml
 }
 
 config-fastfetch() {
@@ -76,6 +80,7 @@ config-fastfetch() {
 }
 
 mkdir -p ~/src/bin
+mkdir -p ~/.config
 touch ~/.hushlogin
 
 if [[ $(uname) == "Darwin" ]]; then
@@ -84,18 +89,15 @@ if [[ $(uname) == "Darwin" ]]; then
   brew bundle --cleanup
 fi
 
-# starship is the default prompt on zsh and fish
-make-backup ~/.config/starship.toml
-ln -sf $(pwd)/starship.toml ~/.config/starship.toml
-
 # comment this out if you don't want nvim
 [[ -f ~/.local/share/nvim/site/autoload/plug.vim ]] || install-nvim
 
 # comment this out if you don't want to use oh-my-zsh or zsh support
 [[ -d ~/.oh-my-zsh ]] || install-oh-my-zsh
 
+[[ " $* " == *" --skip-starship "* ]] || config-starship
+
 # comment this out if you don't want fish support
-install-fish
+[[ " $* " == *" --skip-fish "* ]] || install-fish
 
 config-fastfetch
-

@@ -88,3 +88,8 @@ for file in ~/.zsh/.{exports,aliases,functions}
 do
   [[ -f $file ]] && source $file
 done
+
+if command -v fastfetch >/dev/null; then
+  fastfetch
+fi
+
