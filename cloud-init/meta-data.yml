@@ -1,0 +1,3 @@
+#cloud-config
+instance-id: fedora-cloud-01
+local-hostname: fedora-vm-01
