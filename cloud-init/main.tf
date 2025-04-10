@@ -18,14 +18,6 @@ resource "libvirt_volume" "fedora_qcow" {
   format = "qcow2"
 }
 
-provisioner "local-exec" {
-  command = <<EOT
-    sudo chown libvirt-qemu:kvm /var/lib/libvirt/images/Fedora-Cloud-41.qcow2
-    sudo chmod 0644 /var/lib/libvirt/images/Fedora-Cloud-41.qcow2
-    sudo restorecon -v /var/lib/libvirt/images/Fedora-Cloud-41.qcow2 || true
-  EOT
-}
-
 resource "libvirt_cloudinit_disk" "cloudinit" {
   name           = "cloudinit.iso"
   user_data      = file("${path.module}/user-data.yml")
