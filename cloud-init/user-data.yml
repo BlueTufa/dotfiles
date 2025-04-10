@@ -46,5 +46,8 @@ runcmd:
   - systemctl start avahi-daemon
   - curl -sS https://starship.rs/install.sh | sh -s -- -y
   - mkdir -p /home/badger 
-  - curl -o /home/badger/user-init.sh https://github.com/BlueTufa/dotfiles/blob/main/cloud-init/user-init.sh
+  - chown badger:badger /home/badger
+  - curl -o /home/badger/user-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/user-init.sh
+  - chown badger:badger /home/badger/user-init.sh
+  - chsh -s $(which zsh) badger
 
