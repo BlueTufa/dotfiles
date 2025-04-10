@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "libvirt" {
-  uri = "qemu+ssh://badger@saltmine.local/system?keyfile=/Users/badger/.ssh/pubkeys/bluetufa.pub"
+  uri = 
 }
 
 resource "libvirt_volume" "fedora_qcow" {
