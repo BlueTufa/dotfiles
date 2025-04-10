@@ -8,10 +8,9 @@ terraform {
 }
 
 provider "libvirt" {
-  uri = "qemu+ssh://saltmine/system" # 🔁 Change to your remote KVM IP/hostname
+  uri = "qemu+ssh://badger@saltmine.local/system?keyfile=/Users/badger/.ssh/pubkeys/bluetufa.pub"
 }
 
-# Remote base image
 resource "libvirt_volume" "fedora_qcow" {
   name   = "Fedora-Cloud-41.qcow2"
   pool   = "default"
@@ -19,18 +18,20 @@ resource "libvirt_volume" "fedora_qcow" {
   format = "qcow2"
 }
 
-# cloud-init config
-data "template_file" "user_data" {
-  template = file("${path.module}/user-data.yml")
+provisioner "local-exec" {
+  command = <<EOT
+    sudo chown libvirt-qemu:kvm /var/lib/libvirt/images/Fedora-Cloud-41.qcow2
+    sudo chmod 0644 /var/lib/libvirt/images/Fedora-Cloud-41.qcow2
+    sudo restorecon -v /var/lib/libvirt/images/Fedora-Cloud-41.qcow2 || true
+  EOT
 }
 
 resource "libvirt_cloudinit_disk" "cloudinit" {
   name           = "cloudinit.iso"
-  user_data      = data.template_file.user_data.rendered
+  user_data      = file("${path.module}/user-data.yml")
   pool           = "default"
 }
 
-# VM definition
 resource "libvirt_domain" "fedora_vm" {
   name   = "fedora-cloudinit"
   memory = 2048
@@ -41,11 +42,6 @@ resource "libvirt_domain" "fedora_vm" {
   }
 
   cloudinit = libvirt_cloudinit_disk.cloudinit.id
-
-  network_interface {
-    network_name = "default"
-    wait_for_lease = true
-  }
 
   console {
     type        = "pty"
