@@ -49,8 +49,8 @@ runcmd:
   - mkdir -p /home/badger 
   - chown badger:badger /home/badger
   - curl -o /home/badger/user-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/user-init.sh
-  - chown badger:badger /home/badger/user-init.sh
-  - chmod +x /home/badger/user-init.sh
+  - curl -o /home/badger/service-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/service-init.sh
+  - chown badger:badger /home/badger/*-init.sh
+  - chmod +x /home/badger/*-init.sh
   - su - badger -c '/home/badger/user-init.sh'
   - chsh -s $(which zsh) badger
-
