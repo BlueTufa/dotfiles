@@ -10,6 +10,7 @@ users:
     ssh_authorized_keys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDTxG7IR3UeY0AwDcXjfOKu05oy0+ksmM5EHLAx3i43TvNigmqNioqSgp2XQqfdw0zrjTjkvju4fASfw7nKfuAvhe0TpT+UgsNxbOvAXuj5+W9uw1A7jbnSE8oob8xIDp2at4i0154I+YHSeTOc4u6TXigIHvQvmf6Pg/jkRWTuz3+hOUZGStEy1j8wKESjNdqV6xlhOrGY7SZVHDKNr6+lfLingV8rnVTkFQ4DEduX8tADFxPCvzQeInrAZWZZrwjtlEJqWjyLKzmhbi9lxRP8vtDNsf7lSDvfjjMO+MG26kQvaJPNBUQYLz50Jsv6eCfqSdKlPGmzsQcWJUa0skpt badger@landslide.local
 
+# this feature doesn't seem to work very well. Used runcmd instead.  Leaving here for reference.
 # write_files:
 #   - path: /home/badger/setup.sh
 #     content: |
@@ -26,7 +27,7 @@ users:
 #       chsh -s $(which zsh)
 #       # sudo dnf install -y make gcc zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel tk-devel libffi-devel xz-devel libuuid-devel gdbm-devel libnsl2-devel
 #     permissions: '0755'
-# 
+
 packages:
   - git
   - htop

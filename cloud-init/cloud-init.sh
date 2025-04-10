@@ -2,7 +2,6 @@
 
 # requires install of virt-install, cloud-image-utils, and cloud-init
 
-#cloud-config
 [[ -f seed.iso ]] && rm seed.iso
 cloud-init schema --config-file user-data.yml
 cloud-init schema --config-file meta-data.yml
