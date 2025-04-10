@@ -1,0 +1,50 @@
+#cloud-config 
+hostname: fedora-vm-01
+users:
+  - name: badger
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: [wheel]
+    shell: /bin/bash
+    passwd: "$6$e53UIx/MStNubHiZ$tdrMTCg3gE..cwHjHyi6tJd5al1Zr0UDXxMk1j8cITs66.SWKJu2JUPpVvxDU41MoPwODevvU6k.JbFZHI5Bo."
+    lock_passwd: false
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDTxG7IR3UeY0AwDcXjfOKu05oy0+ksmM5EHLAx3i43TvNigmqNioqSgp2XQqfdw0zrjTjkvju4fASfw7nKfuAvhe0TpT+UgsNxbOvAXuj5+W9uw1A7jbnSE8oob8xIDp2at4i0154I+YHSeTOc4u6TXigIHvQvmf6Pg/jkRWTuz3+hOUZGStEy1j8wKESjNdqV6xlhOrGY7SZVHDKNr6+lfLingV8rnVTkFQ4DEduX8tADFxPCvzQeInrAZWZZrwjtlEJqWjyLKzmhbi9lxRP8vtDNsf7lSDvfjjMO+MG26kQvaJPNBUQYLz50Jsv6eCfqSdKlPGmzsQcWJUa0skpt badger@landslide.local
+
+# write_files:
+#   - path: /home/badger/setup.sh
+#     content: |
+#       mkdir -p $HOME/src
+#       cd $HOME/src
+#       git clone https://github.com/BlueTufa/dotfiles.git
+#       cd dotfiles
+#       ./installer.sh --skip-starship --skip-fish
+#       curl -fsSL https://pyenv.run | zsh
+#       echo "export WRK_SRC=$HOME/src" >> $HOME/.zsh/.exportsLocal
+#       echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $HOME/.zprofile
+#       echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $HOME/.zprofile
+#       echo 'eval "$(pyenv init --path)"' >> $HOME/.zprofile
+#       chsh -s $(which zsh)
+#       # sudo dnf install -y make gcc zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel tk-devel libffi-devel xz-devel libuuid-devel gdbm-devel libnsl2-devel
+#     permissions: '0755'
+# 
+packages:
+  - git
+  - htop
+  - avahi-daemon
+  - bat
+  - eza
+  - nvim
+  - dnsutils
+  - netcat
+  - zsh
+  - fzf
+  - trash-cli
+  - fastfetch
+
+runcmd:
+  - systemctl enable avahi-daemon
+  - systemctl start avahi-daemon
+  - curl -sS https://starship.rs/install.sh | sh -s -- -y
+  - mkdir -p /home/badger 
+  - curl -o /home/badger/user-init.sh https://github.com/BlueTufa/dotfiles/blob/main/cloud-init/user-init.sh
+
