@@ -86,7 +86,7 @@ touch ~/.hushlogin
 if [[ $(uname) == "Darwin" ]]; then
   [[ -d ~/Library/KeyBindings/ ]] || mkdir -p ~/Library/KeyBindings/
   cp ./macos/Library/KeyBindings/DefaultKeyBinding.dict ~/Library/KeyBindings/
-  brew bundle --cleanup
+  [[ " $* " == *" --sync-brew "* ]] && brew bundle --cleanup
 fi
 
 # comment this out if you don't want nvim
@@ -96,8 +96,6 @@ fi
 [[ -d ~/.oh-my-zsh ]] || install-oh-my-zsh
 
 [[ " $* " == *" --skip-starship "* ]] || config-starship
-
-# comment this out if you don't want fish support
 [[ " $* " == *" --skip-fish "* ]] || install-fish
 
 config-fastfetch
