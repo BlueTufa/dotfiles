@@ -9,25 +9,6 @@ users:
     lock_passwd: false
     ssh_authorized_keys:
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMwt/pVQKCQHHqxEOdh1/JKqJzIyTPLQpqz/Wno0ECqG badger@catamaran
-
-# this feature doesn't seem to work very well. Used runcmd instead.  Leaving here for reference.
-# write_files:
-#   - path: /home/badger/setup.sh
-#     content: |
-#       mkdir -p $HOME/src
-#       cd $HOME/src
-#       git clone https://github.com/BlueTufa/dotfiles.git
-#       cd dotfiles
-#       ./installer.sh --skip-starship --skip-fish
-#       curl -fsSL https://pyenv.run | zsh
-#       echo "export WRK_SRC=$HOME/src" >> $HOME/.zsh/.exportsLocal
-#       echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $HOME/.zprofile
-#       echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $HOME/.zprofile
-#       echo 'eval "$(pyenv init --path)"' >> $HOME/.zprofile
-#       chsh -s $(which zsh)
-#       # sudo dnf install -y make gcc zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel tk-devel libffi-devel xz-devel libuuid-devel gdbm-devel libnsl2-devel
-#     permissions: '0755'
-
 packages:
   - git
   - htop
@@ -46,12 +27,12 @@ runcmd:
   - systemctl enable avahi-daemon
   - systemctl start avahi-daemon
   - curl -sS https://starship.rs/install.sh | sh -s -- -y
-  - mkdir -p /home/badger 
+  - mkdir -p /home/badger/scripts
   - chown badger:badger /home/badger
-  - curl -o /home/badger/user-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/user-init.sh
-  - curl -o /home/badger/service-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/service-init.sh
-  - chown badger:badger /home/badger/*-init.sh
-  - chmod +x /home/badger/*-init.sh
-  - su -c '/home/badger/service-init.sh'
-  - su - badger -c '/home/badger/user-init.sh'
+  - curl -o /home/badger/scripts/user-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/user-init.sh
+  - curl -o /home/badger/scripts/service-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/service-init.sh
+  - chown badger:badger /home/badger/scripts/*-init.sh
+  - chmod +x /home/badger/scripts/*-init.sh
+  - su -c '/home/badger/scripts/service-init.sh'
+  - su - badger -c '/home/badger/scripts/user-init.sh'
   - chsh -s $(which zsh) badger
