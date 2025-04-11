@@ -8,10 +8,6 @@
   editor = nvim
   pager = delta
   excludesfile = # TODO full path to .gitignore_global
-[user]
-  name = # TODO
-  email = # TODO
-  signingkey = # TODO
 [alias]
   br = branch
   ci = commit -S
