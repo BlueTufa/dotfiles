@@ -13,8 +13,8 @@ echo "Creating a new instance named ${INSTANCE_ID} with ${VCPUS} VCPU and ${MEMO
 
 cloud-init schema --config-file user-data.yml
 cloud-init schema --config-file meta-data.yml
-/bin/cat user-data.yml sed "s/\${INSTANCE_ID}/${INSTANCE_ID}/g" > user-data.named.yml
-/bin/cat meta-data.yml sed "s/\${INSTANCE_ID}/${INSTANCE_ID}/g" > meta-data.named.yml
+/bin/cat user-data.yml | sed "s/\${INSTANCE_ID}/${INSTANCE_ID}/g" > user-data.named.yml
+/bin/cat meta-data.yml | sed "s/\${INSTANCE_ID}/${INSTANCE_ID}/g" > meta-data.named.yml
 
 cloud-localds --filesystem=iso9660 seed.iso user-data.named.yml meta-data.named.yml
 
