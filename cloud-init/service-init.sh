@@ -21,3 +21,6 @@ systemctl start docker
 systemctl enable docker
 
 usermod -G docker badger
+
+# required python build dependencies
+dnf install -y make gcc zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel tk-devel libffi-devel xz-devel libuuid-devel gdbm-devel libnsl2-devel
