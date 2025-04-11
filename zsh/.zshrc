@@ -84,7 +84,7 @@ bindkey -e
 bindkey '[C' forward-word
 bindkey '[D' backward-word
 
-for file in ~/.zsh/.{exports,aliases,functions}
+for file in ~/.zsh/.{exports*,aliases,functions}
 do
   [[ -f $file ]] && source $file
 done
