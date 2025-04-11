@@ -8,7 +8,7 @@ users:
     passwd: "$6$e53UIx/MStNubHiZ$tdrMTCg3gE..cwHjHyi6tJd5al1Zr0UDXxMk1j8cITs66.SWKJu2JUPpVvxDU41MoPwODevvU6k.JbFZHI5Bo."
     lock_passwd: false
     ssh_authorized_keys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDTxG7IR3UeY0AwDcXjfOKu05oy0+ksmM5EHLAx3i43TvNigmqNioqSgp2XQqfdw0zrjTjkvju4fASfw7nKfuAvhe0TpT+UgsNxbOvAXuj5+W9uw1A7jbnSE8oob8xIDp2at4i0154I+YHSeTOc4u6TXigIHvQvmf6Pg/jkRWTuz3+hOUZGStEy1j8wKESjNdqV6xlhOrGY7SZVHDKNr6+lfLingV8rnVTkFQ4DEduX8tADFxPCvzQeInrAZWZZrwjtlEJqWjyLKzmhbi9lxRP8vtDNsf7lSDvfjjMO+MG26kQvaJPNBUQYLz50Jsv6eCfqSdKlPGmzsQcWJUa0skpt badger@landslide.local
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMwt/pVQKCQHHqxEOdh1/JKqJzIyTPLQpqz/Wno0ECqG badger@catamaran
 
 # this feature doesn't seem to work very well. Used runcmd instead.  Leaving here for reference.
 # write_files:
@@ -52,5 +52,6 @@ runcmd:
   - curl -o /home/badger/service-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/service-init.sh
   - chown badger:badger /home/badger/*-init.sh
   - chmod +x /home/badger/*-init.sh
+  - su -c '/home/badger/service-init.sh'
   - su - badger -c '/home/badger/user-init.sh'
   - chsh -s $(which zsh) badger
