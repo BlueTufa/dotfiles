@@ -3,4 +3,5 @@ seed.iso
 *.tfstate*
 exec.plan
 .env
+*.named.yml
 
