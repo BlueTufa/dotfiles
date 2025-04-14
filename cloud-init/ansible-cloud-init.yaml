@@ -1,0 +1,23 @@
+- name: Provision KVM VM
+  hosts: saltmine
+  become: true
+  tasks:
+    - name: Copy cloud-init
+      copy:
+        src: ./cloud-init.sh
+        dest: /kvmpool/scripts
+        mode: '0755'
+    - name: Copy user-data
+      copy:
+        src: ./user-data.yml
+        dest: /kvmpool/scripts
+        mode: '0755'
+    - name: Copy meta-data
+      copy:
+        src: ./meta-data.yml
+        dest: /kvmpool/scripts
+        mode: '0755'
+
+    - name: Run script
+      shell: /kvmpool/scripts/cloud-init.sh
+
