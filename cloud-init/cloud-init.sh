@@ -10,7 +10,9 @@ VCPUS=${2:-2}
 MEMORY=${3:-4096}
 FEDORA_VERSION=${4:-41}
 MEDIA_DIR=${5:-"/media/isos"}
-INSTALL_DIR=${6:-"/kvmpool/images"}
+SCRIPTS_DIR=${6:-"/kvmpool/scripts"}
+INSTALL_DIR=${7:-"/kvmpool/images"}
+
 ARCH="x86_64"
 ISO_TYPE="Cloud"
 BASE_URL="https://download.fedoraproject.org/pub/fedora/linux/releases/${FEDORA_VERSION}/${ISO_TYPE}/${ARCH}/images"
@@ -56,7 +58,11 @@ if [[ ! -f "${MEDIA_DIR}/$IMAGE_NAME" ]]; then
   download-fedora
 fi
 
+TARGET_IMAGE=/kvmpool/images/Fedora-Cloud-${INSTANCE_ID}.qcow2
+cp -f ${MEDIA_DIR}/${IMAGE_NAME} ${TARGET_IMAGE}
+
 run-virt-install() {
+  cd $SCRIPTS_DIR
   [[ -f seed.iso ]] && rm seed.iso
   [[ -f user-data.named.yml ]] && rm user-data.named.yml
   [[ -f meta-data.named.yml ]] && rm meta-data.named.yml
@@ -69,8 +75,10 @@ run-virt-install() {
   cloud-localds --filesystem=iso9660 seed.iso user-data.named.yml meta-data.named.yml
   
   virt-install --name ${INSTANCE_ID} --memory ${MEMORY} --vcpus ${VCPUS} \
-     --disk path=/kvmpool/images/Fedora-Cloud-Base-Generic-41-1.4.x86_64.qcow2,format=qcow2,bus=virtio \
+     --disk path="${TARGET_IMAGE},format=qcow2,bus=virtio" \
      --disk path=$(pwd)/seed.iso,device=cdrom,bus=sata \
      --os-variant fedora37 \
      --graphics none --import --noautoconsole
 }
+
+run-virt-install
