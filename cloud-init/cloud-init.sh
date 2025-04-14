@@ -38,15 +38,12 @@ echo "Fedora checksum file: $CHECKSUM_FILE"
 echo "Creating a new instance named ${INSTANCE_ID} with ${VCPUS} VCPU and ${MEMORY} RAM"
 
 download-fedora() {
-  # === Download ===
   echo "Downloading ISO and checksum file..."
-  curl -o "$MEDIA_DIR/$IMAGE_NAME" "${BASE_URL}/${IMAGE_NAME}"
-  curl -o "$MEDIA_DIR/$CHECKSUM_FILE" "${BASE_URL}/${CHECKSUM_FILE}"
+  curl -vLo "$MEDIA_DIR/$IMAGE_NAME" "${BASE_URL}/${IMAGE_NAME}"
+  curl -vLo "$MEDIA_DIR/$CHECKSUM_FILE" "${BASE_URL}/${CHECKSUM_FILE}"
 
-  # === Verify Checksum ===
   echo "Verifying ISO checksum..."
-  # Extract just the matching line and compare
-  grep "${IMAGE_NAME}" "${CHECKSUM_FILE}" | sha256sum --check
+  grep "$(openssl sha256 -r ${IMAGE_NAME} | awk '{print $1}')" "${MEDIA_DIR}/${CHECKSUM_FILE}"
   if [ $? -eq 0 ]; then
       echo "Checksum verified successfully!"
   else
