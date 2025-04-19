@@ -118,11 +118,82 @@ require('lspconfig').pyright.setup({
   }
 })
 
+local function get_poetry_python()
+  local handle = io.popen("poetry env info -p")
+  if handle then
+    local result = handle:read("*a")
+    handle:close()
+    local venv_path = vim.fn.trim(result)
+    return venv_path .. "/bin/python"
+  else
+    print("Could not find poetry environment")
+    return "/usr/bin/python3" -- os.getenv("HOME") .. "/.virtualenvs/debugpy/bin/python",
+  end
+end
+
+local dap = require("dap")
+dap.adapters.python = {
+  type = "executable",
+  command = get_poetry_python(),
+  args = { "-m", "debugpy.adapter" },
+}
+dap.configurations.python = {
+  {
+    type = "python",
+    request = "launch",
+    name = "Launch file in pytest",
+    module = "pytest",
+    args = { "${file}" },
+    console = "integratedTerminal",
+    pythonPath = get_poetry_python
+  }
+}
+
+local dapui = require("dapui")
+dapui.setup({
+  layouts = {
+    {
+      elements = {
+        { id = "scopes", size = 0.75 },
+        { id = "breakpoints", size = 0.25 },
+        { id = "stacks", size = 0.25 },
+      },
+      size = 40,  -- columns
+      position = "left", -- can be "left" or "right"
+    },
+    {
+      elements = {
+         { id = "repl", size = 0.5 },
+         { id = "console", size = 0.5 },
+      },
+      size = 15, -- lines
+      position = "bottom", -- can be "bottom" or "top"
+    },
+  },
+  controls = {
+    enabled = true,
+    element = "repl",
+    icons = {
+      pause = "⏸", play = "▶", step_into = "⤵", step_over = "⤼",
+      step_out = "⤴", step_back = "⏪", run_last = "↻", terminate = "⏹"
+    },
+  },
+})
+
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
 -- TODO: set up typescript support
 -- TypeScript/JavaScript
 -- require('lspconfig')['tsserver'].setup {
 --   capabilities = capabilities
 -- }
+
+-- Navigation keybindings
+vim.keymap.set("n", "gt", ":NERDTreeToggle<CR>", {silent = true})
+vim.keymap.set("n", "<leader>w", "<C-w>w", { silent = true })
+vim.keymap.set("n", "<leader>o", ":tab split<CR>", { silent = true })
+vim.keymap.set("n", "<leader>p", ":tabclose<CR>", { silent = true })
 
 -- LSP keybindings
 local opts = { noremap = true, silent = true }
@@ -130,7 +201,21 @@ vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
 vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, opts)
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+vim.keymap.set("n", "gb", "<C-o>", { desc = "Jump back" })
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
 vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, opts)
+
+-- Key mappings for buffer switching
+vim.api.nvim_set_keymap('n', '<C-n>', ':lua SwitchToNextBuffer(1)<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-p>', ':lua SwitchToNextBuffer(-1)<CR>', {noremap = true, silent = true})
+-- Debugging keys
+vim.keymap.set("n", "<F9>", function() require("dap").continue() end)
+vim.keymap.set("n", "<F8>", function() require("dap").step_over() end)
+vim.keymap.set("n", "<F19>", function() require("dap").step_into() end)
+vim.keymap.set("n", "<F20>", function() require("dap").step_out() end)
+vim.keymap.set("n", "<Leader>t", function() require("dap").terminate() end)
+
+vim.keymap.set("n", "<Leader>b", function() require("dap").toggle_breakpoint() end)
+vim.keymap.set("n", "<Leader>dd", function() require("dapui").toggle() end)
 

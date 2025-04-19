@@ -14,11 +14,9 @@ c.InteractiveShellApp.exec_lines = [
     'import os'
 ]
 
-
 c.AliasManager.user_aliases = [
     ('ll', 'eza -aa -g --long --header --git'),
     ('cat', 'bat --theme=ansi'),
     ('vi', 'nvim'),
     ('cal', 'cal')
 ]
-

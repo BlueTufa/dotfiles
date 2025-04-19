@@ -63,6 +63,10 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'nvim-neotest/nvim-nio'
+
 vim.call('plug#end')
 
 -- Load external Lua modules
@@ -100,10 +104,6 @@ function SwitchToNextBuffer(incr)
   end
 end
 
--- Key mappings for buffer switching
-vim.api.nvim_set_keymap('n', '<C-n>', ':lua SwitchToNextBuffer(1)<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<C-p>', ':lua SwitchToNextBuffer(-1)<CR>', {noremap = true, silent = true})
-
 vim.api.nvim_create_autocmd("VimResized", {
   pattern = "*",
   callback = function()
@@ -127,9 +127,21 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 -- Command abbreviations
-vim.cmd("cabbrev tree NERDTreeToggle")
+-- vim.cmd("cabbrev tree NERDTreeToggle")
 
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
-  pattern = "**/fish/*",
-  command = "setf fish"
-})
+-- Key mappings for buffer switching
+-- vim.api.nvim_set_keymap('n', '<C-n>', ':lua SwitchToNextBuffer(1)<CR>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<C-p>', ':lua SwitchToNextBuffer(-1)<CR>', {noremap = true, silent = true})
+-- -- Debugging keys
+-- vim.keymap.set("n", "<F9>", function() require("dap").continue() end)
+-- vim.keymap.set("n", "<F8>", function() require("dap").step_over() end)
+-- vim.keymap.set("n", "<F19>", function() require("dap").step_into() end)
+-- vim.keymap.set("n", "<F20>", function() require("dap").step_out() end)
+-- vim.keymap.set("n", "<Leader>t", function() require("dap").terminate() end)
+-- 
+-- vim.keymap.set("n", "<Leader>b", function() require("dap").toggle_breakpoint() end)
+-- vim.keymap.set("n", "<Leader>dd", function() require("dapui").toggle() end)
+-- vim.keymap.set("n", "gt", ":NERDTreeToggle<CR>", {silent = true})
+-- vim.keymap.set("n", "<leader>w", "<C-w>w", { silent = true })
+-- vim.keymap.set("n", "<leader>o", ":tab split<CR>", { silent = true })
+-- 
