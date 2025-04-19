@@ -56,7 +56,7 @@ install-fish () {
 
   for file in fish/.{abbr,functions,exports,aliases}.fish
   do
-      make-backup ~/.config/${file}
+    make-backup ~/.config/${file}
     echo "Linking ${file}..."
     ln -sf $(pwd)/${file} ~/.config/${file}
   done
