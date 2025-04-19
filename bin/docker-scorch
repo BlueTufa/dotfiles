@@ -9,4 +9,3 @@ rm -rf ~/Library/Preferences/com.docker.docker.plist
 rm -rf ~/Library/Preferences/com.electron.docker-frontend.plist
 rm -rf ~/Library/Saved\ Application\ State/com.electron.docker-frontend.savedState
 rm -rf ~/.docker
-
