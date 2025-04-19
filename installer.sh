@@ -1,10 +1,10 @@
 #! /bin/bash
 
-# this file is idempotent and can safely be run many times. 
+# this file is idempotent and can safely be run many times.
 
 make-backup () {
   # if the file exists and is not a symlink...
-  if [[ -f $1 ]] && [[ ! -L $1 ]] 
+  if [[ -f $1 ]] && [[ ! -L $1 ]]
   then
     new_path="$(dirname $1)/backup-of-$(basename $1)"
     echo "Making a backup of non-symlinked $1 to ${new_path}"
@@ -20,7 +20,7 @@ install-nvim () {
 
   curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  
+
   ln -sf $(pwd)/nvim/init.lua ~/.config/nvim/init.lua
   ln -sf $(pwd)/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
 
@@ -51,12 +51,12 @@ install-fish () {
   fi
 
   mkdir -p ~/.config/fish
-  make-backup ~/.config/fish/config.fish 
+  make-backup ~/.config/fish/config.fish
   ln -sf $(pwd)/fish/config.fish ~/.config/fish/config.fish
 
-  for file in fish/.{abbr,functions,exports,aliases}
+  for file in fish/.{abbr,functions,exports,aliases}.fish
   do
-    make-backup ~/.config/${file}
+      make-backup ~/.config/${file}
     echo "Linking ${file}..."
     ln -sf $(pwd)/${file} ~/.config/${file}
   done
