@@ -87,6 +87,7 @@ if [[ $(uname) == "Darwin" ]]; then
   [[ -d ~/Library/KeyBindings/ ]] || mkdir -p ~/Library/KeyBindings/
   cp ./macos/Library/KeyBindings/DefaultKeyBinding.dict ~/Library/KeyBindings/
   [[ " $* " == *" --sync-brew "* ]] && brew bundle --cleanup
+  [[ " $* " == *" --sync-macos "* ]] && ./macos.sh
 fi
 
 # comment this out if you don't want nvim
