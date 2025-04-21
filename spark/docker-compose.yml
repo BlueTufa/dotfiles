@@ -2,7 +2,10 @@ version: '3.8'
 
 services:
   spark:
-    image: bitnami/spark:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # image: bitnami/spark:latest
     container_name: spark-standalone
     ports:
       - "8080:8080"     # Spark UI
@@ -13,8 +16,10 @@ services:
       - SPARK_RPC_ENCRYPTION_ENABLED=no
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
+      - SPARK_EXTRA_CLASSPATH=/opt/bitnami/spark/jars
     volumes:
       - ./data:/bitnami/spark/data
+      - ./conf/spark-defaults.conf:/opt/bitnami/spark/conf/spark-defaults.conf
     networks:
       - sparknet
 
@@ -28,9 +33,21 @@ services:
       - SPARK_MASTER_URL=spark://spark:7077
     volumes:
       - ./data:/bitnami/spark/data
+      - ./conf/spark-defaults.conf:/opt/bitnami/spark/conf/spark-defaults.conf
     networks:
       - sparknet
 
+  jupyter:
+    image: jupyter/pyspark-notebook:latest
+    container_name: spark-jupyter
+    ports:
+      - "8888:8888"
+    environment:
+      - SPARK_MASTER=spark://spark:7077
+    networks:
+      - sparknet
+    volumes:
+      - ./notebooks:/home/badger/work
 networks:
   sparknet:
     driver: bridge
