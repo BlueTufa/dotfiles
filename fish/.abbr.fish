@@ -28,6 +28,7 @@ abbr --add cmp-gen 'functions -n; builtin -n; alias -n; for dir in $PATH; ls $di
 abbr --add pop 'cd (pwd)'
 abbr --add be 'cd $WORK_SRC/backend-api'
 abbr --add new-api 'cd $WORK_SRC/cohorts-api'
+abbr --add new-token 'cd $WORK_SRC/cohorts-api; and ops/cognito_login.py | source'
 
 # Kubernetes aliases, not in use right now
 # abbr --add kp 'kubectl -n prod'
