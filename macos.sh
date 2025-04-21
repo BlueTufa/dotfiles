@@ -59,8 +59,10 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 # pmset -a = all, -b = battery, -c = charger
 sudo pmset -c sleep 0
 sudo pmset -b powermode 1
+
+# check for high power mode support
 if pmset -g cap | grep -qi "highpower"; then 
-  sudo pmset -c powermode 2  # this might fail on desktop macs or older hardware/OS
+  sudo pmset -c powermode 2  
 fi
 
 # Hibernation mode
