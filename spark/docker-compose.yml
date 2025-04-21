@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  spark:
+    image: bitnami/spark:latest
+    container_name: spark-standalone
+    ports:
+      - "8080:8080"     # Spark UI
+      - "7077:7077"     # Spark master
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    volumes:
+      - ./data:/bitnami/spark/data
+    networks:
+      - sparknet
+
+  spark-worker:
+    image: bitnami/spark:latest
+    container_name: spark-worker
+    depends_on:
+      - spark
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark:7077
+    volumes:
+      - ./data:/bitnami/spark/data
+    networks:
+      - sparknet
+
+networks:
+  sparknet:
+    driver: bridge
+
