@@ -21,10 +21,6 @@ packages:
   - trash-cli
   - gpg
   - build-essential
-  # - fastfetch
-  # - git-delta
-  # - eza
-  # - nvim
 
 runcmd:
   - systemctl enable avahi-daemon

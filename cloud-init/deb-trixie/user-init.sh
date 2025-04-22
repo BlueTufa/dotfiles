@@ -11,11 +11,11 @@ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $HOME/.zprofile
 echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $HOME/.zprofile
 echo 'eval "$(pyenv init --path)"' >> $HOME/.zprofile
 
-apt install curl gnupg2 software-properties-common
-curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-curl -fsSL https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb -o nvim.deb
-apt install ./nvim.deb
-
+# apt install -y curl gnupg2 software-properties-common
+# curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+# curl -fsSL https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb -o nvim.deb
+# apt install ./nvim.deb
+# https://github.com/neovim/neovim/releases/download/latest/nvim-linux-x86_64.appimage
 cargo install eza git-delta
 
 cp $HOME/src/dotfiles/.gitconfig $HOME/
