@@ -19,25 +19,20 @@ end
 
 function fish_greeting --description="Override default behavior with a custom fish_greeting function"
   set -l is_darwin (test (uname) = "Darwin"; and echo true; or echo false)
-  set -l is_local (test "$SSH_TTY" = ""; and echo true; or echo false)
+  # set -l is_local (test "$SSH_TTY" = ""; and echo true; or echo false)
   set -l is_vscode (test "$TERM_PROGRAM" = "vscode"; and echo true; or echo false)
   set -l is_jetbrains (test "$TERMINAL_EMULATOR" = "JetBrains-JediTerm"; and echo true; or echo false)
-  set -l has_neofetch (command -v neofetch >/dev/null 2>&1; and echo true; or echo false)
+  set -l has_macchina (command -v macchina >/dev/null 2>&1; and echo true; or echo false)
   set -l has_fastfetch (command -v fastfetch >/dev/null 2>&1; and echo true; or echo false) 
 
   if $is_vscode; or $is_jetbrains
     return
   end
   
-  if $is_darwin; and $has_fastfetch
-    if $is_local
-      # suppress logo for SSH sessions
-      fastfetch --logo-type small
-    else
-      fastfetch
-    end
-  else if $has_neofetch
-    neofetch 
+  if $is_darwin; and $has_macchina
+      macchina
+  else if $has_fastfetch
+    fastfetch 
   end
 end
 
