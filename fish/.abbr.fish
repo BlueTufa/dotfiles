@@ -16,7 +16,7 @@ abbr --add aws-ls 'aws --endpoint=http://localhost:4566'
 abbr --add iso-date 'date -u +"%Y-%m-%dT%H:%M:%SZ"'
 
 # dangerous, but helpful
-abbr --add purge-remote-tags 'git tag -l | xargs git push --delete origin' 
+abbr --add purge-remote-tags 'git tag -l | xargs git push --delete origin'
 
 abbr --add gen-cert 'openssl req -x509 -newkey rsa:4096 -keyout server.key -out server.crt -sha256 -days 3650 -nodes -subj "/C=US/ST=California/L=SanFrancisco/O=RadiantGraph/CN=radiantgraph.com"'
 abbr --add gen-keypair 'openssl genrsa -out private_key.pem 2048; and openssl rsa -in private_key.pem -pubout -out public_key.pem'
@@ -28,7 +28,6 @@ abbr --add cmp-gen 'functions -n; builtin -n; alias -n; for dir in $PATH; ls $di
 abbr --add pop 'cd (pwd)'
 abbr --add be 'cd $WORK_SRC/backend-api'
 abbr --add new-api 'cd $WORK_SRC/cohorts-api'
-abbr --add new-token 'cd $WORK_SRC/cohorts-api; and ops/cognito_login.py | source'
 
 # Kubernetes aliases, not in use right now
 # abbr --add kp 'kubectl -n prod'
