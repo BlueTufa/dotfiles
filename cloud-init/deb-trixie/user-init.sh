@@ -10,7 +10,7 @@ echo 'eval "$(pyenv init --path)"' >> $HOME/.zprofile
 
 wget https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux-x86_64.appimage
 chmod u+x nvim-linux-x86_64.appimage
-mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
+sudo mv nvim-linux-x86_64.appimage /usr/local/bin/nvim
 
 ./installer.sh --skip-starship --skip-fish
 
