@@ -1,7 +1,2 @@
 seed.iso
-.terraform/
-*.tfstate*
-exec.plan
-.env
 *.named.yml
-

@@ -1,0 +1,39 @@
+#cloud-config
+hostname: ${INSTANCE_ID}
+users:
+  - name: badger
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users, admin
+    shell: /bin/bash
+    passwd: "$6$e53UIx/MStNubHiZ$tdrMTCg3gE..cwHjHyi6tJd5al1Zr0UDXxMk1j8cITs66.SWKJu2JUPpVvxDU41MoPwODevvU6k.JbFZHI5Bo."
+    lock_passwd: false
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMwt/pVQKCQHHqxEOdh1/JKqJzIyTPLQpqz/Wno0ECqG badger@catamaran
+packages:
+  - git
+  - htop
+  - avahi-daemon
+  - bat
+  - dnsutils
+  - netcat-openbsd
+  - zsh
+  - fzf
+  - trash-cli
+  - gpg
+  - build-essential
+  # - fastfetch
+  # - git-delta
+  # - eza
+  # - nvim
+
+runcmd:
+  - systemctl enable avahi-daemon
+  - systemctl start avahi-daemon
+  - curl -sS https://starship.rs/install.sh | sh -s -- -y
+  - mkdir -p /home/badger/scripts
+  - curl -o /home/badger/scripts/user-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/user-init.sh
+  # - curl -o /home/badger/scripts/service-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/service-init.sh
+  - chown badger:badger /home/badger/scripts/*-init.sh
+  - chmod +x /home/badger/scripts/*-init.sh
+  - chsh -s $(which zsh) badger
+  - su - badger -c '/home/badger/scripts/user-init.sh'

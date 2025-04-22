@@ -126,22 +126,3 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end
 })
 
--- Command abbreviations
--- vim.cmd("cabbrev tree NERDTreeToggle")
-
--- Key mappings for buffer switching
--- vim.api.nvim_set_keymap('n', '<C-n>', ':lua SwitchToNextBuffer(1)<CR>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('n', '<C-p>', ':lua SwitchToNextBuffer(-1)<CR>', {noremap = true, silent = true})
--- -- Debugging keys
--- vim.keymap.set("n", "<F9>", function() require("dap").continue() end)
--- vim.keymap.set("n", "<F8>", function() require("dap").step_over() end)
--- vim.keymap.set("n", "<F19>", function() require("dap").step_into() end)
--- vim.keymap.set("n", "<F20>", function() require("dap").step_out() end)
--- vim.keymap.set("n", "<Leader>t", function() require("dap").terminate() end)
--- 
--- vim.keymap.set("n", "<Leader>b", function() require("dap").toggle_breakpoint() end)
--- vim.keymap.set("n", "<Leader>dd", function() require("dapui").toggle() end)
--- vim.keymap.set("n", "gt", ":NERDTreeToggle<CR>", {silent = true})
--- vim.keymap.set("n", "<leader>w", "<C-w>w", { silent = true })
--- vim.keymap.set("n", "<leader>o", ":tab split<CR>", { silent = true })
--- 
