@@ -36,5 +36,4 @@ runcmd:
   - chown badger:badger /home/badger/scripts/*-init.sh
   - chmod +x /home/badger/scripts/*-init.sh
   - chsh -s $(which zsh) badger
-  - su - badger -c 'curl https://sh.rustup.rs -sSf | sh -s -- -y'
   - su - badger -c '/home/badger/scripts/user-init.sh'
