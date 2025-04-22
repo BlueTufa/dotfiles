@@ -21,6 +21,7 @@ packages:
   - trash-cli
   - gpg
   - build-essential
+  - fuse3
 
 runcmd:
   - systemctl enable avahi-daemon
