@@ -1,7 +1,5 @@
 #! /bin/bash
 
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-
 git clone https://github.com/BlueTufa/dotfiles.git $HOME/src/dotfiles
 cd $HOME/src/dotfiles
 ./installer.sh --skip-starship --skip-fish
