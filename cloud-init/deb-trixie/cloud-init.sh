@@ -61,10 +61,10 @@ run-virt-install() {
   cloud-localds --filesystem=iso9660 seed.iso user-data.named.yml meta-data.named.yml
 
   virt-install --name ${INSTANCE_ID} --memory ${MEMORY} --vcpus ${VCPUS} \
-     --disk path="${TARGET_IMAGE},format=qcow2,bus=virtio" \
+     --disk path="${TARGET_IMAGE},format=qcow2,bus=virtio,size=30" \
      --os-variant debian11 \
      --disk path=$(pwd)/seed.iso,device=cdrom,bus=sata \
-     --graphics none --import--noautoconsole
+     --graphics none --import --noautoconsole
 }
 
 run-virt-install
