@@ -5,25 +5,26 @@
 echo "Starting..."
 set -euo pipefail
 
-INSTANCE_ID=${1:-"vm-deb-trixie-01"}
+INSTANCE_ID=${1:-"vm-deb-01"}
 VCPUS=${2:-2}
 MEMORY=${3:-4096}
-VERSION=${4:-13}
+VERSION=${4:-12}
+NAME=${5:-bookworm}
 ARCH="amd64"
 
 MEDIA_DIR=${5:-"/media/isos"}
 SCRIPTS_DIR=${6:-"/kvmpool/scripts"}
 INSTALL_DIR=${7:-"/kvmpool/images"}
 
-BASE_URL="https://cdimage.debian.org/images/cloud/trixie/daily/latest"
+BASE_URL="https://cdimage.debian.org/images/cloud/${NAME}/latest"
 
-IMAGE_NAME="debian-${VERSION}-generic-${ARCH}-daily.qcow2"
+IMAGE_NAME="debian-${VERSION}-generic-${ARCH}.qcow2"
 CHECKSUM_FILE="SHA512SUMS"
 
 download-trixie() {
   echo "Downloading ISO and checksum file..."
-  echo "Trixie image name: $IMAGE_NAME"
-  echo "Trixie checksum file: $CHECKSUM_FILE"
+  echo "Debian image name: $IMAGE_NAME"
+  echo "Debian checksum file: $CHECKSUM_FILE"
 
   curl -vLo "$MEDIA_DIR/$IMAGE_NAME" "${BASE_URL}/${IMAGE_NAME}"
   curl -vLo "$MEDIA_DIR/$CHECKSUM_FILE" "${BASE_URL}/${CHECKSUM_FILE}"
