@@ -64,8 +64,7 @@ run-virt-install() {
      --disk path="${TARGET_IMAGE},format=qcow2,bus=virtio" \
      --os-variant debian11 \
      --disk path=$(pwd)/seed.iso,device=cdrom,bus=sata \
-     --graphics none --import
-  #--noautoconsole
+     --graphics none --import--noautoconsole
 }
 
 run-virt-install

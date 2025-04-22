@@ -14,26 +14,25 @@ packages:
   - htop
   - avahi-daemon
   - bat
-  # - eza
-  # - nvim
-  # - dnsutils
-  # - netcat
-  # - zsh
-  # - fzf
-  # - trash-cli
+  - dnsutils
+  - netcat-openbsd
+  - zsh
+  - fzf
+  - trash-cli
   # - fastfetch
   # - git-delta
+  # - eza
+  # - nvim
 
 runcmd:
   - systemctl enable avahi-daemon
   - systemctl start avahi-daemon
-  # - curl -sS https://starship.rs/install.sh | sh -s -- -y
-  # - mkdir -p /home/badger/scripts
-  # - chown badger:badger /home/badger
-  # - curl -o /home/badger/scripts/user-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/user-init.sh
+  - curl -sS https://starship.rs/install.sh | sh -s -- -y
+  - mkdir -p /home/badger/scripts
+  - curl -o /home/badger/scripts/user-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/user-init.sh
   # - curl -o /home/badger/scripts/service-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/service-init.sh
-  # - chown badger:badger /home/badger/scripts/*-init.sh
-  # - chmod +x /home/badger/scripts/*-init.sh
+  - chown badger:badger /home/badger/scripts/*-init.sh
+  - chmod +x /home/badger/scripts/*-init.sh
   # - su -c '/home/badger/scripts/service-init.sh'
-  # - su - badger -c '/home/badger/scripts/user-init.sh'
-  # - chsh -s $(which zsh) badger
+  - su - badger -c '/home/badger/scripts/user-init.sh'
+  - chsh -s $(which zsh) badger
