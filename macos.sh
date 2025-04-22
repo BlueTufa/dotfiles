@@ -62,6 +62,7 @@ sudo pmset -b powermode 1
 
 # check for high power mode support
 if pmset -g cap | grep -qi "highpower"; then 
+  echo "Setting computer to eligible high power mode..."
   sudo pmset -c powermode 2  
 fi
 
