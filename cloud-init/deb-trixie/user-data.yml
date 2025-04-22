@@ -20,6 +20,7 @@ packages:
   - fzf
   - trash-cli
   - gpg
+  - build-essential
   # - fastfetch
   # - git-delta
   # - eza
@@ -28,14 +29,12 @@ packages:
 runcmd:
   - systemctl enable avahi-daemon
   - systemctl start avahi-daemon
-  - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  - curl https://sh.rustup.rs -sSf --proto '=https' --tlsv1.2 | sh -s -- -y
   - curl -sS https://starship.rs/install.sh | sh -s -- -y
   - mkdir -p /home/badger/scripts
   - curl -o /home/badger/scripts/user-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/user-init.sh
   # - curl -o /home/badger/scripts/service-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/service-init.sh
   - chown badger:badger /home/badger/scripts/*-init.sh
   - chmod +x /home/badger/scripts/*-init.sh
-  # - su -c '/home/badger/scripts/service-init.sh'
-  - su - badger -c '/home/badger/scripts/user-init.sh'
   - chsh -s $(which zsh) badger
+  - su - badger -c 'curl https://sh.rustup.rs -sSf | sh -s -- -y'
+  - su - badger -c '/home/badger/scripts/user-init.sh'
