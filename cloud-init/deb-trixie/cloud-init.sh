@@ -62,9 +62,10 @@ run-virt-install() {
 
   virt-install --name ${INSTANCE_ID} --memory ${MEMORY} --vcpus ${VCPUS} \
      --disk path="${TARGET_IMAGE},format=qcow2,bus=virtio" \
-     # --disk path=$(pwd)/seed.iso,device=cdrom,bus=sata \
      --os-variant debian11 \
-     --graphics none --import --noautoconsole
+     --disk path=$(pwd)/seed.iso,device=cdrom,bus=sata \
+     --graphics none --import
+  #--noautoconsole
 }
 
 run-virt-install

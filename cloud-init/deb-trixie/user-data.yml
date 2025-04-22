@@ -3,7 +3,7 @@ hostname: ${INSTANCE_ID}
 users:
   - name: badger
     sudo: ALL=(ALL) NOPASSWD:ALL
-    groups: [wheel]
+    groups: users, admin
     shell: /bin/bash
     passwd: "$6$e53UIx/MStNubHiZ$tdrMTCg3gE..cwHjHyi6tJd5al1Zr0UDXxMk1j8cITs66.SWKJu2JUPpVvxDU41MoPwODevvU6k.JbFZHI5Bo."
     lock_passwd: false
