@@ -240,6 +240,9 @@ function run-ecs-task --description="Runs an ECS task"
 end
 
 function awsume
+  if test (count $argv) -eq 0
+    set argv "default"
+  end
   if aws sts get-caller-identity > /dev/null 2>&1
     source (pyenv which awsume.fish) $argv
   else
