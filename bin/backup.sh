@@ -9,9 +9,9 @@ if [[ $(uname) != "Linux" ]]; then
 fi
 
 # command must be run as sudo, the whole thing
-if [[ $(whoami) != "root" ]]; then
-  echo "You must run this backup script as root for hardware access."
-  exit 1
+if [[ $EUID -ne 0 ]]; then
+    echo "Error: This script must be run as root. Try using sudo." >&2
+    exit 1
 fi
 
 cryptsetup status backup01
