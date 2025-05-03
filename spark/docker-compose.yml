@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   spark:
     build:
@@ -8,8 +6,8 @@ services:
     # image: bitnami/spark:latest
     container_name: spark-standalone
     ports:
-      - "8080:8080"     # Spark UI
-      - "7077:7077"     # Spark master
+      - "8080:8080" # Spark UI
+      - "7077:7077" # Spark master
     environment:
       - SPARK_MODE=master
       - SPARK_RPC_AUTHENTICATION_ENABLED=no
@@ -31,12 +29,12 @@ services:
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER_URL=spark://spark:7077
+      - SPARK_EXTRA_CLASSPATH=/opt/bitnami/spark/jars
     volumes:
       - ./data:/bitnami/spark/data
       - ./conf/spark-defaults.conf:/opt/bitnami/spark/conf/spark-defaults.conf
     networks:
       - sparknet
-
   jupyter:
     image: jupyter/pyspark-notebook:latest
     container_name: spark-jupyter
@@ -48,7 +46,39 @@ services:
       - sparknet
     volumes:
       - ./notebooks:/home/badger/work
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - "9000:9000" # API access
+      - "9001:9001" # Web console
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio-data:/data
+    networks:
+      - sparknet
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+  createbucket:
+    image: minio/mc:latest
+    depends_on:
+      - minio
+    networks:
+      - sparknet
+    entrypoint: >
+      /bin/sh -c
+        "mc alias set myminio http://minio:9000 minioadmin minioadmin &&
+          mc mb myminio/mock-bucket &&
+          mc policy set public myminio/mock-bucket &&
+          tail -f /dev/null"
 networks:
   sparknet:
     driver: bridge
-
+volumes:
+  minio-data:

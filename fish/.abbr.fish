@@ -6,9 +6,10 @@ abbr --add update-service-prod "aws ecs update-service --force-new-deployment --
 abbr --add print-timestamp watch --no-title date -u +"%Y-%m-%dT%H:%M:%SZ"
 
 abbr --add tf-github "awsume mgmt; and cd $WORK_SRC/terraform/github/"
-abbr --add tf-data "awsume data; and cd $WORK_SRC/terraform/aws/data"
-abbr --add tf-dev "awsume dev; and z $WORK_SRC/terraform/aws/dev"
-abbr --add tf-prod "awsume prod; and z $WORK_SRC/terraform/aws/prod"
+abbr --add tf-data "awsume data; and cd $WORK_SRC/terraform/aws/data-lake"
+abbr --add tf-ds "awsume data; and cd $WORK_SRC/terraform/aws/workloads/data-science/"
+abbr --add tf-dev "awsume dev; and z $WORK_SRC/terraform/aws/workloads/dev"
+abbr --add tf-prod "awsume prod; and z $WORK_SRC/terraform/aws/workloads/prod"
 abbr --add tf-ops1 "awsume mgmt; and z $WORK_SRC/terraform/aws/ops/us-east-1"
 abbr --add tf-ops2 "awsume mgmt; and z $WORK_SRC/terraform/aws/ops/us-east-2/sftp"
 
@@ -22,6 +23,7 @@ abbr --add gen-cert 'openssl req -x509 -newkey rsa:4096 -keyout server.key -out 
 abbr --add gen-keypair 'openssl genrsa -out private_key.pem 2048; and openssl rsa -in private_key.pem -pubout -out public_key.pem'
 
 abbr --add gh-pr 'gh pr create --fill-first'
+abbr --add gh-make-draft 'gh pr ready --undo'
 
 abbr --add cmp-gen 'functions -n; builtin -n; alias -n; for dir in $PATH; ls $dir; end'
 
