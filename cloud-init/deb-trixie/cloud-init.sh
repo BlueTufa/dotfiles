@@ -44,6 +44,7 @@ if [[ ! -f "${MEDIA_DIR}/$IMAGE_NAME" ]]; then
 fi
 
 TARGET_IMAGE=/kvmpool/images/Debian-${VERSION}-${INSTANCE_ID}.qcow2
+DATA_IMAGE=/kvmpool/images/Debian-${VERSION}-${INSTANCE_ID}-data.qcow2
 cp -f ${MEDIA_DIR}/${IMAGE_NAME} ${TARGET_IMAGE}
 qemu-img resize ${TARGET_IMAGE} +30G
 run-virt-install() {
@@ -62,6 +63,7 @@ run-virt-install() {
 
   virt-install --name ${INSTANCE_ID} --memory ${MEMORY} --vcpus ${VCPUS} \
      --disk path="${TARGET_IMAGE},format=qcow2,bus=virtio,size=30" \
+     --disk path="${DATA_IMAGE},format=qcow2,bus=virtio,size=30" \
      --os-variant debian11 \
      --disk path=$(pwd)/seed.iso,device=cdrom,bus=sata \
      --graphics none --import --noautoconsole
