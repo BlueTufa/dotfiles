@@ -1,0 +1,17 @@
+- name: Provision on KVM
+  hosts: saltmine
+  become: true
+  tasks:
+    - name: Copy provisioning files
+      copy:
+        src: "{{ item.src }}"
+        dest: "/kvmpool/scripts/{{ item.dest | default(item.src | basename) }}"
+        mode: "0755"
+      loop:
+        - { src: ./cloud-init.sh }
+        - { src: ./user-data.yml }
+        - { src: ./meta-data.yml }
+        - { src: ./teardown.sh }
+
+    - name: Run cloud-init script
+      ansible.builtin.shell: /kvmpool/scripts/cloud-init.sh

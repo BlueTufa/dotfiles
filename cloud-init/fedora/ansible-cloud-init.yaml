@@ -1,22 +1,26 @@
 - name: Provision on KVM
   hosts: saltmine
   become: true
+  vars:
+    script_path: "/kvmpool/scripts/fedora"
   tasks:
-    - name: Copy cloud-init
-      copy:
-        src: ./cloud-init.sh
-        dest: /kvmpool/scripts
+    - name: Ensure script directory exists
+      ansible.builtin.file:
+        path: "{{ script_path }}"
+        state: directory
         mode: "0755"
-    - name: Copy user-data
+    - name: Copy provisioning files
       copy:
-        src: ./user-data.yml
-        dest: /kvmpool/scripts
+        src: "{{ item.src }}"
+        dest: "{{ script_path }}/{{ item.dest | default(item.src | basename) }}"
         mode: "0755"
-    - name: Copy meta-data
-      copy:
-        src: ./meta-data.yml
-        dest: /kvmpool/scripts
-        mode: "0755"
+      loop:
+        - { src: ./cloud-init.sh }
+        - { src: ./user-data.yml }
+        - { src: ./meta-data.yml }
+        - { src: ./teardown.sh }
 
-    - name: Run script
-      shell: /kvmpool/scripts/cloud-init.sh
+    - name: Run cloud-init script
+      ansible.builtin.shell: "{{ script_path }}/cloud-init.sh"
+      args:
+        executable: /bin/bash
