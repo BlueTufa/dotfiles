@@ -8,7 +8,6 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 INSTANCE_ID=${1:-"vm-arch-01"}
-# assumes you have an ext4 file system mounted at `/mnt/arch`
 
 # download
 [[ -f archlinux-bootstrap-x86_64.tar.zst ]] || wget https://geo.mirror.pkgbuild.com/iso/latest/archlinux-bootstrap-x86_64.tar.zst
@@ -39,7 +38,8 @@ echo $INSTANCE_ID > root.x86_64/etc/hostname
 sudo sed -i '/^#en_US.UTF-8 UTF-8/s/^#//' root.x86_64/etc/locale.gen
 
 # edit resolv.conf
-echo nameserver 192.168.160.1 > root.x86_64/etc/resolv.conf
+# start with cloudflare, dhcp may override later
+echo nameserver 1.1.1.1 > root.x86_64/etc/resolv.conf
 
 # ssh keys
 mkdir -p root.x86_64/root/.ssh/
@@ -47,9 +47,6 @@ echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMwt/pVQKCQHHqxEOdh1/JKqJzIyTPLQpqz/Wn
 chmod 600 root.x86_64/root/.ssh/authorized_keys
 
 sudo mkdir -p root.x86_64/etc/systemd/network
-
-echo "PARTUUID=$(blkid -s UUID -o value $(blkid -L ARCH_ROOT)) / ext4 rw,discard,errors=remount-ro,x-systemd.growfs 0" > root.x86_64/etc/fstab
-echo "PARTUUID=496f5cff-54c3-4015-942d-81bd87545779 /boot/efi vfat defaults 0 0" >> root.x86_64/etc/fstab
 
 IF_NAME=$(ls /sys/class/net/ | grep '^en')
 echo cat <<-EOF > root.x86_64/etc/systemd/network/20-wired.network
@@ -76,9 +73,19 @@ chroot /mnt/arch /bin/bash -c "
     echo LANG=en_US.UTF-8 > /etc/locale.conf
 
     pacman -Sy --noconfirm base linux linux-firmware efibootmgr
-    pacman -Sy --noconfirm dhcpcd openssh
+    pacman -Sy --noconfirm systemd dhcpcd openssh
+    pacman -Sy --noconfirm grub os-prober
 
     systemctl enable dhcpcd
     systemctl enable systemd-networkd
     systemctl enable sshd
+    # systemctl enable systemd-resolved
+
+    mkinitcpio -p linux
+    genfstab -U / > /etc/fstab
 "
+
+# manually run:
+# grub-install --target=i386-pc /dev/sdX
+# grub-mkconfig -o /boot/grub/grub.cfg
+# reboot

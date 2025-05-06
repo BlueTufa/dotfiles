@@ -45,8 +45,10 @@ fi
 
 TARGET_IMAGE=/kvmpool/images/Debian-${VERSION}-${INSTANCE_ID}.qcow2
 DATA_IMAGE=/kvmpool/images/Debian-${VERSION}-${INSTANCE_ID}-data.qcow2
+
 cp -f ${MEDIA_DIR}/${IMAGE_NAME} ${TARGET_IMAGE}
 qemu-img resize ${TARGET_IMAGE} +30G
+
 run-virt-install() {
   echo "Creating a new instance named ${INSTANCE_ID} with ${VCPUS} VCPU and ${MEMORY} RAM"
   cd $SCRIPTS_DIR
@@ -67,6 +69,8 @@ run-virt-install() {
      --os-variant debian11 \
      --disk path=$(pwd)/seed.iso,device=cdrom,bus=sata \
      --graphics none --import --noautoconsole
+
+  virsh autostart ${INSTANCE_ID}
 }
 
 run-virt-install

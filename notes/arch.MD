@@ -200,5 +200,10 @@ neovim
 ## Important Reminders
 
 - Run `grub-mkconfig -o /boot/grub/grub.cfg` before rebooting
-- Ensure `/boot` is properly mounted and in your `/etc/fstab`
+- If you are using EFI, ensure `/boot` is properly mounted and in your `/etc/fstab`
 - Properly configure DHCP to have network access on first boot
+- If using a headless VM, make sure you have the following configured:
+```GRUB
+GRUB_CMDLINE_LINUX="console=ttyS0"
+GRUB_TERMINAL_OUTPUT=console
+```

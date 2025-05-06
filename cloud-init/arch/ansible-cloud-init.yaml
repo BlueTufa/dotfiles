@@ -1,0 +1,43 @@
+- name: Provision on KVM
+  hosts: saltmine
+  become: true
+  become_flags: "-E"
+  vars:
+    script_path: "/kvmpool/scripts/arch"
+    scripts:
+      - build-raw.sh
+      - startup.sh
+      - teardown.sh
+    required_packages:
+      - qemu
+      - libvirt
+      - virt-install
+      - avahi
+  tasks:
+    - name: Ensure script directory exists
+      ansible.builtin.file:
+        path: "{{ script_path }}"
+        state: directory
+        mode: "0755"
+
+    - name: Copy provisioning scripts
+      ansible.builtin.copy:
+        src: "./{{ item }}"
+        dest: "{{ script_path }}/{{ item }}"
+        mode: "0755"
+      loop: "{{ scripts }}"
+
+    # - name: Run build-raw script
+    #   ansible.builtin.shell: "{{ script_path }}/build-raw.sh"
+    #   args:
+    #     executable: /bin/bash
+
+    # - name: Run startup script
+    #   ansible.builtin.shell: "{{ script_path }}/startup.sh"
+    #   args:
+    #     executable: /bin/bash
+    #   environment:
+    #     INSTANCE_ID: "vm-arch-01"
+    #     VCPUS: 2
+    #     MEMORY: 2048
+    #     SOURCE_PATH: "{{ script_path }}/arch-mini.raw"

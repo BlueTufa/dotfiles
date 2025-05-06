@@ -30,7 +30,7 @@ runcmd:
   - curl -sS https://starship.rs/install.sh | sh -s -- -y
   - su - badger -c 'curl -sSf https://sh.rustup.rs | sh -s -- -y'
   - mkdir -p /home/badger/scripts
-  - curl -o /home/badger/scripts/user-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/deb-trixie/user-init.sh
+  - curl -o /home/badger/scripts/user-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/debian/user-init.sh
   # - curl -o /home/badger/scripts/service-init.sh https://raw.githubusercontent.com/BlueTufa/dotfiles/refs/heads/main/cloud-init/service-init.sh
   - chown -R badger:badger /home/badger/scripts/
   - chmod +x /home/badger/scripts/*.sh

@@ -1,0 +1,6 @@
+all:
+  hosts:
+    saltmine:
+      ansible_user: badger
+      ansible_host: saltmine.local
+

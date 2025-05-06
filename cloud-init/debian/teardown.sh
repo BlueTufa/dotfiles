@@ -1,6 +1,5 @@
 #! /bin/bash
-INSTANCE_ID=${1:-"vm-fedora-01"}
-
+INSTANCE_ID=${1:-"vm-deb-01"}
 # quickly tear down the instances that didn't work
 virsh destroy ${INSTANCE_ID}
 # the assumption is that if you're calling this, you no longer care about the snapshots
