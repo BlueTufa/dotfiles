@@ -1,6 +1,7 @@
 - name: Provision on KVM
   hosts: saltmine
   become: true
+  become_flags: "-E"
   vars:
     script_path: "/kvmpool/scripts/arch"
     scripts:
@@ -31,12 +32,12 @@
     #   args:
     #     executable: /bin/bash
 
-    - name: Run startup script
-      ansible.builtin.shell: "{{ script_path }}/startup.sh"
-      args:
-        executable: /bin/bash
-      environment:
-        INSTANCE_ID: "vm-arch-01"
-        VCPUS: 2
-        MEMORY: 2048
-        SOURCE_PATH: "{{ script_path }}/arch-mini.raw"
+    # - name: Run startup script
+    #   ansible.builtin.shell: "{{ script_path }}/startup.sh"
+    #   args:
+    #     executable: /bin/bash
+    #   environment:
+    #     INSTANCE_ID: "vm-arch-01"
+    #     VCPUS: 2
+    #     MEMORY: 2048
+    #     SOURCE_PATH: "{{ script_path }}/arch-mini.raw"

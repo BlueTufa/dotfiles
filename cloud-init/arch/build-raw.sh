@@ -1,6 +1,7 @@
 #! /bin/bash
 
 INSTANCE_ID=${1:-"vm-arch-01"}
+SSH_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMwt/pVQKCQHHqxEOdh1/JKqJzIyTPLQpqz/Wno0ECqG badger@catamaran"
 
 set -euxo pipefail
 
@@ -76,7 +77,7 @@ echo nameserver 1.1.1.1 > root.x86_64/etc/resolv.conf
 
 # ssh keys
 mkdir -p root.x86_64/root/.ssh/
-echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMwt/pVQKCQHHqxEOdh1/JKqJzIyTPLQpqz/Wno0ECqG badger@catamaran" > root.x86_64/root/.ssh/authorized_keys
+echo $SSH_KEY > root.x86_64/root/.ssh/authorized_keys
 chmod 600 root.x86_64/root/.ssh/authorized_keys
 
 sudo mkdir -p root.x86_64/etc/systemd/network
@@ -126,7 +127,16 @@ chroot "$MNT" /bin/bash -c "
     systemctl enable dhcpcd systemd-networkd sshd avahi-daemon.service
 
     # install user mode packages
-    pacman -Sy --noconfirm eza git nvim htop zsh bat dnsutils trash-cli openbsd-netcat gnupg rsync fastfetch git-delta starship fzf which
+    pacman -Sy --noconfirm eza git nvim htop zsh bat dnsutils trash-cli openbsd-netcat gnupg rsync fastfetch git-delta starship fzf which sudo
+
+    # FIXME: need a parameterized function for provisioning a user
+    usermod -aG wheel badger
+    mkdir -p /home/badger/.ssh
+    echo "$SSH_KEY" > /home/badger/.ssh/authorized_keys
+    chown -R badger:badger /home/badger
+    chmod 700 /home/badger/.ssh
+    chmod 600 /home/badger/.ssh/authorized_keys
+    sed -i 's/^#\s*\(%wheel ALL=(ALL:ALL) NOPASSWD: ALL\)/\1/' /etc/sudoers
 "
 
 sleep 10
