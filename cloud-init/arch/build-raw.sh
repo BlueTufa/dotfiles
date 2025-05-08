@@ -10,14 +10,22 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 fi
 
-SIZE_MB=4096
+SIZE_MB=5120
 DISK=arch-mini.raw
 MNT=/mnt/arch
 
 if [[ -f $DISK ]]; then
-  echo "Warn: $DISK already exists.  Skipping without error."
+  echo "Warning: $DISK already exists.  Skipping without error."
   exit 0
 fi
+
+for cmd in parted rsync killall
+do
+  if [[ ! command -v $cmd ]]; then
+      echo "Error: Command $cmd not installed.  Exiting." >&2
+      exit 1
+  fi
+done
 
 truncate -s ${SIZE_MB}M "$DISK"
 
@@ -100,7 +108,7 @@ do echo "Mounting $i"
 done
 
 # FIXME:
-# pacman -Sy efibootmgr systemd dhcpcd openssh avahi
+# pacman -Sy efibootmgr cloud-init
 chroot "$MNT" /bin/bash -c "
     swapoff -a
     ln -sf /usr/share/zoneinfo/America/Denver /etc/localtime
@@ -111,11 +119,11 @@ chroot "$MNT" /bin/bash -c "
     echo LANG=en_US.UTF-8 > /etc/locale.conf
 
     # install base system
-    pacman -Sy --noconfirm base linux terminus-font linux-firmware systemd dhcpcd openssh avahi grub os-prober
+    pacman -Sy --noconfirm base linux terminus-font linux-firmware dhcpcd openssh avahi grub os-prober
 
     mkinitcpio -p linux
     genfstab -U / > /etc/fstab
-    grub-install --target=i386-pc --recheck "$LOOPDEV"
+    grub-install --target=i386-pc --recheck $LOOPDEV
     grub-mkconfig -o /boot/grub/grub.cfg
 
     echo \"root:root\" | chpasswd
@@ -127,12 +135,13 @@ chroot "$MNT" /bin/bash -c "
     systemctl enable dhcpcd systemd-networkd sshd avahi-daemon.service
 
     # install user mode packages
-    pacman -Sy --noconfirm eza git nvim htop zsh bat dnsutils trash-cli openbsd-netcat gnupg rsync fastfetch git-delta starship fzf which sudo
+    pacman -Sy --noconfirm man-db eza git nvim htop zsh bat dnsutils trash-cli openbsd-netcat gnupg rsync fastfetch git-delta starship fzf which sudo
 
-    # FIXME: need a parameterized function for provisioning a user
+    # FIXME: need a parameterized function for provisioning a user, or use cloud-init
+    useradd badger
     usermod -aG wheel badger
     mkdir -p /home/badger/.ssh
-    echo "$SSH_KEY" > /home/badger/.ssh/authorized_keys
+    echo \"$SSH_KEY\" > /home/badger/.ssh/authorized_keys
     chown -R badger:badger /home/badger
     chmod 700 /home/badger/.ssh
     chmod 600 /home/badger/.ssh/authorized_keys
