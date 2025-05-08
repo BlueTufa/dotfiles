@@ -207,3 +207,12 @@ neovim
 GRUB_CMDLINE_LINUX="console=ttyS0"
 GRUB_TERMINAL_OUTPUT=console
 ```
+If you need to install EFI grub from within a chroot:
+```
+mount -t efivarfs efivarfs /sys/firmware/efi/efivars
+grub-install   \
+--target=x86_64-efi   \
+--efi-directory=/boot/efi   \
+--bootloader-id=GRUB   \
+--recheck
+```
