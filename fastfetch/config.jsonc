@@ -8,6 +8,7 @@
     "os",
     "host",
     "cpu",
+    "gpu",
     "memory",
     "uptime",
     "packages",
