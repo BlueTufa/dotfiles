@@ -135,7 +135,25 @@ chroot "$MNT" /bin/bash -c "
     systemctl enable dhcpcd systemd-networkd sshd avahi-daemon.service
 
     # install user mode packages
-    pacman -Sy --noconfirm man-db eza git nvim htop zsh bat dnsutils trash-cli openbsd-netcat gnupg rsync fastfetch git-delta starship fzf which sudo
+    pacman -Sy --noconfirm \
+        man-db \
+        eza \
+        git \
+        nvim \
+        htop \
+        zsh \
+        bat \
+        dnsutils \
+        trash-cli \
+        openbsd-netcat \
+        gnupg \
+        rsync \
+        fastfetch \
+        git-delta \
+        starship \
+        fzf \
+        which sudo ripgrep lsof pwgen \
+        github-cli
 
     # FIXME: need a parameterized function for provisioning a user, or use cloud-init
     useradd badger
