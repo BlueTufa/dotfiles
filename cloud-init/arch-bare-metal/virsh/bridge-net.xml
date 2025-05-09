@@ -1,0 +1,6 @@
+<!-- /tmp/bridge-net.xml -->
+<network>
+  <name>bridge-net</name>
+  <forward mode='bridge'/>
+  <bridge name='br0'/>
+</network>

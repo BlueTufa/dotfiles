@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set +e 
+set +e
 
 unlock_disk() {
 	CHALLENGE=$(cat /etc/yubikey/luks-challenge)
@@ -15,4 +15,3 @@ run_hook() {
     unlock_disk /dev/disk/by-uuid/82802dc3-d936-418f-8465-ae21595c8de5 crypt_nvme1 2 || echo "Unlock failed!" >> /run/initramfs/yubikey-unlock.log
     unlock_disk /dev/disk/by-uuid/8cc47a40-a733-447a-9c30-42c7c4e63edb crypt_ssd 2 || echo "Unlock failed!" >> /run/initramfs/yubikey-unlock.log
 }
-

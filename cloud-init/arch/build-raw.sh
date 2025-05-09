@@ -21,7 +21,7 @@ fi
 
 for cmd in parted rsync killall
 do
-  if [[ ! command -v $cmd ]]; then
+    if ! command -v $cmd >/dev/null 2>&1; then
       echo "Error: Command $cmd not installed.  Exiting." >&2
       exit 1
   fi
@@ -74,7 +74,7 @@ count > 0 {
 echo $INSTANCE_ID > root.x86_64/etc/hostname
 
 # update locales
-sudo sed -i '/^#en_US.UTF-8 UTF-8/s/^#//' root.x86_64/etc/locale.gen
+sed -i '/^#en_US.UTF-8 UTF-8/s/^#//' root.x86_64/etc/locale.gen
 
 # terminal font
 echo "FONT=ter-v22b" >> root.x86_64/etc/vconsole.conf
@@ -88,7 +88,7 @@ mkdir -p root.x86_64/root/.ssh/
 echo $SSH_KEY > root.x86_64/root/.ssh/authorized_keys
 chmod 600 root.x86_64/root/.ssh/authorized_keys
 
-sudo mkdir -p root.x86_64/etc/systemd/network
+mkdir -p root.x86_64/etc/systemd/network
 
 IF_NAME=$(ls /sys/class/net/ | grep '^en')
 echo cat <<-EOF > root.x86_64/etc/systemd/network/20-wired.network
@@ -152,7 +152,12 @@ chroot "$MNT" /bin/bash -c "
         git-delta \
         starship \
         fzf \
-        which sudo ripgrep lsof pwgen \
+        which \
+        sudo \
+        ripgrep \
+        lsof \
+        psmisc \
+        pwgen \
         github-cli
 
     # FIXME: need a parameterized function for provisioning a user, or use cloud-init
