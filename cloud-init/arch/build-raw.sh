@@ -147,6 +147,7 @@ chroot "$MNT" /bin/bash -c "
         htop \
         zsh \
         bat \
+        fd \
         dnsutils \
         trash-cli \
         openbsd-netcat \

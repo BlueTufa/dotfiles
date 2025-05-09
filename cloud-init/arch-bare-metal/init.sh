@@ -99,6 +99,7 @@ chroot "$MNT" /bin/bash -c "
         zsh \
         bat \
         dnsutils \
+        fd \
         trash-cli \
         openbsd-netcat \
         gnupg \
