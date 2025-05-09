@@ -14,7 +14,7 @@ unlock_disk() {
 
 # 1.  Modify the UUID's, mapped name, and LUKS slot as needed.
 # 2.  `sudo source /etc/initcpio/hooks/yubikey-unlock`.  `run_hook` to test for mistakes or syntax errors.
-# 3.  Run mkinitcpio -P
+# 3.  Run `sudo mkinitcpio -P`
 run_hook() {
     echo ">> Yubikey challenge-response unlocker" >> /run/initramfs/yubikey-unlock.log
     unlock_disk /dev/disk/by-uuid/82802dc3-d936-418f-8465-ae21595c8de5 crypt_nvme1 2 || echo "Unlock failed!" >> /run/initramfs/yubikey-unlock.log
