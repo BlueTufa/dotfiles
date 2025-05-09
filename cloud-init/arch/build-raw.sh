@@ -10,22 +10,26 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 fi
 
-SIZE_MB=5120
-DISK=arch-mini.raw
-MNT=/mnt/arch
-
-if [[ -f $DISK ]]; then
-  echo "Warning: $DISK already exists.  Skipping without error."
-  exit 0
-fi
-
-for cmd in parted rsync killall
+for cmd in parted rsync killall readlink
 do
     if ! command -v $cmd >/dev/null 2>&1; then
       echo "Error: Command $cmd not installed.  Exiting." >&2
       exit 1
   fi
 done
+
+SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
+SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
+
+SIZE_MB=5120
+DISK="${SCRIPT_DIR}/arch-mini.raw"
+MNT=${1:-/mnt/arch}
+FORCE=${2:-0} # allow override of disk skip
+
+if [[ -f $DISK || $FORCE -ne 0 ]]; then
+  echo "Warning: $DISK already exists.  Skipping without error."
+  exit 0
+fi
 
 truncate -s ${SIZE_MB}M "$DISK"
 
@@ -91,7 +95,7 @@ chmod 600 root.x86_64/root/.ssh/authorized_keys
 mkdir -p root.x86_64/etc/systemd/network
 
 IF_NAME=$(ls /sys/class/net/ | grep '^en')
-echo cat <<-EOF > root.x86_64/etc/systemd/network/20-wired.network
+cat <<EOF > root.x86_64/etc/systemd/network/20-wired.network
 [Match]
 Name=$IF_NAME
 
@@ -119,7 +123,7 @@ chroot "$MNT" /bin/bash -c "
     echo LANG=en_US.UTF-8 > /etc/locale.conf
 
     # install base system
-    pacman -Sy --noconfirm base linux terminus-font linux-firmware dhcpcd openssh avahi grub os-prober
+    pacman -Sy --noconfirm base linux terminus-font linux-firmware openssh avahi grub
 
     mkinitcpio -p linux
     genfstab -U / > /etc/fstab
@@ -132,7 +136,7 @@ chroot "$MNT" /bin/bash -c "
     sed -i 's/^#GRUB_TERMINAL_OUTPUT=.*/GRUB_TERMINAL_OUTPUT=console/' /etc/default/grub
     grub-mkconfig -o /boot/grub/grub.cfg
 
-    systemctl enable dhcpcd systemd-networkd sshd avahi-daemon.service
+    systemctl enable systemd-networkd sshd avahi-daemon.service
 
     # install user mode packages
     pacman -Sy --noconfirm \
