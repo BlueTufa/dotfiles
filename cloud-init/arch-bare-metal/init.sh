@@ -107,7 +107,11 @@ chroot "$MNT" /bin/bash -c "
         git-delta \
         starship \
         fzf \
-        which sudo lsof pwgen\
+        which \
+        sudo \
+        lsof \
+        pwgen \
+        psmisc \
         github-cli
 
     # install dev tools

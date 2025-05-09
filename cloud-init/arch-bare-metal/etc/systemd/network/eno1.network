@@ -1,0 +1,9 @@
+# /etc/systemd/network/eno1.network
+[Match]
+Name=eno1
+
+[Network]
+Bridge=br0
+
+[Link]
+Multicast=true

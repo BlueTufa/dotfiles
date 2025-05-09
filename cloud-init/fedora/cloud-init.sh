@@ -1,9 +1,22 @@
 #! /bin/bash
 
-# requires install of virt-install, cloud-image-utils, and cloud-init
-
 echo "Starting..."
 set -euo pipefail
+shopt -s nullglob
+
+if [[ $EUID -ne 0 ]]; then
+  echo "Error: This script must be run as root. Try using sudo." >&2
+  exit 1
+fi
+
+# enum required commands before continuing
+for cmd in cloud-init cloud-localds curl virt-install virsh
+do
+  if ! command -v $cmd >/dev/null 2>&1; then
+      echo "Error: Command $cmd not installed.  Exiting." >&2
+      exit 1
+  fi
+done
 
 INSTANCE_ID=${1:-"vm-fedora-01"}
 VCPUS=${2:-2}
@@ -12,54 +25,42 @@ FEDORA_VERSION=${4:-41}
 MEDIA_DIR=${5:-"/media/isos"}
 SCRIPTS_DIR=${6:-"/kvmpool/scripts/fedora"}
 INSTALL_DIR=${7:-"/kvmpool/images"}
-
 ARCH="x86_64"
 ISO_TYPE="Cloud"
-BASE_URL="https://download.fedoraproject.org/pub/fedora/linux/releases/${FEDORA_VERSION}/${ISO_TYPE}/${ARCH}/images"
-echo $BASE_URL
-IMAGE_NAME=$(curl -sL "${BASE_URL}/" | \
-  grep -E "Fedora-${ISO_TYPE}-Base-Generic-${FEDORA_VERSION}-1\.[0-9]+\.${ARCH}\.qcow2" | \
-  sed -nE "s/.*(Fedora-${ISO_TYPE}-Base-Generic-${FEDORA_VERSION}-1\.[0-9]+\.${ARCH}\.qcow2).*/\1/p" | sort -V | tail -n 1)
-if [[ -z "$IMAGE_NAME" ]]; then
-  echo "Could not find a valid qcow for the requested release. Check the BASE_URL or network."
-  exit 1
-fi
+INSTALL_VERSION="1.4"
 
-echo "Fedora image name: $IMAGE_NAME"
-
-CHECKSUM_FILE=$(curl -sL "${BASE_URL}/" | \
-  grep -E "Fedora-${ISO_TYPE}-${FEDORA_VERSION}-1\.[0-9]+\-${ARCH}-CHECKSUM" | \
-  sed -nE "s/.*(Fedora-${ISO_TYPE}-${FEDORA_VERSION}-1\.[0-9]+\-${ARCH}-CHECKSUM).*/\1/p" | sort -V | tail -n 1)
-if [[ -z $CHECKSUM_FILE ]]; then
-  echo "Could not find a valid checksum file.  Refusing to continue without checksums."
-  exit 2
-fi
-
-echo "Fedora checksum file: $CHECKSUM_FILE"
+BASE_IMAGE_NAME="Fedora-${ISO_TYPE}-Base-Generic-${FEDORA_VERSION}-${INSTALL_VERSION}.${ARCH}.qcow2"
 
 echo "Creating a new instance named ${INSTANCE_ID} with ${VCPUS} VCPU and ${MEMORY} RAM"
 
 download-fedora() {
-  echo "Downloading ISO and checksum file..."
-  curl -vLo "$MEDIA_DIR/$IMAGE_NAME" "${BASE_URL}/${IMAGE_NAME}"
-  curl -vLo "$MEDIA_DIR/$CHECKSUM_FILE" "${BASE_URL}/${CHECKSUM_FILE}"
+    BASE_URL="https://download.fedoraproject.org/pub/fedora/linux/releases/${FEDORA_VERSION}/${ISO_TYPE}/${ARCH}/images"
+    echo "Fedora image name: $BASE_IMAGE_NAME"
 
-  echo "Verifying ISO checksum..."
-  grep "$(openssl sha256 -r ${IMAGE_NAME} | awk '{print $1}')" "${MEDIA_DIR}/${CHECKSUM_FILE}"
-  if [ $? -eq 0 ]; then
-      echo "Checksum verified successfully!"
-  else
-      echo "Checksum verification failed, refusing to continue without checksums."
-      exit 1
-  fi
+    CHECKSUM_FILE="Fedora-${ISO_TYPE}-${FEDORA_VERSION}-${INSTALL_VERSION}-${ARCH}-CHECKSUM"
+
+    echo "Downloading ISO and checksum file..."
+    curl -vLo "$MEDIA_DIR/$BASE_IMAGE_NAME" "${BASE_URL}/${BASE_IMAGE_NAME}"
+    curl -vLo "$MEDIA_DIR/$CHECKSUM_FILE" "${BASE_URL}/${CHECKSUM_FILE}"
+
+    echo "Verifying ISO checksum..."
+    grep "$(openssl sha256 -r $MEDIA_DIR/$BASE_IMAGE_NAME | awk '{print $1}')" "${MEDIA_DIR}/${CHECKSUM_FILE}"
+    if [ $? -eq 0 ]; then
+        echo "Checksum verified successfully!"
+    else
+        echo "Checksum verification failed, refusing to continue without checksums."
+        exit 1
+    fi
 }
 
-if [[ ! -f "${MEDIA_DIR}/$IMAGE_NAME" ]]; then
-  download-fedora
+if [[ -f "$MEDIA_DIR/$BASE_IMAGE_NAME" ]]; then
+    echo "Found local Fedora qcow file(s): $MEDIA_DIR/$BASE_IMAGE_NAME"
+else
+    download-fedora
 fi
 
 TARGET_IMAGE=/kvmpool/images/Fedora-Cloud-${INSTANCE_ID}.qcow2
-cp -f ${MEDIA_DIR}/${IMAGE_NAME} ${TARGET_IMAGE}
+cp -f "$MEDIA_DIR/$BASE_IMAGE_NAME" "${TARGET_IMAGE}"
 
 run-virt-install() {
   cd $SCRIPTS_DIR
@@ -67,17 +68,18 @@ run-virt-install() {
   [[ -f user-data.named.yml ]] && rm user-data.named.yml
   [[ -f meta-data.named.yml ]] && rm meta-data.named.yml
 
-  cloud-init schema --config-file user-data.yml
-  cloud-init schema --config-file meta-data.yml
-  /bin/cat user-data.yml | sed "s/\${INSTANCE_ID}/${INSTANCE_ID}/g" > user-data.named.yml
-  /bin/cat meta-data.yml | sed "s/\${INSTANCE_ID}/${INSTANCE_ID}/g" > meta-data.named.yml
+  cat user-data.yml | sed "s/\${INSTANCE_ID}/${INSTANCE_ID}/g" > user-data.named.yml
+  cat meta-data.yml | sed "s/\${INSTANCE_ID}/${INSTANCE_ID}/g" > meta-data.named.yml
+
+  cloud-init schema --config-file user-data.named.yml
 
   cloud-localds --filesystem=iso9660 seed.iso user-data.named.yml meta-data.named.yml
 
   virt-install --name ${INSTANCE_ID} --memory ${MEMORY} --vcpus ${VCPUS} \
      --disk path="${TARGET_IMAGE},format=qcow2,bus=virtio" \
      --disk path=$(pwd)/seed.iso,device=cdrom,bus=sata \
-     --os-variant fedora37 \
+     --os-variant fedora41 \
+     --network bridge=br0 \
      --graphics none --import --noautoconsole
 
   virsh autostart ${INSTANCE_ID}

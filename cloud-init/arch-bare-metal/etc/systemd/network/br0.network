@@ -1,0 +1,11 @@
+# /etc/systemd/network/br0.network
+[Match]
+Name=br0
+
+[Network]
+DHCP=yes
+MulticastDNS=yes
+LLDP=yes
+
+[Link]
+Multicast=true
