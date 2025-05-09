@@ -27,13 +27,14 @@ DISK="${SCRIPT_DIR}/arch-mini.raw"
 MNT=${1:-/mnt/arch}
 FORCE=${2:-0} # allow override of disk skip
 
-if [[ -f $DISK || $FORCE -ne 0 ]]; then
+if [[ -f $DISK && $FORCE -eq 0 ]]; then
   echo "Warning: $DISK already exists.  Skipping without error."
   exit 0
 fi
 
 truncate -s ${SIZE_MB}M "$DISK"
 
+# BIOS-based boot
 parted -s "$DISK" mklabel msdos
 parted -s "$DISK" mkpart primary ext4 2MiB 100%
 parted -s "$DISK" set 1 boot on
@@ -45,11 +46,11 @@ sleep 1  # Allow time for partition probing
 # Format partition
 mkfs.ext4 "${LOOPDEV}p1"
 
-# Mount
+# loopback the raw partition on mount point
 mkdir -p "$MNT"
 mount "${LOOPDEV}p1" "$MNT"
 
-# download
+# download and verify
 [[ -f archlinux-bootstrap-x86_64.tar.zst ]] || wget https://geo.mirror.pkgbuild.com/iso/latest/archlinux-bootstrap-x86_64.tar.zst
 [[ -f sha256sums.txt ]] || wget https://geo.mirror.pkgbuild.com/iso/latest/sha256sums.txt
 
@@ -89,16 +90,7 @@ mkdir -p root.x86_64/root/.ssh/
 echo $SSH_KEY > root.x86_64/root/.ssh/authorized_keys
 chmod 600 root.x86_64/root/.ssh/authorized_keys
 
-# mkdir -p root.x86_64/etc/systemd/network
-
-# cat <<EOF > root.x86_64/etc/systemd/network/20-wired.network
-# [Match]
-# Name=IF_NAME
-
-# [Network]
-# DHCP=yes
-# EOF
-
+# sync to mount point and prep for grub, etc
 rsync -aAXH root.x86_64/ "$MNT"
 
 for i in run proc sys dev
