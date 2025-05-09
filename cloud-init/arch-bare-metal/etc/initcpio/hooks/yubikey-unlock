@@ -4,12 +4,17 @@ set +e
 
 unlock_disk() {
 	CHALLENGE=$(cat /etc/yubikey/luks-challenge)
+	# confirm the target device is present
 	ls $1 >> /run/initramfs/yubikey-unlock.log
+	# confirm ykchalresp has been deployed to initramfs
 	command -v ykchalresp >> /run/initramfs/yubikey-unlock.log
 	echo "Attempting to open disk $1 as $2 using keyslot $3" >> /run/initramfs/yubikey-unlock.log
 	echo $(ykchalresp -2 $CHALLENGE) | cryptsetup luksOpen --key-slot=$3 $1 $2 >> /run/initramfs/yubikey-unlock.log 2&>1
 }
 
+# 1.  Modify the UUID's, mapped name, and LUKS slot as needed.
+# 2.  `sudo source /etc/initcpio/hooks/yubikey-unlock`.  `run_hook` to test for mistakes or syntax errors.
+# 3.  Run `sudo mkinitcpio -P`
 run_hook() {
     echo ">> Yubikey challenge-response unlocker" >> /run/initramfs/yubikey-unlock.log
     unlock_disk /dev/disk/by-uuid/82802dc3-d936-418f-8465-ae21595c8de5 crypt_nvme1 2 || echo "Unlock failed!" >> /run/initramfs/yubikey-unlock.log

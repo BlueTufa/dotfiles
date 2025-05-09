@@ -199,9 +199,17 @@ neovim
 
 ## Important Reminders
 
-- Run `grub-mkconfig -o /boot/grub/grub.cfg` before rebooting
+- Remember to run `grub-mkconfig -o /boot/grub/grub.cfg` before rebooting
 - If you are using EFI, ensure `/boot` is properly mounted and in your `/etc/fstab`
-- Properly configure DHCP to have network access on first boot
+- If you used `genfstab`, triple check the file.
+    - Is it the correct EFI partition?
+    - Do you need a swap file?
+    - Will the swap file work?
+    - Should you use UUID's instead?
+    - Are the UUID's correct?
+    - Can you add `nofail` to any mount points?
+- Enable either dhcpcd or systemd.networkd, but not both.  They will conflict.
+- If you are running a server with bridge networking, remember to disable dhcp on the eth interface.  The eth interface is enslaved to the bridge.  Only the bridge should have an IP address.
 - If using a headless VM, make sure you have the following configured:
 ```GRUB
 GRUB_CMDLINE_LINUX="console=ttyS0"

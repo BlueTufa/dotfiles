@@ -27,10 +27,10 @@
         mode: "0755"
       loop: "{{ scripts }}"
 
-    # - name: Run build-raw script
-    #   ansible.builtin.shell: "{{ script_path }}/build-raw.sh"
-    #   args:
-    #     executable: /bin/bash
+    - name: Run build-raw script
+      ansible.builtin.shell: "{{ script_path }}/build-raw.sh"
+      args:
+        executable: /bin/bash
 
     # - name: Run startup script
     #   ansible.builtin.shell: "{{ script_path }}/startup.sh"
