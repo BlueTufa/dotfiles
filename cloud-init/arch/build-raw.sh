@@ -21,7 +21,8 @@ done
 SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
 SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
 
-SIZE_MB=5120
+# +30% buffer
+SIZE_MB=3584
 DISK="${SCRIPT_DIR}/arch-mini.raw"
 MNT=${1:-/mnt/arch}
 FORCE=${2:-0} # allow override of disk skip
@@ -33,10 +34,6 @@ fi
 
 truncate -s ${SIZE_MB}M "$DISK"
 
-# 1. Create new DOS partition table
-# 2. Add primary partition (default values)
-# 3. Make bootable
-# 4. Write
 parted -s "$DISK" mklabel msdos
 parted -s "$DISK" mkpart primary ext4 2MiB 100%
 parted -s "$DISK" set 1 boot on
@@ -92,16 +89,15 @@ mkdir -p root.x86_64/root/.ssh/
 echo $SSH_KEY > root.x86_64/root/.ssh/authorized_keys
 chmod 600 root.x86_64/root/.ssh/authorized_keys
 
-mkdir -p root.x86_64/etc/systemd/network
+# mkdir -p root.x86_64/etc/systemd/network
 
-IF_NAME=$(ls /sys/class/net/ | grep '^en')
-cat <<EOF > root.x86_64/etc/systemd/network/20-wired.network
-[Match]
-Name=$IF_NAME
+# cat <<EOF > root.x86_64/etc/systemd/network/20-wired.network
+# [Match]
+# Name=IF_NAME
 
-[Network]
-DHCP=yes
-EOF
+# [Network]
+# DHCP=yes
+# EOF
 
 rsync -aAXH root.x86_64/ "$MNT"
 
@@ -123,7 +119,7 @@ chroot "$MNT" /bin/bash -c "
     echo LANG=en_US.UTF-8 > /etc/locale.conf
 
     # install base system
-    pacman -Sy --noconfirm base linux terminus-font linux-firmware openssh avahi grub
+    pacman -Sy --noconfirm base linux terminus-font linux-firmware openssh avahi grub dhcpcd
 
     mkinitcpio -p linux
     genfstab -U / > /etc/fstab
@@ -134,9 +130,10 @@ chroot "$MNT" /bin/bash -c "
 
     sed -i 's/^GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX=\"console=ttyS0\"/' /etc/default/grub
     sed -i 's/^#GRUB_TERMINAL_OUTPUT=.*/GRUB_TERMINAL_OUTPUT=console/' /etc/default/grub
+
     grub-mkconfig -o /boot/grub/grub.cfg
 
-    systemctl enable systemd-networkd sshd avahi-daemon.service
+    systemctl enable dhcpcd sshd avahi-daemon.service
 
     # install user mode packages
     pacman -Sy --noconfirm \
@@ -169,11 +166,15 @@ chroot "$MNT" /bin/bash -c "
     useradd badger
     usermod -aG wheel badger
     mkdir -p /home/badger/.ssh
+    mkdir -p /home/badger/src
+    git clone https://github.com/BlueTufa/dotfiles.git /home/badger/src/dotfiles
+
     echo \"$SSH_KEY\" > /home/badger/.ssh/authorized_keys
     chown -R badger:badger /home/badger
     chmod 700 /home/badger/.ssh
     chmod 600 /home/badger/.ssh/authorized_keys
     sed -i 's/^#\s*\(%wheel ALL=(ALL:ALL) NOPASSWD: ALL\)/\1/' /etc/sudoers
+    chsh -s $(which zsh) badger
 "
 
 sleep 10

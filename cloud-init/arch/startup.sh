@@ -27,6 +27,9 @@ cp $SOURCE_PATH $TARGET_PATH
 virt-install --name ${INSTANCE_ID} --memory ${MEMORY} --vcpus ${VCPUS} \
   --disk path="${TARGET_PATH},format=raw,bus=virtio" \
   --os-variant archlinux \
-  --graphics none --console pty,target_type=serial --import --noautoconsole
+  --graphics none \
+  --console pty,target_type=serial \
+  --import \
+  --noautoconsole
 
 virsh autostart ${INSTANCE_ID}
