@@ -50,8 +50,8 @@ mkfs.ext4 -L ARCH_ROOT "${LOOPDEV}p2"
 
 # loopback the raw partition on mount point
 mkdir -p "$MNT/boot/efi"
-mount "${LOOPDEV}p1" "$MNT/boot/efi"
 mount "${LOOPDEV}p2" "$MNT"
+mount "${LOOPDEV}p1" "$MNT/boot/efi"
 
 # download and verify
 [[ -f archlinux-bootstrap-x86_64.tar.zst ]] || wget https://geo.mirror.pkgbuild.com/iso/latest/archlinux-bootstrap-x86_64.tar.zst
@@ -103,8 +103,6 @@ do echo "Mounting $i"
   mount --make-rslave "$MNT/$i"
 done
 
-grub-install --target=x86_64-efi --efi-directory=$MNT/boot/efi --bootloader-id=arch --removable
-
 chroot "$MNT" /bin/bash -c "
     swapoff -a
     ln -sf /usr/share/zoneinfo/America/Denver /etc/localtime
@@ -120,6 +118,8 @@ chroot "$MNT" /bin/bash -c "
     mkinitcpio -p linux
     mkdir -p /boot/efi
     mount ${LOOPDEV}p1 /boot/efi
+    grub-install --target=x86_64-efi --efi-directory=$MNT/boot/efi --bootloader-id=arch --removable
+    grub-mkconfig -o /boot/grub/grub.cfg
     genfstab -U / > /etc/fstab
 
     echo \"root:root\" | chpasswd
