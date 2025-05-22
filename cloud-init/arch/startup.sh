@@ -27,9 +27,12 @@ cp $SOURCE_PATH $TARGET_PATH
 virt-install --name ${INSTANCE_ID} --memory ${MEMORY} --vcpus ${VCPUS} \
   --disk path="${TARGET_PATH},format=raw,bus=virtio" \
   --os-variant archlinux \
-  --graphics none \
   --console pty,target_type=serial \
   --import \
-  --noautoconsole
+  --noautoconsole \
+  --network bridge=br0 \
+  --graphics spice \
+  --boot loader=/usr/share/edk2-ovmf/x64/OVMF_CODE.4m.fd,loader.readonly=yes,loader.type=pflash \
+  --boot uefi
 
 virsh autostart ${INSTANCE_ID}
