@@ -32,7 +32,6 @@ virt-install --name ${INSTANCE_ID} --memory ${MEMORY} --vcpus ${VCPUS} \
   --noautoconsole \
   --network bridge=br0 \
   --graphics spice \
-  --boot loader=/usr/share/edk2-ovmf/x64/OVMF_CODE.4m.fd,loader.readonly=yes,loader.type=pflash \
   --boot uefi
 
 virsh autostart ${INSTANCE_ID}

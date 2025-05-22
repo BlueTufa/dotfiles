@@ -103,8 +103,8 @@ do echo "Mounting $i"
   mount --make-rslave "$MNT/$i"
 done
 
-# FIXME:
-# pacman -Sy efibootmgr cloud-init
+grub-install --target=x86_64-efi --efi-directory=$MNT/boot/efi --bootloader-id=arch --removable
+
 chroot "$MNT" /bin/bash -c "
     swapoff -a
     ln -sf /usr/share/zoneinfo/America/Denver /etc/localtime
@@ -121,7 +121,6 @@ chroot "$MNT" /bin/bash -c "
     mkdir -p /boot/efi
     mount ${LOOPDEV}p1 /boot/efi
     mount -t efivarfs efivarfs /sys/firmware/efi/efivars
-    grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch
     grub-mkconfig -o /boot/grub/grub.cfg
     genfstab -U / > /etc/fstab
 
