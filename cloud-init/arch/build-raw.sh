@@ -10,7 +10,7 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 fi
 
-for cmd in parted rsync killall readlink
+for cmd in parted rsync killall readlink mkfs.fat
 do
     if ! command -v $cmd >/dev/null 2>&1; then
       echo "Error: Command $cmd not installed.  Exiting." >&2
@@ -120,8 +120,6 @@ chroot "$MNT" /bin/bash -c "
     mkinitcpio -p linux
     mkdir -p /boot/efi
     mount ${LOOPDEV}p1 /boot/efi
-    mount -t efivarfs efivarfs /sys/firmware/efi/efivars
-    grub-mkconfig -o /boot/grub/grub.cfg
     genfstab -U / > /etc/fstab
 
     echo \"root:root\" | chpasswd
@@ -175,8 +173,8 @@ chroot "$MNT" /bin/bash -c "
     chsh -s $(which zsh) badger
 "
 
-sleep 10
-killall gpg-agent
+# sleep 10
+# killall gpg-agent
 
-umount -R "$MNT"
-losetup -d "$LOOPDEV"
+# umount -R "$MNT"
+# losetup -d "$LOOPDEV"
