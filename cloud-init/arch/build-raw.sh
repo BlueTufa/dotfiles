@@ -120,6 +120,7 @@ chroot "$MNT" /bin/bash -c "
     mkinitcpio -p linux
     mkdir -p /boot/efi
     mount ${LOOPDEV}p1 /boot/efi
+    mount -t efivarfs efivarfs /sys/firmware/efi/efivars
     grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch-recovery
     grub-mkconfig -o /boot/grub/grub.cfg
     genfstab -U / > /etc/fstab
