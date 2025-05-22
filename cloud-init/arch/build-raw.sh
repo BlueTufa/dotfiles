@@ -1,6 +1,6 @@
 #! /bin/bash
 
-INSTANCE_ID=${1:-"vm-arch-01"}
+INSTANCE_ID=${1:-"arch-recovery"}
 SSH_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMwt/pVQKCQHHqxEOdh1/JKqJzIyTPLQpqz/Wno0ECqG badger@catamaran"
 
 set -euxo pipefail
@@ -35,20 +35,23 @@ fi
 truncate -s ${SIZE_MB}M "$DISK"
 
 # BIOS-based boot
-parted -s "$DISK" mklabel msdos
-parted -s "$DISK" mkpart primary ext4 2MiB 100%
-parted -s "$DISK" set 1 boot on
+parted -s "$DISK" mklabel gpt
+parted -s "$DISK" mkpart ESP fat32 2MiB 600MiB
+parted -s "$DISK" set 1 esp on
+parted -s "$DISK" mkpart primary ext4 602MiB 100%
 
 # Setup loop device
 LOOPDEV=$(losetup --show -fP "$DISK")  # Maps /dev/loopXp1
 sleep 1  # Allow time for partition probing
 
 # Format partition
-mkfs.ext4 "${LOOPDEV}p1"
+mkfs.fat -F32 -n ARCH_EFI "${LOOPDEV}p1"
+mkfs.ext4 -L ARCH_ROOT "${LOOPDEV}p2"
 
 # loopback the raw partition on mount point
-mkdir -p "$MNT"
-mount "${LOOPDEV}p1" "$MNT"
+mkdir -p "$MNT/boot/efi"
+mount "${LOOPDEV}p1" "$MNT/boot/efi"
+mount "${LOOPDEV}p2" "$MNT"
 
 # download and verify
 [[ -f archlinux-bootstrap-x86_64.tar.zst ]] || wget https://geo.mirror.pkgbuild.com/iso/latest/archlinux-bootstrap-x86_64.tar.zst
@@ -62,6 +65,7 @@ else
     exit 1
 fi
 
+[[ -d root.x86_64/ ]] && rm -r root.x86_64/
 tar --use-compress-program=unzstd -xvf archlinux-bootstrap-x86_64.tar.zst
 
 # update mirrors, not rerunnable
@@ -111,11 +115,11 @@ chroot "$MNT" /bin/bash -c "
     echo LANG=en_US.UTF-8 > /etc/locale.conf
 
     # install base system
-    pacman -Sy --noconfirm base linux terminus-font linux-firmware openssh avahi grub dhcpcd
+    pacman -Sy --noconfirm base linux terminus-font linux-firmware openssh avahi grub dhcpcd grub-efi-amd64 efibootmgr
 
     mkinitcpio -p linux
     genfstab -U / > /etc/fstab
-    grub-install --target=i386-pc --recheck $LOOPDEV
+    grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch-recovery
     grub-mkconfig -o /boot/grub/grub.cfg
 
     echo \"root:root\" | chpasswd
