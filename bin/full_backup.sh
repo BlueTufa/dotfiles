@@ -10,6 +10,6 @@ if [[ -z "$1" ]]; then
   exit 1
 fi
 
-nohup rsync -aAXHv --numeric-ids / \
+nohup rsync -aAXHv --rsync-path="sudo rsync" --numeric-ids / \
   --exclude={"/var/*","/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/lost+found"} \
   "$1" 2>&1 | tee -a full_backup.log > /dev/null &
