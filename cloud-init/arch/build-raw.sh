@@ -115,12 +115,14 @@ chroot "$MNT" /bin/bash -c "
     echo LANG=en_US.UTF-8 > /etc/locale.conf
 
     # install base system
-    pacman -Sy --noconfirm base linux terminus-font linux-firmware openssh avahi grub dhcpcd grub-efi-amd64 efibootmgr
+    pacman -Sy --noconfirm base linux terminus-font linux-firmware openssh avahi grub dhcpcd dosfstools efibootmgr
 
     mkinitcpio -p linux
-    genfstab -U / > /etc/fstab
+    mkdir -p /boot/efi
+    mount ${LOOPDEV}p1 /boot/efi
     grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch-recovery
     grub-mkconfig -o /boot/grub/grub.cfg
+    genfstab -U / > /etc/fstab
 
     echo \"root:root\" | chpasswd
 
