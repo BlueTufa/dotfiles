@@ -37,7 +37,7 @@ truncate -s ${SIZE_MB}M "$DISK"
 # BIOS-based boot
 parted -s "$DISK" mklabel gpt
 parted -s "$DISK" mkpart ESP fat32 2MiB 600MiB
-parted -s "$DISK" set 1 esp on
+parted -s "$DISK" set 1 boot on
 parted -s "$DISK" mkpart primary ext4 602MiB 100%
 
 # Setup loop device
