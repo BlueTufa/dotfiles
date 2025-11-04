@@ -1,5 +1,5 @@
 {
-  "Thin Strokes" : 1,
+  "Custom Directory" : "No",
   "Working Directory" : "\/Users\/dwhite",
   "Prompt Before Closing 2" : false,
   "Selected Text Color" : {
@@ -17,10 +17,11 @@
   },
   "Use Italic Font" : true,
   "Foreground Color" : {
-    "Red Component" : 0.51372549019607838,
-    "Color Space" : "sRGB",
-    "Blue Component" : 0.58823529411764708,
-    "Green Component" : 0.58039215686274515
+    "Red Component" : 0.76858246326446533,
+    "Color Space" : "P3",
+    "Blue Component" : 0.90350490808486938,
+    "Alpha Component" : 1,
+    "Green Component" : 0.88061350584030151
   },
   "Right Option Key Sends" : 0,
   "Character Encoding" : 4,
@@ -32,7 +33,7 @@
   },
   "Blend" : 0.74632791482852356,
   "Show Mark Indicators" : false,
-  "Mouse Reporting" : true,
+  "Mouse Reporting" : false,
   "Cursor Boost" : 0,
   "Ansi 4 Color" : {
     "Red Component" : 0.14901960784313725,
@@ -220,7 +221,7 @@
   "Command" : "",
   "Terminal Type" : "xterm-256color",
   "Horizontal Spacing" : 1,
-  "Animate Movement" : true,
+  "Animate Movement" : false,
   "Option Key Sends" : 2,
   "Only The Default BG Color Uses Transparency" : true,
   "Minimum Contrast" : 0,
@@ -260,12 +261,12 @@
   "Columns" : 130,
   "Unicode Normalization" : 3,
   "Visual Bell" : false,
-  "Custom Directory" : "No",
   "ASCII Ligatures" : true,
   "Ansi 5 Color" : {
     "Red Component" : 0.82745098039215681,
     "Color Space" : "sRGB",
     "Blue Component" : 0.50980392156862742,
     "Green Component" : 0.21176470588235294
-  }
+  },
+  "Thin Strokes" : 1
 }
