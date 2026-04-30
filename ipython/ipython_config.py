@@ -5,7 +5,7 @@ c = get_config()
 c.TerminalInteractiveShell.colors = 'Linux'  # Options: 'NoColor', 'Linux', 'LightBG', 'Neutral'
 
 # Or for syntax highlighting
-c.TerminalInteractiveShell.highlighting_style = 'solarized-dark'
+# c.TerminalInteractiveShell.highlighting_style = 'solarized-dark'
 
 c.TerminalInteractiveShell.history_length = 100000
 
