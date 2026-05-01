@@ -1,5 +1,5 @@
 {
-  "Custom Directory" : "No",
+  "ASCII Ligatures" : true,
   "Working Directory" : "\/Users\/dwhite",
   "Prompt Before Closing 2" : false,
   "Selected Text Color" : {
@@ -92,33 +92,37 @@
   "Custom Command" : "No",
   "Title Components" : 134,
   "Keyboard Map" : {
-    "0xf701-0x280000" : {
-      "Version" : 2,
-      "Apply Mode" : 0,
+    "f702-0x300000" : {
       "Action" : 11,
-      "Text" : "0x1b 0x1b 0x5b 0x42",
-      "Escaping" : 1
+      "Text" : "0x1"
     },
-    "0xf702-0x280000" : {
-      "Version" : 2,
-      "Apply Mode" : 0,
-      "Action" : 11,
-      "Text" : "0x1b 0x1b 0x5b 0x44",
-      "Escaping" : 1
+    "f702-0x280000" : {
+      "Action" : 10,
+      "Text" : "b"
     },
-    "0xf700-0x280000" : {
-      "Version" : 2,
-      "Apply Mode" : 0,
-      "Action" : 11,
-      "Text" : "0x1b 0x1b 0x5b 0x41",
-      "Escaping" : 1
+    "f703-0x280000" : {
+      "Action" : 10,
+      "Text" : "f"
     },
-    "0xf703-0x280000" : {
-      "Version" : 2,
-      "Apply Mode" : 0,
+    "f728-0x80000" : {
+      "Action" : 10,
+      "Text" : "d"
+    },
+    "0x7f-0x100000" : {
       "Action" : 11,
-      "Text" : "0x1b 0x1b 0x5b 0x43",
-      "Escaping" : 1
+      "Text" : "0x15"
+    },
+    "f728-0x0" : {
+      "Action" : 11,
+      "Text" : "0x4"
+    },
+    "f703-0x300000" : {
+      "Action" : 11,
+      "Text" : "0x5"
+    },
+    "0x7f-0x80000" : {
+      "Action" : 11,
+      "Text" : "0x1b 0x7f"
     }
   },
   "Ansi 14 Color" : {
@@ -261,7 +265,7 @@
   "Columns" : 130,
   "Unicode Normalization" : 3,
   "Visual Bell" : false,
-  "ASCII Ligatures" : true,
+  "Custom Directory" : "No",
   "Ansi 5 Color" : {
     "Red Component" : 0.82745098039215681,
     "Color Space" : "sRGB",

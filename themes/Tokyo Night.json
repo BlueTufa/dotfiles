@@ -1,11 +1,5 @@
 {
-  "Ansi 5 Color" : {
-    "Red Component" : 0.73333334922790527,
-    "Color Space" : "sRGB",
-    "Blue Component" : 0.9686274528503418,
-    "Alpha Component" : 1,
-    "Green Component" : 0.60392159223556519
-  },
+  "Custom Directory" : "No",
   "Working Directory" : "\/Users\/dan.white",
   "Prompt Before Closing 2" : false,
   "Selected Text Color" : {
@@ -40,7 +34,8 @@
     "Alpha Component" : 1,
     "Green Component" : 0.27450981736183167
   },
-  "Blend" : 0.70268298162930254,
+  "Blend" : 0.67387594730220046,
+  "Show Mark Indicators" : false,
   "Mouse Reporting" : true,
   "Ansi 4 Color" : {
     "Red Component" : 0.47843137383460999,
@@ -62,6 +57,7 @@
   ],
   "Non-ASCII Ligatures" : true,
   "Scrollback Lines" : 0,
+  "Show Offscreen Command line" : false,
   "Brighten Bold Text" : false,
   "Flashing Bell" : false,
   "Cursor Guide Color" : {
@@ -90,7 +86,6 @@
     "Alpha Component" : 1,
     "Green Component" : 0.85490196943283081
   },
-  "Background Image Location" : "\/Users\/badger\/Library\/Mobile Documents\/com~apple~CloudDocs\/Pictures\/Backgrounds\/Dark-blue-pattern-wallpaper.jpg",
   "Bold Color" : {
     "Red Component" : 0.93333333730697632,
     "Color Space" : "sRGB",
@@ -102,9 +97,9 @@
   "Custom Command" : "No",
   "Title Components" : 512,
   "Keyboard Map" : {
-    "f702-0x300000" : {
+    "f703-0x300000" : {
       "Action" : 11,
-      "Text" : "0x1"
+      "Text" : "0x5"
     },
     "f702-0x280000" : {
       "Action" : 10,
@@ -126,9 +121,9 @@
       "Action" : 11,
       "Text" : "0x4"
     },
-    "f703-0x300000" : {
+    "f702-0x300000" : {
       "Action" : 11,
-      "Text" : "0x5"
+      "Text" : "0x1"
     },
     "0x7f-0x80000" : {
       "Action" : 11,
@@ -242,6 +237,7 @@
   "Command" : "",
   "Terminal Type" : "xterm-256color",
   "Horizontal Spacing" : 1,
+  "Animate Movement" : false,
   "Option Key Sends" : 2,
   "Ansi 15 Color" : {
     "Red Component" : 0.75294119119644165,
@@ -280,7 +276,13 @@
   },
   "Columns" : 120,
   "Visual Bell" : true,
-  "Custom Directory" : "No",
-  "Thin Strokes" : 4,
-  "ASCII Ligatures" : false
+  "ASCII Ligatures" : false,
+  "Ansi 5 Color" : {
+    "Red Component" : 0.73333334922790527,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0.9686274528503418,
+    "Alpha Component" : 1,
+    "Green Component" : 0.60392159223556519
+  },
+  "Thin Strokes" : 4
 }
