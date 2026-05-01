@@ -43,7 +43,7 @@ set -gx FZF_ALT_C_OPTS "--preview 'eza --all --color=always'"
 pyenv init - | source
 starship init fish | source
 zoxide init fish | source
-docker completion fish | source
+# docker completion fish | source
 gh completion -s fish | source
 poetry completions fish | source
 
