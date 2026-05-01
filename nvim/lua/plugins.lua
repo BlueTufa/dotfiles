@@ -104,11 +104,11 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Configure Python LSP (pyright)
-require('lspconfig').pyright.setup({
-  capabilities = capabilities,
+vim.lsp.config('pyright', {
   settings = {
     python = {
       analysis = {
+        ignore = { '*' },
         autoSearchPaths = true,
         diagnosticMode = "workspace",
         useLibraryCodeForTypes = true,
@@ -118,6 +118,8 @@ require('lspconfig').pyright.setup({
   }
 })
 
+vim.lsp.enable('pyright')
+
 local function get_poetry_python()
   local handle = io.popen("poetry env info -p")
   if handle then
@@ -126,7 +128,7 @@ local function get_poetry_python()
     local venv_path = vim.fn.trim(result)
     return venv_path .. "/bin/python"
   else
-    print("Could not find poetry environment")
+    -- print("Could not find poetry environment")
     return "/usr/bin/python3" -- os.getenv("HOME") .. "/.virtualenvs/debugpy/bin/python",
   end
 end
