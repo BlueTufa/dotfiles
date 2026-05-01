@@ -77,8 +77,8 @@
   "Unlimited Scrollback" : true,
   "Custom Command" : "No",
   "Keyboard Map" : {
-    "f702-0x300000" : {
-      "Text" : "0x1",
+    "f703-0x300000" : {
+      "Text" : "0x5",
       "Action" : 11
     },
     "f702-0x280000" : {
@@ -101,8 +101,8 @@
       "Text" : "0x4",
       "Action" : 11
     },
-    "f703-0x300000" : {
-      "Text" : "0x5",
+    "f702-0x300000" : {
+      "Text" : "0x1",
       "Action" : 11
     },
     "0x7f-0x80000" : {
