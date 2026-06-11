@@ -100,91 +100,88 @@ cmp.setup.cmdline(':', {
 -- Set up lspconfig
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- In your plugins.lua file
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
 -- Configure Python LSP (pyright)
-vim.lsp.config('pyright', {
-  settings = {
-    python = {
-      analysis = {
-        ignore = { '*' },
-        autoSearchPaths = true,
-        diagnosticMode = "workspace",
-        useLibraryCodeForTypes = true,
-        typeCheckingMode = "basic"
-      }
-    }
-  }
-})
-
-vim.lsp.enable('pyright')
-
-local function get_poetry_python()
-  local handle = io.popen("poetry env info -p")
-  if handle then
-    local result = handle:read("*a")
-    handle:close()
-    local venv_path = vim.fn.trim(result)
-    return venv_path .. "/bin/python"
-  else
-    -- print("Could not find poetry environment")
-    return "/usr/bin/python3" -- os.getenv("HOME") .. "/.virtualenvs/debugpy/bin/python",
-  end
-end
-
-local dap = require("dap")
-dap.adapters.python = {
-  type = "executable",
-  command = get_poetry_python(),
-  args = { "-m", "debugpy.adapter" },
-}
-dap.configurations.python = {
-  {
-    type = "python",
-    request = "launch",
-    name = "Launch file in pytest",
-    module = "pytest",
-    args = { "${file}" },
-    console = "integratedTerminal",
-    pythonPath = get_poetry_python
-  }
-}
-
-local dapui = require("dapui")
-dapui.setup({
-  layouts = {
-    {
-      elements = {
-        { id = "scopes", size = 0.75 },
-        { id = "breakpoints", size = 0.25 },
-        { id = "stacks", size = 0.25 },
-      },
-      size = 40,  -- columns
-      position = "left", -- can be "left" or "right"
-    },
-    {
-      elements = {
-         { id = "repl", size = 0.5 },
-         { id = "console", size = 0.5 },
-      },
-      size = 15, -- lines
-      position = "bottom", -- can be "bottom" or "top"
-    },
-  },
-  controls = {
-    enabled = true,
-    element = "repl",
-    icons = {
-      pause = "⏸", play = "▶", step_into = "⤵", step_over = "⤼",
-      step_out = "⤴", step_back = "⏪", run_last = "↻", terminate = "⏹"
-    },
-  },
-})
-
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
-end
+-- vim.lsp.config('pyright', {
+--   settings = {
+--     python = {
+--       analysis = {
+--         ignore = { '*' },
+--         autoSearchPaths = true,
+--         diagnosticMode = "workspace",
+--         useLibraryCodeForTypes = true,
+--         typeCheckingMode = "basic"
+--       }
+--     }
+--   }
+-- })
+-- 
+-- vim.lsp.enable('pyright')
+-- 
+-- local function get_poetry_python()
+--   local handle = io.popen("poetry env info -p")
+--   if handle then
+--     local result = handle:read("*a")
+--     handle:close()
+--     local venv_path = vim.fn.trim(result)
+--     return venv_path .. "/bin/python"
+--   else
+--     -- print("Could not find poetry environment")
+--     return "/usr/bin/python3" -- os.getenv("HOME") .. "/.virtualenvs/debugpy/bin/python",
+--   end
+-- end
+-- 
+-- local dap = require("dap")
+-- dap.adapters.python = {
+--   type = "executable",
+--   command = get_poetry_python(),
+--   args = { "-m", "debugpy.adapter" },
+-- }
+-- dap.configurations.python = {
+--   {
+--     type = "python",
+--     request = "launch",
+--     name = "Launch file in pytest",
+--     module = "pytest",
+--     args = { "${file}" },
+--     console = "integratedTerminal",
+--     pythonPath = get_poetry_python
+--   }
+-- }
+-- 
+-- local dapui = require("dapui")
+-- dapui.setup({
+--   layouts = {
+--     {
+--       elements = {
+--         { id = "scopes", size = 0.75 },
+--         { id = "breakpoints", size = 0.25 },
+--         { id = "stacks", size = 0.25 },
+--       },
+--       size = 40,  -- columns
+--       position = "left", -- can be "left" or "right"
+--     },
+--     {
+--       elements = {
+--          { id = "repl", size = 0.5 },
+--          { id = "console", size = 0.5 },
+--       },
+--       size = 15, -- lines
+--       position = "bottom", -- can be "bottom" or "top"
+--     },
+--   },
+--   controls = {
+--     enabled = true,
+--     element = "repl",
+--     icons = {
+--       pause = "⏸", play = "▶", step_into = "⤵", step_over = "⤼",
+--       step_out = "⤴", step_back = "⏪", run_last = "↻", terminate = "⏹"
+--     },
+--   },
+-- })
+-- 
+-- dap.listeners.after.event_initialized["dapui_config"] = function()
+--   dapui.open()
+-- end
 -- TODO: set up typescript support
 -- TypeScript/JavaScript
 -- require('lspconfig')['tsserver'].setup {
