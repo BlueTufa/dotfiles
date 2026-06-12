@@ -34,10 +34,10 @@ utc_time_offset = '0'
 
 [directory]
 style = '#3399FF bold'
-substitutions = { 
-    "~/Library/Mobile Documents/com~apple~CloudDocs/Data/src/ml" = "~/CloudML",
-    "~/Library/Mobile Documents/com~apple~CloudDocs/Data" = "~/CloudData"
-}
+
+[directory.substitutions] 
+"~/Library/Mobile Documents/com~apple~CloudDocs/Data/src" = "~/cloud-src"
+"~/Library/Mobile Documents/com~apple~CloudDocs/Data" = "~/cloud-data"
 
 [git_branch]
 style = '#a37acc bold'
