@@ -35,7 +35,7 @@ utc_time_offset = '0'
 [directory]
 style = '#3399FF bold'
 substitutions = { 
-    "~/Library/Mobile Documents/com~apple~CloudDocs/Data/src/ML" = "~/CloudML",
+    "~/Library/Mobile Documents/com~apple~CloudDocs/Data/src/ml" = "~/CloudML",
     "~/Library/Mobile Documents/com~apple~CloudDocs/Data" = "~/CloudData"
 }
 
