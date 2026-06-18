@@ -4,3 +4,4 @@ Brewfile.lock.json
 ipython/00-startup.py
 
 full_backup.log
+arch-mini.raw

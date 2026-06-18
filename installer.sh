@@ -24,7 +24,7 @@ install-nvim () {
   ln -sf $(pwd)/nvim/init.lua ~/.config/nvim/init.lua
   ln -sf $(pwd)/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
 
-  nvim -c ':PlugInstall' +qa
+  nvim -c ':PlugInstall' +qa || true
 }
 
 install-oh-my-zsh () {
