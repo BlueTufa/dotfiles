@@ -1,5 +1,5 @@
 {
-  "Thin Strokes" : 1,
+  "ASCII Ligatures" : true,
   "Working Directory" : "\/Users\/dwhite",
   "Prompt Before Closing 2" : false,
   "Selected Text Color" : {
@@ -17,10 +17,11 @@
   },
   "Use Italic Font" : true,
   "Foreground Color" : {
-    "Red Component" : 0.51372549019607838,
-    "Color Space" : "sRGB",
-    "Blue Component" : 0.58823529411764708,
-    "Green Component" : 0.58039215686274515
+    "Red Component" : 0.76858246326446533,
+    "Color Space" : "P3",
+    "Blue Component" : 0.90350490808486938,
+    "Alpha Component" : 1,
+    "Green Component" : 0.88061350584030151
   },
   "Right Option Key Sends" : 0,
   "Character Encoding" : 4,
@@ -32,7 +33,7 @@
   },
   "Blend" : 0.74632791482852356,
   "Show Mark Indicators" : false,
-  "Mouse Reporting" : true,
+  "Mouse Reporting" : false,
   "Cursor Boost" : 0,
   "Ansi 4 Color" : {
     "Red Component" : 0.14901960784313725,
@@ -91,33 +92,37 @@
   "Custom Command" : "No",
   "Title Components" : 134,
   "Keyboard Map" : {
-    "0xf701-0x280000" : {
-      "Version" : 2,
-      "Apply Mode" : 0,
+    "f702-0x300000" : {
       "Action" : 11,
-      "Text" : "0x1b 0x1b 0x5b 0x42",
-      "Escaping" : 1
+      "Text" : "0x1"
     },
-    "0xf702-0x280000" : {
-      "Version" : 2,
-      "Apply Mode" : 0,
-      "Action" : 11,
-      "Text" : "0x1b 0x1b 0x5b 0x44",
-      "Escaping" : 1
+    "f702-0x280000" : {
+      "Action" : 10,
+      "Text" : "b"
     },
-    "0xf700-0x280000" : {
-      "Version" : 2,
-      "Apply Mode" : 0,
-      "Action" : 11,
-      "Text" : "0x1b 0x1b 0x5b 0x41",
-      "Escaping" : 1
+    "f703-0x280000" : {
+      "Action" : 10,
+      "Text" : "f"
     },
-    "0xf703-0x280000" : {
-      "Version" : 2,
-      "Apply Mode" : 0,
+    "f728-0x80000" : {
+      "Action" : 10,
+      "Text" : "d"
+    },
+    "0x7f-0x100000" : {
       "Action" : 11,
-      "Text" : "0x1b 0x1b 0x5b 0x43",
-      "Escaping" : 1
+      "Text" : "0x15"
+    },
+    "f728-0x0" : {
+      "Action" : 11,
+      "Text" : "0x4"
+    },
+    "f703-0x300000" : {
+      "Action" : 11,
+      "Text" : "0x5"
+    },
+    "0x7f-0x80000" : {
+      "Action" : 11,
+      "Text" : "0x1b 0x7f"
     }
   },
   "Ansi 14 Color" : {
@@ -220,7 +225,7 @@
   "Command" : "",
   "Terminal Type" : "xterm-256color",
   "Horizontal Spacing" : 1,
-  "Animate Movement" : true,
+  "Animate Movement" : false,
   "Option Key Sends" : 2,
   "Only The Default BG Color Uses Transparency" : true,
   "Minimum Contrast" : 0,
@@ -261,11 +266,11 @@
   "Unicode Normalization" : 3,
   "Visual Bell" : false,
   "Custom Directory" : "No",
-  "ASCII Ligatures" : true,
   "Ansi 5 Color" : {
     "Red Component" : 0.82745098039215681,
     "Color Space" : "sRGB",
     "Blue Component" : 0.50980392156862742,
     "Green Component" : 0.21176470588235294
-  }
+  },
+  "Thin Strokes" : 1
 }

@@ -30,7 +30,7 @@ function fish_greeting --description="Override default behavior with a custom fi
   end
   
   if $is_darwin; and $has_macchina
-      macchina
+    macchina
   else if $has_fastfetch
     fastfetch 
   end

@@ -65,6 +65,8 @@ if $is_darwin
   alias slack="open /Applications/Slack.app"
   alias sqlwb="open /Applications/DataGrip.app"
   alias xbrew='arch -x86_64 /usr/local/bin/brew'
+  alias gwml='cd ~/Library/Mobile Documents/com~apple~CloudDocs/Data/src/ml/deep-learning'
+  alias gdd='cd "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Data/"'
 end
 
 if test -f /etc/os-release

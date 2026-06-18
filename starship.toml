@@ -35,6 +35,10 @@ utc_time_offset = '0'
 [directory]
 style = '#3399FF bold'
 
+[directory.substitutions] 
+"~/Library/Mobile Documents/com~apple~CloudDocs/Data/src" = "~/cloud-src"
+"~/Library/Mobile Documents/com~apple~CloudDocs/Data" = "~/cloud-data"
+
 [git_branch]
 style = '#a37acc bold'
 format = '[$symbol$branch(:$remote_branch)]($style) '

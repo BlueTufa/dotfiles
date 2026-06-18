@@ -43,11 +43,11 @@ set -gx FZF_ALT_C_OPTS "--preview 'eza --all --color=always'"
 pyenv init - | source
 starship init fish | source
 zoxide init fish | source
-docker completion fish | source
 gh completion -s fish | source
 poetry completions fish | source
 
 # keeping these for the next time I need rust or K8s
+# docker completion fish | source
 # helm completion fish | source
 # kubectl completion fish | source
 # rustup completions fish | source

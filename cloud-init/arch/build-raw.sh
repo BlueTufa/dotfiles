@@ -173,8 +173,8 @@ chroot "$MNT" /bin/bash -c "
     chsh -s $(which zsh) badger
 "
 
-# sleep 10
-# killall gpg-agent
+sleep 3
+killall gpg-agent
 
 # umount -R "$MNT"
 # losetup -d "$LOOPDEV"
