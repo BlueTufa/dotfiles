@@ -49,8 +49,8 @@ mkfs.fat -F32 -n ARCH_EFI "${LOOPDEV}p1"
 mkfs.ext4 -L ARCH_ROOT "${LOOPDEV}p2"
 
 # loopback the raw partition on mount point
-mkdir -p "$MNT/boot/efi"
 mount "${LOOPDEV}p2" "$MNT"
+mkdir -p "$MNT/boot/efi"
 mount "${LOOPDEV}p1" "$MNT/boot/efi"
 
 # download and verify
@@ -118,7 +118,7 @@ chroot "$MNT" /bin/bash -c "
     mkinitcpio -p linux
     mkdir -p /boot/efi
     mount ${LOOPDEV}p1 /boot/efi
-    grub-install --target=x86_64-efi --efi-directory=$MNT/boot/efi --bootloader-id=arch --removable
+    grub-install --target=x86_64-efi --efi-directory=/boot/efi --boot-directory=/boot/efi --no-nvram --bootloader-id=arch --removable
     grub-mkconfig -o /boot/grub/grub.cfg
     genfstab -U / > /etc/fstab
 

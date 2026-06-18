@@ -7,3 +7,5 @@ export NVM_DIR="$HOME/.nvm"
 export COMPOSE_DOCKER_CLI_BUILD=1
 export DOCKER_BUILDKIT=1
 export COMPOSE_BAKE=True
+export OLLAMA_MODELS=/kvmpool/models
+export PATH=$PATH:~/src/bin
