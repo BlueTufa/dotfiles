@@ -32,6 +32,7 @@ abbr --add be 'cd $WORK_SRC/backend-api'
 abbr --add go-api 'cd $WORK_SRC/cohorts-api'
 abbr --add go-hde 'cd $WORK_SRC/health-data-engine'
 abbr --add find-empty-folders 'find . -type d -empty'
+abbr --add lab-wol 'wakeonlan b0:82:e2:3c:6f:61 192.168.160.255'
 
 # Kubernetes aliases, not in use right now
 # abbr --add kp 'kubectl -n prod'
