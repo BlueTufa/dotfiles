@@ -47,7 +47,7 @@ install-fish () {
   if ! command -v fish &> /dev/null
   then
     echo "Fish shell not found"
-    exit 0
+    exit 1
   fi
 
   mkdir -p ~/.config/fish
@@ -68,7 +68,7 @@ install-fish () {
 }
 
 config-starship() {
-# starship is the default prompt on zsh and fish
+  # starship is the default prompt on zsh and fish
   make-backup ~/.config/starship.toml
   ln -sf $(pwd)/starship.toml ~/.config/starship.toml
 }
@@ -86,8 +86,10 @@ touch ~/.hushlogin
 if [[ $(uname) == "Darwin" ]]; then
   [[ -d ~/Library/KeyBindings/ ]] || mkdir -p ~/Library/KeyBindings/
   cp ./macos/Library/KeyBindings/DefaultKeyBinding.dict ~/Library/KeyBindings/
-  [[ " $* " == *" --sync-brew "* ]] && brew bundle --cleanup
-  [[ " $* " == *" --sync-macos "* ]] && ./macos.sh
+  
+  # WARNING: these optional args can be very invasive to your MacOS configuration
+  for arg in "$@"; do [[ "$arg" == "--sync-brew" ]] && { brew bundle --cleanup; break; }; done
+  for arg in "$@"; do [[ "$arg" == "--sync-macos" ]] && { ./macos.sh; break; }; done
 fi
 
 # comment this out if you don't want nvim
@@ -97,6 +99,13 @@ fi
 [[ -d ~/.oh-my-zsh ]] || install-oh-my-zsh
 
 [[ " $* " == *" --skip-starship "* ]] || config-starship
-[[ " $* " == *" --skip-fish "* ]] || install-fish
+
+# fish is now disabled by default
+for arg in "$@"; do
+    if [ "$arg" = "--install-fish" ]; then
+        install-fish
+        break
+    fi
+done
 
 config-fastfetch
