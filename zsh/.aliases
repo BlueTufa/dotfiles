@@ -12,14 +12,28 @@ alias rm='trash -v'
 if [[ -f /etc/os-release || -L /etc/os-release ]] && grep -qi '^ID=debian' /etc/os-release; then
   alias cat='batcat -p --theme=ansi'
   alias less='batcat --theme=ansi'
+  alias lr='fdfind -aH -t f'
 else
   alias cat='bat -p --theme=ansi'
   alias less='bat --theme=ansi'
+  alias lr='fd -aH -t f'
+fi
+
+if [[ $(uname) == "Darwin" ]]; then
+  # aliases for gui mode apps
+  # NOTE: may need to add -f after -g any time you want to block from the CLI
+  alias actmon="open /System/Applications/Utilities/Activity\ Monitor.app"
+  alias calc="open /System/Applications/Calculator.app"
+  alias console="open /System/Applications/Utilities/Console.app"
+  alias gdu="open /System/Applications/Utilities/Disk\ Utility.app"
+  alias prefs="open /System/Applications/System\ Preferences.app"
+  
+  alias gwml='cd $HOME/Library/Mobile Documents/com~apple~CloudDocs/Data/src/ml/deep-learning'
+  alias gdd='cd "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Data/"'
 fi
 
 alias l='eza -aa -g --long --header --git'
 alias ll='eza -aa -g --long --header --git'
-alias lr='fd -aH -t f'
 
 alias md5='openssl md5'
 alias sha1='openssl sha1'
@@ -51,8 +65,15 @@ alias gst='git status'
 alias gbr='git branch'
 alias gps='git push'
 alias diff='git diff --no-index'
-
-alias print-timestamp='watch --no-title date -u +"%Y-%m-%dT%H:%M:%SZ"'
+alias purge-remote-tags='git tag -l | xargs git push --delete origin'
 alias aws-ls='aws --endpoint=http://localhost:4566'
 alias gh-pr='gh pr create --fill-first'
 alias iso-date='date -u +"%Y-%m-%dT%H:%M:%SZ"'
+alias print-timestamp='watch --no-title date -u +"%Y-%m-%dT%H:%M:%SZ"'
+
+alias gen-cert='openssl req -x509 -newkey rsa:4096 -keyout server.key -out server.crt -sha256 -days 3650 -nodes -subj "/C=US/ST=Colorado/L=Denver/O=Blue Tufa/CN=bluetufa.com"'
+alias gen-keypair='openssl genrsa -out private_key.pem 2048; and openssl rsa -in private_key.pem -pubout -out public_key.pem'
+
+alias find-empty-folders='find . -type d -empty'
+alias lab-wol='wakeonlan -i 192.168.160.255 b0:82:e2:3c:6f:61'
+alias lab2-wol='wakeonlan -i 192.168.160.255 04:d4:c4:4a:9f:2b'
