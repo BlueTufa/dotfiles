@@ -5,18 +5,18 @@ if $is_darwin; and $is_arm
   eval (/opt/homebrew/bin/brew shellenv)
 end
 
-set -l openssl_path (brew --prefix openssl)
-
 set -gx GPG_TTY (tty)
 set -gx EDITOR 'nvim'
 set -gx AWS_PAGER 'bat --style=plain -l json'
 set -gx NVM_DIR "$HOME/.nvm"
 
 set -Ux PYENV_ROOT $HOME/.pyenv
-set -Ux fish_user_paths $fish_user_paths $PYENV_ROOT/bin "$HOME/src/bin" "$HOME/.cargo/bin" "$openssl_path/bin"
+set -Ux fish_user_paths $fish_user_paths $PYENV_ROOT/bin "$HOME/src/bin" "$HOME/.cargo/bin" 
 
 # these were needed by an old version of python,
 # and possibly postgresql.  retire as soon as possible
+# set -l openssl_path (brew --prefix openssl)
+# fish_add_path "$openssl_path/bin"
 # set -gx LDFLAGS "-L$openssl_path/lib"
 # set -gx CPPFLAGS "-I$openssl_path/include"
 

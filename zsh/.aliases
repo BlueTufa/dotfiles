@@ -77,3 +77,4 @@ alias gen-keypair='openssl genrsa -out private_key.pem 2048; and openssl rsa -in
 alias find-empty-folders='find . -type d -empty'
 alias lab-wol='wakeonlan -i 192.168.160.255 b0:82:e2:3c:6f:61'
 alias lab2-wol='wakeonlan -i 192.168.160.255 04:d4:c4:4a:9f:2b'
+alias flush-dns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
