@@ -10,10 +10,10 @@ alias pe='printenv'
 alias rm='trash -v'
 
 if [[ -f /etc/os-release || -L /etc/os-release ]] && grep -qi '^ID=debian' /etc/os-release; then
-  alias cat='batcat --theme=ansi'
+  alias cat='batcat -p --theme=ansi'
   alias less='batcat --theme=ansi'
 else
-  alias cat='bat --theme=ansi'
+  alias cat='bat -p --theme=ansi'
   alias less='bat --theme=ansi'
 fi
 

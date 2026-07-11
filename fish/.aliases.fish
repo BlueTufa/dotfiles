@@ -9,7 +9,7 @@ alias rg='rg -i --color=auto --colors=path:fg:yellow --colors=match:fg:green --h
 alias rgi='rg -g !package-lock.json -g !poetry.lock -g !Cargo.lock'
 
 alias pe='printenv'
-alias cat='bat --theme=ansi'
+alias cat='bat -p --theme=ansi'
 alias less='bat --theme=ansi'
 alias rm='trash -v'
 
