@@ -99,10 +99,10 @@ do
   [[ -f $file ]] && source $file
 done
 
-if command -v macchina >/dev/null; then
-  macchina
-elif command -v fastfetch >/dev/null; then
-  fastfetch
-elif command -v neofetch >/dev/null; then
-  neofetch
+if (( $+commands[macchina] )); then
+    macchina
+elif (( $+commands[fastfetch] )); then
+    fastfetch
 fi
+
+(( $+commands[zoxide] )) && eval "$(zoxide init --cmd cd zsh)"
