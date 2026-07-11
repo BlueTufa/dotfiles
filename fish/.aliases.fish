@@ -70,6 +70,6 @@ if $is_darwin
 end
 
 if test -f /etc/os-release
-  alias cat='batcat --theme=ansi'
+  alias cat='batcat -p --theme=ansi'
 end
 

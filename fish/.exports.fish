@@ -17,8 +17,8 @@ set -Ux fish_user_paths $fish_user_paths $PYENV_ROOT/bin "$HOME/src/bin" "$HOME/
 
 # these were needed by an old version of python,
 # and possibly postgresql.  retire as soon as possible
-set -gx LDFLAGS "-L$openssl_path/lib"
-set -gx CPPFLAGS "-I$openssl_path/include"
+# set -gx LDFLAGS "-L$openssl_path/lib"
+# set -gx CPPFLAGS "-I$openssl_path/include"
 
 set -gx AWS_COMPLETER (which aws_completer)
 complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'

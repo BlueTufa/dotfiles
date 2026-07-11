@@ -1,19 +1,5 @@
-abbr --add db-migrate-prod "run-ecs-task prod task-definition/database-migrations-task --cluster rg-us-e1-prod-web-cluster --network-configuration=\''awsvpcConfiguration={subnets=[subnet-0189c234c09672b16],securityGroups=[sg-0c925e447aa200420]}\''"
-abbr --add db-migrate-dev "run-ecs-task dev task-definition/database-migrations-task --cluster rg-us-e1-dev-cluster --network-configuration=\''awsvpcConfiguration={subnets=[subnet-0f91b65d392895393],securityGroups=[sg-018d21aeabb7852de]}\''"
-abbr --add update-service-dev "aws ecs update-service --force-new-deployment --cluster rg-us-e1-dev-cluster --service"
-abbr --add update-service-prod "aws ecs update-service --force-new-deployment --cluster rg-us-e1-prod-cluster --service"
-
 abbr --add print-timestamp watch --no-title date -u +"%Y-%m-%dT%H:%M:%SZ"
 
-abbr --add tf-github "awsume mgmt; and cd $WORK_SRC/terraform/github/"
-abbr --add tf-data "awsume data; and cd $WORK_SRC/terraform/aws/data-lake"
-abbr --add tf-ds "awsume data; and cd $WORK_SRC/terraform/aws/workloads/data-science/"
-abbr --add tf-dev "awsume dev; and z $WORK_SRC/terraform/aws/workloads/dev"
-abbr --add tf-prod "awsume prod; and z $WORK_SRC/terraform/aws/workloads/prod"
-abbr --add tf-ops1 "awsume mgmt; and z $WORK_SRC/terraform/aws/ops/us-east-1"
-abbr --add tf-ops2 "awsume mgmt; and z $WORK_SRC/terraform/aws/ops/us-east-2/sftp"
-
-abbr --add aws-ls 'aws --endpoint=http://localhost:4566'
 abbr --add iso-date 'date -u +"%Y-%m-%dT%H:%M:%SZ"'
 
 # dangerous, but helpful
@@ -28,9 +14,6 @@ abbr --add gh-make-draft 'gh pr ready --undo'
 abbr --add cmp-gen 'functions -n; builtin -n; alias -n; for dir in $PATH; ls $dir; end'
 
 abbr --add pop 'cd (pwd)'
-abbr --add be 'cd $WORK_SRC/backend-api'
-abbr --add go-api 'cd $WORK_SRC/cohorts-api'
-abbr --add go-hde 'cd $WORK_SRC/health-data-engine'
 abbr --add find-empty-folders 'find . -type d -empty'
 abbr --add lab-wol 'wakeonlan -i 192.168.160.255 b0:82:e2:3c:6f:61'
 abbr --add lab2-wol 'wakeonlan -i 192.168.160.255 04:d4:c4:4a:9f:2b'

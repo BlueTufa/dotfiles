@@ -1,6 +1,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$(dirname ${(%):-%x})/.oh-my-zsh"
 export HISTFILE=~/.zsh_history
+HISTSIZE=10000                # how many lines to keep in active memory
+SAVEHIST=200000               # how many lines to save inside the file
 
 setopt append_history         # this is default, but set for share_history
 setopt share_history          # import new commands from the history file also in other zsh-session
@@ -52,18 +54,26 @@ setopt inc_append_history     # add commands as they are typed, don't wait until
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
+# selective python env init, reminder that this must occur before oh-my-zsh
+if (( $+commands[pyenv] )); then
+  export PYENV_ROOT="$HOME/.pyenv"
+  [[ ":$PATH:" != *":$PYENV_ROOT/bin:"* ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+fi
+
 # dotenv is built in to oh-my-zsh and will automatically source any .env files when you enter a directory
 # ZSH_DOTENV_PROMPT=false  # Disable the confirmation prompt
 # ZSH_DOTENV_FILE=".env.local"  # Change the default filename from .env, if preferred
 # REMINDER: if you change the dotenv file name, you must include it in .gitignore
 plugins=(
- aws
  dotenv
  fzf
+ git
  gh
  pyenv
  starship
  zsh-autosuggestions
+ zsh-syntax-highlighting
 )
 
 # # set up AWS CLI autocompletions
@@ -80,7 +90,7 @@ source $ZSH/oh-my-zsh.sh
 
 bindkey -e
 
-# You may also need to disable the bell in iTerm2
+# You may also need to disable the bell manually in iTerm2
 bindkey '[C' forward-word
 bindkey '[D' backward-word
 
@@ -89,8 +99,10 @@ do
   [[ -f $file ]] && source $file
 done
 
-if command -v fastfetch >/dev/null; then
-  fastfetch
-elif command -v macchina >/dev/null; then
+if command -v macchina >/dev/null; then
   macchina
+elif command -v fastfetch >/dev/null; then
+  fastfetch
+elif command -v neofetch >/dev/null; then
+  neofetch
 fi
