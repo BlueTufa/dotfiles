@@ -17,6 +17,7 @@ in
     curl
     doggo
     eza
+    fastfetch
     fclones
     fd
     fzf
