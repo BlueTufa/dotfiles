@@ -15,6 +15,7 @@ in
   home.packages = with pkgs; [
     bat
     curl
+    doggo
     eza
     fclones
     fd
