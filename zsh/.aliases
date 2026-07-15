@@ -11,15 +11,9 @@ alias rm='trash -v'
 
 alias dig='doggo'
 
-if [[ -f /etc/os-release || -L /etc/os-release ]] && grep -qi '^ID=debian' /etc/os-release; then
-  alias cat='batcat -p --theme=ansi'
-  alias less='batcat --theme=ansi'
-  alias lr='fdfind -aH -t f'
-else
-  alias cat='bat -p --theme=ansi'
-  alias less='bat --theme=ansi'
-  alias lr='fd -aH -t f'
-fi
+alias cat='bat -p --theme=ansi'
+alias less='bat --color=always --theme=ansi'
+alias lr='fd -aH -t f'
 
 if [[ $(uname) == "Darwin" ]]; then
   # aliases for gui mode apps
@@ -29,6 +23,7 @@ if [[ $(uname) == "Darwin" ]]; then
   alias console="open /System/Applications/Utilities/Console.app"
   alias gdu="open /System/Applications/Utilities/Disk\ Utility.app"
   alias prefs="open /System/Applications/System\ Preferences.app"
+  alias flush-dns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
   
   alias gwml='cd $HOME/Library/Mobile Documents/com~apple~CloudDocs/Data/src/ml/deep-learning'
   alias gdd='cd "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Data/"'
@@ -80,4 +75,3 @@ alias gen-keypair='openssl genrsa -out private_key.pem 2048; and openssl rsa -in
 alias find-empty-folders='find . -type d -empty'
 alias lab-wol='wakeonlan -i 192.168.160.255 b0:82:e2:3c:6f:61'
 alias lab2-wol='wakeonlan -i 192.168.160.255 04:d4:c4:4a:9f:2b'
-alias flush-dns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
