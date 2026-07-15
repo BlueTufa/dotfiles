@@ -110,3 +110,10 @@ elif (( $+commands[fastfetch] )); then
 fi
 
 (( $+commands[zoxide] )) && eval "$(zoxide init --cmd cd zsh)"
+
+# source nix if it exists
+# Nix user profile
+if [[ -d "$HOME/.nix-profile/bin" ]]; then
+    path=("$HOME/.nix-profile/bin" $path)
+fi
+

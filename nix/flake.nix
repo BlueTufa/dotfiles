@@ -1,7 +1,4 @@
 {
-  let
-  username = builtins.getEnv "USER";
-
   description = "Home Manager configuration";
 
   inputs = {
@@ -15,7 +12,8 @@
 
   outputs = { nixpkgs, home-manager, ... }:
   let
-    system = builtins.currentSystem;
+    username = "badger";
+    system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
     };

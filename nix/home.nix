@@ -1,9 +1,14 @@
 { config, pkgs, ... }:
+
+let
+  username = "badger";
+in
 {
-  let
-  username = builtins.getEnv "USER";
-  home.username = "${username}";
-  home.homeDirectory = "/Users/YOUR_USERNAME";
+  home.username = username;
+  home.homeDirectory = 
+    if pkgs.stdenv.isDarwin 
+    then "/Users/${username}"
+    else "/home/${username}";
 
   home.stateVersion = "26.05";
 
@@ -16,7 +21,7 @@
     fzf
     gh
     git
-    git-delta
+    delta
     git-lfs
     jq
     neovim
