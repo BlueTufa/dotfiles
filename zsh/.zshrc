@@ -93,6 +93,10 @@ bindkey -e
 # You may also need to disable the bell manually in iTerm2
 bindkey '[C' forward-word
 bindkey '[D' backward-word
+bindkey -r '^[[5~'
+bindkey -r '^[[6~'
+bindkey '^[[5~' history-beginning-search-backward
+bindkey '^[[6~' history-beginning-search-forward
 
 for file in ~/.zsh/.{exports*,aliases,functions}
 do
