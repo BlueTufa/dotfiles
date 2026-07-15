@@ -93,23 +93,8 @@ bindkey -e
 # You may also need to disable the bell manually in iTerm2
 bindkey '[C' forward-word
 bindkey '[D' backward-word
-bindkey -r '^[[5~'
-bindkey -r '^[[6~'
 bindkey '^[[5~' history-beginning-search-backward
 bindkey '^[[6~' history-beginning-search-forward
-
-for file in ~/.zsh/.{exports*,aliases,functions}
-do
-  [[ -f $file ]] && source $file
-done
-
-if (( $+commands[macchina] )); then
-    macchina
-elif (( $+commands[fastfetch] )); then
-    fastfetch
-fi
-
-(( $+commands[zoxide] )) && eval "$(zoxide init --cmd cd zsh)"
 
 # source nix if it exists
 # Nix user profile
@@ -117,3 +102,15 @@ if [[ -d "$HOME/.nix-profile/bin" ]]; then
     path=("$HOME/.nix-profile/bin" $path)
 fi
 
+for file in ~/.zsh/.{exports*,aliases,functions}
+do
+  [[ -f $file ]] && source $file
+done
+
+if (( $+commands[macchina] )); then
+  macchina
+elif (( $+commands[fastfetch] )); then
+  fastfetch
+fi
+
+(( $+commands[zoxide] )) && eval "$(zoxide init --cmd cd zsh)"
