@@ -9,6 +9,8 @@ alias rgi='rg -g !package-lock.json -g !poetry.lock -g !Cargo.lock'
 alias pe='printenv'
 alias rm='trash -v'
 
+alias dig='doggo'
+
 if [[ -f /etc/os-release || -L /etc/os-release ]] && grep -qi '^ID=debian' /etc/os-release; then
   alias cat='batcat -p --theme=ansi'
   alias less='batcat --theme=ansi'
@@ -31,7 +33,6 @@ if [[ $(uname) == "Darwin" ]]; then
   alias gwml='cd $HOME/Library/Mobile Documents/com~apple~CloudDocs/Data/src/ml/deep-learning'
   alias gdd='cd "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Data/"'
   alias clip='pbcopy'
-  alias dig='doggo'
 fi
 
 alias l='eza -aa -g --long --header --git'
