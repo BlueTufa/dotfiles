@@ -14,8 +14,12 @@ in
 
   home.packages = with pkgs; [
     bat
+    btop
     curl
+    delta
     doggo
+    duf
+    dust
     eza
     fastfetch
     fclones
@@ -23,11 +27,13 @@ in
     fzf
     gh
     git
-    delta
     git-lfs
+    httpie
+    iperf3
     jq
     neovim
     nmap
+    procs
     pwgen
     ripgrep
     rsync
