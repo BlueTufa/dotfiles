@@ -39,6 +39,7 @@ in
     ripgrep
     rsync
     socat
+    tmux
     trash-cli
     tree
     watch
