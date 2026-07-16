@@ -39,6 +39,7 @@ in
     ripgrep
     rsync
     socat
+    trash-cli
     tree
     watch
     wget
