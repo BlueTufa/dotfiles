@@ -31,6 +31,7 @@ in
     httpie
     iperf3
     jq
+    mtr
     neovim
     nmap
     procs
