@@ -12,5 +12,5 @@ fi
 
 nohup rsync -aAXHv --numeric-ids \
   --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/lost+found"} \
-  --exclude={"/var/cache/pacman/pkg/*","/var/tmp/*","/var/log/*"} \
+  --exclude={"/var/cache/pacman/pkg/*","/var/tmp/*","/var/cache/*"} \
   / "$1" 2>&1 | tee -a full_backup.log > /dev/null &
