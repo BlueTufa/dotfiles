@@ -54,7 +54,6 @@ setopt inc_append_history     # add commands as they are typed, don't wait until
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # selective python env init, reminder that this must occur before oh-my-zsh
 if (( $+commands[pyenv] )); then
@@ -64,7 +63,7 @@ if (( $+commands[pyenv] )); then
 fi
 
 # dotenv is built in to oh-my-zsh and will automatically source any .env files when you enter a directory
-# ZSH_DOTENV_PROMPT=false  # Disable the confirmation prompt
+ZSH_DOTENV_PROMPT=false  # Disable the confirmation prompt
 # ZSH_DOTENV_FILE=".env.local"  # Change the default filename from .env, if preferred
 # REMINDER: if you change the dotenv file name, you must include it in .gitignore
 plugins=(
@@ -85,6 +84,7 @@ plugins=(
 
 # comment this out to unconfigure the 1Password ssh agent
 if [[ $(uname) == "Darwin" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
   export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 fi
 
