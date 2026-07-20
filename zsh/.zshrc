@@ -54,6 +54,8 @@ setopt inc_append_history     # add commands as they are typed, don't wait until
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # selective python env init, reminder that this must occur before oh-my-zsh
 if (( $+commands[pyenv] )); then
   export PYENV_ROOT="$HOME/.pyenv"

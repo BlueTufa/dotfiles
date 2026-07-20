@@ -1,5 +1,11 @@
 {
-  "Custom Directory" : "No",
+  "Ansi 5 Color" : {
+    "Red Component" : 0.73333334922790527,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0.9686274528503418,
+    "Alpha Component" : 1,
+    "Green Component" : 0.60392159223556519
+  },
   "Working Directory" : "\/Users\/dan.white",
   "Prompt Before Closing 2" : false,
   "Selected Text Color" : {
@@ -97,9 +103,9 @@
   "Custom Command" : "No",
   "Title Components" : 512,
   "Keyboard Map" : {
-    "f703-0x300000" : {
+    "f728-0x0" : {
       "Action" : 11,
-      "Text" : "0x5"
+      "Text" : "0x4"
     },
     "f702-0x280000" : {
       "Action" : 10,
@@ -117,9 +123,9 @@
       "Action" : 11,
       "Text" : "0x15"
     },
-    "f728-0x0" : {
+    "f703-0x300000" : {
       "Action" : 11,
-      "Text" : "0x4"
+      "Text" : "0x5"
     },
     "f702-0x300000" : {
       "Action" : 11,
@@ -156,6 +162,7 @@
     "Alpha Component" : 1,
     "Green Component" : 0.46274510025978088
   },
+  "Movement Keys Scroll Outside Interactive Apps" : false,
   "Use Bold Font" : true,
   "Silence Bell" : true,
   "Ansi 12 Color" : {
@@ -193,13 +200,7 @@
   "Name" : "Tokyo Night",
   "Blinking Cursor" : false,
   "Guid" : "651D4ED2-3301-46E9-91DD-C35FDCDBE603",
-  "Ansi 8 Color" : {
-    "Red Component" : 0.25490197539329529,
-    "Color Space" : "sRGB",
-    "Blue Component" : 0.40784314274787903,
-    "Alpha Component" : 1,
-    "Green Component" : 0.28235295414924622
-  },
+  "Idle Code" : 0,
   "Ansi 10 Color" : {
     "Red Component" : 0.61960786581039429,
     "Color Space" : "sRGB",
@@ -207,7 +208,13 @@
     "Alpha Component" : 1,
     "Green Component" : 0.80784314870834351
   },
-  "Idle Code" : 0,
+  "Ansi 8 Color" : {
+    "Red Component" : 0.25490197539329529,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0.40784314274787903,
+    "Alpha Component" : 1,
+    "Green Component" : 0.28235295414924622
+  },
   "Badge Color" : {
     "Red Component" : 1,
     "Color Space" : "sRGB",
@@ -225,7 +232,7 @@
     "Green Component" : 0.086274512112140656
   },
   "Blur" : false,
-  "Normal Font" : "HackNFM-Regular 15",
+  "Normal Font" : "CodeNewRomanNFM 15",
   "Vertical Spacing" : 1,
   "Ansi 7 Color" : {
     "Red Component" : 0.66274511814117432,
@@ -277,12 +284,6 @@
   "Columns" : 120,
   "Visual Bell" : true,
   "ASCII Ligatures" : false,
-  "Ansi 5 Color" : {
-    "Red Component" : 0.73333334922790527,
-    "Color Space" : "sRGB",
-    "Blue Component" : 0.9686274528503418,
-    "Alpha Component" : 1,
-    "Green Component" : 0.60392159223556519
-  },
-  "Thin Strokes" : 4
+  "Thin Strokes" : 4,
+  "Custom Directory" : "No"
 }
