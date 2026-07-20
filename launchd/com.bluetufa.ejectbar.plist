@@ -13,8 +13,11 @@
     <dict>
         <key>PathState</key>
         <dict>
-            <key>/Volumes</key>
-            <true/>
+          <key>/Volumes/Backups</key>
+          <true/>
+
+          <key>/Volumes/Recovery</key>
+          <true/>
         </dict>
     </dict>
 </dict>
