@@ -1,5 +1,10 @@
 {
-  "ASCII Ligatures" : true,
+  "Ansi 5 Color" : {
+    "Red Component" : 0.82745098039215681,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0.50980392156862742,
+    "Green Component" : 0.21176470588235294
+  },
   "Working Directory" : "\/Users\/dwhite",
   "Prompt Before Closing 2" : false,
   "Selected Text Color" : {
@@ -93,36 +98,36 @@
   "Title Components" : 134,
   "Keyboard Map" : {
     "f702-0x300000" : {
-      "Action" : 11,
-      "Text" : "0x1"
+      "Text" : "0x1",
+      "Action" : 11
     },
     "f702-0x280000" : {
-      "Action" : 10,
-      "Text" : "b"
+      "Text" : "b",
+      "Action" : 10
     },
     "f703-0x280000" : {
-      "Action" : 10,
-      "Text" : "f"
+      "Text" : "f",
+      "Action" : 10
     },
     "f728-0x80000" : {
-      "Action" : 10,
-      "Text" : "d"
+      "Text" : "d",
+      "Action" : 10
     },
     "0x7f-0x100000" : {
-      "Action" : 11,
-      "Text" : "0x15"
+      "Text" : "0x15",
+      "Action" : 11
     },
     "f728-0x0" : {
-      "Action" : 11,
-      "Text" : "0x4"
-    },
-    "f703-0x300000" : {
-      "Action" : 11,
-      "Text" : "0x5"
+      "Text" : "0x4",
+      "Action" : 11
     },
     "0x7f-0x80000" : {
-      "Action" : 11,
-      "Text" : "0x1b 0x7f"
+      "Text" : "0x1b 0x7f",
+      "Action" : 11
+    },
+    "f703-0x300000" : {
+      "Text" : "0x5",
+      "Action" : 11
     }
   },
   "Ansi 14 Color" : {
@@ -182,19 +187,19 @@
   "Name" : "Solarized",
   "Blinking Cursor" : true,
   "Guid" : "7EB27135-E912-404E-8306-C4F48CD3FFCB",
-  "Ansi 8 Color" : {
-    "Red Component" : 0,
-    "Color Space" : "sRGB",
-    "Blue Component" : 0.21176470588235294,
-    "Green Component" : 0.16862745098039217
-  },
+  "Idle Code" : 0,
   "Ansi 10 Color" : {
     "Red Component" : 0.34509803921568627,
     "Color Space" : "sRGB",
     "Blue Component" : 0.45882352941176469,
     "Green Component" : 0.43137254901960786
   },
-  "Idle Code" : 0,
+  "Ansi 8 Color" : {
+    "Red Component" : 0,
+    "Color Space" : "sRGB",
+    "Blue Component" : 0.21176470588235294,
+    "Green Component" : 0.16862745098039217
+  },
   "Badge Color" : {
     "Red Component" : 1,
     "Color Space" : "sRGB",
@@ -248,7 +253,7 @@
     "Color Space" : "sRGB",
     "Alpha Component" : 1,
     "Blue Component" : 0.094117647058823528,
-    "Green Component" : 0.039215686274509796
+    "Green Component" : 0.039215686274509789
   },
   "Screen" : -1,
   "Initial Use Transparency" : true,
@@ -266,11 +271,6 @@
   "Unicode Normalization" : 3,
   "Visual Bell" : false,
   "Custom Directory" : "No",
-  "Ansi 5 Color" : {
-    "Red Component" : 0.82745098039215681,
-    "Color Space" : "sRGB",
-    "Blue Component" : 0.50980392156862742,
-    "Green Component" : 0.21176470588235294
-  },
-  "Thin Strokes" : 1
+  "Thin Strokes" : 1,
+  "ASCII Ligatures" : true
 }
