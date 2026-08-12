@@ -8,24 +8,24 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 INSTANCE_ID=${1:-"arch-metal-01"}
-SSH_KEY="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMwt/pVQKCQHHqxEOdh1/JKqJzIyTPLQpqz/Wno0ECqG badger@catamaran"
+SSH_KEY=${2:-"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMwt/pVQKCQHHqxEOdh1/JKqJzIyTPLQpqz/Wno0ECqG badger@catamaran"}
+DEFAULT_ROOT_PW=${3:-"root"}
 MNT=/mnt/arch
 
 # download
 [[ -f archlinux-bootstrap-x86_64.tar.zst ]] || wget https://geo.mirror.pkgbuild.com/iso/latest/archlinux-bootstrap-x86_64.tar.zst
 [[ -f sha256sums.txt ]] || wget https://geo.mirror.pkgbuild.com/iso/latest/sha256sums.txt
 
-grep "$(openssl sha256 -r archlinux-bootstrap-x86_64.tar.zst | awk '{print $1}')" sha256sums.txt
-if [ $? -eq 0 ]; then
+if grep -q "$(openssl sha256 -r archlinux-bootstrap-x86_64.tar.zst | awk '{print $1}')" sha256sums.txt; then
     echo "Checksum verified successfully!"
 else
     echo "Checksum verification failed, refusing to continue without checksums."
     exit 1
 fi
 
-tar --use-compress-program=unzstd -xvf archlinux-bootstrap-x86_64.tar.zst
+tar --numeric-owner --use-compress-program=unzstd -xvf archlinux-bootstrap-x86_64.tar.zst
 
-# update mirrors, not rerunnable
+# update mirrors, not idempotent
 awk '
 /## United States/ {count = 20; next}
 count > 0 {
@@ -42,19 +42,10 @@ sudo sed -i '/^#en_US.UTF-8 UTF-8/s/^#//' root.x86_64/etc/locale.gen
 # terminal font
 echo "FONT=ter-v22b" >> root.x86_64/etc/vconsole.conf
 
-# edit resolv.conf
-# start with cloudflare, dhcp may override later
-echo nameserver 1.1.1.1 > root.x86_64/etc/resolv.conf
-
-# ssh keys
-# mkdir -p root.x86_64/root/.ssh/
-# echo $SSH_KEY > root.x86_64/root/.ssh/authorized_keys
-# chmod 600 root.x86_64/root/.ssh/authorized_keys
-
 sudo mkdir -p root.x86_64/etc/systemd/network
 
-IF_NAME=$(ls /sys/class/net/ | grep '^en')
-echo cat <<-EOF > root.x86_64/etc/systemd/network/20-wired.network
+IF_NAME=$(ls /sys/class/net/ | grep -m 1 '^en')
+cat <<EOF > root.x86_64/etc/systemd/network/20-wired.network
 [Match]
 Name=$IF_NAME
 
@@ -62,7 +53,7 @@ Name=$IF_NAME
 DHCP=yes
 EOF
 
-rsync -aAXH root.x86_64/ "$MNT"
+rsync --numeric-ids -aAXH root.x86_64/ "$MNT"
 
 for i in run proc sys dev
 do echo "Mounting $i"
@@ -80,17 +71,18 @@ chroot "$MNT" /bin/bash -c "
     echo LANG=en_US.UTF-8 > /etc/locale.conf
 
     # install base system
-    pacman -Sy --noconfirm base linux terminus-font linux-firmware dhcpcd openssh avahi grub os-prober efibootmgr
+    pacman -Syu --noconfirm base linux terminus-font linux-firmware openssh avahi grub os-prober efibootmgr
 
     mkinitcpio -p linux
     genfstab -U / > /etc/fstab
 
-    echo \"root:root\" | chpasswd
+    echo \"root:$DEFAULT_ROOT_PW\" | chpasswd
 
-    systemctl enable dhcpcd systemd-networkd sshd avahi-daemon.service
+    systemctl enable systemd-networkd sshd avahi-daemon.service systemd-resolved
+    ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
     # install user mode packages
-    pacman -Sy --noconfirm \
+    pacman -Syu --noconfirm \
         man-db \
         eza \
         git \
@@ -116,10 +108,10 @@ chroot "$MNT" /bin/bash -c "
         github-cli
 
     # install dev tools
-    pacman -Sy --noconfirm base-devel linux-headers
+    pacman -Syu --noconfirm base-devel linux-headers
 
     # optional: nvidia / yubikey hardware
-    # pacman -Sy cuda \
+    # pacman -Syu cuda \
     #   nvidia \
     #   nvidia-settings \
     #   nvidia-utils \
