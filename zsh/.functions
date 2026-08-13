@@ -33,8 +33,11 @@ function _auto_poetry_shell() {
     [[ -n $VERBOSE ]] && echo "auto-deactivating $VIRTUAL_ENV"
     deactivate
   fi
-  # only poetry is supported at this time
-  if [[ -f "pyproject.toml" ]]; then
+
+  if [[ -d .venv ]]; then
+    [[ -n $VERBOSE ]] && echo "auto-activating local .venv at $(pwd)/.venv"
+    source ./.venv/bin/activate
+  elif [[ -f "pyproject.toml" ]]; then
     [[ -n $VERBOSE ]] && echo "pyproject.toml detected at $(pwd)"
 
     if [[ ! -v POETRY_ACTIVE ]]; then
