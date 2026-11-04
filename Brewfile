@@ -1,14 +1,11 @@
-tap "1password/tap"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
 # Automatic configure script builder
 brew "autoconf"
 # C library implementing the SSH2 protocol
 brew "libssh2"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@3"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Core application library for C
-brew "glib"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
 # Versatile implementation of the Network Time Protocol (NTP)
@@ -49,6 +46,8 @@ brew "git-delta"
 brew "git-lfs"
 # Alternative to top/htop
 brew "glances"
+# Core application library for C
+brew "glib"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
 # GNU Privacy Guard (OpenPGP)
@@ -85,8 +84,6 @@ brew "lolcat"
 brew "macchina"
 # Utility for directing compilation
 brew "make"
-# Media player based on MPlayer and mplayer2
-brew "mpv"
 # Text-based UI library
 brew "ncurses"
 # Incremental parsing library
@@ -97,8 +94,6 @@ brew "neovim"
 brew "nghttp2"
 # Port scanning utility for large networks
 brew "nmap"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node"
 # Manage multiple Node.js versions
 brew "nvm"
 # Password generator
@@ -139,8 +134,6 @@ brew "yq"
 brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
-# Command-line interface for 1Password
-cask "1password-cli"
 # Online diagram software
 cask "drawio"
 cask "font-code-new-roman-nerd-font"
@@ -157,3 +150,5 @@ cask "iina"
 cask "rectangle"
 # Multimedia player
 cask "vlc"
+# Multiplayer code editor
+cask "zed"
