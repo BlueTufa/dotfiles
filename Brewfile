@@ -76,8 +76,6 @@ brew "libmagic"
 brew "libssh"
 # XML security library
 brew "libxmlsec1"
-# Access large language models from the command-line
-brew "llm"
 # Rainbows and unicorns in your console!
 brew "lolcat"
 # System information fetcher, with an emphasis on performance and minimalism
@@ -94,8 +92,6 @@ brew "neovim"
 brew "nghttp2"
 # Port scanning utility for large networks
 brew "nmap"
-# Manage multiple Node.js versions
-brew "nvm"
 # Password generator
 brew "pwgen"
 # Python version management
