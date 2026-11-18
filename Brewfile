@@ -26,8 +26,8 @@ brew "eza"
 brew "fclones"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
-# Play, record, convert, and stream select audio and video codecs
-brew "ffmpeg"
+# Identify or delete duplicate files
+brew "fdupes"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # Feature-rich command-line audio/video downloader
@@ -52,8 +52,6 @@ brew "glib"
 brew "gnu-sed"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
-# Open source programming language to build simple/reliable/efficient software
-brew "go"
 # GNU grep, egrep and fgrep
 brew "grep"
 # Package compiler and linker metadata toolkit
@@ -66,8 +64,6 @@ brew "libheif"
 brew "imagemagick"
 # Update of iperf: measures TCP, UDP, and SCTP bandwidth
 brew "iperf3"
-# Duplicate file finder and an enhanced fork of 'fdupes'
-brew "jdupes"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Implementation of the file(1) command
@@ -100,8 +96,6 @@ brew "pyenv"
 brew "ripgrep"
 # Utility that provides fast incremental file transfer
 brew "rsync"
-# Rust toolchain installer
-brew "rustup"
 # SMART hard drive monitoring
 brew "smartmontools"
 # SOcket CAT: netcat on steroids
@@ -122,8 +116,6 @@ brew "wakeonlan"
 brew "watch"
 # Internet file retriever
 brew "wget"
-# JavaScript package manager
-brew "yarn"
 # Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
 # Shell extension to navigate your filesystem faster
